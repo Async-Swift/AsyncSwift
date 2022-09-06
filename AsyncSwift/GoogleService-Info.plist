@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>388113408677-32e2k6kqi1ags2n6bmompvpuu196ci0k.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.388113408677-32e2k6kqi1ags2n6bmompvpuu196ci0k</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCghy3j9aCxys2wv4ohWeLnBm6oqVrGD6A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>388113408677</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kim.AsyncSwift</string>
+	<key>PROJECT_ID</key>
+	<string>asyncswiftkorea</string>
+	<key>STORAGE_BUCKET</key>
+	<string>asyncswiftkorea.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:388113408677:ios:03e5ba8ae5a2f613ce234c</string>
+	<key>DATABASE_URL</key>
+	<string>https://asyncswiftkorea-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
