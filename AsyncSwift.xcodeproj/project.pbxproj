@@ -17,6 +17,10 @@
 		C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */; };
 		C68DE94F28C77DC900CA4CC8 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* ScheduleView.swift */; };
 		C68DE95128C77DDA00CA4CC8 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketView.swift */; };
+		C68DE95628C7827E00CA4CC8 /* MainTabView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95528C7827E00CA4CC8 /* MainTabView+Observed.swift */; };
+		C68DE95828C782EE00CA4CC8 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95728C782EE00CA4CC8 /* Schedule.swift */; };
+		C68DE95A28C7835E00CA4CC8 /* ScheduleView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95928C7835E00CA4CC8 /* ScheduleView+Observed.swift */; };
+		C68DE95C28C783AA00CA4CC8 /* TicketView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95B28C783AA00CA4CC8 /* TicketView+Observed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsyncSwift.entitlements; sourceTree = "<group>"; };
 		C68DE94E28C77DC900CA4CC8 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		C68DE95028C77DDA00CA4CC8 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		C68DE95528C7827E00CA4CC8 /* MainTabView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabView+Observed.swift"; sourceTree = "<group>"; };
+		C68DE95728C782EE00CA4CC8 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		C68DE95928C7835E00CA4CC8 /* ScheduleView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleView+Observed.swift"; sourceTree = "<group>"; };
+		C68DE95B28C783AA00CA4CC8 /* TicketView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TicketView+Observed.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,7 @@
 		C68DE95328C77F5700CA4CC8 /* Identifiable */ = {
 			isa = PBXGroup;
 			children = (
+				C68DE95728C782EE00CA4CC8 /* Schedule.swift */,
 			);
 			path = Identifiable;
 			sourceTree = "<group>";
@@ -107,6 +116,9 @@
 		C68DE95428C77F6400CA4CC8 /* Observed */ = {
 			isa = PBXGroup;
 			children = (
+				C68DE95528C7827E00CA4CC8 /* MainTabView+Observed.swift */,
+				C68DE95928C7835E00CA4CC8 /* ScheduleView+Observed.swift */,
+				C68DE95B28C783AA00CA4CC8 /* TicketView+Observed.swift */,
 			);
 			path = Observed;
 			sourceTree = "<group>";
@@ -190,9 +202,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
+				C68DE95628C7827E00CA4CC8 /* MainTabView+Observed.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketView.swift in Sources */,
+				C68DE95A28C7835E00CA4CC8 /* ScheduleView+Observed.swift in Sources */,
 				C68DE94F28C77DC900CA4CC8 /* ScheduleView.swift in Sources */,
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,
+				C68DE95C28C783AA00CA4CC8 /* TicketView+Observed.swift in Sources */,
+				C68DE95828C782EE00CA4CC8 /* Schedule.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
