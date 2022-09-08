@@ -18,6 +18,7 @@ struct MainTabView: View {
                 }
             }
         }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
