@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// TODO
+// TODO: 내용
 // 1. "캘린더에 추가" Button Action 기능 구현하고 연결하기
 // 2. "지도로 길찾기" Button Action 기능 구현하고 연결하기
 
@@ -41,7 +41,6 @@ private extension EventDetailView {
             Text(event.subject)
                 .fontWeight(.bold)
                 .font(.title3)
-                .font(.system(size: 20))
             ForEach(event.description, id:\.self) { paragraph in
                 Text(paragraph.content)
                     .font(.body)
