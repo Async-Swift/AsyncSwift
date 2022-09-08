@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 class AppData: ObservableObject {
 	@Published var currentTab: Tab = .event
+	
 }
 
 
@@ -17,3 +19,4 @@ enum Tab: String {
 	case ticketing = "ticketing"
 	case stamp = "stamp"
 }
+
