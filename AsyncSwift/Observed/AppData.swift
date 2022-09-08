@@ -5,6 +5,7 @@
 //  Created by Inho Choi on 2022/09/08.
 //
 
+import SwiftUI
 import UIKit
 
 final class AppData: ObservableObject {
@@ -13,9 +14,29 @@ final class AppData: ObservableObject {
 }
 
 
-enum Tab: String {
-	case event
-	case ticketing
-	case stamp
-}
+enum Tab: String, CaseIterable {
+     case event
+     case ticketing
+     case stamp
 
+    var title: String {
+        rawValue
+    }
+
+    var systemImageName: String {
+        switch self {
+        case .event: return "calendar"
+        case .ticketing: return "banknote"
+        case .stamp: return "checkmark.square"
+        }
+    }
+
+    @ViewBuilder
+    var view: some View {
+        switch self {
+        case .event: EventView()
+        case .ticketing: TicketingView()
+        case .stamp: StampView()
+        }
+    }
+ }
