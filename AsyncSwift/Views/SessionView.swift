@@ -58,15 +58,12 @@ private extension SessionView {
             }
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(session.speaker.name) 님")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 17))
+                    .font(.headline)
                 Text(session.speaker.role)
-                    .fontWeight(.regular)
-                    .font(.system(size: 11))
+                    .font(.caption2)
             }
             Text(session.speaker.description)
-                .fontWeight(.regular)
-                .font(.system(size: 13))
+                .font(.footnote)
                 .padding(.bottom, 60)
 
         }

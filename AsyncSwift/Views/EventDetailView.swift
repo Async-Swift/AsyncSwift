@@ -46,8 +46,7 @@ private extension EventDetailView {
             Text(event.hashTags)
                 .padding(.top, 8)
                 .foregroundColor(.gray)
-                .font(.system(size: 17))
-
+                .font(.body)
         }
         .padding(.horizontal, 24)
         .padding(.vertical, 30)
@@ -61,8 +60,7 @@ private extension EventDetailView {
                     .fontWeight(.semibold)
                     .font(.system(size: 20))
                 Text("\(event.date)\n\(event.time)")
-                    .fontWeight(.regular)
-                    .font(.system(size: 17))
+                    .font(.body)
                 Button {
 
                 } label: {

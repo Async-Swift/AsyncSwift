@@ -185,7 +185,6 @@ struct EventView: View {
                 }
             }
             .navigationTitle(Tab.event.title)
-//            .navigationTitle("Event")
         }
     }
 }
