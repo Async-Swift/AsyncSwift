@@ -16,6 +16,9 @@ struct AsyncSwiftApp: App {
         WindowGroup {
             MainTabView()
 				.environmentObject(appData)
+                .onOpenURL { url in
+                    print(url)
+                }
         }
     }
 }
