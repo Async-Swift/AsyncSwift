@@ -10,7 +10,6 @@
  2. 리스트의 세버론 웨이트 라이트로 적용하기
  3. 디바이더 너비 키우기
  4. 예정된 행사 테그 구현하기
- 5. 해더부분 bottom padding 수정(현 40 -> 30)
  6. 어싱크 오랜지색상과 세미나의 오랜지 색상 다르니까 구분하기
  7.
 
@@ -202,7 +201,7 @@ private extension EventView {
                     .foregroundColor(.white)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 8)
-                    .background(Color.accentColor)
+                    .background(Color.seminarOrange)
                     .cornerRadius(20)
                 Spacer()
             }
