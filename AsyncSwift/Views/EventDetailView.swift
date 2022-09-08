@@ -41,14 +41,14 @@ private extension EventDetailView {
                 .font(.system(size: 20))
             ForEach(event.description, id:\.self) { paragraph in
                 Text(paragraph.content)
-                    .font(.system(size: 17))
-                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.body)
+
             }
             Text(event.hashTags)
                 .padding(.top, 8)
                 .foregroundColor(.gray)
                 .font(.system(size: 17))
-                .fixedSize(horizontal: false, vertical: true)
+
         }
         .padding(.horizontal, 24)
         .padding(.vertical, 30)
@@ -64,7 +64,6 @@ private extension EventDetailView {
                 Text("\(event.date)\n\(event.time)")
                     .fontWeight(.regular)
                     .font(.system(size: 17))
-                    .fixedSize(horizontal: false, vertical: true)
                 Button {
 
                 } label: {
@@ -78,9 +77,7 @@ private extension EventDetailView {
                     .font(.system(size: 20))
                 VStack(alignment: .leading) {
                     Text("\(Text(event.location).fontWeight(.semibold)), \(Text(event.detailLocation))")
-                        .fixedSize(horizontal: false, vertical: true)
                     Text(event.address)
-                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Button {
 
