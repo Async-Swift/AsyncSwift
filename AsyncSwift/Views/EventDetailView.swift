@@ -9,10 +9,10 @@ import SwiftUI
 
 struct EventDetailView: View {
 
-    let data: EventModel.Event
+    let event: EventModel.Event
 
     init(event: EventModel.Event) {
-        data = event
+        self.event = event
     }
 
     var body: some View {
@@ -27,7 +27,7 @@ struct EventDetailView: View {
                 Spacer()
             }
         }
-        .navigationTitle(data.detailTitle)
+        .navigationTitle(event.detailTitle)
     }
 }
 
@@ -35,15 +35,16 @@ private extension EventDetailView {
 
     var description: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(data.subject)
+            Text(event.subject)
                 .fontWeight(.bold)
-                .font(.system(size: 24))
-            ForEach(data.description, id:\.self) { paragraph in
+                .font(.title3)
+                .font(.system(size: 20))
+            ForEach(event.description, id:\.self) { paragraph in
                 Text(paragraph.content)
                     .font(.system(size: 17))
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Text(data.hashTags)
+            Text(event.hashTags)
                 .padding(.top, 8)
                 .foregroundColor(.gray)
                 .font(.system(size: 17))
@@ -60,7 +61,7 @@ private extension EventDetailView {
                 Text("\(Image(systemName: "calendar")) Date and time")
                     .fontWeight(.semibold)
                     .font(.system(size: 20))
-                Text("\(data.date)\n\(data.time)")
+                Text("\(event.date)\n\(event.time)")
                     .fontWeight(.regular)
                     .font(.system(size: 17))
                     .fixedSize(horizontal: false, vertical: true)
@@ -76,9 +77,9 @@ private extension EventDetailView {
                     .fontWeight(.semibold)
                     .font(.system(size: 20))
                 VStack(alignment: .leading) {
-                    Text("\(Text(data.location).fontWeight(.semibold)), \(Text(data.detailLocation))")
+                    Text("\(Text(event.location).fontWeight(.semibold)), \(Text(event.detailLocation))")
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(data.address)
+                    Text(event.address)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Button {
