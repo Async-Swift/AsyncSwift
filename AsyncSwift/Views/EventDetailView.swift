@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+// TODO
+// 1. "캘린더에 추가" Button Action 기능 구현하고 연결하기
+// 2. "지도로 길찾기" Button Action 기능 구현하고 연결하기
+
 struct EventDetailView: View {
 
     let event: EventModel.Event
