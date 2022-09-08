@@ -4,7 +4,8 @@
 //
 //  Created by Kim Insub on 2022/09/06.
 //
-/*
+
+/* TODO
  1. vstack 고정높이 빼고 컨텐츠에 맞게 변형하기
  2. 리스트의 세버론 웨이트 라이트로 적용하기
  3. 디바이더 너비 키우기
@@ -171,7 +172,7 @@ struct EventModel {
 
 struct EventView: View {
 
-    let data = Mock.data
+    private let data = Mock.data
 
     var body: some View {
         NavigationView {
@@ -251,8 +252,8 @@ private extension EventView {
     }
 }
 
-struct ScheduleView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventView()
-    }
-}
+//struct ScheduleView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventView()
+//    }
+//}

@@ -16,7 +16,6 @@ struct EventDetailView: View {
     }
 
     var body: some View {
-
         ScrollView {
             VStack(alignment: .leading) {
                 Divider()

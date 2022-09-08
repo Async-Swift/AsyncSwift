@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SessionView: View {
 
-    let data: EventModel.Session
+    private let session: EventModel.Session
 
     init(session: EventModel.Session) {
-        data = session
+        self.session = session
     }
 
     var body: some View {
@@ -33,13 +33,13 @@ private extension SessionView {
 
     var sessionDetail: some View {
         VStack(alignment: .leading) {
-            Text(data.title)
+            Text(session.title)
                 .fontWeight(.semibold)
                 .font(.system(size: 20))
                 .padding(.vertical, 24)
 
             VStack(alignment: .leading, spacing: 8) {
-                ForEach(data.description, id: \.self) { paragraph in
+                ForEach(session.description, id: \.self) { paragraph in
                     Text(paragraph.content)
                 }
             }
@@ -57,14 +57,14 @@ private extension SessionView {
                 Spacer()
             }
             VStack(alignment: .leading, spacing: 2) {
-                Text("\(data.speaker.name) 님")
+                Text("\(session.speaker.name) 님")
                     .fontWeight(.semibold)
                     .font(.system(size: 17))
-                Text(data.speaker.role)
+                Text(session.speaker.role)
                     .fontWeight(.regular)
                     .font(.system(size: 11))
             }
-            Text(data.speaker.description)
+            Text(session.speaker.description)
                 .fontWeight(.regular)
                 .font(.system(size: 13))
                 .padding(.bottom, 60)
