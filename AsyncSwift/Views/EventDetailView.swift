@@ -9,7 +9,11 @@ import SwiftUI
 
 struct EventDetailView: View {
 
-    let data = EventModel.mockData
+    let data: EventModel.Event
+
+    init(event: EventModel.Event) {
+        data = event
+    }
 
     var body: some View {
 
@@ -18,15 +22,15 @@ struct EventDetailView: View {
                 Divider()
                     .padding(.top, 10)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(data.event.subject)
+                    Text(data.subject)
                         .fontWeight(.bold)
                         .font(.system(size: 24))
-                    ForEach(data.event.description, id:\.self) { paragraph in
+                    ForEach(data.description, id:\.self) { paragraph in
                         Text(paragraph.content)
                             .font(.system(size: 17))
                             .fixedSize(horizontal: false, vertical: true)
                     }
-                    Text(data.event.hashTags)
+                    Text(data.hashTags)
                         .padding(.top, 8)
                         .foregroundColor(.gray)
                         .font(.system(size: 17))
@@ -41,7 +45,7 @@ struct EventDetailView: View {
                         Text("\(Image(systemName: "calendar")) Date and time")
                             .fontWeight(.semibold)
                             .font(.system(size: 20))
-                        Text("\(data.event.date)\n\(data.event.time)")
+                        Text("\(data.date)\n\(data.time)")
                             .fontWeight(.regular)
                             .font(.system(size: 17))
                             .fixedSize(horizontal: false, vertical: true)
@@ -57,9 +61,9 @@ struct EventDetailView: View {
                             .fontWeight(.semibold)
                             .font(.system(size: 20))
                         VStack(alignment: .leading) {
-                            Text("\(Text(data.event.location).fontWeight(.semibold)), \(Text(data.event.detailLocation))")
+                            Text("\(Text(data.location).fontWeight(.semibold)), \(Text(data.detailLocation))")
                                 .fixedSize(horizontal: false, vertical: true)
-                            Text(data.event.address)
+                            Text(data.address)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         Button {
@@ -74,7 +78,7 @@ struct EventDetailView: View {
                 Spacer()
             }
         }
-        .navigationTitle(data.event.detailTitle)
+        .navigationTitle(data.detailTitle)
     }
 }
 
