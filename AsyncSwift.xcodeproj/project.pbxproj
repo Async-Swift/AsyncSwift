@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* AppData.swift */; };
 		C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */; };
 		C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93728C7685800CA4CC8 /* MainTabView.swift */; };
 		C68DE93A28C7685900CA4CC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C68DE93928C7685900CA4CC8 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B2E1083028C9CD6900C3DD59 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		C68DE93228C7685800CA4CC8 /* AsyncSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSwiftApp.swift; sourceTree = "<group>"; };
 		C68DE93728C7685800CA4CC8 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F7798A28C9CBC60036773B /* EventView+Observed.swift */,
+				B2E1083028C9CD6900C3DD59 /* AppData.swift */,
 			);
 			path = Observed;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
 				C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */,
+				B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +339,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AsyncSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = 76AJ433CP5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
@@ -366,7 +370,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AsyncSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = 76AJ433CP5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
