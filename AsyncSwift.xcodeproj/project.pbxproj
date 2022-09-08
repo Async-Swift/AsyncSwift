@@ -69,9 +69,7 @@
 				C68DE94A28C76CE000CA4CC8 /* Info.plist */,
 				C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */,
 				C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */,
-				C68DE95328C77F5700CA4CC8 /* Identifiable */,
 				C68DE95228C77F4800CA4CC8 /* Views */,
-				C68DE95428C77F6400CA4CC8 /* Observed */,
 				C68DE93928C7685900CA4CC8 /* Assets.xcassets */,
 				C68DE94828C76CB800CA4CC8 /* GoogleService-Info.plist */,
 				C68DE93B28C7685900CA4CC8 /* Preview Content */,
@@ -95,20 +93,6 @@
 				C68DE95028C77DDA00CA4CC8 /* TicketView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		C68DE95328C77F5700CA4CC8 /* Identifiable */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Identifiable;
-			sourceTree = "<group>";
-		};
-		C68DE95428C77F6400CA4CC8 /* Observed */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Observed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
