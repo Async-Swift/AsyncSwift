@@ -10,13 +10,18 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         TabView {
-            ScheduleView()
+            EventView()
                 .tabItem {
-                    Label("일정", systemImage: "quote.opening")
+                    Label("Event", systemImage: "calendar")
                 }
-            TicketView()
+            
+            TicketingView()
                 .tabItem {
-                    Label("티켓", systemImage: "envelope")
+                    Label("Ticketing", systemImage: "banknote")
+                }
+            StampView()
+                .tabItem {
+                    Label("Stamp", systemImage: "checkmark.square")
                 }
         }
     }
