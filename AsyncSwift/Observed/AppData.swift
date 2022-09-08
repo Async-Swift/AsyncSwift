@@ -10,7 +10,7 @@ import UIKit
 
 final class AppData: ObservableObject {
 	@Published var currentTab: Tab = .event
-	
+    var tempisScanned = true
 }
 
 
