@@ -41,6 +41,8 @@ private extension StampView {
     @ViewBuilder
     var stampBack: some View {
         Image("Seminar002StampBack")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20 , x: 40 * frontDegree / 90, y: 4)
             .rotation3DEffect(Angle(degrees: frontDegree), axis: (x: 0, y: 1, z: 0))
     }
@@ -48,6 +50,9 @@ private extension StampView {
     @ViewBuilder
     var stampFront: some View {
         Image("Seminar002StampFront")
+
+            .resizable()
+            .aspectRatio(contentMode: .fit)
             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * backDegree / 90, y: 4)
             .rotation3DEffect(Angle(degrees: backDegree), axis: (x: 0, y: 1, z: 0))
     }
