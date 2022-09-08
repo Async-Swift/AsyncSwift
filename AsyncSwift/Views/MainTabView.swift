@@ -10,26 +10,14 @@ import SwiftUI
 struct MainTabView: View {
 	@EnvironmentObject var appData: AppData
     var body: some View {
-		TabView(selection: $appData.currentTab) {
-            EventView()
-                .tabItem {
-                    Label("Event", systemImage: "calendar")
+        TabView {
+            ForEach(Tab.allCases, id: \.self) { tab in
+                tab.view.tabItem {
+                    Image(systemName: tab.systemImageName)
+                    Text(tab.title)
                 }
-				.tag(Tab.event)
-            
-            TicketingView()
-                .tabItem {
-                    Label("Ticketing", systemImage: "banknote")
-                }
-				.tag(Tab.ticketing)
-			
-            StampView()
-                .tabItem {
-                    Label("Stamp", systemImage: "checkmark.square")
-                }
-				.tag(Tab.stamp)
+            }
         }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
