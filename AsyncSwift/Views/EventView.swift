@@ -184,7 +184,8 @@ struct EventView: View {
                     }
                 }
             }
-            .navigationTitle("Event")
+            .navigationTitle(Tab.event.title)
+//            .navigationTitle("Event")
         }
     }
 }
@@ -197,8 +198,8 @@ private extension EventView {
                 .font(.system(size: 28, weight: .bold))
             HStack {
                 Text(data.event.title)
+                    .font(.caption2)
                     .fontWeight(.bold)
-                    .font(.system(size: 11, weight: .bold))
                     .foregroundColor(.white)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 8)
@@ -211,7 +212,8 @@ private extension EventView {
                 EventDetailView(event: data.event)
             } label: {
                 Text("세미나 살펴보기 \(Image(systemName: "arrow.right"))")
-                    .font(.system(size: 13, weight: .bold))
+                    .fontWeight(.bold)
+                    .font(.footnote)
             }
         }
         .padding(.horizontal, 16)
@@ -231,13 +233,11 @@ private extension EventView {
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(session.title)
-                            .fontWeight(.semibold)
-                            .font(.system(size: 17))
+                            .font(.headline)
                             .foregroundColor(.black)
                             .multilineTextAlignment(.leading)
                         Text("\(session.speaker.name) 님")
-                            .fontWeight(.regular)
-                            .font(.system(size: 17))
+                            .font(.body)
                             .foregroundColor(.black)
                     }
                     Spacer()
