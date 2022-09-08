@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScheduleView: View {
+struct EventView: View {
 
     let schedules: [ScheduleModel] = [
         ScheduleModel(id: 0, time: "12:00 - 13:00", title: "사랑해요 Swift", desc: "어쩌구", speaker: SpeakerModel(name: "김어쩔", image: "someImage")),

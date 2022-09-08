@@ -15,12 +15,14 @@
 		C68DE94728C76BC500CA4CC8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C68DE94628C76BC500CA4CC8 /* FirebaseMessaging */; };
 		C68DE94928C76CB800CA4CC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C68DE94828C76CB800CA4CC8 /* GoogleService-Info.plist */; };
 		C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */; };
-		C68DE94F28C77DC900CA4CC8 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* ScheduleView.swift */; };
-		C68DE95128C77DDA00CA4CC8 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketView.swift */; };
+		C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* EventView.swift */; };
+		C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */; };
 		C68DE95628C7827E00CA4CC8 /* MainTabView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95528C7827E00CA4CC8 /* MainTabView+Observed.swift */; };
 		C68DE95828C782EE00CA4CC8 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95728C782EE00CA4CC8 /* Schedule.swift */; };
-		C68DE95A28C7835E00CA4CC8 /* ScheduleView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95928C7835E00CA4CC8 /* ScheduleView+Observed.swift */; };
-		C68DE95C28C783AA00CA4CC8 /* TicketView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95B28C783AA00CA4CC8 /* TicketView+Observed.swift */; };
+		C68DE95A28C7835E00CA4CC8 /* EventView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95928C7835E00CA4CC8 /* EventView+Observed.swift */; };
+		C68DE95C28C783AA00CA4CC8 /* TicketingView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95B28C783AA00CA4CC8 /* TicketingView+Observed.swift */; };
+		C6F7798328C9BE410036773B /* StampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798228C9BE410036773B /* StampView.swift */; };
+		C6F7798528C9BE520036773B /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798428C9BE520036773B /* StampView+Observed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,12 +35,14 @@
 		C68DE94A28C76CE000CA4CC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsyncSwift.entitlements; sourceTree = "<group>"; };
-		C68DE94E28C77DC900CA4CC8 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
-		C68DE95028C77DDA00CA4CC8 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		C68DE94E28C77DC900CA4CC8 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketingView.swift; sourceTree = "<group>"; };
 		C68DE95528C7827E00CA4CC8 /* MainTabView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabView+Observed.swift"; sourceTree = "<group>"; };
 		C68DE95728C782EE00CA4CC8 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		C68DE95928C7835E00CA4CC8 /* ScheduleView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleView+Observed.swift"; sourceTree = "<group>"; };
-		C68DE95B28C783AA00CA4CC8 /* TicketView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TicketView+Observed.swift"; sourceTree = "<group>"; };
+		C68DE95928C7835E00CA4CC8 /* EventView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventView+Observed.swift"; sourceTree = "<group>"; };
+		C68DE95B28C783AA00CA4CC8 /* TicketingView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TicketingView+Observed.swift"; sourceTree = "<group>"; };
+		C6F7798228C9BE410036773B /* StampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampView.swift; sourceTree = "<group>"; };
+		C6F7798428C9BE520036773B /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				C68DE93728C7685800CA4CC8 /* MainTabView.swift */,
-				C68DE94E28C77DC900CA4CC8 /* ScheduleView.swift */,
-				C68DE95028C77DDA00CA4CC8 /* TicketView.swift */,
+				C68DE94E28C77DC900CA4CC8 /* EventView.swift */,
+				C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */,
+				C6F7798228C9BE410036773B /* StampView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,8 +122,9 @@
 			isa = PBXGroup;
 			children = (
 				C68DE95528C7827E00CA4CC8 /* MainTabView+Observed.swift */,
-				C68DE95928C7835E00CA4CC8 /* ScheduleView+Observed.swift */,
-				C68DE95B28C783AA00CA4CC8 /* TicketView+Observed.swift */,
+				C68DE95928C7835E00CA4CC8 /* EventView+Observed.swift */,
+				C68DE95B28C783AA00CA4CC8 /* TicketingView+Observed.swift */,
+				C6F7798428C9BE520036773B /* StampView+Observed.swift */,
 			);
 			path = Observed;
 			sourceTree = "<group>";
@@ -203,12 +209,14 @@
 			files = (
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				C68DE95628C7827E00CA4CC8 /* MainTabView+Observed.swift in Sources */,
-				C68DE95128C77DDA00CA4CC8 /* TicketView.swift in Sources */,
-				C68DE95A28C7835E00CA4CC8 /* ScheduleView+Observed.swift in Sources */,
-				C68DE94F28C77DC900CA4CC8 /* ScheduleView.swift in Sources */,
+				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
+				C68DE95A28C7835E00CA4CC8 /* EventView+Observed.swift in Sources */,
+				C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */,
+				C6F7798528C9BE520036773B /* StampView+Observed.swift in Sources */,
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,
-				C68DE95C28C783AA00CA4CC8 /* TicketView+Observed.swift in Sources */,
+				C68DE95C28C783AA00CA4CC8 /* TicketingView+Observed.swift in Sources */,
 				C68DE95828C782EE00CA4CC8 /* Schedule.swift in Sources */,
+				C6F7798328C9BE410036773B /* StampView.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

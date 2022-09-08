@@ -8,7 +8,7 @@
 import Foundation
 
 struct Schedule: Identifiable, Codable {
-    var id: Int
+    let id: Int
     var time: String
     var title: String
     var desc: String

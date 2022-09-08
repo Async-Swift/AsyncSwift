@@ -7,23 +7,41 @@
 
 import SwiftUI
 
+enum Tab: String, CaseIterable {
+    case event = "event"
+    case tickekting = "ticketing"
+    case stamp = "stamp"
+}
+
 struct MainTabView: View {
+    @State var currentTab: Tab = .event
     var body: some View {
-        TabView {
-            ScheduleView()
-                .tabItem {
-                    Label("일정", systemImage: "quote.opening")
+        TabView(selection: $currentTab) {
+
+            ForEach(Tab.allCases, id: \.self) { it in
+                if it == .event {
+                    EventView()
+                        .tabItem {
+                            Label("Event", systemImage: "calendar")
+                        }
+                } else if it == .tickekting {
+                    TicketingView()
+                        .tabItem {
+                            Label("Ticketing", systemImage: "banknote")
+                        }
+                } else {
+                    StampView()
+                        .tabItem {
+                            Label("Stamp", systemImage: "checkmark.square")
+                        }
                 }
-            TicketView()
-                .tabItem {
-                    Label("티켓", systemImage: "envelope")
-                }
+            }
         }
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
-    }
-}
+//
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainTabView()
+//    }
+//}
