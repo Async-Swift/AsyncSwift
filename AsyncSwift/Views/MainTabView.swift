@@ -7,16 +7,11 @@
 
 import SwiftUI
 
-enum Tab: String, CaseIterable {
-    case event = "event"
-    case tickekting = "ticketing"
-    case stamp = "stamp"
-}
-
 struct MainTabView: View {
-    @State var currentTab: Tab = .event
+	@EnvironmentObject var appData: AppData
+	
     var body: some View {
-        TabView(selection: $currentTab) {
+		TabView(selection: $appData.currentTab) {
 
             ForEach(Tab.allCases, id: \.self) { it in
                 if it == .event {
