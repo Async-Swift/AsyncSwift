@@ -14,7 +14,6 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Event", systemImage: "calendar")
                 }
-            
             TicketingView()
                 .tabItem {
                     Label("Ticketing", systemImage: "banknote")
