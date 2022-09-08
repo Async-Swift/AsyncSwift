@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "UpcomingConference001x1.jpg",
+      "filename" : "UpcomingConference001.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "UpcomingConference001x2.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "UpcomingConference001x3.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
