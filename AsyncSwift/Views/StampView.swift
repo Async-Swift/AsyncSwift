@@ -34,27 +34,6 @@ struct StampView: View {
                 .navigationTitle("Stamp")
         }
     } // body
-
-    //MARK: Flip Card Function
-    func flipCard () {
-        isFlipped.toggle()
-        
-        if isFlipped { // 카드 회전 연속을 위해서 if문 분리
-            withAnimation(.linear(duration: durationAndDelay)) {
-                backDegree = 90
-            }
-            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
-                frontDegree = 0
-            }
-        } else {
-            withAnimation(.linear(duration: durationAndDelay)) {
-                frontDegree = -90
-            }
-            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
-                backDegree = 0
-            }
-        }
-    }
 } // View
 
 private extension StampView {
@@ -80,6 +59,27 @@ private extension StampView {
 
             Text("아직 참여한 행사가 없습니다.")
                 .foregroundColor(.gray)
+        }
+    }
+    
+    //MARK: Flip Card Function
+    func flipCard () {
+        isFlipped.toggle()
+        
+        if isFlipped { // 카드 회전 연속을 위해서 if문 분리
+            withAnimation(.linear(duration: durationAndDelay)) {
+                backDegree = 90
+            }
+            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
+                frontDegree = 0
+            }
+        } else {
+            withAnimation(.linear(duration: durationAndDelay)) {
+                frontDegree = -90
+            }
+            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
+                backDegree = 0
+            }
         }
     }
 }
