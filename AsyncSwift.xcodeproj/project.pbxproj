@@ -15,8 +15,11 @@
 		C68DE94728C76BC500CA4CC8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C68DE94628C76BC500CA4CC8 /* FirebaseMessaging */; };
 		C68DE94928C76CB800CA4CC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C68DE94828C76CB800CA4CC8 /* GoogleService-Info.plist */; };
 		C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */; };
-		C68DE94F28C77DC900CA4CC8 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* ScheduleView.swift */; };
-		C68DE95128C77DDA00CA4CC8 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketView.swift */; };
+		C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* EventView.swift */; };
+		C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */; };
+		C6F7798728C9CB3A0036773B /* StampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798628C9CB3A0036773B /* StampView.swift */; };
+		C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798A28C9CBC60036773B /* EventView+Observed.swift */; };
+		C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798C28C9CBD80036773B /* EventResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +32,11 @@
 		C68DE94A28C76CE000CA4CC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsyncSwift.entitlements; sourceTree = "<group>"; };
-		C68DE94E28C77DC900CA4CC8 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
-		C68DE95028C77DDA00CA4CC8 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		C68DE94E28C77DC900CA4CC8 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketingView.swift; sourceTree = "<group>"; };
+		C6F7798628C9CB3A0036773B /* StampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampView.swift; sourceTree = "<group>"; };
+		C6F7798A28C9CBC60036773B /* EventView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventView+Observed.swift"; sourceTree = "<group>"; };
+		C6F7798C28C9CBD80036773B /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +75,9 @@
 				C68DE94A28C76CE000CA4CC8 /* Info.plist */,
 				C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */,
 				C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */,
+				C6F7798828C9CB9B0036773B /* Identifiable */,
 				C68DE95228C77F4800CA4CC8 /* Views */,
+				C6F7798928C9CBA60036773B /* Observed */,
 				C68DE93928C7685900CA4CC8 /* Assets.xcassets */,
 				C68DE94828C76CB800CA4CC8 /* GoogleService-Info.plist */,
 				C68DE93B28C7685900CA4CC8 /* Preview Content */,
@@ -89,10 +97,27 @@
 			isa = PBXGroup;
 			children = (
 				C68DE93728C7685800CA4CC8 /* MainTabView.swift */,
-				C68DE94E28C77DC900CA4CC8 /* ScheduleView.swift */,
-				C68DE95028C77DDA00CA4CC8 /* TicketView.swift */,
+				C68DE94E28C77DC900CA4CC8 /* EventView.swift */,
+				C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */,
+				C6F7798628C9CB3A0036773B /* StampView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C6F7798828C9CB9B0036773B /* Identifiable */ = {
+			isa = PBXGroup;
+			children = (
+				C6F7798C28C9CBD80036773B /* EventResponse.swift */,
+			);
+			path = Identifiable;
+			sourceTree = "<group>";
+		};
+		C6F7798928C9CBA60036773B /* Observed */ = {
+			isa = PBXGroup;
+			children = (
+				C6F7798A28C9CBC60036773B /* EventView+Observed.swift */,
+			);
+			path = Observed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,10 +199,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
-				C68DE95128C77DDA00CA4CC8 /* TicketView.swift in Sources */,
-				C68DE94F28C77DC900CA4CC8 /* ScheduleView.swift in Sources */,
+				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
+				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
+				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
+				C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */,
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
+				C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
