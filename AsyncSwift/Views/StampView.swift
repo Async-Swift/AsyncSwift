@@ -30,7 +30,7 @@ struct StampView: View {
                     notScannedView
                 }
             }
-                .padding(EdgeInsets(top: 44, leading: 36, bottom: 36, trailing: 46))
+                .padding(36)
                 .navigationTitle("Stamp")
         }
     } // body
@@ -56,7 +56,7 @@ struct StampView: View {
     }
 } // View
 
-extension StampView {
+private extension StampView {
     @ViewBuilder
     var stampBack: some View {
         Image("Seminar002StampBack")
@@ -75,7 +75,7 @@ extension StampView {
     var notScannedView: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
-                .strokeBorder(.gray, style: StrokeStyle(lineWidth: 2, dash: [10]))
+                .strokeBorder(Color(red: 0.78, green: 0.78, blue: 0.8), style: StrokeStyle(lineWidth: 2, dash: [10]))
 
             Text("아직 참여한 행사가 없습니다.")
                 .foregroundColor(.gray)
