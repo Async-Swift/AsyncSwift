@@ -11,7 +11,7 @@ extension StampView {
     final class Observed: ObservableObject {
         @Published var cardAnimatonModel = CardAnimationModel()
         
-        let durationAndDelay: CGFloat = 0.3
+        private let durationAndDelay: CGFloat = 0.3
         
         func didTabCard () {
             cardAnimatonModel.isTapped.toggle()
