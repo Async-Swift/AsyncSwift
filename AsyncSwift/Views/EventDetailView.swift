@@ -32,7 +32,7 @@ struct EventDetailView: View {
             if let naverMapURL = URL(string: event.addressURLs.naverMapURL) {
                 Link("네이버 지도로 길 찾기", destination: naverMapURL)
             }
-            if let kakaoMapURL = URL(string: event.addressURLs.kakaoMapURL) {
+            if let kakaoMapURL = URL(string: "event.addressURLs.kakaoMapURL") {
                 Link("카카오맵으로 길 찾기", destination: kakaoMapURL)
             }
         }
