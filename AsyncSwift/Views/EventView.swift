@@ -121,7 +121,7 @@ private extension EventView {
             SessionView(session: session)
         } label: {
             VStack {
-                CustomDivider()
+                customDivider
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(session.title)

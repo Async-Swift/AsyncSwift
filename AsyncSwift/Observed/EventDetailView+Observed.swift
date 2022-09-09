@@ -21,27 +21,25 @@ extension EventDetailView {
             eventStore.requestAccess(to: .event) { (granted, error) in
                 if let error = error {
                     print("failed to save event with error : \(error) or access not granted")
-                } else {
-                    print("granted \(granted)")
-                    let event:EKEvent = EKEvent(eventStore: self.eventStore)
-
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "yyyy/MM/dd HH:mm"
-                    let startDate = formatter.date(from: self.data.event.startDate)
-                    let endDate = formatter.date(from: self.data.event.endDate)
-
-                    event.title = self.data.event.title
-                    event.location = self.data.event.location
-                    event.startDate = startDate
-                    event.endDate = endDate
-                    event.calendar = self.eventStore.defaultCalendarForNewEvents
-                    do {
-                        try self.eventStore.save(event, span: .thisEvent)
-                    } catch let error as NSError {
-                        print("failed to save event with error : \(error)")
-                    }
-                    print("Saved Event")
+                    return
                 }
+                print("granted \(granted)")
+                let event: EKEvent = EKEvent(eventStore: self.eventStore)
+                let formatter = DateFormatter()
+                let startDate = formatter.date(from: self.data.event.startDate)
+                let endDate = formatter.date(from: self.data.event.endDate)
+                formatter.dateFormat = "yyyy/MM/dd HH:mm"
+                event.title = self.data.event.title
+                event.location = self.data.event.location
+                event.startDate = startDate
+                event.endDate = endDate
+                event.calendar = self.eventStore.defaultCalendarForNewEvents
+                do {
+                    try self.eventStore.save(event, span: .thisEvent)
+                } catch let error as NSError {
+                    print("failed to save event with error : \(error)")
+                }
+                print("Saved Event")
             }
         }
     }

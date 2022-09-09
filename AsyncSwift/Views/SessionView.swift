@@ -17,7 +17,7 @@ struct SessionView: View {
 
     var body: some View {
         ScrollView {
-            CustomDivider()
+            customDivider
                 .padding(.top, 10)
                 .padding(.bottom, 4)
             sessionDetail

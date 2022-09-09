@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-// TODO: 내용
-// 1. "캘린더에 추가" Button Action 기능 구현하고 연결하기
-// 2. "지도로 길찾기" Button Action 기능 구현하고 연결하기
-
 struct EventDetailView: View {
 
     private let event: EventModel.Event
@@ -23,10 +19,10 @@ struct EventDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                CustomDivider()
+                customDivider
                     .padding(.top, 10)
                 description
-                CustomDivider()
+                customDivider
                 information
                 Spacer()
             }
@@ -36,7 +32,6 @@ struct EventDetailView: View {
             Link("네이버 지도로 길 찾기", destination: URL(string: event.addressURLs.naverMapURL)!)
             Link("카카오맵으로 길 찾기", destination: URL(string: event.addressURLs.kakaoMapURL)!)
         }
-
     }
 }
 
