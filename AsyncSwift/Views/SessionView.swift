@@ -17,15 +17,13 @@ struct SessionView: View {
 
     var body: some View {
         ScrollView {
-            Divider()
+            CustomDivider()
                 .padding(.top, 10)
                 .padding(.bottom, 4)
-
             sessionDetail
             speakerDetail
         }
         .navigationTitle("Session")
-
     }
 }
 
@@ -34,10 +32,9 @@ private extension SessionView {
     var sessionDetail: some View {
         VStack(alignment: .leading) {
             Text(session.title)
-                .fontWeight(.semibold)
                 .font(.system(size: 20))
+                .fontWeight(.semibold)
                 .padding(.vertical, 24)
-
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(session.description, id: \.self) { paragraph in
                     Text(paragraph.content)
@@ -69,7 +66,7 @@ private extension SessionView {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, 32)
-        .background(.gray.opacity(0.1))
+        .background(Color.speakerBackground)
     }
 }
 
