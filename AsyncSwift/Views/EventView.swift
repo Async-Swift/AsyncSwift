@@ -29,12 +29,17 @@ struct EventModel {
         var date: String
         var time: String
         var location: String
-        var detailLocation: String
         var address: String
         var hashTags: String
+        var addressURLs: AddressURLs
 
         struct Paragraph: Hashable {
             var content: String
+        }
+
+        struct AddressURLs {
+            var naverMapURL: String
+            var kakaoMapURL: String
         }
     }
 
@@ -162,10 +167,13 @@ struct Mock {
             ],
             date: "Thu, September 22, 2022",
             time: "7:00 PM – 10:00 PM KST",
-            location: "체인지업 그라운드 포항",
-            detailLocation: "2층 미디어월",
+            location: "체인지업 그라운드 포항, 2층 미디어월",
             address: "청암로 87, 남구, 포항시, 경상북도 790-390",
-            hashTags: "#리팩토링 #테스트코드 #모듈화 #디자인패턴 #Architecture"
+            hashTags: "#리팩토링 #테스트코드 #모듈화 #디자인패턴 #Architecture",
+            addressURLs: EventModel.Event.AddressURLs(
+                naverMapURL: "https://map.naver.com/v5/entry/place/1019717788?c=14396419.6520108,4302029.7423806,15,0,0,0,dh",
+                kakaoMapURL: "http://kko.to/ONFeYdS33"
+            )
         ),
         sessions: [
             EventModel.Session(

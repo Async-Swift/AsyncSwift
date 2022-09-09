@@ -33,8 +33,8 @@ struct EventDetailView: View {
         }
         .navigationTitle(event.detailTitle)
         .confirmationDialog("Are you sure you want to do this?", isPresented: $observed.showSheet, titleVisibility: .visible) {
-            Link("네이버 지도로 길 찾기", destination: URL(string: "https://map.naver.com/v5/entry/place/1019717788?c=14396419.6520108,4302029.7423806,15,0,0,0,dh")!)
-            Link("카카오맵으로 길 찾기", destination: URL(string: "http://kko.to/ONFeYdS33")!)
+            Link("네이버 지도로 길 찾기", destination: URL(string: event.addressURLs.naverMapURL)!)
+            Link("카카오맵으로 길 찾기", destination: URL(string: event.addressURLs.kakaoMapURL)!)
         }
 
     }
@@ -89,7 +89,7 @@ private extension EventDetailView {
                     .fontWeight(.semibold)
                     .font(.system(size: 20))
                 VStack(alignment: .leading) {
-                    Text("\(Text(event.location).fontWeight(.semibold)), \(Text(event.detailLocation))")
+                    Text(event.location)
                     Text(event.address)
                 }
                 Button {

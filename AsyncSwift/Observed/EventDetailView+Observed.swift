@@ -41,6 +41,7 @@ extension EventDetailView {
                         print("failed to save event with error : \(error)")
                     }
                     print("Saved Event")
+
                 }
             }
         }
