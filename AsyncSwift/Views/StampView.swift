@@ -14,7 +14,7 @@ struct StampView: View {
     var body: some View {
         NavigationView {
             Group {
-                if appData.tempisScanned {
+                if appData.scannedSeminarQR {
                     ZStack {
                         stampBack
                         stampFront
