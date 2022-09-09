@@ -22,6 +22,7 @@
 		C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798A28C9CBC60036773B /* EventView+Observed.swift */; };
 		C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798C28C9CBD80036773B /* EventResponse.swift */; };
 		E9E25D1E28CA554000986387 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E25D1D28CA554000986387 /* WebView.swift */; };
+		E9E25D2128CA671E00986387 /* TicketingView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E25D2028CA671E00986387 /* TicketingView+Observed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		C6F7798A28C9CBC60036773B /* EventView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventView+Observed.swift"; sourceTree = "<group>"; };
 		C6F7798C28C9CBD80036773B /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
 		E9E25D1D28CA554000986387 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		E9E25D2028CA671E00986387 /* TicketingView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TicketingView+Observed.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				C6F7798A28C9CBC60036773B /* EventView+Observed.swift */,
+				E9E25D2028CA671E00986387 /* TicketingView+Observed.swift */,
 				B2E1083028C9CD6900C3DD59 /* AppData.swift */,
 			);
 			path = Observed;
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
+				E9E25D2128CA671E00986387 /* TicketingView+Observed.swift in Sources */,
 				E9E25D1E28CA554000986387 /* WebView.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
