@@ -30,24 +30,30 @@ struct StampView: View {
                     notScannedView
                 }
             }
-                .padding(36)
-                .navigationTitle("Stamp")
+            .padding(36)
+            .navigationTitle("Stamp")
         }
     } // body
 } // View
 
 private extension StampView {
+    
     @ViewBuilder
     var stampBack: some View {
         Image("Seminar002StampBack")
-            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 0, y: 4) //TODO: 디자인 수정 사항이 있습니다.
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20 , x: 40 * frontDegree / 90, y: 4)
             .rotation3DEffect(Angle(degrees: frontDegree), axis: (x: 0, y: 1, z: 0))
     }
 
     @ViewBuilder
     var stampFront: some View {
         Image("Seminar002StampFront")
-            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 0, y: 4) //TODO: 디자인 수정 사항이 있습니다.
+
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * backDegree / 90, y: 4)
             .rotation3DEffect(Angle(degrees: backDegree), axis: (x: 0, y: 1, z: 0))
     }
 
