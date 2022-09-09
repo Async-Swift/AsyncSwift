@@ -23,7 +23,6 @@ extension EventDetailView {
                     print("failed to save event with error : \(error) or access not granted")
                 } else {
                     print("granted \(granted)")
-
                     let event:EKEvent = EKEvent(eventStore: self.eventStore)
 
                     let formatter = DateFormatter()
@@ -42,7 +41,6 @@ extension EventDetailView {
                         print("failed to save event with error : \(error)")
                     }
                     print("Saved Event")
-
                 }
             }
         }

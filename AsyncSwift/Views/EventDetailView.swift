@@ -32,7 +32,7 @@ struct EventDetailView: View {
             }
         }
         .navigationTitle(event.detailTitle)
-        .confirmationDialog("Are you sure you want to do this?", isPresented: $observed.showSheet, titleVisibility: .visible) {
+        .confirmationDialog("", isPresented: $observed.showSheet, titleVisibility: .hidden) {
             Link("네이버 지도로 길 찾기", destination: URL(string: event.addressURLs.naverMapURL)!)
             Link("카카오맵으로 길 찾기", destination: URL(string: event.addressURLs.kakaoMapURL)!)
         }
