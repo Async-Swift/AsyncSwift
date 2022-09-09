@@ -15,16 +15,16 @@ extension EventDetailView {
         @Published var showingAlert = false
         let data = Mock.data
 
-        let eventStore : EKEventStore = EKEventStore()
-
         func addEventOnCalendar() {
+            let eventStore: EKEventStore = EKEventStore()
+
             eventStore.requestAccess(to: .event) { (granted, error) in
                 if let error = error {
                     print("failed to save event with error : \(error) or access not granted")
                     return
                 }
                 print("granted \(granted)")
-                let event: EKEvent = EKEvent(eventStore: self.eventStore)
+                let event: EKEvent = EKEvent(eventStore: eventStore)
                 let formatter = DateFormatter.calendarFormatter
                 let startDate = formatter.date(from: self.data.event.startDate)
                 let endDate = formatter.date(from: self.data.event.endDate)
@@ -32,9 +32,9 @@ extension EventDetailView {
                 event.location = self.data.event.location
                 event.startDate = startDate
                 event.endDate = endDate
-                event.calendar = self.eventStore.defaultCalendarForNewEvents
+                event.calendar = eventStore.defaultCalendarForNewEvents
                 do {
-                    try self.eventStore.save(event, span: .thisEvent)
+                    try eventStore.save(event, span: .thisEvent)
                 } catch let error as NSError {
                     print("failed to save event with error : \(error)")
                 }
