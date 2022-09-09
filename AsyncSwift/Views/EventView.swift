@@ -90,7 +90,8 @@ private extension EventView {
     var Header: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(data.event.subject)
-                .font(.system(size: 28, weight: .bold))
+                .font(.title)
+                .fontWeight(.bold)
             HStack {
                 Text(data.event.title)
                     .font(.caption2)

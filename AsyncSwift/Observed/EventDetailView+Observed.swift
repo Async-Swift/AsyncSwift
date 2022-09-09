@@ -16,7 +16,7 @@ extension EventDetailView {
         let data = Mock.data
 
         func addEventOnCalendar() {
-            let eventStore: EKEventStore = EKEventStore()
+            private let eventStore = EKEventStore()
 
             eventStore.requestAccess(to: .event) { (granted, error) in
                 if let error = error {

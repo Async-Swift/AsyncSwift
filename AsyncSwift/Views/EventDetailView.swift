@@ -18,7 +18,7 @@ struct EventDetailView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                 customDivider
                     .padding(.top, 10)
                 description
@@ -29,8 +29,12 @@ struct EventDetailView: View {
         }
         .navigationTitle(event.detailTitle)
         .confirmationDialog("", isPresented: $observed.showSheet, titleVisibility: .hidden) {
-            Link("네이버 지도로 길 찾기", destination: URL(string: event.addressURLs.naverMapURL)!)
-            Link("카카오맵으로 길 찾기", destination: URL(string: event.addressURLs.kakaoMapURL)!)
+            if let naverMapURL = URL(string: event.addressURLs.naverMapURL) {
+                Link("네이버 지도로 길 찾기", destination: naverMapURL)
+            }
+            if let kakaoMapURL = URL(string: event.addressURLs.kakaoMapURL) {
+                Link("카카오맵으로 길 찾기", destination: kakaoMapURL)
+            }
         }
     }
 }
@@ -38,7 +42,7 @@ struct EventDetailView: View {
 private extension EventDetailView {
 
     var description: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading) {
             Text(event.subject)
                 .fontWeight(.bold)
                 .font(.title3)
@@ -59,8 +63,8 @@ private extension EventDetailView {
         VStack(alignment: .leading, spacing: 40) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(Image(systemName: "calendar")) Date and time")
+                    .font(.title3)
                     .fontWeight(.semibold)
-                    .font(.system(size: 20))
                 Text("\(event.date)\n\(event.time)")
                     .font(.body)
                 Button("캘린더에 추가") {
@@ -81,8 +85,8 @@ private extension EventDetailView {
             }
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(Image(systemName: "location.fill")) Location")
+                    .font(.title3)
                     .fontWeight(.semibold)
-                    .font(.system(size: 20))
                 VStack(alignment: .leading) {
                     Text(event.location)
                     Text(event.address)

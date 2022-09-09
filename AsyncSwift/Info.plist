@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>&apos;AsyncSwift&apos;이(가) 사용자의 캘린터에 접근하려고 합니다.</string>
+	<string>캘린더에 일정 추가를 위해서는 권한이 필요해요.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
