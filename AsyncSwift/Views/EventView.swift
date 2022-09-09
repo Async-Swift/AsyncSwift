@@ -149,6 +149,7 @@ private extension EventView {
 //}
 
 struct Mock {
+
     static let data: EventModel = EventModel(
         event: EventModel.Event(
             title: "AsyncSwift Seminar 002",
