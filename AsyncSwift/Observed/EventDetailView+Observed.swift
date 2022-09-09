@@ -13,6 +13,7 @@ extension EventDetailView {
 
         @Published var showSheet = false
         @Published var showingAlert = false
+        let data = Mock.data
 
         let eventStore : EKEventStore = EKEventStore()
 
@@ -27,11 +28,11 @@ extension EventDetailView {
 
                     let formatter = DateFormatter()
                     formatter.dateFormat = "yyyy/MM/dd HH:mm"
-                    let startDate = formatter.date(from: "2022/09/22 19:00")
-                    let endDate = formatter.date(from: "2022/09/22 23:00")
+                    let startDate = formatter.date(from: self.data.event.startDate)
+                    let endDate = formatter.date(from: self.data.event.endDate)
 
-                    event.title = "AsyncSwift Seminar 002"
-                    event.location = "포항공대 체인지업그라운드 2층 미디어월"
+                    event.title = self.data.event.title
+                    event.location = self.data.event.location
                     event.startDate = startDate
                     event.endDate = endDate
                     event.calendar = self.eventStore.defaultCalendarForNewEvents
