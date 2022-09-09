@@ -25,10 +25,9 @@ extension EventDetailView {
                 }
                 print("granted \(granted)")
                 let event: EKEvent = EKEvent(eventStore: self.eventStore)
-                let formatter = DateFormatter()
+                let formatter = DateFormatter.calendarFormatter
                 let startDate = formatter.date(from: self.data.event.startDate)
                 let endDate = formatter.date(from: self.data.event.endDate)
-                formatter.dateFormat = "yyyy/MM/dd HH:mm"
                 event.title = self.data.event.title
                 event.location = self.data.event.location
                 event.startDate = startDate
