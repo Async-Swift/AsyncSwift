@@ -35,9 +35,13 @@ extension StampView {
     }
     
     struct CardAnimationModel: Identifiable {
+        fileprivate init() {}
+        
         let id = UUID()
         var backDegree: Double = 0.0
         var frontDegree: Double = -90.0
         var isTapped = false
     }
 }
+
+
