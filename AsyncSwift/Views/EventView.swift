@@ -145,9 +145,3 @@ private extension EventView {
         }
     }
 }
-
-//struct ScheduleView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventView()
-//    }
-//}

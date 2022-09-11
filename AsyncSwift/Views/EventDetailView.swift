@@ -102,9 +102,3 @@ private extension EventDetailView {
         .padding(.vertical, 30)
     }
 }
-
-//struct EventDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventDetailView()
-//    }
-//}

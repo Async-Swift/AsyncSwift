@@ -32,9 +32,10 @@ private extension SessionView {
     var sessionDetail: some View {
         VStack(alignment: .leading) {
             Text(session.title)
-                .font(.system(size: 20, weight: .semibold))
+                .font(.title3)
+                .fontWeight(.semibold)
                 .padding(.vertical, 24)
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading) {
                 ForEach(session.description, id: \.self) { paragraph in
                     Text(paragraph.content)
                 }
@@ -67,9 +68,3 @@ private extension SessionView {
         .background(Color.speakerBackground)
     }
 }
-
-//struct SessionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SessionView()
-//    }
-//}
