@@ -108,8 +108,7 @@ private extension EventView {
                 EventDetailView(event: data.event)
             } label: {
                 Text("세미나 살펴보기 \(Image(systemName: "arrow.right"))")
-                    .font(.system(size: 13))
-                    .fontWeight(.bold)
+                    .font(.system(size: 13, weight: .bold))
             }
         }
         .padding(.horizontal, 16)
@@ -136,17 +135,14 @@ private extension EventView {
                     .padding(.vertical, 30)
                     Spacer()
                     VStack {
-                        Spacer()
                         Image(systemName: "chevron.right")
                             .font(Font.system(size: 30, weight: .light))
                             .foregroundColor(.black)
-                        Spacer()
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal)
             }
         }
-        .frame(minHeight: 109)
     }
 }
 
