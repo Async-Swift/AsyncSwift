@@ -17,8 +17,8 @@ import SwiftUI
 
 struct EventModel {
 
-    var event: Event
-    var sessions: [Session]
+    let event: Event
+    let sessions: [Session]
 
     struct Event {
 

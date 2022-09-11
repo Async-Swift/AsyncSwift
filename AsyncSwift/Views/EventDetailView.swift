@@ -28,11 +28,11 @@ struct EventDetailView: View {
             }
         }
         .navigationTitle(event.detailTitle)
-        .confirmationDialog("", isPresented: $observed.showSheet, titleVisibility: .hidden) {
+        .confirmationDialog("", isPresented: $observed.isShowingSheet, titleVisibility: .hidden) {
             if let naverMapURL = URL(string: event.addressURLs.naverMapURL) {
                 Link("네이버 지도로 길 찾기", destination: naverMapURL)
             }
-            if let kakaoMapURL = URL(string: "event.addressURLs.kakaoMapURL") {
+            if let kakaoMapURL = URL(string: event.addressURLs.kakaoMapURL) {
                 Link("카카오맵으로 길 찾기", destination: kakaoMapURL)
             }
         }
@@ -68,14 +68,14 @@ private extension EventDetailView {
                 Text("\(event.date)\n\(event.time)")
                     .font(.body)
                 Button("캘린더에 추가") {
-                    observed.showingAlert = true
+                    observed.isShowingAlert = true
                 }
-                .alert(isPresented: $observed.showingAlert) {
+                .alert(isPresented: $observed.isShowingAlert) {
                     Alert(
                         title: Text("'AsyncSwift'이(가) 사용자의 캘린터에 접근하려고 합니다."),
                         message: Text("사용자의 '캘린더'에 접근하도록 허용합니다."),
                         primaryButton: .default(Text("허용 안 함")) {
-                            observed.showingAlert = false
+                            observed.isShowingAlert = false
                         },
                         secondaryButton: .default(Text("확인")) {
                             observed.addEventOnCalendar()
@@ -92,7 +92,7 @@ private extension EventDetailView {
                     Text(event.address)
                 }
                 Button {
-                    observed.showSheet = true
+                    observed.isShowingSheet = true
                 } label: {
                     Text("지도로 길찾기")
                 }

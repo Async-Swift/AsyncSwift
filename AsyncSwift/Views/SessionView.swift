@@ -13,17 +13,24 @@ struct SessionView: View {
 
     init(session: EventModel.Session) {
         self.session = session
+//        let navBarAppearance = UINavigationBar.appearance()
+//        navBarAppearance.backgroundColor = UIColor(Color.white)
     }
 
     var body: some View {
-        ScrollView {
-            customDivider
-                .padding(.top, 10)
-                .padding(.bottom, 4)
-            sessionDetail
-            speakerDetail
+        ZStack {
+            ScrollView {
+                Group {
+                    customDivider
+                        .padding(.top, 10)
+                        .padding(.bottom, 4)
+                    sessionDetail
+                }
+                .background(.white)
+                speakerDetail
+            }
+            .navigationTitle("Session")
         }
-        .navigationTitle("Session")
     }
 }
 
