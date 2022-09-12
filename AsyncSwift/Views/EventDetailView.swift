@@ -78,11 +78,17 @@ private extension EventDetailView {
                             observed.isShowingAlert = false
                         },
                         secondaryButton: .default(Text("확인")) {
-                            observed.addEventOnCalendar()
+                            observed.additionConfirmed()
                         }
                     )
                 }
-            }
+                .alert("일정 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: { }, message: {
+                    Text("세미나 일정이 캘린더에 추가되었습니다.")
+                })
+                .alert("일정 등록 실패", isPresented: $observed.isShowingFailureAlert, actions: { }, message: {
+                    Text("세미나 일정 등록이 실패하였습니다.")
+                })
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(Image(systemName: "location.fill")) Location")
                     .font(.title3)
@@ -100,5 +106,6 @@ private extension EventDetailView {
         }
         .padding(.horizontal, 24)
         .padding(.vertical, 30)
+        }
     }
 }

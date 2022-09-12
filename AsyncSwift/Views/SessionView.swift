@@ -13,8 +13,6 @@ struct SessionView: View {
 
     init(session: EventModel.Session) {
         self.session = session
-//        let navBarAppearance = UINavigationBar.appearance()
-//        navBarAppearance.backgroundColor = UIColor(Color.white)
     }
 
     var body: some View {
@@ -37,7 +35,7 @@ struct SessionView: View {
 private extension SessionView {
 
     var sessionDetail: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text(session.title)
                 .font(.title3)
                 .fontWeight(.semibold)
@@ -54,12 +52,9 @@ private extension SessionView {
 
     var speakerDetail: some View {
         VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Circle()
-                    .frame(width: 80, height: 80, alignment: .leading)
-                    .padding(.vertical, 24)
-                Spacer()
-            }
+            Circle()
+                .frame(width: 80, height: 80)
+                .padding(.vertical, 24)
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(session.speaker.name) 님")
                     .font(.headline)

@@ -8,9 +8,7 @@
 /* TODO: 내용
  1. light mode only
  2. lock landscape
- 2. 리스트의 세버론 웨이트 라이트로 적용하기
- 3. 디바이더 너비 키우기
- 4. 예정된 행사 테그 구현하기
+ 3. 예정된 행사 테그 구현하기
  */
 
 import SwiftUI
@@ -103,12 +101,12 @@ private extension EventView {
                     .cornerRadius(20)
                 Spacer()
             }
-
             NavigationLink {
                 EventDetailView(event: data.event)
             } label: {
                 Text("세미나 살펴보기 \(Image(systemName: "arrow.right"))")
-                    .font(.system(size: 13, weight: .bold))
+                    .font(.footnote)
+                    .fontWeight(.bold)
             }
         }
         .padding(.horizontal, 16)

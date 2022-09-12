@@ -13,9 +13,25 @@ extension EventDetailView {
 
         @Published var isShowingSheet = false
         @Published var isShowingAlert = false
+        @Published var isShowingSuccessAlert = false
+        @Published var isShowingFailureAlert = false
+
         let data = Mock.data
 
-        func addEventOnCalendar() {
+        func additionConfirmed() {
+            addEventOnCalendar { isSuccess in
+                DispatchQueue.main.async {
+                    switch isSuccess {
+                    case true:
+                        self.isShowingSuccessAlert = true
+                    case false:
+                        self.isShowingFailureAlert = true
+                    }
+                }
+            }
+        }
+
+        func addEventOnCalendar(completion: @escaping ((Bool) -> Void) ) {
             let eventStore = EKEventStore()
 
             eventStore.requestAccess(to: .event) { (granted, error) in
@@ -32,8 +48,10 @@ extension EventDetailView {
                 event.calendar = eventStore.defaultCalendarForNewEvents
                 do {
                     try eventStore.save(event, span: .thisEvent)
+                    completion(true)
                 } catch let error as NSError {
                     print("failed to save event with error : \(error)")
+                    completion(false)
                 }
             }
         }

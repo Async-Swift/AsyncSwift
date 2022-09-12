@@ -13,7 +13,7 @@ struct Mock {
         event: EventModel.Event(
             title: "AsyncSwift Seminar 002",
             detailTitle: "AsyncSwift 002",
-            subject: "생산성 향상[생산썽 향:상]",
+            subject: "🛠생산성 향상[생산썽 향:상]",
             description: [
                 EventModel.Event.Paragraph(content: "우리가 동료들과 함께 프로젝트를 더 잘 협업할 수 있는 방법은 무엇일까요?"),
                 EventModel.Event.Paragraph(content: "다 함께 고민하고, 다 같이 나아갈 수 있는 생산성 향상이 힌트가 될 수 있지 않을까 생각이 되었습니다."),
