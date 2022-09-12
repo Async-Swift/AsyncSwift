@@ -10,6 +10,7 @@ import SwiftUI
 struct SessionView: View {
 
     private let session: EventModel.Session
+    private let observed = Observed()
 
     init(session: EventModel.Session) {
         self.session = session
@@ -57,13 +58,13 @@ private extension SessionView {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Circle())
-                    .frame(width: 80, height: 80)
+                    .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
             } placeholder: {
                 Image(systemName: "person.circle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Circle())
-                    .frame(width: 80, height: 80)
+                    .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
                     .opacity(0.4)
             }
             .padding(.vertical, 24)
