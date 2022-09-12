@@ -8,8 +8,7 @@
 /* TODO: 내용
  1. light mode only
  2. lock landscape
- 3. 예정된 행사 테그 구현하기
- */
+*/
 
 import SwiftUI
 

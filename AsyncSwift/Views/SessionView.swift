@@ -59,11 +59,11 @@ private extension SessionView {
                 } else if phase.error != nil {
                     Image(systemName: "person.circle")
                         .resizable()
-                        .opacity(0.3)
+                        .opacity(0.1)
                 } else {
                     Image(systemName: "person.circle")
                         .resizable()
-                        .opacity(0.3)
+                        .opacity(0.1)
                 }
             }
             .aspectRatio(contentMode: .fit)
