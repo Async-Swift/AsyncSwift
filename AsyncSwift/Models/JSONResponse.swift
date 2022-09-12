@@ -7,80 +7,23 @@
 
 import Foundation
 
-//struct EventModel: Codable {
-//
-//    var event: Event
-//    var sessions: [Session]
-//
-//    struct Event: Codable {
-//
-//        var title: String
-//        var detailTitle: String
-//        var subject: String
-//        var description: [Paragraph]
-//        var date: String
-//        var startDate: String
-//        var endDate: String
-//        var time: String
-//        var location: String
-//        var address: String
-//        var hashTags: String
-//        var addressURLs: AddressURLs
-//
-//        struct Paragraph: Hashable, Codable {
-//            var content: String
-//        }
-//
-//        struct AddressURLs: Codable {
-//            var naverMapURL: String
-//            var kakaoMapURL: String
-//        }
-//    }
-//
-//    struct Session: Identifiable, Codable {
-//
-//        let id: Int
-//        var title: String
-//        var description: [Paragraph]
-//        var speaker: Speaker
-//
-//        struct Speaker: Codable {
-//            var name: String
-//            var imageURL: String
-//            var role: String
-//            var description: String
-//        }
-//
-//        struct Paragraph: Hashable, Codable {
-//            var content: String
-//        }
-//    }
-//}
-
-// MARK: - JSONResponse
 struct JSONResponse: Codable {
 
     init() {
         self.event = Event()
         self.sessions = []
     }
-
-    var event: Event 
+    var event: Event
     var sessions: [Session]
 }
 
-// MARK: - Event
 struct Event: Codable {
 
     init() {
         self.title = ""
         self.detailTitle = ""
         self.subject = ""
-        self.description = [
-            Event.Paragraph(
-                content: ""
-            )
-        ]
+        self.description = []
         self.date = ""
         self.startDate = ""
         self.endDate = ""
@@ -88,11 +31,9 @@ struct Event: Codable {
         self.location = ""
         self.address = ""
         self.hashTags = ""
-        self.addressURLs = Event.AddressURLs(
-            naverMapURL: "",
-            kakaoMapURL: ""
-        )
+        self.addressURLs = AddressURLs(naverMapURL: "", kakaoMapURL: "")
     }
+
     var title, detailTitle, subject: String
     var description: [Paragraph]
     var date, startDate, endDate, time: String
@@ -105,32 +46,18 @@ struct Event: Codable {
         case date, startDate, endDate, time, location, address, hashTags, addressURLs
     }
 
-    // MARK: - Description
     struct Paragraph: Codable, Hashable {
         var content: String
     }
 
-    // MARK: - AddressURLs
     struct AddressURLs: Codable {
         var naverMapURL: String
         var kakaoMapURL: String
     }
 }
 
-// MARK: - Session
 struct Session: Codable, Identifiable {
 
-    init() {
-        self.id = 0
-        self.title = ""
-        self.description = []
-        self.speaker = Speaker(
-            name: "",
-            imageURL: "",
-            role: "",
-            description: ""
-        )
-    }
     var id: Int
     var title: String
     var description: [Paragraph]
@@ -142,12 +69,10 @@ struct Session: Codable, Identifiable {
         case speaker
     }
 
-    // MARK: - Description
     struct Paragraph: Codable, Hashable {
         var content: String
     }
 
-    // MARK: - Speaker
     struct Speaker: Codable {
         var name: String
         var imageURL: String

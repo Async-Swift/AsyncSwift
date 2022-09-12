@@ -52,20 +52,23 @@ private extension SessionView {
 
     var speakerDetail: some View {
         VStack(alignment: .leading, spacing: 4) {
-            AsyncImage(url: URL(string: observed.session.speaker.imageURL)) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
-            } placeholder: {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
-                    .opacity(0.4)
+            AsyncImage(url: URL(string: observed.session.speaker.imageURL), transaction: Transaction(animation: .default)) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                } else if phase.error != nil {
+                    Image(systemName: "person.circle")
+                        .resizable()
+                        .opacity(0.3)
+                } else {
+                    Image(systemName: "person.circle")
+                        .resizable()
+                        .opacity(0.3)
+                }
             }
+            .aspectRatio(contentMode: .fit)
+            .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
+            .clipShape(Circle())
             .padding(.vertical, 24)
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(observed.session.speaker.name) 님")

@@ -15,7 +15,11 @@ import SwiftUI
 
 struct EventView: View {
 
-    @ObservedObject var observed = Observed()
+    @ObservedObject var observed: Observed
+
+    init() {
+        observed = Observed()
+    }
 
     var body: some View {
         NavigationView {

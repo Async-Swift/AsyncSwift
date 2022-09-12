@@ -7,6 +7,7 @@
 
 import Foundation
 import EventKit
+import SwiftUI
 
 extension EventDetailView {
     final class Observed: ObservableObject {

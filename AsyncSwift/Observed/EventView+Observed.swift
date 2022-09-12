@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension EventView {
     final class Observed: ObservableObject {
@@ -35,7 +36,9 @@ extension EventView {
                         if let self = self {
                             do {
                                 let decodedData = try JSONDecoder().decode(JSONResponse.self, from: data)
-                                self.response = decodedData
+                                withAnimation {
+                                    self.response = decodedData
+                                }
                             } catch let error {
                                 print("❌ \(error.localizedDescription)")
                             }
