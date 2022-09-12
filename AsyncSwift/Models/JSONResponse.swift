@@ -62,23 +62,7 @@ struct JSONResponse: Codable {
 
     init() {
         self.event = Event()
-        self.sessions = [
-            Session(
-                id: 0,
-                title: "",
-                description: [
-                    Session.Paragraph(
-                        content: ""
-                    )
-                ],
-                speaker: Session.Speaker(
-                    name: "",
-                    imageURL: "",
-                    role: "",
-                    description: ""
-                )
-            )
-        ]
+        self.sessions = []
     }
 
     var event: Event 
@@ -135,6 +119,18 @@ struct Event: Codable {
 
 // MARK: - Session
 struct Session: Codable, Identifiable {
+
+    init() {
+        self.id = 0
+        self.title = ""
+        self.description = []
+        self.speaker = Speaker(
+            name: "",
+            imageURL: "",
+            role: "",
+            description: ""
+        )
+    }
     var id: Int
     var title: String
     var description: [Paragraph]

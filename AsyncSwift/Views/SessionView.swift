@@ -9,11 +9,10 @@ import SwiftUI
 
 struct SessionView: View {
 
-    private let session: Session
-    private let observed = Observed()
+    @ObservedObject var observed = Observed()
 
     init(session: Session) {
-        self.session = session
+        observed.session = session
     }
 
     var body: some View {
@@ -37,12 +36,12 @@ private extension SessionView {
 
     var sessionDetail: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(session.title)
+            Text(observed.session.title)
                 .font(.title3)
                 .fontWeight(.semibold)
                 .padding(.vertical, 24)
             VStack(alignment: .leading, spacing: 8) {
-                ForEach(session.description, id: \.self) { paragraph in
+                ForEach(observed.session.description, id: \.self) { paragraph in
                     Text(paragraph.content)
                 }
             }
@@ -53,7 +52,7 @@ private extension SessionView {
 
     var speakerDetail: some View {
         VStack(alignment: .leading, spacing: 4) {
-            AsyncImage(url: URL(string: session.speaker.imageURL)) { image in
+            AsyncImage(url: URL(string: observed.session.speaker.imageURL)) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -69,12 +68,12 @@ private extension SessionView {
             }
             .padding(.vertical, 24)
             VStack(alignment: .leading, spacing: 2) {
-                Text("\(session.speaker.name) 님")
+                Text("\(observed.session.speaker.name) 님")
                     .font(.headline)
-                Text(session.speaker.role)
+                Text(observed.session.speaker.role)
                     .font(.caption2)
             }
-            Text(session.speaker.description)
+            Text(observed.session.speaker.description)
                 .font(.footnote)
         }
         .padding(.bottom, 60)

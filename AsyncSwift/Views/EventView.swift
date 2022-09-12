@@ -15,7 +15,7 @@ import SwiftUI
 
 struct EventView: View {
 
-    @StateObject var observed = Observed()
+    @ObservedObject var observed = Observed()
 
     var body: some View {
         NavigationView {
@@ -28,9 +28,6 @@ struct EventView: View {
                 }
             }
             .navigationTitle(Tab.event.title)
-        }
-        .onAppear{
-            observed.viewDidAppear()
         }
     }
 }

@@ -12,7 +12,7 @@ extension EventView {
 
         @Published var response = JSONResponse()
 
-        func viewDidAppear() {
+        init() {
             fetchJson()
         }
 
