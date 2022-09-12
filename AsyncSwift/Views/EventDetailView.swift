@@ -70,23 +70,21 @@ private extension EventDetailView {
                 Button("캘린더에 추가") {
                     observed.isShowingAlert = true
                 }
-                .alert(isPresented: $observed.isShowingAlert) {
-                    Alert(
-                        title: Text("'AsyncSwift'이(가) 사용자의 캘린터에 접근하려고 합니다."),
-                        message: Text("사용자의 '캘린더'에 접근하도록 허용합니다."),
-                        primaryButton: .default(Text("허용 안 함")) {
-                            observed.isShowingAlert = false
-                        },
-                        secondaryButton: .default(Text("확인")) {
-                            observed.additionConfirmed()
-                        }
-                    )
-                }
-                .alert("일정 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: { }, message: {
+                .alert("'AsyncSwift'이(가) 사용자의 캘린터에 접근하려고 합니다.", isPresented: $observed.isShowingAlert, actions: {
+                    Button("허용 안 함") { observed.isShowingAlert = false }
+                    Button("확인") { observed.additionConfirmed() }
+                }, message: {
+                    Text("사용자의 '캘린더'에 접근하도록 허용합니다.")
+                })
+                .alert("일정 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
+                    Button("확인", role: .cancel) { }
+                }, message: {
                     Text("세미나 일정이 캘린더에 추가되었습니다.")
                 })
-                .alert("일정 등록 실패", isPresented: $observed.isShowingFailureAlert, actions: { }, message: {
-                    Text("세미나 일정 등록이 실패하였습니다.")
+                .alert("일정 등록 실패", isPresented: $observed.isShowingFailureAlert, actions: {
+                    Button("다시 시도", role: .cancel) { }
+                }, message: {
+                    Text("등록에 오류가 발생했습니다.\n다시 시도하십시오.")
                 })
 
             VStack(alignment: .leading, spacing: 8) {
