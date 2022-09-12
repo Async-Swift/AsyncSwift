@@ -11,12 +11,11 @@ import EventKit
 extension EventDetailView {
     final class Observed: ObservableObject {
 
+        @Published var event = Event()
         @Published var isShowingSheet = false
         @Published var isShowingAddEventConfirmationAlert = false
         @Published var isShowingAddEventSuccessAlert = false
         @Published var isShowingAddEventFailureAlert = false
-
-        let data = Mock.data
 
         func additionConfirmed() {
             addEventOnCalendar { isSuccess in
@@ -43,10 +42,10 @@ extension EventDetailView {
                 }
                 let event = EKEvent(eventStore: eventStore)
                 let formatter = DateFormatter.calendarFormatter
-                event.title = self.data.event.title
-                event.location = self.data.event.location
-                event.startDate = formatter.date(from: self.data.event.startDate)
-                event.endDate = formatter.date(from: self.data.event.endDate)
+                event.title = self.event.title
+                event.location = self.event.location
+                event.startDate = formatter.date(from: self.event.startDate)
+                event.endDate = formatter.date(from: self.event.endDate)
                 event.calendar = eventStore.defaultCalendarForNewEvents
                 do {
                     try eventStore.save(event, span: .thisEvent)

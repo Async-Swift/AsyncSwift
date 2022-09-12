@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SessionView: View {
 
-    private let session: EventModel.Session
+    private let session: Session
     private let observed = Observed()
 
-    init(session: EventModel.Session) {
+    init(session: Session) {
         self.session = session
     }
 

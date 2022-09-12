@@ -9,11 +9,10 @@ import SwiftUI
 
 struct EventDetailView: View {
 
-    private let event: EventModel.Event
     @StateObject var observed = Observed()
 
-    init(event: EventModel.Event) {
-        self.event = event
+    init(event: Event) {
+//        self.observed.event = event
     }
 
     var body: some View {
@@ -27,12 +26,12 @@ struct EventDetailView: View {
                 Spacer()
             }
         }
-        .navigationTitle(event.detailTitle)
+        .navigationTitle(observed.event.detailTitle)
         .confirmationDialog("", isPresented: $observed.isShowingSheet, titleVisibility: .hidden) {
-            if let naverMapURL = URL(string: event.addressURLs.naverMapURL) {
+            if let naverMapURL = URL(string: observed.event.addressURLs.naverMapURL) {
                 Link("네이버 지도로 길 찾기", destination: naverMapURL)
             }
-            if let kakaoMapURL = URL(string: event.addressURLs.kakaoMapURL) {
+            if let kakaoMapURL = URL(string: observed.event.addressURLs.kakaoMapURL) {
                 Link("카카오맵으로 길 찾기", destination: kakaoMapURL)
             }
         }
@@ -43,14 +42,14 @@ private extension EventDetailView {
 
     var description: some View {
         VStack(alignment: .leading) {
-            Text(event.subject)
+            Text(observed.event.subject)
                 .fontWeight(.bold)
                 .font(.title3)
-            ForEach(event.description, id:\.self) { paragraph in
+            ForEach(observed.event.description, id:\.self) { paragraph in
                 Text(paragraph.content)
                     .font(.body)
             }
-            Text(event.hashTags)
+            Text(observed.event.hashTags)
                 .padding(.top, 8)
                 .foregroundColor(.gray)
                 .font(.body)
@@ -65,7 +64,7 @@ private extension EventDetailView {
                 Text("\(Image(systemName: "calendar")) Date and time")
                     .font(.title3)
                     .fontWeight(.semibold)
-                Text("\(event.date)\n\(event.time)")
+                Text("\(observed.event.date)\n\(observed.event.time)")
                     .font(.body)
                 Button("캘린더에 추가") {
                     observed.isShowingAddEventConfirmationAlert = true
@@ -92,8 +91,8 @@ private extension EventDetailView {
                     .font(.title3)
                     .fontWeight(.semibold)
                 VStack(alignment: .leading) {
-                    Text(event.location)
-                    Text(event.address)
+                    Text(observed.event.location)
+                    Text(observed.event.address)
                 }
                 Button {
                     observed.isShowingSheet = true
