@@ -40,7 +40,7 @@ private extension SessionView {
                 .font(.title3)
                 .fontWeight(.semibold)
                 .padding(.vertical, 24)
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 ForEach(session.description, id: \.self) { paragraph in
                     Text(paragraph.content)
                 }
@@ -52,9 +52,21 @@ private extension SessionView {
 
     var speakerDetail: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Circle()
-                .frame(width: 80, height: 80)
-                .padding(.vertical, 24)
+            AsyncImage(url: URL(string: session.speaker.imageURL)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
+                    .frame(width: 80, height: 80)
+            } placeholder: {
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
+                    .frame(width: 80, height: 80)
+                    .opacity(0.4)
+            }
+            .padding(.vertical, 24)
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(session.speaker.name) 님")
                     .font(.headline)

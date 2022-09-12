@@ -34,31 +34,27 @@ struct Mock {
         sessions: [
             EventModel.Session(
                 id: 0,
+                title: "Coupang의 MVVM",
+                description: [
+                    EventModel.Session.Paragraph(content: "- 왜 MVVM이 나왔을까요? 주요 구조는 어떤 구조가 있을까요? 고민했던 내용을 공유합니다!"),
+                    EventModel.Session.Paragraph(content: "- MVVM 등장의 이유에 대해 알았으니 어떻게 동작하는지 알아보겠습니다!"),
+                ],
+                speaker: EventModel.Session.Speaker(
+                    name: "권문범",
+                    imageURL: "https://firebasestorage.googleapis.com/v0/b/asyncswiftkorea.appspot.com/o/moonbum.jpg?alt=media&token=0ab41b70-d3b0-4430-ac16-c97fdc3027bc",
+                    role: "Coupang | Staff Software Engineer",
+                    description: "오픈 소스 사용 전에 구현 해보는, 직접 구현 하기 전에 앱 구조를 말하는, 앱 구조를 말하기 전에 함수/객체 지향을 논하는, 함수/객체 지향을 논하기 전에 iOS 구조를 공부하는, iOS 구조를 공부하기 전에 자료구조와 알고리즘을 생각하는, 자료구조와 알고리즘을 생각하기 전에 나에게 맞는 플랫폼을 찾는 개발자")
+            ),
+            EventModel.Session(
+                id: 1,
                 title: "내일 지구가 멸망하더라도 테스트는 같게 동작해야한다.",
                 description: [
                     EventModel.Session.Paragraph(content: "- XCode에서 테스팅을 진행하는 이유와, 간략한 예제를 통해 테스팅을 진행합니다."),
                     EventModel.Session.Paragraph(content: "- 테스트 더블이 필요한 상황(네트워크와 무관하게 Response처리를 검사해야하는 경우)을 가정할 때 테스트 방식을 소개합니다."),
-                    EventModel.Session.Paragraph(content: "- 길어지는 경우에 이렇게 들어갑니다. XCode에서 테스팅을 진행하는 이유와, 간략한 예제를 통해 테스팅을 진행합니다."),
-                    EventModel.Session.Paragraph(content: "- 밑의 여백을 추가해요.테스트 더블이 필요한 상황(네트워크와 무관하게 Response처리를 검사해야하는 경우)을 가정할 때 테스트 방식을 소개합니다.")
                 ],
                 speaker: EventModel.Session.Speaker(
                     name: "김찬우",
-                    imageURL: "",
-                    role: "Coda, iOS 교육 설계",
-                    description: "iOS 개발과 교육 그 사이 어딘가에서 머무르고 있습니다.\n서비스를 통해 세상의 문제를 해결하는 것을 즐거워합니다.")
-            ),
-            EventModel.Session(
-                id: 1,
-                title: "Coupang의 MVVM",
-                description: [
-                    EventModel.Session.Paragraph(content: "- XCode에서 테스팅을 진행하는 이유와, 간략한 예제를 통해 테스팅을 진행합니다."),
-                    EventModel.Session.Paragraph(content: "- 테스트 더블이 필요한 상황(네트워크와 무관하게 Response처리를 검사해야하는 경우)을 가정할 때 테스트 방식을 소개합니다."),
-                    EventModel.Session.Paragraph(content: "- 길어지는 경우에 이렇게 들어갑니다. XCode에서 테스팅을 진행하는 이유와, 간략한 예제를 통해 테스팅을 진행합니다."),
-                    EventModel.Session.Paragraph(content: "- 밑의 여백을 추가해요.테스트 더블이 필요한 상황(네트워크와 무관하게 Response처리를 검사해야하는 경우)을 가정할 때 테스트 방식을 소개합니다.")
-                ],
-                speaker: EventModel.Session.Speaker(
-                    name: "권문범",
-                    imageURL: "",
+                    imageURL: "https://firebasestorage.googleapis.com/v0/b/asyncswiftkorea.appspot.com/o/woosung.jpg?alt=media&token=14991e8d-5d09-4666-a8df-c40d7cda5b88",
                     role: "Coda, iOS 교육 설계",
                     description: "iOS 개발과 교육 그 사이 어딘가에서 머무르고 있습니다.\n서비스를 통해 세상의 문제를 해결하는 것을 즐거워합니다.")
             ),

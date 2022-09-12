@@ -12,20 +12,22 @@ extension EventDetailView {
     final class Observed: ObservableObject {
 
         @Published var isShowingSheet = false
-        @Published var isShowingAlert = false
-        @Published var isShowingSuccessAlert = false
-        @Published var isShowingFailureAlert = false
+        @Published var isShowingAddEventConfirmationAlert = false
+        @Published var isShowingAddEventSuccessAlert = false
+        @Published var isShowingAddEventFailureAlert = false
 
         let data = Mock.data
 
         func additionConfirmed() {
             addEventOnCalendar { isSuccess in
-                DispatchQueue.main.async {
-                    switch isSuccess {
-                    case true:
-                        self.isShowingSuccessAlert = true
-                    case false:
-                        self.isShowingFailureAlert = true
+                DispatchQueue.main.async { [weak self] in
+                    if let self = self {
+                        switch isSuccess {
+                        case true:
+                            self.isShowingAddEventSuccessAlert = true
+                        case false:
+                            self.isShowingAddEventFailureAlert = true
+                        }
                     }
                 }
             }

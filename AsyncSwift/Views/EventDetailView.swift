@@ -68,20 +68,20 @@ private extension EventDetailView {
                 Text("\(event.date)\n\(event.time)")
                     .font(.body)
                 Button("캘린더에 추가") {
-                    observed.isShowingAlert = true
+                    observed.isShowingAddEventConfirmationAlert = true
                 }
-                .alert("'AsyncSwift'이(가) 사용자의 캘린터에 접근하려고 합니다.", isPresented: $observed.isShowingAlert, actions: {
-                    Button("허용 안 함") { observed.isShowingAlert = false }
+                .alert("'AsyncSwift'이(가) 사용자의 캘린터에 접근하려고 합니다.", isPresented: $observed.isShowingAddEventConfirmationAlert, actions: {
+                    Button("허용 안 함") { observed.isShowingAddEventConfirmationAlert = false }
                     Button("확인") { observed.additionConfirmed() }
                 }, message: {
                     Text("사용자의 '캘린더'에 접근하도록 허용합니다.")
                 })
-                .alert("일정 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
+                .alert("일정 등록 완료", isPresented: $observed.isShowingAddEventSuccessAlert, actions: {
                     Button("확인", role: .cancel) { }
                 }, message: {
                     Text("세미나 일정이 캘린더에 추가되었습니다.")
                 })
-                .alert("일정 등록 실패", isPresented: $observed.isShowingFailureAlert, actions: {
+                .alert("일정 등록 실패", isPresented: $observed.isShowingAddEventFailureAlert, actions: {
                     Button("다시 시도", role: .cancel) { }
                 }, message: {
                     Text("등록에 오류가 발생했습니다.\n다시 시도하십시오.")
