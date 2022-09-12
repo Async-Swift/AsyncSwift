@@ -52,6 +52,16 @@ private extension EventView {
                     .padding(.horizontal, 8)
                     .background(Color.seminarOrange)
                     .cornerRadius(20)
+                Text(observed.eventStatus.rawValue)
+                    .font(.caption2)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.accentColor)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.accentColor, lineWidth: 1)
+                    )
                 Spacer()
             }
             NavigationLink {
