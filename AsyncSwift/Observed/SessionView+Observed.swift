@@ -9,7 +9,12 @@ import SwiftUI
 
 extension SessionView {
     final class Observed: ObservableObject {
-        @Published var session = Session()
+
+        init(session: Session) {
+            self.session = session
+        }
+
+        @Published var session: Session
         let speakerImageSize: CGFloat = 80
     }
 }

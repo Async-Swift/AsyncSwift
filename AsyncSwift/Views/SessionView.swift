@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SessionView: View {
 
-    @ObservedObject var observed = Observed()
+    @ObservedObject var observed: Observed
 
     init(session: Session) {
-        observed.session = session
+        observed = Observed(session: session)
     }
 
     var body: some View {

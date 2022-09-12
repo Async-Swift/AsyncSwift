@@ -9,10 +9,10 @@ import SwiftUI
 
 struct EventDetailView: View {
 
-    @ObservedObject var observed = Observed()
+    @ObservedObject var observed: Observed
 
     init(event: Event) {
-        observed.event = event
+        observed = Observed(event: event)
     }
 
     var body: some View {

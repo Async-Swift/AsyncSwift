@@ -11,7 +11,11 @@ import EventKit
 extension EventDetailView {
     final class Observed: ObservableObject {
 
-        @Published var event = Event()
+        init(event: Event) {
+            self.event = event
+        }
+
+        @Published var event: Event
         @Published var isShowingSheet = false
         @Published var isShowingAddEventConfirmationAlert = false
         @Published var isShowingAddEventSuccessAlert = false
