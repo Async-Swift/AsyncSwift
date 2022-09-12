@@ -28,6 +28,7 @@
 		C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798C28C9CBD80036773B /* EventResponse.swift */; };
 		C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798E28C9D1BF0036773B /* SessionView.swift */; };
 		C6F7799128C9E5DD0036773B /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7799028C9E5DD0036773B /* EventDetailView.swift */; };
+		E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E2A4D728CEC5680016AEFF /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		C6F7798C28C9CBD80036773B /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
 		C6F7798E28C9D1BF0036773B /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		C6F7799028C9E5DD0036773B /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		E9E2A4D728CEC5680016AEFF /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				C6E7449F28CA557100B7B2BD /* Color+.swift */,
 				C63A866228CB3D490064C417 /* View+.swift */,
 				C63A866428CB3F6D0064C417 /* DateFormatter+.swift */,
+				E9E2A4D728CEC5680016AEFF /* WebView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				C6F7799128C9E5DD0036773B /* EventDetailView.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
 				C63A866128CB252D0064C417 /* Mock.swift in Sources */,
+				E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */,
 				C63A866328CB3D490064C417 /* View+.swift in Sources */,
 				C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */,
 				C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */,
