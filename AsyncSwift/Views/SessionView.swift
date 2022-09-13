@@ -57,13 +57,13 @@ private extension SessionView {
                     image
                         .resizable()
                 } else if phase.error != nil {
-                    Image(systemName: "person.circle")
+                    Image(systemName: "person.crop.circle.fill")
                         .resizable()
-                        .opacity(0.1)
+                        .opacity(0.04)
                 } else {
-                    Image(systemName: "person.circle")
+                    Image(systemName: "person.crop.circle.fill")
                         .resizable()
-                        .opacity(0.1)
+                        .opacity(0.04)
                 }
             }
             .aspectRatio(contentMode: .fit)
