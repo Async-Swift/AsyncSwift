@@ -66,7 +66,7 @@ private extension EventView {
             NavigationLink {
                 EventDetailView(event: observed.response.event)
             } label: {
-                Text("세미나 살펴보기 \(Image(systemName: "arrow.right"))")
+                Text("\(observed.response.event.type) 살펴보기 \(Image(systemName: "arrow.right"))")
                     .font(.footnote)
                     .fontWeight(.bold)
             }

@@ -20,9 +20,10 @@ struct JSONResponse: Codable {
 struct Event: Codable {
 
     init() {
-        self.title = ""
-        self.detailTitle = ""
+        self.title = "AsyncSwift"
+        self.detailTitle = "AsyncSwift"
         self.subject = ""
+        self.type = "세미나"
         self.description = []
         self.date = ""
         self.startDate = ""
@@ -34,14 +35,14 @@ struct Event: Codable {
         self.addressURLs = AddressURLs(naverMapURL: "", kakaoMapURL: "")
     }
 
-    var title, detailTitle, subject: String
+    var title, detailTitle, subject, type: String
     var description: [Paragraph]
     var date, startDate, endDate, time: String
     var location, address, hashTags: String
     var addressURLs: AddressURLs
 
     enum CodingKeys: String, CodingKey {
-        case title, detailTitle, subject
+        case title, detailTitle, subject, type
         case description = "description"
         case date, startDate, endDate, time, location, address, hashTags, addressURLs
     }
