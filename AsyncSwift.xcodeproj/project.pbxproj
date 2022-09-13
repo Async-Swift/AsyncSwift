@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289943228CA69FF002B9F67 /* StampView+Observed.swift */; };
 		B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* AppData.swift */; };
 		C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */; };
 		C63A866128CB252D0064C417 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866028CB252D0064C417 /* Mock.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B289943228CA69FF002B9F67 /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
 		B2E1083028C9CD6900C3DD59 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+Observed.swift"; sourceTree = "<group>"; };
 		C63A866028CB252D0064C417 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */,
 				C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */,
 				B2E1083028C9CD6900C3DD59 /* AppData.swift */,
+				B289943228CA69FF002B9F67 /* StampView+Observed.swift */,
 			);
 			path = Observed;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
+				B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */,
 				C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */,
 				C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */,
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,

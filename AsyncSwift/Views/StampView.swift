@@ -8,43 +8,39 @@
 import SwiftUI
 
 struct StampView: View {
-    var tempisScanned = true
-
-    @State private var backDegree: Double = 0.0
-    @State private var frontDegree: Double = -90.0
-    @State private var isFlipped = false
-
-    let durationAndDelay: CGFloat = 0.3
+    @EnvironmentObject var appData: AppData
+    @ObservedObject var observed = Observed()
 
     var body: some View {
         NavigationView {
             Group {
-                if tempisScanned {
-                    Button(action: { flipCard() }) {
-                        ZStack {
-                            stampBack
-                            stampFront
-                        }
+                if appData.scannedSeminarQR {
+                    ZStack {
+                        stampBack
+                        stampFront
+                    }
+                        .onTapGesture {
+                        observed.didTabCard()
                     }
                 } else {
                     notScannedView
                 }
             }
-            .padding(36)
-            .navigationTitle("Stamp")
+                .padding(36)
+                .navigationTitle("Stamp")
         }
     } // body
 } // View
 
 private extension StampView {
-    
+
     @ViewBuilder
     var stampBack: some View {
         Image("Seminar002StampBack")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20 , x: 40 * frontDegree / 90, y: 4)
-            .rotation3DEffect(Angle(degrees: frontDegree), axis: (x: 0, y: 1, z: 0))
+            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * observed.cardAnimatonModel.frontDegree / 90, y: 4)
+            .rotation3DEffect(Angle(degrees: observed.cardAnimatonModel.frontDegree), axis: (x: 0, y: 1, z: 0))
     }
 
     @ViewBuilder
@@ -53,8 +49,8 @@ private extension StampView {
 
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * backDegree / 90, y: 4)
-            .rotation3DEffect(Angle(degrees: backDegree), axis: (x: 0, y: 1, z: 0))
+            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * observed.cardAnimatonModel.backDegree / 90, y: 4)
+            .rotation3DEffect(Angle(degrees: observed.cardAnimatonModel.backDegree), axis: (x: 0, y: 1, z: 0))
     }
 
     @ViewBuilder
@@ -65,27 +61,6 @@ private extension StampView {
 
             Text("아직 참여한 행사가 없습니다.")
                 .foregroundColor(.gray)
-        }
-    }
-    
-    //MARK: Flip Card Function
-    func flipCard () {
-        isFlipped.toggle()
-        
-        if isFlipped { // 카드 회전 연속을 위해서 if문 분리
-            withAnimation(.linear(duration: durationAndDelay)) {
-                backDegree = 90
-            }
-            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
-                frontDegree = 0
-            }
-        } else {
-            withAnimation(.linear(duration: durationAndDelay)) {
-                frontDegree = -90
-            }
-            withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
-                backDegree = 0
-            }
         }
     }
 }
