@@ -54,37 +54,41 @@ private extension SessionView {
     }
 
     var speakerDetail: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            AsyncImage(url: URL(string: observed.session.speaker.imageURL), transaction: Transaction(animation: .default)) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                } else if phase.error != nil {
-                    Image(systemName: "person.crop.circle.fill")
-                        .resizable()
-                        .opacity(0.04)
-                } else {
-                    Image(systemName: "person.crop.circle.fill")
-                        .resizable()
-                        .opacity(0.04)
+
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 4) {
+                AsyncImage(url: URL(string: observed.session.speaker.imageURL), transaction: Transaction(animation: .default)) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                    } else if phase.error != nil {
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .opacity(0.04)
+                    } else {
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .opacity(0.04)
+                    }
                 }
+                .aspectRatio(contentMode: .fit)
+                .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
+                .clipShape(Circle())
+                .padding(.vertical, 24)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(observed.session.speaker.name) 님")
+                        .font(.headline)
+                    Text(observed.session.speaker.role)
+                        .font(.caption2)
+                }
+                Text(observed.session.speaker.description)
+                    .font(.footnote)
             }
-            .aspectRatio(contentMode: .fit)
-            .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
-            .clipShape(Circle())
-            .padding(.vertical, 24)
-            VStack(alignment: .leading, spacing: 2) {
-                Text("\(observed.session.speaker.name) 님")
-                    .font(.headline)
-                Text(observed.session.speaker.role)
-                    .font(.caption2)
-            }
-            Text(observed.session.speaker.description)
-                .font(.footnote)
+            .padding(.horizontal, 32)
+            .padding(.bottom, 60)
+
+            Spacer()
         }
-        .padding(.bottom, 60)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 32)
         .background(Color.speakerBackground)
     }
 }

@@ -86,7 +86,6 @@ private extension EventDetailView {
                     Text("등록에 오류가 발생했습니다.\n다시 시도하십시오.")
                 })
             }
-
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(Image(systemName: "location.fill")) Location")
                     .font(.title3)
