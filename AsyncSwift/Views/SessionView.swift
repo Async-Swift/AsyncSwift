@@ -35,19 +35,22 @@ struct SessionView: View {
 private extension SessionView {
 
     var sessionDetail: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(observed.session.title)
-                .font(.title3)
-                .fontWeight(.semibold)
-                .padding(.vertical, 24)
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(observed.session.description, id: \.self) { paragraph in
-                    Text(paragraph.content)
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(observed.session.title)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .padding(.vertical, 24)
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(observed.session.description, id: \.self) { paragraph in
+                        Text(paragraph.content)
+                    }
                 }
+                .padding(.bottom, 80)
             }
-            .padding(.bottom, 80)
+            .padding(.horizontal, 24)
+            Spacer()
         }
-        .padding(.horizontal, 24)
     }
 
     var speakerDetail: some View {
