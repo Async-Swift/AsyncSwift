@@ -19,7 +19,7 @@ extension EventView {
         }
 
         func fetchJson() {
-            guard let url = URL(string: "https://insub4067.github.io/insub_dev/asyncswift.json") else { return }
+            guard let url = URL(string: "https://async-swift.github.io/jsonstorage/asyncswift.json") else { return }
             let request = URLRequest(url: url)
             let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
