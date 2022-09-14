@@ -42,9 +42,9 @@ final class AppData: ObservableObject {
 
 
 enum Tab: String, CaseIterable {
-    case event
-    case ticketing
-    case stamp
+     case event = "Event"
+     case ticketing = "Ticketing"
+     case stamp = "Stramp"
 
     var title: String {
         rawValue
