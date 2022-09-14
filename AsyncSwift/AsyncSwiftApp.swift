@@ -11,7 +11,7 @@ import SwiftUI
 struct AsyncSwiftApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 	@ObservedObject var appData: AppData = AppData()
-	
+
     var body: some Scene {
         WindowGroup {
             MainTabView()

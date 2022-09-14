@@ -9,11 +9,10 @@ import SwiftUI
 
 struct SessionView: View {
 
-    private let session: EventModel.Session
-    private let observed = Observed()
+    @ObservedObject var observed: Observed
 
-    init(session: EventModel.Session) {
-        self.session = session
+    init(session: Session) {
+        observed = Observed(session: session)
     }
 
     var body: some View {
@@ -36,50 +35,60 @@ struct SessionView: View {
 private extension SessionView {
 
     var sessionDetail: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(session.title)
-                .font(.title3)
-                .fontWeight(.semibold)
-                .padding(.vertical, 24)
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(session.description, id: \.self) { paragraph in
-                    Text(paragraph.content)
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(observed.session.title)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .padding(.vertical, 24)
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(observed.session.description, id: \.self) { paragraph in
+                        Text(paragraph.content)
+                    }
                 }
+                .padding(.bottom, 80)
             }
-            .padding(.bottom, 80)
+            .padding(.horizontal, 24)
+            Spacer()
         }
-        .padding(.horizontal, 24)
     }
 
     var speakerDetail: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            AsyncImage(url: URL(string: session.speaker.imageURL)) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
-            } placeholder: {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
-                    .opacity(0.4)
+
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 4) {
+                AsyncImage(url: URL(string: observed.session.speaker.imageURL), transaction: Transaction(animation: .default)) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                    } else if phase.error != nil {
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .opacity(0.04)
+                    } else {
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .opacity(0.04)
+                    }
+                }
+                .aspectRatio(contentMode: .fit)
+                .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
+                .clipShape(Circle())
+                .padding(.vertical, 24)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(observed.session.speaker.name) 님")
+                        .font(.headline)
+                    Text(observed.session.speaker.role)
+                        .font(.caption2)
+                }
+                Text(observed.session.speaker.description)
+                    .font(.footnote)
             }
-            .padding(.vertical, 24)
-            VStack(alignment: .leading, spacing: 2) {
-                Text("\(session.speaker.name) 님")
-                    .font(.headline)
-                Text(session.speaker.role)
-                    .font(.caption2)
-            }
-            Text(session.speaker.description)
-                .font(.footnote)
+            .padding(.horizontal, 32)
+            .padding(.bottom, 60)
+
+            Spacer()
         }
-        .padding(.bottom, 60)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 32)
         .background(Color.speakerBackground)
     }
 }
