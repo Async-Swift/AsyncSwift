@@ -32,7 +32,6 @@ extension EventView {
                    guard let self = self else { return }
                    do {
                        let decodedData = try JSONDecoder().decode(Event.self, from: data)
-                       print(decodedData)
                        withAnimation {
                            self.event = decodedData
                        }
