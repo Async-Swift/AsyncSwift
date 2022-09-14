@@ -7,7 +7,7 @@
 
 import Foundation
 
-class KeyChain {
+final class KeyChain {
     static let shared = KeyChain()
 
     private init() { }
