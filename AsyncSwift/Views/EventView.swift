@@ -25,7 +25,7 @@ struct EventView: View {
             ScrollView {
                 Header
                 LazyVStack {
-                    ForEach(observed.response.sessions) { session in
+                    ForEach(observed.event.sessions) { session in
                         makeSessionCell(for: session)
                     }
                 }
@@ -39,11 +39,11 @@ private extension EventView {
 
     var Header: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(observed.response.event.subject)
+            Text(observed.event.subject)
                 .font(.title)
                 .fontWeight(.bold)
             HStack {
-                Text(observed.response.event.title)
+                Text(observed.event.title)
                     .font(.caption2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -64,9 +64,9 @@ private extension EventView {
                 Spacer()
             }
             NavigationLink {
-                EventDetailView(event: observed.response.event)
+                EventDetailView(event: observed.event)
             } label: {
-                Text("\(observed.response.event.type) 살펴보기 \(Image(systemName: "arrow.right"))")
+                Text("\(observed.event.type) 살펴보기 \(Image(systemName: "arrow.right"))")
                     .font(.footnote)
                     .fontWeight(.bold)
             }
