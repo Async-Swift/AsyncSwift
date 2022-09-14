@@ -5,11 +5,6 @@
 //  Created by Kim Insub on 2022/09/06.
 //
 
-/* TODO: 내용
- 1. light mode only
- 2. lock landscape
-*/
-
 import SwiftUI
 
 struct EventView: View {
