@@ -31,9 +31,10 @@ extension EventView {
                DispatchQueue.main.async { [weak self] in
                    guard let self = self else { return }
                    do {
-                       let decodedData = try JSONDecoder().decode(JSONResponse.self, from: data)
+                       let decodedData = try JSONDecoder().decode(Event.self, from: data)
+                       print(decodedData)
                        withAnimation {
-                           self.event = decodedData.event
+                           self.event = decodedData
                        }
                        self.calculateEventStatus()
                    } catch let error {
