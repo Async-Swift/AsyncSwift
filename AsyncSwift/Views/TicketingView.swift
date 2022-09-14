@@ -11,6 +11,7 @@ struct TicketingView: View {
     @StateObject private var observed = Observed()
 
     private let shadowColor = Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15)
+    private let corenrRadius: CGFloat = 8.0
 
 	var body: some View {
 		NavigationView {
@@ -25,7 +26,7 @@ struct TicketingView: View {
                     } else {
                         skeletonView
                             .aspectRatio(2.75, contentMode: .fill)
-                            .cornerRadius(8.0)
+                            .cornerRadius(corenrRadius)
                     }
                 }
                 .padding(30)
@@ -69,7 +70,7 @@ private extension TicketingView {
                         .aspectRatio(0.85, contentMode: .fill)
                 }
             )
-            .cornerRadius(8.0)
+            .cornerRadius(corenrRadius)
             .shadow(color: shadowColor, radius: 20, x: 0, y: 4)
         }.disabled(observed.ticketingLinkEnabled)
     }
@@ -104,7 +105,7 @@ private extension TicketingView {
                 endPoint: .trailing
             )
         )
-        .cornerRadius(8.0)
+        .cornerRadius(corenrRadius)
         .shadow(color: shadowColor, radius: 20, x: 0, y: 4)
     }
 }
