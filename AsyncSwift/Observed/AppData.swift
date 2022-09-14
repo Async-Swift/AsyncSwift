@@ -16,7 +16,7 @@ final class AppData: ObservableObject {
         // URL Example = https://www.asyncswift.info?seminar=seminar002&tab=event
         guard let host = URLComponents(url: url, resolvingAgainstBaseURL: true)?.host else { return false }
 
-        var queries: [String: String] = [:]
+        var queries = [String: String]()
         for item in URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems ?? [] {
             queries[item.name] = item.value
         }
