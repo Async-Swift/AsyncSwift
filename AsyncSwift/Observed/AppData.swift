@@ -28,7 +28,7 @@ final class AppData: ObservableObject {
 
         switch queries["tab"] {
         case Tab.stamp.rawValue:
-            KeyChain.shared.addItem(key: queries["seminar"], pwd: "true")
+            KeyChain.shared.addItem(key: queries["seminar"], pwd: "true") ? print("Adding Stamp History KeyChain is Success") : print("Adding Stamp History is Fail")
             currentTab = .stamp
         case Tab.event.rawValue:
             currentTab = .event
