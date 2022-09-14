@@ -16,7 +16,7 @@ struct TicketingView: View {
 		NavigationView {
 			ScrollView {
 				VStack(spacing: 30) {
-                    if observed.ticketing?.currentTicket != nil {
+                    if observed.isNeedToShowTicketingView {
                         ticketingView
                     }
 

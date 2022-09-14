@@ -13,6 +13,8 @@ extension TicketingView {
         @Published var ticketing: Ticketing?
 
         @Published var isActivatedWebViewNavigationLink = false
+
+        var isNeedToShowTicketingView: Bool { ticketing?.currentTicket?.ticketingImageURL != nil }
         var ticketingLinkEnabled: Bool { ticketing?.currentTicket?.ticketingURL == nil }
 
         func onAppear() {
