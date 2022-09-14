@@ -5,7 +5,6 @@
 //  Created by Kim Insub on 2022/09/08.
 //
 
-import Foundation
 import SwiftUI
 
 extension EventView {
@@ -19,7 +18,6 @@ extension EventView {
         }
 
         func fetchJson() {
-
             guard let url = URL(string: "https://async-swift.github.io/jsonstorage/asyncswift.json") else { return }
             let request = URLRequest(url: url)
             let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
@@ -50,13 +48,13 @@ extension EventView {
                 let start = formatter.date(from: event.startDate),
                 let end = formatter.date(from: event.endDate)
             else { return }
-            let current = Date()
+            let currentDate = Date()
 
-            if current < start {
+            if currentDate < start {
                 self.eventStatus = .upcoming
-            } else if start <= current && current < end {
+            } else if start <= currentDate && currentDate < end {
                 self.eventStatus = .onProgress
-            } else if current > end {
+            } else if currentDate > end {
                 self.eventStatus = .done
             }
         }

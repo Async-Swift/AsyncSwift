@@ -5,7 +5,6 @@
 //  Created by Kim Insub on 2022/09/09.
 //
 
-import Foundation
 import EventKit
 import SwiftUI
 
