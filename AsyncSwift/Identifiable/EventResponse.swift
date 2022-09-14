@@ -8,6 +8,7 @@
 import Foundation
 
 struct EventResponse: Codable, Identifiable {
-	let id: Int
-    
+
+    let id: Int
+
 }
