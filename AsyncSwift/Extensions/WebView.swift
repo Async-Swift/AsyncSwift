@@ -14,14 +14,16 @@ struct WebView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
-        webView.scrollView.isScrollEnabled = true
-
-        if let url = URL(string: url) {
-            webView.load(URLRequest(url: url))
-        }
-
+        
         return webView
     }
 
-    func updateUIView(_ uiView: WKWebView, context: Context) {}
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.scrollView.isScrollEnabled = true
+        
+        
+        if let url = URL(string: url) {
+            uiView.load(URLRequest(url: url))
+        }
+    }
 }
