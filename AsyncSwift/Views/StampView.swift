@@ -14,7 +14,7 @@ struct StampView: View {
     var body: some View {
         NavigationView {
             Group {
-                if let _ = KeyChain.shared.getItem(key: "seminar002") {
+                if appData.doesStampExist {
                     ZStack {
                         stampBack
                         stampFront

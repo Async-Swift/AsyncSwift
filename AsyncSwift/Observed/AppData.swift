@@ -10,6 +10,9 @@ import UIKit
 
 final class AppData: ObservableObject {
     @Published var currentTab: Tab = .event // Universal Link로 앱진입시 StampView 전환을 위한 변수
+    lazy var doesStampExist: Bool = {
+        KeyChain.shared.getItem(key: "seminar002") != nil
+    }()
 
     func checkLink(url: URL) -> Bool {
         // URL Example = https://www.asyncswift.info?seminar=seminar002&tab=ticketing
