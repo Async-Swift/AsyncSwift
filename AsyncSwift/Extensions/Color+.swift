@@ -12,4 +12,5 @@ extension Color {
     static let seminarOrange = Color("seminarOrange")
     static let dividerForeground = Color("dividerForeground")
     static let speakerBackground = Color("speakerBackground")
+    static let skeletonBackground = Color("skeletonBackground")
 }
