@@ -10,9 +10,10 @@
 		B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289943228CA69FF002B9F67 /* StampView+Observed.swift */; };
 		B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* AppData.swift */; };
 		C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */; };
-		C63A866128CB252D0064C417 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866028CB252D0064C417 /* Mock.swift */; };
 		C63A866328CB3D490064C417 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866228CB3D490064C417 /* View+.swift */; };
 		C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866428CB3F6D0064C417 /* DateFormatter+.swift */; };
+		C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D228D1B00A0091F960 /* EventModel.swift */; };
+		C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D428D1B0130091F960 /* SessionModel.swift */; };
 		C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */; };
 		C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */; };
 		C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93728C7685800CA4CC8 /* MainTabView.swift */; };
@@ -27,11 +28,10 @@
 		C6E744A028CA557100B7B2BD /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7449F28CA557100B7B2BD /* Color+.swift */; };
 		C6F7798728C9CB3A0036773B /* StampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798628C9CB3A0036773B /* StampView.swift */; };
 		C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798A28C9CBC60036773B /* EventView+Observed.swift */; };
-		C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798C28C9CBD80036773B /* EventResponse.swift */; };
 		C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798E28C9D1BF0036773B /* SessionView.swift */; };
 		C6F7799128C9E5DD0036773B /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7799028C9E5DD0036773B /* EventDetailView.swift */; };
 		E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */; };
-		E989C0D328D2253200BDB5E8 /* Ticketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989C0D228D2253200BDB5E8 /* Ticketing.swift */; };
+		E94F92C528D24F9800D9E759 /* Ticketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F92C428D24F9800D9E759 /* Ticketing.swift */; };
 		E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E2A4D728CEC5680016AEFF /* WebView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,9 +39,10 @@
 		B289943228CA69FF002B9F67 /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
 		B2E1083028C9CD6900C3DD59 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+Observed.swift"; sourceTree = "<group>"; };
-		C63A866028CB252D0064C417 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		C63A866228CB3D490064C417 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C63A866428CB3F6D0064C417 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
+		C66C68D228D1B00A0091F960 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		C66C68D428D1B0130091F960 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionView+Observed.swift"; sourceTree = "<group>"; };
 		C68DE93228C7685800CA4CC8 /* AsyncSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSwiftApp.swift; sourceTree = "<group>"; };
@@ -57,11 +58,10 @@
 		C6E7449F28CA557100B7B2BD /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6F7798628C9CB3A0036773B /* StampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampView.swift; sourceTree = "<group>"; };
 		C6F7798A28C9CBC60036773B /* EventView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventView+Observed.swift"; sourceTree = "<group>"; };
-		C6F7798C28C9CBD80036773B /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
 		C6F7798E28C9D1BF0036773B /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		C6F7799028C9E5DD0036773B /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TicketingView+Observed.swift"; sourceTree = "<group>"; };
-		E989C0D228D2253200BDB5E8 /* Ticketing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticketing.swift; sourceTree = "<group>"; };
+		E94F92C428D24F9800D9E759 /* Ticketing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ticketing.swift; sourceTree = "<group>"; };
 		E9E2A4D728CEC5680016AEFF /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,7 +102,7 @@
 				C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */,
 				C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */,
 				C6E7449E28CA556800B7B2BD /* Extensions */,
-				C6F7798828C9CB9B0036773B /* Identifiable */,
+				C6F7798828C9CB9B0036773B /* Models */,
 				C68DE95228C77F4800CA4CC8 /* Views */,
 				C6F7798928C9CBA60036773B /* Observed */,
 				C68DE93928C7685900CA4CC8 /* Assets.xcassets */,
@@ -144,14 +144,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C6F7798828C9CB9B0036773B /* Identifiable */ = {
+		C6F7798828C9CB9B0036773B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C6F7798C28C9CBD80036773B /* EventResponse.swift */,
-				C63A866028CB252D0064C417 /* Mock.swift */,
-				E989C0D228D2253200BDB5E8 /* Ticketing.swift */,
+				C66C68D428D1B0130091F960 /* SessionModel.swift */,
+				C66C68D228D1B00A0091F960 /* EventModel.swift */,
+				E94F92C428D24F9800D9E759 /* Ticketing.swift */,
 			);
-			path = Identifiable;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C6F7798928C9CBA60036773B /* Observed */ = {
@@ -246,11 +246,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
-				E989C0D328D2253200BDB5E8 /* Ticketing.swift in Sources */,
+				E94F92C528D24F9800D9E759 /* Ticketing.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
+				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
 				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
 				B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */,
@@ -259,12 +260,11 @@
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,
 				C6F7799128C9E5DD0036773B /* EventDetailView.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
-				C63A866128CB252D0064C417 /* Mock.swift in Sources */,
 				E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */,
 				C63A866328CB3D490064C417 /* View+.swift in Sources */,
 				C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */,
 				C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */,
-				C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */,
+				C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */,
 				B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,11 +399,15 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "캘린더에 일정 추가를 위해서는 권한이 필요해요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -430,11 +434,15 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "캘린더에 일정 추가를 위해서는 권한이 필요해요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
