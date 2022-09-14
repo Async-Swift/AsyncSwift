@@ -9,8 +9,8 @@ import SwiftUI
 import UIKit
 
 final class AppData: ObservableObject {
-	@Published var currentTab: Tab = .event
-	
+	@Published var currentTab: Tab = .event // Universal Link로 앱진입시 StampView 전환을 위한 변수
+    var scannedSeminarQR = true // Universal Link로 진입시 QR코드 스캔 여부
 }
 
 
