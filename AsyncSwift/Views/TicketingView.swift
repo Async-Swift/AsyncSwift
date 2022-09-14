@@ -72,7 +72,7 @@ private extension TicketingView {
             )
             .cornerRadius(corenrRadius)
             .shadow(color: shadowColor, radius: 20, x: 0, y: 4)
-        }.disabled(observed.ticketingLinkEnabled)
+        }.disabled(observed.isTicketingLinkDisabled)
     }
 
     @ViewBuilder
