@@ -10,7 +10,6 @@ import UIKit
 
 final class AppData: ObservableObject {
     @Published var currentTab: Tab = .event // Universal Link로 앱진입시 StampView 전환을 위한 변수
-    var scannedSeminarQR = true // Universal Link로 진입시 QR코드 스캔 여부
 
     func checkLink(url: URL) -> Bool {
         // URL Example = https://www.asyncswift.info?seminar=seminar002&tab=ticketing
@@ -29,7 +28,7 @@ final class AppData: ObservableObject {
 
         switch queries["tab"] {
         case Tab.stamp.rawValue:
-            scannedSeminarQR = true
+            KeyChain.shared.addItem(key: queries["seminar"], pwd: "true")
             currentTab = .stamp
         case Tab.event.rawValue:
             currentTab = .event
