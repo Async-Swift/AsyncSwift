@@ -6,13 +6,41 @@
 //
 
 import Combine
+import Foundation
 
 extension TicketingView {
-
     final class Observed: ObservableObject {
-        @Published var isActivatedWebViewNavigationLink = false
+        @Published var ticketing: Ticketing?
 
-        let upcomingEventURL = "https://www.eventbrite.com/e/asyncswift-seminar-002-tickets-408509251167"
+        @Published var isActivatedWebViewNavigationLink = false
+        var ticketingLinkEnabled: Bool { ticketing?.currentTicket?.ticketingURL == nil }
+
+        func onAppear() {
+            guard
+                let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/ticketing.json")
+            else { return }
+
+
+            let request = URLRequest(url: url)
+            let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
+               guard
+                   let response = response as? HTTPURLResponse,
+                   response.statusCode == 200,
+                   let data = data
+               else { return }
+
+               DispatchQueue.main.async { [weak self] in
+                   do {
+                       let ticketing = try JSONDecoder().decode(Ticketing.self, from: data)
+                       self?.ticketing = ticketing
+                   } catch {
+                       self?.ticketing = nil
+                   }
+               }
+            }
+
+            dataTask.resume()
+        }
 
         func didTappedTicketingButton() {
             isActivatedWebViewNavigationLink = true
