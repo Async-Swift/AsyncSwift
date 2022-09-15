@@ -19,14 +19,16 @@ final class KeyChain {
 
         let result: Bool = {
             let status = SecItemAdd(addQuery as CFDictionary, nil)
-            if status == errSecSuccess {
+            
+            switch status {
+            case errSecSuccess:
                 return true
-            } else if status == errSecDuplicateItem {
+            case errSecDuplicateItem:
                 return updateItem(value: pwd, key: key)
+            default:
+                print("addItem Error : \(status.description))")
+                return false
             }
-
-            print("addItem Error : \(status.description))")
-            return false
         }()
 
         return result
