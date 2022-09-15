@@ -57,10 +57,7 @@ final class KeyChain {
 
         let result: Bool = {
             let status = SecItemUpdate(prevQuery as CFDictionary, updateQuery as CFDictionary)
-            if status == errSecSuccess { return true }
-
-            print("updateItem Error : \(status.description)")
-            return false
+            return status == errSecSuccess
         }()
 
         return result
