@@ -66,9 +66,11 @@ final class KeyChain {
         let deleteQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
                                             kSecAttrAccount: key]
         let status = SecItemDelete(deleteQuery as CFDictionary)
-        if status == errSecSuccess { return true }
-
-        print("deleteItem Error : \(status.description)")
-        return false
+        if status == errSecSuccess {
+            return true
+        } else {
+            print("deleteItem Error : \(status.description)")
+            return false
+        }
     }
 }
