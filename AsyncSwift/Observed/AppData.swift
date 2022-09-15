@@ -10,13 +10,15 @@ import UIKit
 
 final class AppData: ObservableObject {
     @Published var currentTab: Tab = .event // Universal Link로 앱진입시 StampView 전환을 위한 변수
+    
+    private var currentStamp: Stamp?
     lazy var doesStampExist: Bool = {
-        KeyChain.shared.getItem(key: "seminar002") != nil
+        KeyChain.shared.getItem(key: currentStamp?.title) != nil
     }()
 
     func checkLink(url: URL) -> Bool {
-        // URL Example = https://www.asyncswift.info?seminar=seminar002&tab=ticketing
-        // URL Example = https://www.asyncswift.info?seminar=seminar002&tab=event
+        // URL Example = https://www.asyncswift.info?tab=ticketing
+        // URL Example = https://www.asyncswift.info?tab=event
         guard let host = URLComponents(url: url, resolvingAgainstBaseURL: true)?.host else { return false }
 
         var queries = [String: String]()
@@ -24,14 +26,13 @@ final class AppData: ObservableObject {
             queries[item.name] = item.value
         }
         
-        //TODO: seminar002도 나중에 JSON으로 관리하면 앱 업데이트 할 필요 없이 간편하게 수정 할 수 있을것 같습니다.
-        if queries["seminar"] != "seminar002" {
-            return false
-        }
+        fetchCurrentStamp()
+        
+        guard let currentStampName = currentStamp?.title else { return false }
 
         switch queries["tab"] {
         case Tab.stamp.rawValue:
-            KeyChain.shared.addItem(key: queries["seminar"], pwd: "true") ? print("Adding Stamp History KeyChain is Success") : print("Adding Stamp History is Fail")
+            KeyChain.shared.addItem(key: currentStampName, pwd: "true") ? print("Adding Stamp History KeyChain is Success") : print("Adding Stamp History is Fail")
             currentTab = .stamp
         case Tab.event.rawValue:
             currentTab = .event
@@ -40,6 +41,37 @@ final class AppData: ObservableObject {
         }
 
         return true
+    }
+    
+    private func fetchCurrentStamp() {
+        guard
+            let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/stamp.json")
+            else { return }
+
+
+        let request = URLRequest(url: url)
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
+            guard
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200,
+                let data = data
+                else { return }
+            
+            DispatchQueue.main.async { [weak self] in
+                do {
+                    let stamp = try JSONDecoder().decode(Stamp.self, from: data)
+                    self?.currentStamp = stamp
+                    if KeyChain.shared.addItem(key: self?.currentStamp?.title, pwd: "true") {
+                        print("Stamp history saved in KeyChian")
+                    } else {
+                        print("Stamp recording failed to save to KeyChian.")
+                    }
+                } catch {
+                    self?.currentStamp = nil
+                }
+            }
+        }
+        dataTask.resume()
     }
 }
 
