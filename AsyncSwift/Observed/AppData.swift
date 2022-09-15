@@ -62,11 +62,12 @@ final class AppData: ObservableObject {
                 else { return }
             
             DispatchQueue.main.async { [weak self] in
+                guard let self = self else {return }
                 do {
                     let stamp = try JSONDecoder().decode(Stamp.self, from: data)
-                    self?.currentStamp = stamp
+                    self.currentStamp = stamp
                 } catch {
-                    self?.currentStamp = nil
+                    self.currentStamp = nil
                 }
             }
         }
