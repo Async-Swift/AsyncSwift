@@ -9,10 +9,11 @@ import SwiftUI
 import UIKit
 
 final class AppData: ObservableObject {
-    @Published var currentTab: Tab = .event // Universal Link로 앱진입시 StampView 전환을 위한 변수
+    /// Universal Link로 앱진입시 StampView 전환을 위한 변수
+    @Published var currentTab: Tab = .event
     
     private var currentStamp: Stamp?
-    lazy var doesStampExist: Bool = {
+    lazy var isStampExist: Bool = {
         KeyChain.shared.getItem(key: currentStamp?.title) != nil
     }()
     
@@ -35,7 +36,7 @@ final class AppData: ObservableObject {
         switch queries["tab"] {
         case Tab.stamp.rawValue:
             KeyChain.shared.addItem(key: currentStampName, pwd: "true") ? print("Adding Stamp History KeyChain is Success") : print("Adding Stamp History is Fail")
-            self.doesStampExist = true
+            self.isStampExist = true
             currentTab = .stamp
         case Tab.event.rawValue:
             currentTab = .event
