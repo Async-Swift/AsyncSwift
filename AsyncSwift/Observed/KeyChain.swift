@@ -17,21 +17,17 @@ final class KeyChain {
                                          kSecAttrAccount: key,
                                          kSecValueData: (pwd as AnyObject).data(using: String.Encoding.utf8.rawValue) as Any]
 
-        let result: Bool = {
-            let status = SecItemAdd(addQuery as CFDictionary, nil)
-            
-            switch status {
-            case errSecSuccess:
-                return true
-            case errSecDuplicateItem:
-                return updateItem(value: pwd, key: key)
-            default:
-                print("addItem Error : \(status.description))")
-                return false
-            }
-        }()
+        let status = SecItemAdd(addQuery as CFDictionary, nil)
 
-        return result
+        switch status {
+        case errSecSuccess:
+            return true
+        case errSecDuplicateItem:
+            return updateItem(value: pwd, key: key)
+        default:
+            print("addItem Error : \(status.description))")
+            return false
+        }
     }
 
     func getItem(key: Any) -> Any? {
