@@ -19,7 +19,9 @@ extension TicketingView {
             return currentDate <= DateFormatter.calendarFormatter.date(from: ticketing?.currentTicket?.date ?? "") ?? Date()
         }
 
-        var isTicketingLinkDisabled: Bool { ticketing?.currentTicket?.ticketingURL == nil }
+        var isTicketingLinkDisabled: Bool {
+            ticketing?.currentTicket?.ticketingURL == nil && !hasAvailableTicket
+        }
 
         func onAppear() {
             guard
