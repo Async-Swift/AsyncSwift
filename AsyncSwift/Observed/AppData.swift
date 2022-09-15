@@ -15,6 +15,10 @@ final class AppData: ObservableObject {
     lazy var doesStampExist: Bool = {
         KeyChain.shared.getItem(key: currentStamp?.title) != nil
     }()
+    
+    init(){
+        fetchCurrentStamp()
+    }
 
     func checkLink(url: URL) -> Bool {
         // URL Example = https://www.asyncswift.info?tab=ticketing
@@ -26,13 +30,12 @@ final class AppData: ObservableObject {
             queries[item.name] = item.value
         }
         
-        fetchCurrentStamp()
-        
         guard let currentStampName = currentStamp?.title else { return false }
 
         switch queries["tab"] {
         case Tab.stamp.rawValue:
             KeyChain.shared.addItem(key: currentStampName, pwd: "true") ? print("Adding Stamp History KeyChain is Success") : print("Adding Stamp History is Fail")
+            self.doesStampExist = true
             currentTab = .stamp
         case Tab.event.rawValue:
             currentTab = .event
@@ -61,11 +64,6 @@ final class AppData: ObservableObject {
                 do {
                     let stamp = try JSONDecoder().decode(Stamp.self, from: data)
                     self?.currentStamp = stamp
-                    if KeyChain.shared.addItem(key: self?.currentStamp?.title, pwd: "true") {
-                        print("Stamp history saved in KeyChian")
-                    } else {
-                        print("Stamp recording failed to save to KeyChian.")
-                    }
                 } catch {
                     self?.currentStamp = nil
                 }
