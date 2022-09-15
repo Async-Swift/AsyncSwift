@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class KeyChain {
     static let shared = KeyChain()
@@ -38,14 +39,12 @@ final class KeyChain {
         var item: CFTypeRef?
         let result = SecItemCopyMatching(getQuery as CFDictionary, &item)
 
-        if result == errSecSuccess, 
-        let existingItem = item as? [String: Any], 
-        let data = existingItem[kSecValueData as String] as? Data, 
-        let password = String(data: data, encoding: .utf8) {
-                return password
-            }
+        if result == errSecSuccess,
+            let existingItem = item as? [String: Any],
+            let data = existingItem[kSecValueData as String] as? Data,
+            let password = String(data: data, encoding: .utf8) {
+            return password
         }
-
         print("getItem Error : \(result.description)")
         return nil
     }
