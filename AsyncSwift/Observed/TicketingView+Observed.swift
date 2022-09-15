@@ -14,7 +14,7 @@ extension TicketingView {
 
         @Published var isActivatedWebViewNavigationLink = false
 
-        var doesCurrentTicketExist: Bool { ticketing?.currentTicket?.ticketingImageURL != nil }
+        var hasAvailableTicket: Bool { ticketing?.currentTicket?.ticketingImageURL != nil }
         var isTicketingLinkDisabled: Bool { ticketing?.currentTicket?.ticketingURL == nil }
 
         func onAppear() {

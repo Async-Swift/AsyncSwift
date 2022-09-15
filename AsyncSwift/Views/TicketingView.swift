@@ -23,7 +23,7 @@ struct TicketingView: View {
                             .ticketingViewStyle()
                     }
 
-                    switch observed.doesCurrentTicketExist {
+                    switch observed.hasAvailableTicket {
                     case true:
                         ticketingView
                             .ticketingViewStyle()
