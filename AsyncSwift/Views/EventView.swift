@@ -5,75 +5,22 @@
 //  Created by Kim Insub on 2022/09/06.
 //
 
-/* TODO: 내용
- 1. light mode only
- 2. lock landscape
- 3. 예정된 행사 테그 구현하기
- */
-
 import SwiftUI
-
-struct EventModel {
-
-    let event: Event
-    let sessions: [Session]
-
-    struct Event {
-
-        var title: String
-        var detailTitle: String
-        var subject: String
-        var description: [Paragraph]
-        var date: String
-        var startDate: String
-        var endDate: String
-        var time: String
-        var location: String
-        var address: String
-        var hashTags: String
-        var addressURLs: AddressURLs
-
-        struct Paragraph: Hashable {
-            var content: String
-        }
-
-        struct AddressURLs {
-            var naverMapURL: String
-            var kakaoMapURL: String
-        }
-    }
-
-    struct Session: Identifiable {
-
-        let id: Int
-        var title: String
-        var description: [Paragraph]
-        var speaker: Speaker
-
-        struct Speaker {
-            var name: String
-            var imageURL: String
-            var role: String
-            var description: String
-        }
-
-        struct Paragraph: Hashable {
-            var content: String
-        }
-    }
-}
-
 
 struct EventView: View {
 
-    private let data = Mock.data
+    @ObservedObject var observed: Observed
+
+    init() {
+        observed = Observed()
+    }
 
     var body: some View {
         NavigationView {
             ScrollView {
                 Header
                 LazyVStack {
-                    ForEach(data.sessions) { session in
+                    ForEach(observed.event.sessions) { session in
                         makeSessionCell(for: session)
                     }
                 }
@@ -87,11 +34,11 @@ private extension EventView {
 
     var Header: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(data.event.subject)
+            Text(observed.event.subject)
                 .font(.title)
                 .fontWeight(.bold)
             HStack {
-                Text(data.event.title)
+                Text(observed.event.title)
                     .font(.caption2)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -99,12 +46,22 @@ private extension EventView {
                     .padding(.horizontal, 8)
                     .background(Color.seminarOrange)
                     .cornerRadius(20)
+                Text(observed.eventStatus.rawValue)
+                    .font(.caption2)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.accentColor)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.accentColor, lineWidth: 1)
+                    )
                 Spacer()
             }
             NavigationLink {
-                EventDetailView(event: data.event)
+                EventDetailView(event: observed.event)
             } label: {
-                Text("세미나 살펴보기 \(Image(systemName: "arrow.right"))")
+                Text("\(observed.event.type) 살펴보기 \(Image(systemName: "arrow.right"))")
                     .font(.footnote)
                     .fontWeight(.bold)
             }
@@ -114,7 +71,7 @@ private extension EventView {
     }
 
     @ViewBuilder
-    func makeSessionCell(for session: EventModel.Session) -> some View {
+    func makeSessionCell(for session: Session) -> some View {
         NavigationLink {
             SessionView(session: session)
         } label: {

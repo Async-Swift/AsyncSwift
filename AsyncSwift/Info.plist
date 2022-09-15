@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCalendarsUsageDescription</key>
-	<string>캘린더에 일정 추가를 위해서는 권한이 필요해요.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

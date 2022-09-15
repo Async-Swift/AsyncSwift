@@ -64,12 +64,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     let data1Key = "DATA1"
     let data2Key = "DATA2"
 
-    static var orientationLock = UIInterfaceOrientationMask.all
-
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return AppDelegate.orientationLock
-    }
-
     // Register for remote notifications
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
