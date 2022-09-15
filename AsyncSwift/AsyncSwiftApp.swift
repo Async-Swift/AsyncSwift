@@ -17,7 +17,11 @@ struct AsyncSwiftApp: App {
             MainTabView()
 				.environmentObject(appData)
                 .onOpenURL { url in
-                    print(url)
+                    if appData.checkLink(url: url) {
+                        print("Success Link URL: \(url)")
+                    } else {
+                        print("Fail Link URL: \(url)")
+                    }
                 }
         }
     }
