@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Stamp: Codable {
+struct Stamp: Decodable {
     let title: String
 }
