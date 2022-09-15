@@ -14,6 +14,7 @@ struct Ticketing: Decodable {
     struct CurrentTicket: Decodable {
         let ticketingImageURL: String
         let ticketingURL: String
+        let date: String
     }
 
     struct UpcomingEvent: Decodable {

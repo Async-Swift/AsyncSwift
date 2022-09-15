@@ -11,6 +11,8 @@ import SwiftUI
 extension Color {
     static let seminarOrange = Color("seminarOrange")
     static let dividerForeground = Color("dividerForeground")
+    static let emptyTicketViewBackground = Color("emptyTicketViewBackground")
+    static let emptyTicketViewForeground = Color("emptyTicketViewForeground")
     static let speakerBackground = Color("speakerBackground")
     static let skeletonBackground = Color("skeletonBackground")
 }
