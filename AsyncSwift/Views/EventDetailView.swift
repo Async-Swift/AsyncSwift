@@ -41,7 +41,7 @@ struct EventDetailView: View {
 private extension EventDetailView {
 
     var description: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(observed.event.subject)
                 .fontWeight(.bold)
                 .font(.title3)
