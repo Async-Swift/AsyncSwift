@@ -22,8 +22,8 @@ final class AppData: ObservableObject {
     }
 
     func checkLink(url: URL) -> Bool {
-        // URL Example = https://www.asyncswift.info?tab=ticketing
-        // URL Example = https://www.asyncswift.info?tab=event
+        // URL Example = https://asyncswift.info?tab=stamp
+        // URL Example = https://asyncswift.info?tab=event
         guard URLComponents(url: url, resolvingAgainstBaseURL: true)?.host != nil else { return false }
 
         var queries = [String: String]()

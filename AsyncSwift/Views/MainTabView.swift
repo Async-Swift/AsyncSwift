@@ -10,7 +10,7 @@ import SwiftUI
 struct MainTabView: View {
 	@EnvironmentObject var appData: AppData
     var body: some View {
-        TabView {
+        TabView(selection: $appData.currentTab) {
             ForEach(Tab.allCases, id: \.self) { tab in
                 tab.view.tabItem {
                     Image(systemName: tab.systemImageName)
