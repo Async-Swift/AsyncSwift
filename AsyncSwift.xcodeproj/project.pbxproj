@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E600B28D2400500E96C78 /* KeyChain.swift */; };
+		B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289943228CA69FF002B9F67 /* StampView+Observed.swift */; };
+		B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* AppData.swift */; };
+		B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FC6F6228D309FF00D2ACBF /* Stamp.swift */; };
+		C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */; };
+		C63A866328CB3D490064C417 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866228CB3D490064C417 /* View+.swift */; };
+		C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866428CB3F6D0064C417 /* DateFormatter+.swift */; };
+		C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D228D1B00A0091F960 /* EventModel.swift */; };
+		C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D428D1B0130091F960 /* SessionModel.swift */; };
+		C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */; };
 		C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */; };
 		C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93728C7685800CA4CC8 /* MainTabView.swift */; };
 		C68DE93A28C7685900CA4CC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C68DE93928C7685900CA4CC8 /* Assets.xcassets */; };
@@ -17,12 +27,27 @@
 		C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */; };
 		C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* EventView.swift */; };
 		C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */; };
+		C6E744A028CA557100B7B2BD /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7449F28CA557100B7B2BD /* Color+.swift */; };
 		C6F7798728C9CB3A0036773B /* StampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798628C9CB3A0036773B /* StampView.swift */; };
 		C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798A28C9CBC60036773B /* EventView+Observed.swift */; };
-		C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798C28C9CBD80036773B /* EventResponse.swift */; };
+		C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798E28C9D1BF0036773B /* SessionView.swift */; };
+		C6F7799128C9E5DD0036773B /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7799028C9E5DD0036773B /* EventDetailView.swift */; };
+		E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */; };
+		E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F92C628D2505100D9E759 /* Ticketing.swift */; };
+		E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E2A4D728CEC5680016AEFF /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B25E600B28D2400500E96C78 /* KeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		B289943228CA69FF002B9F67 /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
+		B2E1083028C9CD6900C3DD59 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		B2FC6F6228D309FF00D2ACBF /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
+		C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+Observed.swift"; sourceTree = "<group>"; };
+		C63A866228CB3D490064C417 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		C63A866428CB3F6D0064C417 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
+		C66C68D228D1B00A0091F960 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		C66C68D428D1B0130091F960 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
+		C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionView+Observed.swift"; sourceTree = "<group>"; };
 		C68DE93228C7685800CA4CC8 /* AsyncSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSwiftApp.swift; sourceTree = "<group>"; };
 		C68DE93728C7685800CA4CC8 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -34,9 +59,14 @@
 		C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsyncSwift.entitlements; sourceTree = "<group>"; };
 		C68DE94E28C77DC900CA4CC8 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketingView.swift; sourceTree = "<group>"; };
+		C6E7449F28CA557100B7B2BD /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6F7798628C9CB3A0036773B /* StampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampView.swift; sourceTree = "<group>"; };
 		C6F7798A28C9CBC60036773B /* EventView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventView+Observed.swift"; sourceTree = "<group>"; };
-		C6F7798C28C9CBD80036773B /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
+		C6F7798E28C9D1BF0036773B /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		C6F7799028C9E5DD0036773B /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TicketingView+Observed.swift"; sourceTree = "<group>"; };
+		E94F92C628D2505100D9E759 /* Ticketing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ticketing.swift; sourceTree = "<group>"; };
+		E9E2A4D728CEC5680016AEFF /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +105,8 @@
 				C68DE94A28C76CE000CA4CC8 /* Info.plist */,
 				C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */,
 				C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */,
-				C6F7798828C9CB9B0036773B /* Identifiable */,
+				C6E7449E28CA556800B7B2BD /* Extensions */,
+				C6F7798828C9CB9B0036773B /* Models */,
 				C68DE95228C77F4800CA4CC8 /* Views */,
 				C6F7798928C9CBA60036773B /* Observed */,
 				C68DE93928C7685900CA4CC8 /* Assets.xcassets */,
@@ -98,24 +129,46 @@
 			children = (
 				C68DE93728C7685800CA4CC8 /* MainTabView.swift */,
 				C68DE94E28C77DC900CA4CC8 /* EventView.swift */,
+				C6F7799028C9E5DD0036773B /* EventDetailView.swift */,
+				C6F7798E28C9D1BF0036773B /* SessionView.swift */,
 				C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */,
 				C6F7798628C9CB3A0036773B /* StampView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C6F7798828C9CB9B0036773B /* Identifiable */ = {
+		C6E7449E28CA556800B7B2BD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C6F7798C28C9CBD80036773B /* EventResponse.swift */,
+				C6E7449F28CA557100B7B2BD /* Color+.swift */,
+				C63A866228CB3D490064C417 /* View+.swift */,
+				C63A866428CB3F6D0064C417 /* DateFormatter+.swift */,
+				E9E2A4D728CEC5680016AEFF /* WebView.swift */,
 			);
-			path = Identifiable;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C6F7798828C9CB9B0036773B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C66C68D228D1B00A0091F960 /* EventModel.swift */,
+				C66C68D428D1B0130091F960 /* SessionModel.swift */,
+				E94F92C628D2505100D9E759 /* Ticketing.swift */,
+				B2FC6F6228D309FF00D2ACBF /* Stamp.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C6F7798928C9CBA60036773B /* Observed */ = {
 			isa = PBXGroup;
 			children = (
 				C6F7798A28C9CBC60036773B /* EventView+Observed.swift */,
+				C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */,
+				C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */,
+				B25E600B28D2400500E96C78 /* KeyChain.swift */,
+				B2E1083028C9CD6900C3DD59 /* AppData.swift */,
+				B289943228CA69FF002B9F67 /* StampView+Observed.swift */,
+				E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */,
 			);
 			path = Observed;
 			sourceTree = "<group>";
@@ -199,13 +252,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
+				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
+				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
+				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
+				B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
+				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
+				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
+				B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */,
+				C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */,
 				C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */,
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,
+				C6F7799128C9E5DD0036773B /* EventDetailView.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
-				C6F7798D28C9CBD80036773B /* EventResponse.swift in Sources */,
+				E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */,
+				C63A866328CB3D490064C417 /* View+.swift in Sources */,
+				C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */,
+				C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */,
+				C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */,
+				B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */,
+				B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,18 +400,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AsyncSwift/AsyncSwift.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AsyncSwift/Preview Content\"";
 				DEVELOPMENT_TEAM = 76AJ433CP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "캘린더에 일정 추가를 위해서는 권한이 필요해요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -351,6 +424,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftProvisioningProfile;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -363,18 +437,23 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AsyncSwift/AsyncSwift.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AsyncSwift/Preview Content\"";
 				DEVELOPMENT_TEAM = 76AJ433CP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "캘린더에 일정 추가를 위해서는 권한이 필요해요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -382,6 +461,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftProvisioningProfile;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

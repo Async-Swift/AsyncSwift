@@ -8,27 +8,15 @@
 import SwiftUI
 
 struct MainTabView: View {
+	@EnvironmentObject var appData: AppData
     var body: some View {
         TabView {
-            EventView()
-                .tabItem {
-                    Label("Event", systemImage: "calendar")
+            ForEach(Tab.allCases, id: \.self) { tab in
+                tab.view.tabItem {
+                    Image(systemName: tab.systemImageName)
+                    Text(tab.title)
                 }
-            
-            TicketingView()
-                .tabItem {
-                    Label("Ticketing", systemImage: "banknote")
-                }
-            StampView()
-                .tabItem {
-                    Label("Stamp", systemImage: "checkmark.square")
-                }
+            }
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
     }
 }
