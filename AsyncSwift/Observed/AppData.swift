@@ -18,7 +18,7 @@ final class AppData: ObservableObject {
         fetchCurrentStamp()
     }
 
-    func isStampExist() -> Bool {
+    var isStampExist: Bool {
         if currentStamp == nil {
             fetchCurrentStamp()
         }
@@ -30,7 +30,6 @@ final class AppData: ObservableObject {
         // URL Example = https://asyncswift.info?tab=stamp
         // URL Example = https://asyncswift.info?tab=event
         guard URLComponents(url: url, resolvingAgainstBaseURL: true)?.host != nil else { return false }
-        print(url)
         var queries = [String: String]()
         for item in URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems ?? [] {
             queries[item.name] = item.value
