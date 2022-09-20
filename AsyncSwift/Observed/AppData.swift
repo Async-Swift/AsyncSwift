@@ -18,7 +18,7 @@ final class AppData: ObservableObject {
         fetchCurrentStamp()
     }
 
-    func isStampExist() -> Bool {
+    var isStampExist: Bool {
         if currentStamp == nil {
             fetchCurrentStamp()
         }
