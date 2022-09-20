@@ -10,23 +10,26 @@ import SwiftUI
 struct TicketingView: View {
     @StateObject private var observed = Observed()
 
-    private let shadowColor = Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15)
-    private let corenrRadius: CGFloat = 8.0
-
 	var body: some View {
 		NavigationView {
 			ScrollView {
 				VStack(spacing: 30) {
-                    if observed.isNeedToShowTicketingView {
-                        ticketingView
-                    }
-
                     if let upcomingEvent = observed.ticketing?.upcomingEvent {
                         makeUpcomingEventView(from: upcomingEvent)
+                            .ticketingViewStyle()
                     } else {
                         skeletonView
                             .aspectRatio(2.75, contentMode: .fill)
-                            .cornerRadius(corenrRadius)
+                            .ticketingViewStyle()
+                    }
+
+                    switch observed.hasAvailableTicket {
+                    case true:
+                        ticketingView
+                            .ticketingViewStyle()
+                    case false:
+                        emptyTicketingView
+                            .ticketingViewStyle()
                     }
                 }
                 .padding(30)
@@ -36,6 +39,25 @@ struct TicketingView: View {
         }.onAppear {
             observed.onAppear()
         }
+    }
+}
+
+fileprivate extension TicketingView {
+    struct TicketingViewStyle: ViewModifier {
+        func body(content: Content) -> some View {
+            content
+                .cornerRadius(8.0)
+                .shadow(
+                    color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.15),
+                    radius: 20, x: 0, y: 4
+                )
+        }
+    }
+}
+
+fileprivate extension View {
+    func ticketingViewStyle() -> some View {
+        modifier(TicketingView.TicketingViewStyle())
     }
 }
 
@@ -70,9 +92,17 @@ private extension TicketingView {
                         .aspectRatio(0.85, contentMode: .fill)
                 }
             )
-            .cornerRadius(corenrRadius)
-            .shadow(color: shadowColor, radius: 20, x: 0, y: 4)
         }.disabled(observed.isTicketingLinkDisabled)
+    }
+
+    var emptyTicketingView: some View {
+        Text("현재 판매중인 티켓이 없습니다.")
+            .fontWeight(.bold)
+            .font(.body)
+            .foregroundColor(.emptyTicketViewForeground)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .aspectRatio(0.85, contentMode: .fill)
+            .background(Color.emptyTicketViewBackground)
     }
 
     @ViewBuilder
@@ -105,8 +135,6 @@ private extension TicketingView {
                 endPoint: .trailing
             )
         )
-        .cornerRadius(corenrRadius)
-        .shadow(color: shadowColor, radius: 20, x: 0, y: 4)
     }
 }
 
