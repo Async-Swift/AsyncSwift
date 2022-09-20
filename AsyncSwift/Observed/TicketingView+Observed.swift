@@ -14,8 +14,14 @@ extension TicketingView {
 
         @Published var isActivatedWebViewNavigationLink = false
 
-        var isNeedToShowTicketingView: Bool { ticketing?.currentTicket?.ticketingImageURL != nil }
-        var isTicketingLinkDisabled: Bool { ticketing?.currentTicket?.ticketingURL == nil }
+        var hasAvailableTicket: Bool {
+            let currentDate = Date()
+            return currentDate <= DateFormatter.calendarFormatter.date(from: ticketing?.currentTicket?.date ?? "") ?? Date()
+        }
+
+        var isTicketingLinkDisabled: Bool {
+            ticketing?.currentTicket?.ticketingURL == nil && !hasAvailableTicket
+        }
 
         func onAppear() {
             guard
