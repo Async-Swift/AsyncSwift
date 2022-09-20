@@ -13,14 +13,19 @@ final class AppData: ObservableObject {
     @Published var currentTab: Tab = .event
     
     private var currentStamp: Stamp?
-    lazy var isStampExist: Bool = {
-        KeyChain.shared.getItem(key: currentStamp?.title) != nil
-    }()
     
     init(){
         fetchCurrentStamp()
     }
 
+    func isStampExist() -> Bool {
+        if currentStamp == nil {
+            fetchCurrentStamp()
+        }
+        
+        return KeyChain.shared.getItem(key: currentStamp?.title) != nil
+    }
+    
     func checkLink(url: URL) -> Bool {
         // URL Example = https://asyncswift.info?tab=stamp
         // URL Example = https://asyncswift.info?tab=event
@@ -36,7 +41,6 @@ final class AppData: ObservableObject {
         switch queries["tab"] {
         case Tab.stamp.rawValue:
             KeyChain.shared.addItem(key: currentStampName, pwd: "true") ? print("Adding Stamp History KeyChain is Success") : print("Adding Stamp History is Fail")
-            self.isStampExist = true
             currentTab = .stamp
         case Tab.event.rawValue:
             currentTab = .event
