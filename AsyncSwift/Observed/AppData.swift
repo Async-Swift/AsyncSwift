@@ -22,10 +22,10 @@ final class AppData: ObservableObject {
     }
 
     func checkLink(url: URL) -> Bool {
-        // URL Example = https://www.asyncswift.info?tab=ticketing
-        // URL Example = https://www.asyncswift.info?tab=event
+        // URL Example = https://asyncswift.info?tab=stamp
+        // URL Example = https://asyncswift.info?tab=event
         guard URLComponents(url: url, resolvingAgainstBaseURL: true)?.host != nil else { return false }
-
+        print(url)
         var queries = [String: String]()
         for item in URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems ?? [] {
             queries[item.name] = item.value
@@ -64,6 +64,7 @@ final class AppData: ObservableObject {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else {return }
                 do {
+                    print(data)
                     let stamp = try JSONDecoder().decode(Stamp.self, from: data)
                     self.currentStamp = stamp
                 } catch {
