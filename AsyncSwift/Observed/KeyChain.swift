@@ -12,6 +12,8 @@ final class KeyChain {
     static let shared = KeyChain()
 
     private init() { }
+    
+    let stampKey = "AsyncSwiftStamp"
 
     func addItem(key: Any, pwd: Any) -> Bool {
         let addQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,

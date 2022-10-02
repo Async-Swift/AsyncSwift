@@ -11,35 +11,54 @@ import UIKit
 final class AppData: ObservableObject {
     /// Universal Link로 앱진입시 StampView 전환을 위한 변수
     @Published var currentTab: Tab = .event
-    
-    private var currentStamp: Stamp?
-    var isStampExist: Bool {
-        if currentStamp == nil {
-            fetchCurrentStamp()
+
+    func checkLink(url: URL) async -> Bool {
+        // URL Example = https://asyncswift.info?tab=Stamp&event=seminar002
+        // URL Example = https://asyncswift.info?tab=Event
+        
+        // MARK: 버전 1의 오류를 바로잡습니다. @Toby
+        Task {
+            if self.fixKeyChain() {
+                print("Remove KeyChain: Seminar002")
+            }
         }
         
-        return KeyChain.shared.getItem(key: currentStamp?.title) != nil
-    }
-    
-    init(){
-        fetchCurrentStamp()
-    }
-
-    func checkLink(url: URL) -> Bool {
-        // URL Example = https://asyncswift.info?tab=Stamp
-        // URL Example = https://asyncswift.info?tab=Event
         guard URLComponents(url: url, resolvingAgainstBaseURL: true)?.host != nil else { return false }
         var queries = [String: String]()
         for item in URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems ?? [] {
             queries[item.name] = item.value
         }
         
-        guard let currentStampName = currentStamp?.title else { return false }
-
+        let currentEventTitle: String
+        do {
+            let stamp = try await fetchCurrentStamp()
+            currentEventTitle = stamp.title
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
+        
         switch queries["tab"] {
         case Tab.stamp.rawValue:
-            KeyChain.shared.addItem(key: currentStampName, pwd: "true") ? print("Adding Stamp History KeyChain is Success") : print("Adding Stamp History is Fail")
             currentTab = .stamp
+            guard let queryEvent = queries["event"] else { return false }
+            if currentEventTitle == queryEvent {
+                let pw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? [String]
+                
+                if var pw = pw {
+                    
+                    pw.append(queryEvent)
+                    
+                    if KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: pw) {
+                        return true
+                    } else {
+                        return false
+                    }
+                } else {
+                    return KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: [currentEventTitle].description)
+                }
+            }
+            
         case Tab.event.rawValue:
             currentTab = .event
         default:
@@ -49,33 +68,26 @@ final class AppData: ObservableObject {
         return true
     }
     
-    private func fetchCurrentStamp() {
-        guard
-            let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/stamp.json")
-            else { return }
-
-
+    private func fetchCurrentStamp() async throws -> Stamp {
+        guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/stamp.json")
+        else { return .init(title: "error") }
+        
         let request = URLRequest(url: url)
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
-            guard
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200,
-                let data = data
-                else { return }
-            
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else {return }
-                do {
-                    print(data)
-                    let stamp = try JSONDecoder().decode(Stamp.self, from: data)
-                    self.currentStamp = stamp
-                } catch {
-                    self.currentStamp = nil
-                }
-            }
-        }
-        dataTask.resume()
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else { return .init(title: "error")}
+
+        let stamp = try JSONDecoder().decode(Stamp.self, from: data)
+        
+        return stamp
     }
+    
+    // MARK: 버전 1의 실수를 바로 잡습니다. @Toby
+    private func fixKeyChain() -> Bool {
+        return KeyChain.shared.deleteItem(key: "seminar002")
+    }
+    
 }
 
 
