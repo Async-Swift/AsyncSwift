@@ -19,7 +19,7 @@ final class AppData: ObservableObject {
         // MARK: 버전 1의 오류를 바로잡습니다. @Toby
         Task {
             if self.fixKeyChain() {
-                print("Remove KeyChain: Seminar002")
+                print("Remove KeyChain: seminar002")
             }
         }
         
@@ -43,19 +43,23 @@ final class AppData: ObservableObject {
             currentTab = .stamp
             guard let queryEvent = queries["event"] else { return false }
             if currentEventTitle == queryEvent {
-                let pw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? [String]
                 
-                if var pw = pw {
-                    
-                    pw.append(queryEvent)
-                    
-                    if KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: pw) {
-                        return true
-                    } else {
-                        return false
-                    }
-                } else {
+                let pwRaw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? String
+                guard let pwData = pwRaw?.data(using: .utf8) else { return  false }
+                var pw = [String]()
+                do {
+                    pw = try JSONDecoder().decode([String].self, from: pwData)
+                } catch {
+                    print("PW Decode Fail")
                     return KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: [currentEventTitle].description)
+                }
+                
+                pw.append(queryEvent)
+                
+                if KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: pw) {
+                    return true
+                } else {
+                    return false
                 }
             }
             
