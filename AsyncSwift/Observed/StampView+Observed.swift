@@ -10,8 +10,14 @@ import SwiftUI
 extension StampView {
     final class Observed: ObservableObject {
         @Published var cardAnimatonModel = CardAnimationModel()
+        @Published var StampImages = [String : (UIImage, UIImage)]() // [ String : ( FrontUIImage, BackUIImage ) ]
+        private var events = [String]()
         
         private let durationAndDelay: CGFloat = 0.3
+        
+        init() {
+            fetchStamp()
+        }
         
         func didTabCard () {
             cardAnimatonModel.isTapped.toggle()
@@ -29,6 +35,38 @@ extension StampView {
                 }
                 withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
                     cardAnimatonModel.backDegree = 0
+                }
+            }
+        }
+        
+        private func fetchStamp(){
+            let pwEvents = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? [String]
+            
+            guard events == pwEvents else { return }
+            for event in events {
+                Task {
+                    // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
+                    guard let url = URL(string: "ttps://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Front.png") else { return }
+                    
+                    var request = URLRequest(url: url)
+                    var (data, response) = try await URLSession.shared.data(for: request)
+                    guard let httpResponse = response as? HTTPURLResponse,
+                          httpResponse.statusCode == 200 else { return }
+                    
+                    guard let frontImage = UIImage(data: data) else { return }
+                    
+                    // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
+                    guard let url = URL(string: "ttps://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Back.png") else { return }
+                    request = URLRequest(url: url)
+                    
+                    (data, response) = try await URLSession.shared.data(for: request)
+                    guard let httpResponse = response as? HTTPURLResponse,
+                          httpResponse.statusCode == 200 else { return }
+                    
+                    guard let backImage = UIImage(data: data) else { return }
+                    
+                    
+                    StampImages[event] = (frontImage, backImage)
                 }
             }
         }
