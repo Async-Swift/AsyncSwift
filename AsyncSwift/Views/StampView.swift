@@ -9,12 +9,12 @@ import SwiftUI
 
 struct StampView: View {
     @EnvironmentObject var appData: AppData
-    @ObservedObject var observed = Observed()
+    @StateObject var observed = Observed()
 
     var body: some View {
         NavigationView {
             Group {
-                if appData.isStampExist {
+                if observed.events.count > 0 {
                     ZStack {
                         stampBack
                         stampFront
@@ -36,7 +36,8 @@ private extension StampView {
 
     @ViewBuilder
     var stampBack: some View {
-        Image("Seminar002StampBack")
+//        Image("Seminar002StampBack")
+        Image(uiImage: observed.stampImages["seminar002"]?["back"] ?? UIImage())
             .resizable()
             .aspectRatio(contentMode: .fit)
             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * observed.cardAnimatonModel.frontDegree / 90, y: 4)
@@ -45,8 +46,7 @@ private extension StampView {
 
     @ViewBuilder
     var stampFront: some View {
-        Image("Seminar002StampFront")
-
+        Image(uiImage: observed.stampImages["seminar002"]?["front"] ?? UIImage())
             .resizable()
             .aspectRatio(contentMode: .fit)
             .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * observed.cardAnimatonModel.backDegree / 90, y: 4)

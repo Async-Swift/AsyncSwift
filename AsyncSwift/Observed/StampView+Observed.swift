@@ -10,8 +10,8 @@ import SwiftUI
 extension StampView {
     final class Observed: ObservableObject {
         @Published var cardAnimatonModel = CardAnimationModel()
-        @Published var StampImages = [String : (UIImage, UIImage)]() // [ String : ( FrontUIImage, BackUIImage ) ]
-        private var events = [String]()
+        @Published var stampImages = [String : [String: UIImage]]() // [ String : ( FrontUIImage, BackUIImage ) ]
+        var events = [String]()
         
         private let durationAndDelay: CGFloat = 0.3
         
@@ -40,34 +40,52 @@ extension StampView {
         }
         
         private func fetchStamp(){
-            let pwEvents = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? [String]
+            let pwRaw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? String
             
-            guard events == pwEvents else { return }
+            guard let data = pwRaw?.data(using: .utf8) else { return }
+            do {
+                events = try JSONDecoder().decode([String].self, from: data)
+            } catch {
+                print("PW Decode Fail")
+                return
+            }
+            
             for event in events {
-                Task {
-                    // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
-                    guard let url = URL(string: "ttps://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Front.png") else { return }
+                self.stampImages[event] = [String: UIImage]()
+                // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
+                guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Front.png") else { return }
+                
+                var request = URLRequest(url: url)
+                var dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
+                    guard
+                        let response = response as? HTTPURLResponse,
+                        response.statusCode == 200,
+                        let data = data
+                    else { return }
                     
-                    var request = URLRequest(url: url)
-                    var (data, response) = try await URLSession.shared.data(for: request)
-                    guard let httpResponse = response as? HTTPURLResponse,
-                          httpResponse.statusCode == 200 else { return }
-                    
-                    guard let frontImage = UIImage(data: data) else { return }
-                    
-                    // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
-                    guard let url = URL(string: "ttps://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Back.png") else { return }
-                    request = URLRequest(url: url)
-                    
-                    (data, response) = try await URLSession.shared.data(for: request)
-                    guard let httpResponse = response as? HTTPURLResponse,
-                          httpResponse.statusCode == 200 else { return }
-                    
-                    guard let backImage = UIImage(data: data) else { return }
-                    
-                    
-                    StampImages[event] = (frontImage, backImage)
+                    DispatchQueue.main.async { [weak self] in
+                        let frontImage = UIImage(data: data)
+                        self?.stampImages[event]?["front"] = frontImage
+                    }
                 }
+                dataTask.resume()
+                
+                guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Back.png") else { return }
+                
+                request = URLRequest(url: url)
+                dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
+                    guard
+                        let response = response as? HTTPURLResponse,
+                        response.statusCode == 200,
+                        let data = data
+                    else { return }
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        let backImage = UIImage(data: data)
+                        self?.stampImages[event]?["back"] = backImage
+                    }
+                }
+                dataTask.resume()
             }
         }
     }
