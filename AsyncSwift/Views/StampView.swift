@@ -14,7 +14,7 @@ struct StampView: View {
     var body: some View {
         NavigationView {
             Group {
-                if observed.events.count > 0 {
+                if observed.events?.count ?? 0 > 0 {
                     ZStack {
                         stampBack
                         stampFront

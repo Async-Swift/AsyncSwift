@@ -45,44 +45,37 @@ extension StampView {
             events = pwRaw?.toStringArray()
             
             guard let events = events else { return }
-
+            
             
             for event in events {
-                self.stampImages[event] = [String: UIImage]()
+                self.stampImages[event] = .init()
                 // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
-                guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Front.png") else { return }
-                
-                var request = URLRequest(url: url)
-                var dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
-                    guard
-                        let response = response as? HTTPURLResponse,
-                        response.statusCode == 200,
-                        let data = data
-                    else { return }
+                Task {
+                    // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
+                    guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Front.png") else { return }
+                    let request = URLRequest(url: url)
+                    let (data, response) = try await URLSession.shared.data(for: request)
+                    
+                    guard let httpResponse = response as? HTTPURLResponse,
+                          httpResponse.statusCode == 200 else { return }
                     
                     DispatchQueue.main.async { [weak self] in
-                        let frontImage = UIImage(data: data)
-                        self?.stampImages[event]?["front"] = frontImage
+                        self?.stampImages[event]?["front"] = UIImage(data: data)
                     }
                 }
-                dataTask.resume()
-                
-                guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Back.png") else { return }
-                
-                request = URLRequest(url: url)
-                dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
-                    guard
-                        let response = response as? HTTPURLResponse,
-                        response.statusCode == 200,
-                        let data = data
-                    else { return }
+                Task {
+                    // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
+                    guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Back.png") else { return }
+                    let request = URLRequest(url: url)
+                    let (data, response) = try await URLSession.shared.data(for: request)
+                    
+                    guard let httpResponse = response as? HTTPURLResponse,
+                          httpResponse.statusCode == 200 else { return }
                     
                     DispatchQueue.main.async { [weak self] in
-                        let backImage = UIImage(data: data)
-                        self?.stampImages[event]?["back"] = backImage
+                        self?.stampImages[event]?["back"] = UIImage(data: data)
                     }
                 }
-                dataTask.resume()
             }
         }
     }
