@@ -45,15 +45,11 @@ final class AppData: ObservableObject {
             if currentEventTitle == queryEvent {
                 
                 let pwRaw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? String
-                guard let pwData = pwRaw?.data(using: .utf8) else { return  false }
-                var pw = [String]()
-                do {
-                    pw = try JSONDecoder().decode([String].self, from: pwData)
-                } catch {
-                    print("PW Decode Fail")
-                    return KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: [currentEventTitle].description)
-                }
+
+                let pw = pwRaw?.toStringArray()
                 
+                guard var pw = pw else { return false }
+
                 pw.append(queryEvent)
                 
                 if KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: pw) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B21473BC28F058600034C62D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21473BB28F058600034C62D /* String+.swift */; };
 		B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E600B28D2400500E96C78 /* KeyChain.swift */; };
 		B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289943228CA69FF002B9F67 /* StampView+Observed.swift */; };
 		B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* AppData.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B21473BB28F058600034C62D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		B25E600B28D2400500E96C78 /* KeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		B289943228CA69FF002B9F67 /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
 		B2E1083028C9CD6900C3DD59 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				C63A866228CB3D490064C417 /* View+.swift */,
 				C63A866428CB3F6D0064C417 /* DateFormatter+.swift */,
 				E9E2A4D728CEC5680016AEFF /* WebView.swift */,
+				B21473BB28F058600034C62D /* String+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
 				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
+				B21473BC28F058600034C62D /* String+.swift in Sources */,
 				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
 				B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */,
@@ -424,7 +428,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftProvisioningProfile;
+				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftForInho;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -461,7 +465,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftProvisioningProfile;
+				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftForInho;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

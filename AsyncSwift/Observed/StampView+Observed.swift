@@ -11,7 +11,7 @@ extension StampView {
     final class Observed: ObservableObject {
         @Published var cardAnimatonModel = CardAnimationModel()
         @Published var stampImages = [String : [String: UIImage]]() // [ String : ( FrontUIImage, BackUIImage ) ]
-        var events = [String]()
+        var events: [String]? = nil
         
         private let durationAndDelay: CGFloat = 0.3
         
@@ -42,13 +42,10 @@ extension StampView {
         private func fetchStamp(){
             let pwRaw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? String
             
-            guard let data = pwRaw?.data(using: .utf8) else { return }
-            do {
-                events = try JSONDecoder().decode([String].self, from: data)
-            } catch {
-                print("PW Decode Fail")
-                return
-            }
+            events = pwRaw?.toStringArray()
+            
+            guard let events = events else { return }
+
             
             for event in events {
                 self.stampImages[event] = [String: UIImage]()
@@ -99,5 +96,3 @@ extension StampView {
         var isTapped = false
     }
 }
-
-
