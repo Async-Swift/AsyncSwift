@@ -12,6 +12,7 @@ extension MainTabView {
     final class Observed: ObservableObject {
         /// Universal Link로 앱진입시 StampView 전환을 위한 변수
         @Published var currentTab: Tab = .event
+        private let keyChainManager = KeyChainManager()
 
         func checkLink(url: URL) async -> Bool {
             // URL Example = https://asyncswift.info?tab=Stamp&event=seminar002
@@ -45,10 +46,10 @@ extension MainTabView {
                 guard let queryEvent = queries["event"] else { return false }
                 if currentEventTitle == queryEvent {
                     
-                    let pwRaw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? String
+                    let pwRaw = keyChainManager.keyChain.getItem(key: keyChainManager.stampKey) as? String
                     let pw = pwRaw?.toStringArray() ?? [queryEvent]
                     
-                    if KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: pw.description) {
+                    if keyChainManager.keyChain.addItem(key: keyChainManager.stampKey, pwd: pw.description) {
                         DispatchQueue.main.async { [weak self] in
                             self?.currentTab = .stamp
                         }
@@ -85,8 +86,8 @@ extension MainTabView {
         /// "seminar002"가 key로 들어가 있던 기존 코드를 삭제하는 함수입니다.
         /// - KeyChain에 저장되는 방식을 개선하고자 함수가 구현되었습니다.
         private func fixKeyChain() -> Bool {
-            if KeyChain.shared.deleteItem(key: "seminar002") {
-                return KeyChain.shared.addItem(key: KeyChain.shared.stampKey, pwd: ["seminar002"])
+            if keyChainManager.keyChain.deleteItem(key: "seminar002") {
+                return keyChainManager.keyChain.addItem(key: keyChainManager.stampKey, pwd: ["seminar002"].description)
             } else {
                 return false
             }

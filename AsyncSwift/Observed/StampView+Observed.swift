@@ -12,6 +12,7 @@ extension StampView {
         @Published var cardAnimatonModel = CardAnimationModel()
         @Published var stampImages = [String : [String: UIImage]]()
         var events: [String]? = nil
+        private let keyChainManager = KeyChainManager()
         
         private let durationAndDelay: CGFloat = 0.3
         
@@ -42,7 +43,7 @@ extension StampView {
         /// Storage에 저장되어 있는 Stamp Image를 가져오는 함수이다.
         /// - stampImages에 stampImages[이벤트 이름][front/back] 에 UIImage 형태로 저장된다.
         func fetchStampsImages(){
-            let pwRaw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? String
+            let pwRaw = keyChainManager.keyChain.getItem(key: keyChainManager.stampKey) as? String
             
             events = pwRaw?.toStringArray()
             

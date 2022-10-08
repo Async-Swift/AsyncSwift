@@ -10,7 +10,8 @@
 		B21473BC28F058600034C62D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21473BB28F058600034C62D /* String+.swift */; };
 		B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E600B28D2400500E96C78 /* KeyChain.swift */; };
 		B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289943228CA69FF002B9F67 /* StampView+Observed.swift */; };
-		B2E1083128C9CD6900C3DD59 /* MainTabView+OBserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* MainTabView+OBserved.swift */; };
+		B2C066B428F15C8E00179150 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C066B328F15C8E00179150 /* KeyChainManager.swift */; };
+		B2E1083128C9CD6900C3DD59 /* MainTabView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */; };
 		B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FC6F6228D309FF00D2ACBF /* Stamp.swift */; };
 		C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */; };
 		C63A866328CB3D490064C417 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866228CB3D490064C417 /* View+.swift */; };
@@ -42,7 +43,8 @@
 		B21473BB28F058600034C62D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		B25E600B28D2400500E96C78 /* KeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		B289943228CA69FF002B9F67 /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
-		B2E1083028C9CD6900C3DD59 /* MainTabView+OBserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabView+OBserved.swift"; sourceTree = "<group>"; };
+		B2C066B328F15C8E00179150 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabView+Observed.swift"; sourceTree = "<group>"; };
 		B2FC6F6228D309FF00D2ACBF /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
 		C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+Observed.swift"; sourceTree = "<group>"; };
 		C63A866228CB3D490064C417 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B2C066B228F15C5B00179150 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B2C066B328F15C8E00179150 /* KeyChainManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		C68DE92928C7685800CA4CC8 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 				C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */,
 				C68DE94A28C76CE000CA4CC8 /* Info.plist */,
 				C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */,
+				B2C066B228F15C5B00179150 /* Managers */,
 				C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */,
 				C6E7449E28CA556800B7B2BD /* Extensions */,
 				C6F7798828C9CB9B0036773B /* Models */,
@@ -169,7 +180,7 @@
 				C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */,
 				C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */,
 				B25E600B28D2400500E96C78 /* KeyChain.swift */,
-				B2E1083028C9CD6900C3DD59 /* MainTabView+OBserved.swift */,
+				B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */,
 				B289943228CA69FF002B9F67 /* StampView+Observed.swift */,
 				E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */,
 			);
@@ -256,6 +267,7 @@
 			files = (
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
+				B2C066B428F15C8E00179150 /* KeyChainManager.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
@@ -277,7 +289,7 @@
 				C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */,
 				C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */,
 				B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */,
-				B2E1083128C9CD6900C3DD59 /* MainTabView+OBserved.swift in Sources */,
+				B2E1083128C9CD6900C3DD59 /* MainTabView+Observed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
