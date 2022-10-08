@@ -13,7 +13,7 @@ extension MainTabView {
         /// Universal Link로 앱진입시 StampView 전환을 위한 변수
         @Published var currentTab: Tab = .event
         private let keyChainManager = KeyChainManager()
-
+        
         func openByLink(url: URL) async {
             // URL Example = https://asyncswift.info?tab=Stamp&event=seminar002
             // URL Example = https://asyncswift.info?tab=Event
@@ -70,7 +70,7 @@ extension MainTabView {
             
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else { return .init(title: "error")}
-
+            
             let stamp = try JSONDecoder().decode(Stamp.self, from: data)
             
             return stamp
@@ -80,8 +80,9 @@ extension MainTabView {
         /// "seminar002"가 key로 들어가 있던 기존 코드를 삭제하는 함수입니다.
         /// - KeyChain에 저장되는 방식을 개선하고자 함수가 구현되었습니다.
         func fixKeyChain() {
-            if keyChainManager.keyChain.deleteItem(key: "seminar002") {
-                keyChainManager.keyChain.addItem(key: keyChainManager.stampKey, pwd: ["seminar002"].description)
+            let isKeyDelete = keyChainManager.deleteItem(key: "seminar002")
+            if isKeyDelete {
+                keyChainManager.addItem(key: keyChainManager.stampKey, pwd: ["seminar002"].description)
             }
         }
     }
