@@ -10,13 +10,13 @@ import SwiftUI
 extension StampView {
     final class Observed: ObservableObject {
         @Published var cardAnimatonModel = CardAnimationModel()
-        @Published var stampImages = [String : [String: UIImage]]() // [ String : ( FrontUIImage, BackUIImage ) ]
+        @Published var stampImages = [String : [String: UIImage]]()
         var events: [String]? = nil
         
         private let durationAndDelay: CGFloat = 0.3
         
         init() {
-            fetchStamp()
+            fetchStampsImages()
         }
         
         func didTabCard () {
@@ -39,7 +39,9 @@ extension StampView {
             }
         }
         
-        private func fetchStamp(){
+        /// Storage에 저장되어 있는 Stamp Image를 가져오는 함수이다.
+        /// - stampImages에 stampImages[이벤트 이름][front/back] 에 UIImage 형태로 저장된다.
+        func fetchStampsImages(){
             let pwRaw = KeyChain.shared.getItem(key: KeyChain.shared.stampKey) as? String
             
             events = pwRaw?.toStringArray()
@@ -49,7 +51,6 @@ extension StampView {
             
             for event in events {
                 self.stampImages[event] = .init()
-                // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
                 Task {
                     // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
                     guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Front.png") else { return }
@@ -58,7 +59,7 @@ extension StampView {
                     
                     guard let httpResponse = response as? HTTPURLResponse,
                           httpResponse.statusCode == 200 else { return }
-                    
+                    // Publisher를 수정하기 위한 DispatchQueue
                     DispatchQueue.main.async { [weak self] in
                         self?.stampImages[event]?["front"] = UIImage(data: data)
                     }
