@@ -21,11 +21,7 @@ struct MainTabView: View {
         }
         .onOpenURL { url in
             Task {
-                if await observed.checkLink(url: url) {
-                    print("Success Link URL: \(url)")
-                } else {
-                    print("Fail Link URL: \(url)")
-                }
+                await observed.openByLink(url: url)
             }
         }
         .onAppear {
