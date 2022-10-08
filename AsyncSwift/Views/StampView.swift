@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StampView: View {
-    @EnvironmentObject var appData: AppData
     @StateObject var observed = Observed()
 
     var body: some View {
@@ -28,6 +27,9 @@ struct StampView: View {
             }
                 .padding(36)
                 .navigationTitle("Stamp")
+                .onAppear {
+                    observed.fetchStampsImages()
+                }
         }
     } // body
 } // View
@@ -36,7 +38,6 @@ private extension StampView {
 
     @ViewBuilder
     var stampBack: some View {
-//        Image("Seminar002StampBack")
         Image(uiImage: observed.stampImages["seminar002"]?["back"] ?? UIImage())
             .resizable()
             .aspectRatio(contentMode: .fit)
