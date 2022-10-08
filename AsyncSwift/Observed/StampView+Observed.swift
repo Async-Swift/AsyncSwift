@@ -54,7 +54,7 @@ extension StampView {
                 self.stampImages[event] = .init()
                 Task {
                     // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
-                    guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Front.png") else { return }
+                    guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "Front.png") else { return }
                     let request = URLRequest(url: url)
                     let (data, response) = try await URLSession.shared.data(for: request)
                     
@@ -67,7 +67,7 @@ extension StampView {
                 }
                 Task {
                     // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
-                    guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/stamp/stampimage/" + event + "Back.png") else { return }
+                    guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "Back.png") else { return }
                     let request = URLRequest(url: url)
                     let (data, response) = try await URLSession.shared.data(for: request)
                     

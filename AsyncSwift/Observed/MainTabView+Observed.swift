@@ -62,7 +62,7 @@ extension MainTabView {
         }
         
         private func fetchCurrentStamp() async throws -> Stamp {
-            guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/stamp.json")
+            guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/currentEvent.json")
             else { return .init(title: "error") }
             
             let request = URLRequest(url: url)
