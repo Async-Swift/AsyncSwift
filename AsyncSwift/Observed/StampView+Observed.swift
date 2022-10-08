@@ -50,7 +50,7 @@ extension StampView {
             guard let events = events else { return }
             
             
-            for event in events {
+            for event in events.reversed() {
                 self.stampImages[event] = .init()
                 Task {
                     // MARK: 이미지 주소에 대해서 확실하지 않음으로 수정이 필요
