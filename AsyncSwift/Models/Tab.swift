@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Tab: String, CaseIterable {
      case event = "Event"
