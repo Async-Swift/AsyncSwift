@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class KeyChain {
-    func addItem(key: Any, pwd: Any) -> Bool {
+    @discardableResult func addItem(key: Any, pwd: Any) -> Bool {
         let addQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
                                          kSecAttrAccount: key,
                                          kSecValueData: (pwd as AnyObject).data(using: String.Encoding.utf8.rawValue) as Any]
