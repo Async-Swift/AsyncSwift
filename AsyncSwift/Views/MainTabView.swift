@@ -8,15 +8,28 @@
 import SwiftUI
 
 struct MainTabView: View {
-	@EnvironmentObject var appData: AppData
+    @StateObject var observed = Observed()
+    
     var body: some View {
-        TabView(selection: $appData.currentTab) {
+        TabView(selection: $observed.currentTab) {
             ForEach(Tab.allCases, id: \.self) { tab in
                 tab.view.tabItem {
                     Image(systemName: tab.systemImageName)
                     Text(tab.title)
                 }
             }
+        }
+        .onOpenURL { url in
+            Task {
+                if await observed.checkLink(url: url) {
+                    print("Success Link URL: \(url)")
+                } else {
+                    print("Fail Link URL: \(url)")
+                }
+            }
+        }
+        .onAppear {
+            observed.fixKeyChain()
         }
     }
 }
