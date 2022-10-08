@@ -38,13 +38,13 @@ extension MainTabView {
                 guard let queryEvent = queries["event"] else { return }
                 if currentEventTitle == queryEvent {
                     
-                    let pwRaw = keyChainManager.keyChain.getItem(key: keyChainManager.stampKey) as? String
+                    let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
                     
                     
                     var pw: [String] = pwRaw?.toStringArray() ?? .init()
                     pw.append(queryEvent)
                     
-                    if keyChainManager.keyChain.addItem(key: keyChainManager.stampKey, pwd: pw.description) {
+                    if keyChainManager.addItem(key: keyChainManager.stampKey, pwd: pw.description) {
                         DispatchQueue.main.async { [weak self] in
                             self?.currentTab = .stamp
                         }

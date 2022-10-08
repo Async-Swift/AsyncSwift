@@ -43,7 +43,7 @@ extension StampView {
         /// Storage에 저장되어 있는 Stamp Image를 가져오는 함수이다.
         /// - stampImages에 stampImages[이벤트 이름][front/back] 에 UIImage 형태로 저장된다.
         func fetchStampsImages(){
-            let pwRaw = keyChainManager.keyChain.getItem(key: keyChainManager.stampKey) as? String
+            let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
             
             events = pwRaw?.toStringArray()
             

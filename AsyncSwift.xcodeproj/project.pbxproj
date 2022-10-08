@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B21473BC28F058600034C62D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21473BB28F058600034C62D /* String+.swift */; };
-		B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E600B28D2400500E96C78 /* KeyChain.swift */; };
+		B25E600C28D2400500E96C78 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E600B28D2400500E96C78 /* KeyChainManager.swift */; };
 		B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289943228CA69FF002B9F67 /* StampView+Observed.swift */; };
-		B2C066B428F15C8E00179150 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C066B328F15C8E00179150 /* KeyChainManager.swift */; };
 		B2C066B628F1650200179150 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C066B528F1650200179150 /* Tab.swift */; };
 		B2E1083128C9CD6900C3DD59 /* MainTabView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */; };
 		B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FC6F6228D309FF00D2ACBF /* Stamp.swift */; };
@@ -42,9 +41,8 @@
 
 /* Begin PBXFileReference section */
 		B21473BB28F058600034C62D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		B25E600B28D2400500E96C78 /* KeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		B25E600B28D2400500E96C78 /* KeyChainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		B289943228CA69FF002B9F67 /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
-		B2C066B328F15C8E00179150 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		B2C066B528F1650200179150 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabView+Observed.swift"; sourceTree = "<group>"; };
 		B2FC6F6228D309FF00D2ACBF /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
@@ -91,7 +89,7 @@
 		B2C066B228F15C5B00179150 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				B2C066B328F15C8E00179150 /* KeyChainManager.swift */,
+				B25E600B28D2400500E96C78 /* KeyChainManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -182,7 +180,6 @@
 				C6F7798A28C9CBC60036773B /* EventView+Observed.swift */,
 				C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */,
 				C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */,
-				B25E600B28D2400500E96C78 /* KeyChain.swift */,
 				B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */,
 				B289943228CA69FF002B9F67 /* StampView+Observed.swift */,
 				E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */,
@@ -270,11 +267,10 @@
 			files = (
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
-				B2C066B428F15C8E00179150 /* KeyChainManager.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
-				B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */,
+				B25E600C28D2400500E96C78 /* KeyChainManager.swift in Sources */,
 				B2C066B628F1650200179150 /* Tab.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
 				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
