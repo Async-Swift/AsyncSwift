@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    func toStringArray() -> [String]? {
+    func convertToStringArray() -> [String]? {
         guard let stringData = self.data(using: .utf8) else {
             print("Convert String Data -> [String] is fail | String: \(self)")
             return nil
