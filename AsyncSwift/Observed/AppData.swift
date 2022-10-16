@@ -80,9 +80,10 @@ final class AppData: ObservableObject {
 
 
 enum Tab: String, CaseIterable {
-     case event = "Event"
-     case ticketing = "Ticketing"
-     case stamp = "Stamp"
+    case event = "Event"
+    case ticketing = "Ticketing"
+    case stamp = "Stamp"
+    case profile = "Profile"
 
     var title: String {
         rawValue
@@ -93,6 +94,7 @@ enum Tab: String, CaseIterable {
         case .event: return "calendar"
         case .ticketing: return "banknote"
         case .stamp: return "checkmark.square"
+        case .profile: return "person.crop.circle.fill"
         }
     }
 
@@ -102,6 +104,7 @@ enum Tab: String, CaseIterable {
         case .event: EventView()
         case .ticketing: TicketingView()
         case .stamp: StampView()
+        case .profile: ProfileView()
         }
     }
 }

@@ -27,6 +27,9 @@
 		C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */; };
 		C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* EventView.swift */; };
 		C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */; };
+		C6AA71E428FC48EB0091A868 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E328FC48EB0091A868 /* ProfileView.swift */; };
+		C6AA71E628FC49040091A868 /* ProfileView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E528FC49040091A868 /* ProfileView+Observed.swift */; };
+		C6AA71E828FC65680091A868 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E728FC65680091A868 /* Text+.swift */; };
 		C6E744A028CA557100B7B2BD /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7449F28CA557100B7B2BD /* Color+.swift */; };
 		C6F7798728C9CB3A0036773B /* StampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798628C9CB3A0036773B /* StampView.swift */; };
 		C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798A28C9CBC60036773B /* EventView+Observed.swift */; };
@@ -59,6 +62,9 @@
 		C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsyncSwift.entitlements; sourceTree = "<group>"; };
 		C68DE94E28C77DC900CA4CC8 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketingView.swift; sourceTree = "<group>"; };
+		C6AA71E328FC48EB0091A868 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C6AA71E528FC49040091A868 /* ProfileView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileView+Observed.swift"; sourceTree = "<group>"; };
+		C6AA71E728FC65680091A868 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
 		C6E7449F28CA557100B7B2BD /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6F7798628C9CB3A0036773B /* StampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampView.swift; sourceTree = "<group>"; };
 		C6F7798A28C9CBC60036773B /* EventView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventView+Observed.swift"; sourceTree = "<group>"; };
@@ -133,6 +139,7 @@
 				C6F7798E28C9D1BF0036773B /* SessionView.swift */,
 				C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */,
 				C6F7798628C9CB3A0036773B /* StampView.swift */,
+				C6AA71E328FC48EB0091A868 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -141,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				C6E7449F28CA557100B7B2BD /* Color+.swift */,
+				C6AA71E728FC65680091A868 /* Text+.swift */,
 				C63A866228CB3D490064C417 /* View+.swift */,
 				C63A866428CB3F6D0064C417 /* DateFormatter+.swift */,
 				E9E2A4D728CEC5680016AEFF /* WebView.swift */,
@@ -169,6 +177,7 @@
 				B2E1083028C9CD6900C3DD59 /* AppData.swift */,
 				B289943228CA69FF002B9F67 /* StampView+Observed.swift */,
 				E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */,
+				C6AA71E528FC49040091A868 /* ProfileView+Observed.swift */,
 			);
 			path = Observed;
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6AA71E828FC65680091A868 /* Text+.swift in Sources */,
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
@@ -261,12 +271,14 @@
 				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
 				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
+				C6AA71E628FC49040091A868 /* ProfileView+Observed.swift in Sources */,
 				B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */,
 				C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */,
 				C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */,
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,
 				C6F7799128C9E5DD0036773B /* EventDetailView.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
+				C6AA71E428FC48EB0091A868 /* ProfileView.swift in Sources */,
 				E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */,
 				C63A866328CB3D490064C417 /* View+.swift in Sources */,
 				C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */,
