@@ -14,12 +14,16 @@ extension EventView {
         @Published var eventStatus: EventStatus = .upcoming
         @Published var isLoading = true
         let onLoadingCells = Array(repeating: [0], count: 10)
+        let queue = DispatchQueue(label: "EventView")
 
         init() {
-            fetchJson()
+            self.fetchJson {
+                self.calculateEventStatus()
+                self.isLoading = false
+            }
         }
 
-        func fetchJson() {
+        func fetchJson(completion: @escaping () -> Void) {
             guard let url = URL(string: "https://async-swift.github.io/jsonstorage/asyncswift.json") else { return }
             let request = URLRequest(url: url)
             let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
@@ -32,8 +36,8 @@ extension EventView {
                    guard let self = self else { return }
                    do {
                        let decodedData = try JSONDecoder().decode(Event.self, from: data)
-                           self.event = decodedData
-                       self.calculateEventStatus()
+                       self.event = decodedData
+                       completion()
                    } catch let error {
                        print("❌ \(error.localizedDescription)")
                    }
@@ -66,5 +70,13 @@ extension EventView {
         case upcoming = "예정된 행사"
         case onProgress = "진행중인 행사"
         case done = "지나간 행사"
+
+        var statusColor: Color {
+            switch self {
+            case .upcoming: return Color.accentColor
+            case .onProgress: return Color.asyncBlue
+            case .done: return Color.black
+            }
+        }
     }
 }

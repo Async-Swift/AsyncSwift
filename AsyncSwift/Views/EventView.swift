@@ -92,12 +92,12 @@ private extension EventView {
                 Text(observed.eventStatus.rawValue)
                     .font(.caption2)
                     .fontWeight(.bold)
-                    .foregroundColor(Color.accentColor)
+                    .foregroundColor(observed.eventStatus.statusColor)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.accentColor, lineWidth: 1)
+                            .stroke(observed.eventStatus.statusColor, lineWidth: 1)
                     )
                 Spacer()
             }
