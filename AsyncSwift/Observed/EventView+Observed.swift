@@ -13,8 +13,7 @@ extension EventView {
         @Published var event = Event()
         @Published var eventStatus: EventStatus = .upcoming
         @Published var isLoading = true
-        let onLoadingCells = Array(repeating: [0], count: 10)
-        let queue = DispatchQueue(label: "EventView")
+        let onLoadingCells = Array(repeating: [0], count: 6)
 
         init() {
             self.fetchJson {
