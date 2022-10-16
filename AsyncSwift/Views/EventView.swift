@@ -18,10 +18,21 @@ struct EventView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                Header
-                LazyVStack {
-                    ForEach(observed.event.sessions) { session in
-                        makeSessionCell(for: session)
+                if observed.isLoading {
+                    VStack(spacing: 0) {
+                        onLoadingHeader
+                        VStack(alignment: .leading, spacing: 0) {
+                            ForEach(observed.onLoadingCells, id: \.self) { _ in
+                                makeOnLoadingCell()
+                            }
+                        }
+                    }
+                } else {
+                    Header
+                    LazyVStack {
+                        ForEach(observed.event.sessions) { session in
+                            makeSessionCell(for: session)
+                        }
                     }
                 }
             }
@@ -31,6 +42,38 @@ struct EventView: View {
 }
 
 private extension EventView {
+
+    var onLoadingHeader: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 9) {
+                Rectangle()
+                    .frame(width: 202, height: 30)
+                    .cornerRadius(4)
+                    .foregroundColor(.gray)
+                    .opacity(0.8)
+                HStack {
+                    Rectangle()
+                        .frame(width: 151, height: 21)
+                        .cornerRadius(13)
+                        .foregroundColor(.gray)
+                    Rectangle()
+                        .frame(width: 70, height: 21)
+                        .cornerRadius(13)
+                        .foregroundColor(.gray)
+                }
+                .opacity(0.4)
+                .padding(.bottom, 2)
+                Rectangle()
+                    .frame(width: 106, height: 13)
+                    .cornerRadius(4)
+                    .foregroundColor(.gray)
+                    .opacity(0.2)
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 32)
+    }
 
     var Header: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -68,6 +111,29 @@ private extension EventView {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 30)
+    }
+
+    @ViewBuilder
+    func makeOnLoadingCell() -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            customDivider
+            VStack(alignment: .leading, spacing: 0) {
+                Rectangle()
+                    .frame(width: 250, height: 20)
+                    .cornerRadius(4)
+                    .foregroundColor(.gray)
+                    .opacity(0.4)
+                    .padding(.bottom, 4)
+                Rectangle()
+                    .frame(width: 70, height: 20)
+                    .cornerRadius(4)
+                    .foregroundColor(.gray)
+                    .opacity(0.2)
+            }
+            .padding(.horizontal)
+            .padding(.bottom, 27)
+            .padding(.top, 31)
+        }
     }
 
     @ViewBuilder

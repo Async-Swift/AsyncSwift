@@ -12,6 +12,8 @@ extension EventView {
 
         @Published var event = Event()
         @Published var eventStatus: EventStatus = .upcoming
+        @Published var isLoading = true
+        let onLoadingCells = Array(repeating: [0], count: 10)
 
         init() {
             fetchJson()
