@@ -41,7 +41,7 @@ extension MainTabView {
                     let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
                     
                     
-                    var pw: [String] = pwRaw?.toStringArray() ?? .init()
+                    var pw: [String] = pwRaw?.convertToStringArray() ?? .init()
                     pw.append(queryEvent)
                     
                     if keyChainManager.addItem(key: keyChainManager.stampKey, pwd: pw.description) {

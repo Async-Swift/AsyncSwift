@@ -45,7 +45,7 @@ extension StampView {
         func fetchStampsImages(){
             let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
             
-            events = pwRaw?.toStringArray()
+            events = pwRaw?.convertToStringArray()
             
             guard let events = events else { return }
             
