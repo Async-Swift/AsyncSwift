@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+
+// TODO
+// 1 : Enter 치면 다음 input focused 되도록 변경
+
 struct ProfileView: View {
 
     @ObservedObject var observed: ProfileViewObserved
@@ -17,11 +21,10 @@ struct ProfileView: View {
 
     var body: some View {
         NavigationView {
-            if observed.hasRegisterProfile {
-                Text("Hello")
-                    .navigationTitle("Profile")
-            } else {
-                VStack(spacing: 0) {
+            VStack(spacing: 0) {
+                if observed.hasRegisteredProfile {
+
+                } else {
                     Header
                     ScrollView {
                         VStack(spacing: 0) {
@@ -33,20 +36,25 @@ struct ProfileView: View {
                             submitButton
                         }
                     }
-                    Spacer()
                 }
-                .navigationTitle("Profile")
-                .alert("프로필 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
-                    Button("확인", role: .cancel) { }
-                }, message: {
-                    Text("개인 프로필이 추가되었습니다.")
-                })
-                .alert("프로필 등록 오류", isPresented: $observed.isShowingFailureAlert, actions: {
-                    Button("다시 시도", role: .cancel) { }
-                }, message: {
-                    Text("입력되지 않은 내용이 있습니다.\n필수 입력란을 확인해주세요.")
-                })
+                Spacer()
             }
+            .navigationTitle("Profile")
+            .alert("프로필 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
+                Button("확인", role: .cancel) { }
+            }, message: {
+                Text("개인 프로필이 추가되었습니다.")
+            })
+            .alert("프로필 등록 오류", isPresented: $observed.isShowingFailureAlert, actions: {
+                Button("다시 시도", role: .cancel) { }
+            }, message: {
+                Text("입력되지 않은 내용이 있습니다.\n필수 입력란을 확인해주세요.")
+            })
+            .alert("프로필 입력 오류", isPresented: $observed.isShowingInputFailureAlert, actions: {
+                Button("다시 시도", role: .cancel) { }
+            }, message: {
+                Text("확인되지 않은 주소입니다.\nURL을 확인해주세요.")
+            })
         }
     }
 }
@@ -57,15 +65,16 @@ extension ProfileView {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     Text("프로필을 등록해주세요")
-                        .font(.headline)
+                        .font(.title3)
                         .fontWeight(.bold)
-                        .frame(minHeight: 22)
-                        .padding(.bottom, 5)
+                        .frame(minHeight: 24)
+                        .padding(.bottom, 3)
                     Spacer()
                 }
                 HStack(spacing: 0) {
                     Text("특수문자는 입력할 수 없어요")
-                        .font(.caption2)
+                        .font(.footnote)
+                        .frame(minHeight: 18)
                     Spacer()
                 }
             }
@@ -75,6 +84,7 @@ extension ProfileView {
             customDivider
         }
     }
+
 
     var nameInput: some View {
         VStack(spacing: 0) {
@@ -86,7 +96,7 @@ extension ProfileView {
             .padding(.top, 20)
             HStack(spacing: 0) {
                 TextField("Required", text: $observed.name)
-                    .font(.footnote)
+                    .profileTextField()
             }
             .padding(.top, 5)
             customDivider
@@ -105,7 +115,7 @@ extension ProfileView {
             .padding(.top, 20)
             HStack(spacing: 0) {
                 TextField("Optional", text: $observed.nickname)
-                    .font(.footnote)
+                    .profileTextField()
             }
             .padding(.top, 5)
             customDivider
@@ -124,7 +134,7 @@ extension ProfileView {
             .padding(.top, 20)
             HStack(spacing: 0) {
                 TextField("Required", text: $observed.jobTitle)
-                    .font(.footnote)
+                    .profileTextField()
             }
             .padding(.top, 5)
             customDivider
@@ -143,7 +153,7 @@ extension ProfileView {
             .padding(.top, 20)
             HStack(spacing: 0) {
                 TextField("Optional", text: $observed.linkedinURL)
-                    .font(.footnote)
+                    .profileTextField()
             }
             .padding(.top, 5)
             customDivider
@@ -162,7 +172,7 @@ extension ProfileView {
             .padding(.top, 20)
             HStack(spacing: 0) {
                 TextField("Optional", text: $observed.privateURL)
-                    .font(.footnote)
+                    .profileTextField()
             }
             .padding(.top, 5)
         }
@@ -171,12 +181,15 @@ extension ProfileView {
 
     var submitButton: some View {
         Button {
-            observed.didTapRegisterButton()
+            if observed.isButtonAvailable() {
+                observed.didTapRegisterButton()
+            }
         } label: {
             Text("등록하기")
+                .font(.headline)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 52, maxHeight: 52)
                 .foregroundColor(.white)
-                .background(Color.accentColor)
+                .background(observed.isButtonAvailable() ? Color.accentColor : Color.unavailableButtonBackground)
                 .cornerRadius(8)
         }
         .padding(.horizontal)

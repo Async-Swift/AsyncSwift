@@ -10,8 +10,7 @@ import SwiftUI
 
 extension Text {
     func profileInputTitle() -> some View {
-        self.font(.footnote)
-            .fontWeight(.bold)
+        self.font(.headline)
             .frame(minHeight: 18)
     }
 }
