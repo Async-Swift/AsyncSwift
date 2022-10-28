@@ -1,36 +1,61 @@
 //
-//  ProfileView.swift
+//  ProfileRegisterView.swift
 //  AsyncSwift
 //
-//  Created by Kim Insub on 2022/10/16.
+//  Created by Kim Insub on 2022/10/28.
 //
 
 import SwiftUI
 
+struct ProfileRegisterView: View {
 
-// TODO
-// 1 : Enter 치면 다음 input focused 되도록 변경
+    @ObservedObject var observed: ProfileRegisterViewObserved
 
-struct ProfileView: View {
-
-    @ObservedObject var observed: ProfileViewObserved
-
-    init() {
-        observed = ProfileViewObserved()
+    init(hasRegisteredProfile: Binding<Bool>) {
+        observed = ProfileRegisterViewObserved(hasRegisteredProfile: hasRegisteredProfile)
     }
 
     var body: some View {
-        NavigationView {
-            NavigationLink {
-                ProfileRegisterView(hasRegisteredProfile: $observed.hasRegisteredProfile)
+        VStack(spacing: 0) {
+            Header
+            ScrollView {
+                VStack(spacing: 0) {
+                    nameInput
+                    nicknameInput
+                    jobTitleInput
+                    linkedinInput
+                    privateURL
+                }
+            }
+            Spacer()
+        }
+        .navigationTitle("Profile")
+        .toolbar {
+            Button {
+                observed.didTapRegisterButton()
             } label: {
-                Text("프로필 등록하기")
+                Text("Save")
             }
         }
+        .alert("프로필 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
+            Button("확인", role: .cancel) { }
+        }, message: {
+            Text("개인 프로필이 추가되었습니다.")
+        })
+        .alert("프로필 등록 오류", isPresented: $observed.isShowingFailureAlert, actions: {
+            Button("다시 시도", role: .cancel) { }
+        }, message: {
+            Text("입력되지 않은 내용이 있습니다.\n필수 입력란을 확인해주세요.")
+        })
+        .alert("프로필 입력 오류", isPresented: $observed.isShowingInputFailureAlert, actions: {
+            Button("다시 시도", role: .cancel) { }
+        }, message: {
+            Text("확인되지 않은 주소입니다.\nURL을 확인해주세요.")
+        })
     }
 }
 
-extension ProfileView {
+private extension ProfileRegisterView {
     var Header: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
@@ -167,3 +192,4 @@ extension ProfileView {
         .padding(.vertical, 44)
     }
 }
+
