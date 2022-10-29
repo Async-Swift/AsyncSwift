@@ -9,7 +9,8 @@ import SwiftUI
 
 extension TextField {
     func profileTextField() -> some View {
-        self.font(.footnote)
-            .frame(minHeight: 18)
+        self
+            .font(.subheadline)
+            .frame(minHeight: 20)
     }
 }

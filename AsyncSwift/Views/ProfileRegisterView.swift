@@ -12,6 +12,7 @@ struct ProfileRegisterView: View {
     @ObservedObject var observed: ProfileRegisterViewObserved
 
     init(hasRegisteredProfile: Binding<Bool>) {
+        UITextView.appearance().backgroundColor = .clear
         observed = ProfileRegisterViewObserved(hasRegisteredProfile: hasRegisteredProfile)
     }
 
@@ -23,19 +24,16 @@ struct ProfileRegisterView: View {
                     nameInput
                     nicknameInput
                     jobTitleInput
+                    introductionInput
                     linkedinInput
                     privateURL
                 }
             }
             Spacer()
         }
-        .navigationTitle("Profile")
+        .navigationBarTitle("Profile", displayMode: .large)
         .toolbar {
-            Button {
-                observed.didTapRegisterButton()
-            } label: {
-                Text("Save")
-            }
+            submitButton
         }
         .alert("프로필 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
             Button("확인", role: .cancel) { }
@@ -87,18 +85,20 @@ private extension ProfileRegisterView {
             HStack(spacing: 0) {
                 Text("이름")
                     .profileInputTitle()
+                TextField("", text: $observed.name)
+                    .profileTextField()
+                    .placeholder(
+                        when: observed.name.isEmpty,
+                        text: "Required",
+                        isTextField: true
+                    )
                 Spacer()
             }
-            .padding(.top, 20)
-            HStack(spacing: 0) {
-                TextField("Required", text: $observed.name)
-                    .profileTextField()
-            }
-            .padding(.top, 5)
             customDivider
                 .padding(.top, 15)
         }
         .padding(.leading)
+        .padding(.top, 23)
     }
 
     var nicknameInput: some View {
@@ -106,18 +106,20 @@ private extension ProfileRegisterView {
             HStack(spacing: 0) {
                 Text("닉네임")
                     .profileInputTitle()
+                TextField("", text: $observed.nickname)
+                    .profileTextField()
+                    .placeholder(
+                        when: observed.nickname.isEmpty,
+                        text: "Optional",
+                        isTextField: true
+                    )
                 Spacer()
             }
-            .padding(.top, 20)
-            HStack(spacing: 0) {
-                TextField("Optional", text: $observed.nickname)
-                    .profileTextField()
-            }
-            .padding(.top, 5)
             customDivider
                 .padding(.top, 15)
         }
         .padding(.leading)
+        .padding(.top, 23)
     }
 
     var jobTitleInput: some View {
@@ -125,18 +127,54 @@ private extension ProfileRegisterView {
             HStack(spacing: 0) {
                 Text("직군")
                     .profileInputTitle()
+                TextField("", text: $observed.jobTitle)
+                    .profileTextField()
+                    .placeholder(
+                        when: observed.jobTitle.isEmpty,
+                        text: "Required",
+                        isTextField: true
+                    )
                 Spacer()
             }
-            .padding(.top, 20)
-            HStack(spacing: 0) {
-                TextField("Required", text: $observed.jobTitle)
-                    .profileTextField()
-            }
-            .padding(.top, 5)
             customDivider
                 .padding(.top, 15)
         }
         .padding(.leading)
+        .padding(.top, 23)
+    }
+
+    var introductionInput: some View {
+        VStack(spacing: 0) {
+            HStack(alignment: .top, spacing: 0) {
+                Text("소개")
+                    .profileInputTitle()
+                if #available(iOS 16.0, *) {
+                    TextEditor(text: $observed.introduction)
+                        .profileTextEditor()
+                        .scrollContentBackground(.hidden)
+                        .placeholder(
+                            when: observed.introduction.isEmpty,
+                            text: "Optional, 80자 이내",
+                            isTextField: false
+                        )
+                        .offset(x: -2, y: -8)
+                } else {
+                    TextEditor(text: $observed.introduction)
+                        .profileTextEditor()
+                        .placeholder(
+                            when: observed.introduction.isEmpty,
+                            text: "Optional, 80자 이내",
+                            isTextField: false
+                        )
+                }
+
+            }
+            customDivider
+                .padding(.top, 15)
+        }
+        .padding(.leading)
+        .padding(.top, 23)
+        .frame(height: 91)
     }
 
     var linkedinInput: some View {
@@ -148,8 +186,13 @@ private extension ProfileRegisterView {
             }
             .padding(.top, 20)
             HStack(spacing: 0) {
-                TextField("Optional", text: $observed.linkedinURL)
+                TextField("", text: $observed.linkedinURL)
                     .profileTextField()
+                    .placeholder(
+                        when: observed.linkedinURL.isEmpty,
+                        text: "Optional",
+                        isTextField: true
+                    )
             }
             .padding(.top, 5)
             customDivider
@@ -167,8 +210,13 @@ private extension ProfileRegisterView {
             }
             .padding(.top, 20)
             HStack(spacing: 0) {
-                TextField("Optional", text: $observed.privateURL)
+                TextField("", text: $observed.privateURL)
                     .profileTextField()
+                    .placeholder(
+                        when: observed.privateURL.isEmpty,
+                        text: "Optional",
+                        isTextField: true
+                    )
             }
             .padding(.top, 5)
         }
@@ -181,15 +229,13 @@ private extension ProfileRegisterView {
                 observed.didTapRegisterButton()
             }
         } label: {
-            Text("등록하기")
-                .font(.headline)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 52, maxHeight: 52)
-                .foregroundColor(.white)
-                .background(observed.isButtonAvailable() ? Color.accentColor : Color.unavailableButtonBackground)
-                .cornerRadius(8)
+            Text("Save")
+                .foregroundColor(
+                    observed.isButtonAvailable() ?
+                    Color.accentColor :
+                    Color.unavailableButtonBackground
+                )
         }
-        .padding(.horizontal)
-        .padding(.vertical, 44)
     }
 }
 

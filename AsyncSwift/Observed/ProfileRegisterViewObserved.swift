@@ -18,6 +18,14 @@ final class ProfileRegisterViewObserved: ObservableObject {
     @Published var name = ""
     @Published var nickname = ""
     @Published var jobTitle = ""
+    @Published var introduction = "" {
+        didSet {
+            print(introduction.count)
+            if introduction.count >= 80 {
+                introduction = oldValue
+            }
+        }
+    }
     @Published var linkedinURL = "" {
         didSet {
             self.isLinkedinURLValidated = self.verifyUrl(urlString: linkedinURL)

@@ -11,6 +11,6 @@ import SwiftUI
 extension Text {
     func profileInputTitle() -> some View {
         self.font(.headline)
-            .frame(minHeight: 18)
+            .frame(minWidth: 58, minHeight: 18, alignment: .leading)
     }
 }

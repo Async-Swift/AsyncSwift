@@ -16,4 +16,5 @@ extension Color {
     static let speakerBackground = Color("speakerBackground")
     static let skeletonBackground = Color("skeletonBackground")
     static let unavailableButtonBackground = Color("unavailableButtonBackground")
+    static let placeholderForeground = Color("placeholderForeground")
 }

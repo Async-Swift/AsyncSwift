@@ -19,6 +19,7 @@
 		C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */; };
 		C66E3D95290BA48500097BEA /* ProfileRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */; };
 		C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */; };
+		C66E3D99290BB9C100097BEA /* TextEditor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D98290BB9C100097BEA /* TextEditor+.swift */; };
 		C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */; };
 		C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93728C7685800CA4CC8 /* MainTabView.swift */; };
 		C68DE93A28C7685900CA4CC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C68DE93928C7685900CA4CC8 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionView+Observed.swift"; sourceTree = "<group>"; };
 		C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterView.swift; sourceTree = "<group>"; };
 		C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterViewObserved.swift; sourceTree = "<group>"; };
+		C66E3D98290BB9C100097BEA /* TextEditor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextEditor+.swift"; sourceTree = "<group>"; };
 		C68DE93228C7685800CA4CC8 /* AsyncSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSwiftApp.swift; sourceTree = "<group>"; };
 		C68DE93728C7685800CA4CC8 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				C63A866228CB3D490064C417 /* View+.swift */,
 				C63A866428CB3F6D0064C417 /* DateFormatter+.swift */,
 				C6AABAC22901875100779203 /* TextField+.swift */,
+				C66E3D98290BB9C100097BEA /* TextEditor+.swift */,
 				E9E2A4D728CEC5680016AEFF /* WebView.swift */,
 			);
 			path = Extensions;
@@ -278,6 +281,7 @@
 				B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
 				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
+				C66E3D99290BB9C100097BEA /* TextEditor+.swift in Sources */,
 				C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */,
 				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
