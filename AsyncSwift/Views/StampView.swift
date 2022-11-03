@@ -30,6 +30,11 @@ struct StampView: View {
                 .onAppear {
                     observed.fetchStampsImages()
                 }
+                .onOpenURL { url in
+                    Task {
+                        await observed.openByLink(url: url)
+                    }
+                }
         }
     } // body
 } // View

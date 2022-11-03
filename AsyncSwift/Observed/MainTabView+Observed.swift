@@ -14,67 +14,6 @@ extension MainTabView {
         @Published var currentTab: Tab = .event
         private let keyChainManager = KeyChainManager()
         
-        func openByLink(url: URL) async {
-            // URL Example = https://asyncswift.info?tab=Stamp&event=seminar002
-            // URL Example = https://asyncswift.info?tab=Event
-            
-            guard URLComponents(url: url, resolvingAgainstBaseURL: true)?.host != nil else { return }
-            var queries = [String: String]()
-            for item in URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems ?? [] {
-                queries[item.name] = item.value
-            }
-            
-            let currentEventTitle: String
-            do {
-                let stamp = try await fetchCurrentStamp()
-                currentEventTitle = stamp.title
-            } catch {
-                print(error.localizedDescription)
-                return
-            }
-            
-            switch queries["tab"] {
-            case Tab.stamp.rawValue:
-                guard let queryEvent = queries["event"] else { return }
-                if currentEventTitle == queryEvent {
-                    
-                    let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
-                    
-                    
-                    var pw: [String] = pwRaw?.convertToStringArray() ?? .init()
-                    pw.append(queryEvent)
-                    
-                    if keyChainManager.addItem(key: keyChainManager.stampKey, pwd: pw.description) {
-                        DispatchQueue.main.async { [weak self] in
-                            self?.currentTab = .stamp
-                        }
-                        return
-                    } else {
-                        return
-                    }
-                }
-            case Tab.event.rawValue:
-                currentTab = .event
-            default:
-                return
-            }
-            return
-        }
-        
-        private func fetchCurrentStamp() async throws -> Stamp {
-            guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/currentEvent.json")
-            else { return .init(title: "error") }
-            
-            let request = URLRequest(url: url)
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else { return .init(title: "error")}
-            
-            let stamp = try JSONDecoder().decode(Stamp.self, from: data)
-            
-            return stamp
-        }
         
         // MARK: 버전 1의 실수를 바로 잡습니다. @Toby
         /// "seminar002"가 key로 들어가 있던 기존 코드를 삭제하는 함수입니다.

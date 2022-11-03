@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension StampView {
-    final class Observed: ObservableObject {
+    @MainActor final class Observed: ObservableObject {
         @Published var cardAnimatonModel = CardAnimationModel()
         @Published var stampImages = [String : [String: UIImage]]()
         var events: [String]? = nil
@@ -52,11 +52,12 @@ extension StampView {
             
             for event in events.reversed() {
                 self.stampImages[event] = .init()
-                Task {
+                
+                Task { @MainActor () -> Void in
                     guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "Front.png") else { return }
                     let request = URLRequest(url: url)
                     let (data, response) = try await URLSession.shared.data(for: request)
-                    
+
                     guard let httpResponse = response as? HTTPURLResponse,
                           httpResponse.statusCode == 200 else { return }
                     // Publisher를 수정하기 위한 DispatchQueue
@@ -64,19 +65,73 @@ extension StampView {
                         self?.stampImages[event]?["front"] = UIImage(data: data)
                     }
                 }
-                Task {
+                Task { @MainActor () -> Void in
                     guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "Back.png") else { return }
                     let request = URLRequest(url: url)
                     let (data, response) = try await URLSession.shared.data(for: request)
-                    
+
                     guard let httpResponse = response as? HTTPURLResponse,
                           httpResponse.statusCode == 200 else { return }
-                    
+
                     DispatchQueue.main.async { [weak self] in
                         self?.stampImages[event]?["back"] = UIImage(data: data)
                     }
                 }
             }
+        }
+        
+        func openByLink(url: URL) async {
+            // URL Example = https://asyncswift.info?tab=Stamp&event=seminar002
+            // URL Example = https://asyncswift.info?tab=Event
+            
+            guard URLComponents(url: url, resolvingAgainstBaseURL: true)?.host != nil else { return }
+            var queries = [String: String]()
+            for item in URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems ?? [] {
+                queries[item.name] = item.value
+            }
+            
+            let currentEventTitle: String
+            do {
+                let stamp = try await fetchCurrentStamp()
+                currentEventTitle = stamp.title
+            } catch {
+                print(error.localizedDescription)
+                return
+            }
+            
+            switch queries["tab"] {
+            case Tab.stamp.rawValue:
+                guard let queryEvent = queries["event"] else { return }
+                if currentEventTitle == queryEvent {
+                    
+                    let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
+                    
+                    
+                    var pw: [String] = pwRaw?.convertToStringArray() ?? .init()
+                    pw.append(queryEvent)
+                    
+                    if keyChainManager.addItem(key: keyChainManager.stampKey, pwd: pw.description) {
+                        fetchStampsImages()
+                    }
+                }
+            default: break
+            }
+            return
+        }
+        
+        private func fetchCurrentStamp() async throws -> Stamp {
+            guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/currentEvent.json")
+            else { return .init(title: "error") }
+            
+            let request = URLRequest(url: url)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else { return .init(title: "error")}
+            
+            let stamp = try JSONDecoder().decode(Stamp.self, from: data)
+            
+            return stamp
         }
     }
     

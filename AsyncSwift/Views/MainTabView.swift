@@ -19,13 +19,14 @@ struct MainTabView: View {
                 }
             }
         }
-        .onOpenURL { url in
-            Task {
-                await observed.openByLink(url: url)
-            }
-        }
+//        .onOpenURL { url in
+//            Task {
+//                await observed.openByLink(url: url)
+//            }
+//        }
         .onAppear {
             observed.fixKeyChain()
+            KeyChainManager().deleteItem(key: "AsyncSwiftStamp")
         }
     }
 }
