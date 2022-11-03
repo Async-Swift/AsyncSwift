@@ -149,20 +149,20 @@ private extension ProfileRegisterView {
                 Text("소개")
                     .profileInputTitle()
                 if #available(iOS 16.0, *) {
-                    TextEditor(text: $observed.selfDescription)
+                    TextEditor(text: $observed.description)
                         .profileTextEditor()
                         .scrollContentBackground(.hidden)
                         .placeholder(
-                            when: observed.selfDescription.isEmpty,
+                            when: observed.description.isEmpty,
                             text: "Optional, 80자 이내",
                             isTextField: false
                         )
                         .offset(x: -2, y: -8)
                 } else {
-                    TextEditor(text: $observed.selfDescription)
+                    TextEditor(text: $observed.description)
                         .profileTextEditor()
                         .placeholder(
-                            when: observed.selfDescription.isEmpty,
+                            when: observed.description.isEmpty,
                             text: "Optional, 80자 이내",
                             isTextField: false
                         )

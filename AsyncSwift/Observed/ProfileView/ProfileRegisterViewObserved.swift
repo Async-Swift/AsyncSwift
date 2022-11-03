@@ -10,6 +10,7 @@ import SwiftUI
 
 final class ProfileRegisterViewObserved: ObservableObject {
     @Binding var hasRegisteredProfile: Bool
+
     @Published var isShowingSuccessAlert = false
     @Published var isShowingFailureAlert = false
     @Published var isShowingInputFailureAlert = false
@@ -17,10 +18,10 @@ final class ProfileRegisterViewObserved: ObservableObject {
     @Published var name = ""
     @Published var nickname = ""
     @Published var role = ""
-    @Published var selfDescription = "" {
+    @Published var description = "" {
         didSet {
-            if selfDescription.count >= 80 {
-                selfDescription = oldValue
+            if description.count >= 80 {
+                description = oldValue
             }
         }
     }
@@ -39,60 +40,13 @@ final class ProfileRegisterViewObserved: ObservableObject {
 
     init(hasRegisteredProfile: Binding<Bool>) {
         self._hasRegisteredProfile = hasRegisteredProfile
+        Task {
+            await getUserById()
+        }
     }
 
     func didTapRegisterButton() {
-        if isButtonAvailable() {
-            // 입력이 비어있지 않다면
-            if !linkedInURL.isEmpty && !profileURL.isEmpty {
-                // 검사를 한다
-                if isLinkedinURLValidated && isPrivateURLValidated {
-                    // 검사 통과시 통과
-                    Task {
-                        await createUser()
-//                        isShowingSuccessAlert = true
-//                        hasRegisteredProfile = true
-                    }
-                } else {
-                    // 검사 실패시 엘러트
-                    isShowingInputFailureAlert = true
-                }
-            // 입력이 비어있지 않다면
-            } else if !linkedInURL.isEmpty {
-                if isLinkedinURLValidated {
-                    // 검사 통과시 통과
-                    Task {
-                        await createUser()
-//                        isShowingSuccessAlert = true
-//                        hasRegisteredProfile = true
-                    }
-                } else {
-                    // 검사 실패시 엘러트
-                    isShowingInputFailureAlert = true
-                }
-            // 입력이 비어있지 않다면
-            } else if !profileURL.isEmpty {
-                // 검사를 한다
-                if isPrivateURLValidated {
-                    // 검사 통과시 통과
-                    Task {
-                        await createUser()
-//                        isShowingSuccessAlert = true
-//                        hasRegisteredProfile = true
-                    }
-                } else {
-                    // 검사 실패시 엘러트
-                    isShowingInputFailureAlert = true
-                }
-            } else {
-                // 입력이 비어있다면 통과
-                Task {
-                    await createUser()
-//                        isShowingSuccessAlert = true
-//                        hasRegisteredProfile = true
-                }
-            }
-        }
+        register()
     }
 
     func isButtonAvailable() -> Bool {
@@ -105,8 +59,86 @@ final class ProfileRegisterViewObserved: ObservableObject {
 }
 
 private extension ProfileRegisterViewObserved {
+    func register() {
+        if isButtonAvailable() {
+            // 입력이 비어있지 않다면
+            if !linkedInURL.isEmpty && !profileURL.isEmpty {
+                // 검사를 한다
+                if isLinkedinURLValidated && isPrivateURLValidated {
+                    // 검사 통과시 통과
+                    Task {
+                        await createUser()
+                        isShowingSuccessAlert = true
+                        hasRegisteredProfile = true
+                    }
+                } else {
+                    // 검사 실패시 엘러트
+                    isShowingInputFailureAlert = true
+                }
+            // 입력이 비어있지 않다면
+            } else if !linkedInURL.isEmpty {
+                if isLinkedinURLValidated {
+                    // 검사 통과시 통과
+                    Task {
+                        await createUser()
+                        isShowingSuccessAlert = true
+                        hasRegisteredProfile = true
+                    }
+                } else {
+                    // 검사 실패시 엘러트
+                    isShowingInputFailureAlert = true
+                }
+            // 입력이 비어있지 않다면
+            } else if !profileURL.isEmpty {
+                // 검사를 한다
+                if isPrivateURLValidated {
+                    // 검사 통과시 통과
+                    Task {
+                        await createUser()
+                        isShowingSuccessAlert = true
+                        hasRegisteredProfile = true
+                    }
+                } else {
+                    // 검사 실패시 엘러트
+                    isShowingInputFailureAlert = true
+                }
+            } else {
+                // 입력이 비어있다면 통과
+                Task {
+                    await createUser()
+                    isShowingSuccessAlert = true
+                    hasRegisteredProfile = true
+                }
+            }
+        }
+    }
+
+    func getUserById() async {
+        FirebaseManager.shared.getUserBy(id: "3A146B2B-4119-4CA7-8211-07DA7A2F1BA2") { result in
+            let user = User(
+                id: result["id"] as? String ?? "",
+                name: result["name"] as? String ?? "",
+                nickname: result["nickname"] as? String ?? "",
+                role: result["role"] as? String ?? "",
+                description: result["description"] as? String ?? "",
+                linkedInURL: result["linkedInURL"] as? String ?? "",
+                profileURL: result["profileURL"] as? String ?? ""
+            )
+            print(user)
+        }
+    }
+
     func createUser() async {
-        
+        let user = User(
+            id: UUID().uuidString,
+            name: name,
+            nickname: nickname,
+            role: role,
+            description: description,
+            linkedInURL: linkedInURL,
+            profileURL: profileURL
+        )
+        FirebaseManager.shared.createUser(user: user)
     }
 
     func verifyUrl (urlString: String?) -> Bool {

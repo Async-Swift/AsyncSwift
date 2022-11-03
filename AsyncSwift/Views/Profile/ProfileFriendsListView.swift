@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ProfileFriendsListView: View {
+
+    @ObservedObject var observed = ProfileFriendsListViewObserved()
+
     var body: some View {
         VStack(spacing: 0) {
             customDivider
@@ -17,6 +20,9 @@ struct ProfileFriendsListView: View {
             Spacer()
         }
         .navigationTitle("Friends")
+        .onAppear {
+            observed.onAppear()
+        }
     }
 }
 
