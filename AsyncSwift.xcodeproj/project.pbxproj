@@ -33,6 +33,10 @@
 		C69C139D29127B9400D9B47F /* ProfileViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C139C29127B9400D9B47F /* ProfileViewButton.swift */; };
 		C69C139F2912817D00D9B47F /* ProfileFriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */; };
 		C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */; };
+		C69C13A62913806600D9B47F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13A52913806600D9B47F /* CoreDataManager.swift */; };
+		C69C13A92913807100D9B47F /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C69C13A72913807100D9B47F /* DataModel.xcdatamodeld */; };
+		C69C13AC2913813600D9B47F /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13AA2913813600D9B47F /* UserEntity+CoreDataClass.swift */; };
+		C69C13AD2913813600D9B47F /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13AB2913813600D9B47F /* UserEntity+CoreDataProperties.swift */; };
 		C6AA71E428FC48EB0091A868 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E328FC48EB0091A868 /* ProfileView.swift */; };
 		C6AA71E628FC49040091A868 /* ProfileView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E528FC49040091A868 /* ProfileView+Observed.swift */; };
 		C6AA71E828FC65680091A868 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E728FC65680091A868 /* Text+.swift */; };
@@ -75,6 +79,10 @@
 		C69C139C29127B9400D9B47F /* ProfileViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewButton.swift; sourceTree = "<group>"; };
 		C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendsListView.swift; sourceTree = "<group>"; };
 		C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendDetailView.swift; sourceTree = "<group>"; };
+		C69C13A52913806600D9B47F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C69C13A82913807100D9B47F /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		C69C13AA2913813600D9B47F /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C69C13AB2913813600D9B47F /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C6AA71E328FC48EB0091A868 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C6AA71E528FC49040091A868 /* ProfileView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileView+Observed.swift"; sourceTree = "<group>"; };
 		C6AA71E728FC65680091A868 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
@@ -125,6 +133,7 @@
 				C68DE94A28C76CE000CA4CC8 /* Info.plist */,
 				C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */,
 				C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */,
+				C69C13A32913804E00D9B47F /* Managers */,
 				C6E7449E28CA556800B7B2BD /* Extensions */,
 				C6F7798828C9CB9B0036773B /* Models */,
 				C68DE95228C77F4800CA4CC8 /* Views */,
@@ -176,6 +185,33 @@
 				C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		C69C13A32913804E00D9B47F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C69C13A42913805500D9B47F /* CoreData */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		C69C13A42913805500D9B47F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C69C13AE2913813F00D9B47F /* Models */,
+				C69C13A52913806600D9B47F /* CoreDataManager.swift */,
+				C69C13A72913807100D9B47F /* DataModel.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		C69C13AE2913813F00D9B47F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C69C13AA2913813600D9B47F /* UserEntity+CoreDataClass.swift */,
+				C69C13AB2913813600D9B47F /* UserEntity+CoreDataProperties.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C6E7449E28CA556800B7B2BD /* Extensions */ = {
@@ -301,6 +337,7 @@
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
+				C69C13A62913806600D9B47F /* CoreDataManager.swift in Sources */,
 				C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
@@ -309,6 +346,7 @@
 				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
 				C66E3D99290BB9C100097BEA /* TextEditor+.swift in Sources */,
 				C69C139F2912817D00D9B47F /* ProfileFriendsListView.swift in Sources */,
+				C69C13AC2913813600D9B47F /* UserEntity+CoreDataClass.swift in Sources */,
 				C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */,
 				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
@@ -321,12 +359,14 @@
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
 				C6AA71E428FC48EB0091A868 /* ProfileView.swift in Sources */,
 				C6AABAC32901875100779203 /* TextField+.swift in Sources */,
+				C69C13AD2913813600D9B47F /* UserEntity+CoreDataProperties.swift in Sources */,
 				E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */,
 				C66E3D95290BA48500097BEA /* ProfileRegisterView.swift in Sources */,
 				C63A866328CB3D490064C417 /* View+.swift in Sources */,
 				C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */,
 				C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */,
 				C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */,
+				C69C13A92913807100D9B47F /* DataModel.xcdatamodeld in Sources */,
 				B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */,
 				C69C139D29127B9400D9B47F /* ProfileViewButton.swift in Sources */,
 				B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */,
@@ -570,6 +610,19 @@
 			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		C69C13A72913807100D9B47F /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C69C13A82913807100D9B47F /* DataModel.xcdatamodel */,
+			);
+			currentVersion = C69C13A82913807100D9B47F /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C68DE92A28C7685800CA4CC8 /* Project object */;
 }
