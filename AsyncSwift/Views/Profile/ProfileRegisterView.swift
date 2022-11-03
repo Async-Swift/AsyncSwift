@@ -127,10 +127,10 @@ private extension ProfileRegisterView {
             HStack(spacing: 0) {
                 Text("직군")
                     .profileInputTitle()
-                TextField("", text: $observed.jobTitle)
+                TextField("", text: $observed.role)
                     .profileTextField()
                     .placeholder(
-                        when: observed.jobTitle.isEmpty,
+                        when: observed.role.isEmpty,
                         text: "Required",
                         isTextField: true
                     )
@@ -149,20 +149,20 @@ private extension ProfileRegisterView {
                 Text("소개")
                     .profileInputTitle()
                 if #available(iOS 16.0, *) {
-                    TextEditor(text: $observed.introduction)
+                    TextEditor(text: $observed.selfDescription)
                         .profileTextEditor()
                         .scrollContentBackground(.hidden)
                         .placeholder(
-                            when: observed.introduction.isEmpty,
+                            when: observed.selfDescription.isEmpty,
                             text: "Optional, 80자 이내",
                             isTextField: false
                         )
                         .offset(x: -2, y: -8)
                 } else {
-                    TextEditor(text: $observed.introduction)
+                    TextEditor(text: $observed.selfDescription)
                         .profileTextEditor()
                         .placeholder(
-                            when: observed.introduction.isEmpty,
+                            when: observed.selfDescription.isEmpty,
                             text: "Optional, 80자 이내",
                             isTextField: false
                         )
@@ -186,10 +186,10 @@ private extension ProfileRegisterView {
             }
             .padding(.top, 20)
             HStack(spacing: 0) {
-                TextField("", text: $observed.linkedinURL)
+                TextField("", text: $observed.linkedInURL)
                     .profileTextField()
                     .placeholder(
-                        when: observed.linkedinURL.isEmpty,
+                        when: observed.linkedInURL.isEmpty,
                         text: "Optional",
                         isTextField: true
                     )
@@ -210,10 +210,10 @@ private extension ProfileRegisterView {
             }
             .padding(.top, 20)
             HStack(spacing: 0) {
-                TextField("", text: $observed.privateURL)
+                TextField("", text: $observed.profileURL)
                     .profileTextField()
                     .placeholder(
-                        when: observed.privateURL.isEmpty,
+                        when: observed.profileURL.isEmpty,
                         text: "Optional",
                         isTextField: true
                     )

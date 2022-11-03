@@ -16,22 +16,22 @@ final class ProfileRegisterViewObserved: ObservableObject {
 
     @Published var name = ""
     @Published var nickname = ""
-    @Published var jobTitle = ""
-    @Published var introduction = "" {
+    @Published var role = ""
+    @Published var selfDescription = "" {
         didSet {
-            if introduction.count >= 80 {
-                introduction = oldValue
+            if selfDescription.count >= 80 {
+                selfDescription = oldValue
             }
         }
     }
-    @Published var linkedinURL = "" {
+    @Published var linkedInURL = "" {
         didSet {
-            self.isLinkedinURLValidated = self.verifyUrl(urlString: linkedinURL)
+            self.isLinkedinURLValidated = self.verifyUrl(urlString: linkedInURL)
         }
     }
-    @Published var privateURL = "" {
+    @Published var profileURL = "" {
         didSet {
-            self.isPrivateURLValidated = self.verifyUrl(urlString: privateURL)
+            self.isPrivateURLValidated = self.verifyUrl(urlString: profileURL)
         }
     }
     var isLinkedinURLValidated = false
@@ -44,51 +44,69 @@ final class ProfileRegisterViewObserved: ObservableObject {
     func didTapRegisterButton() {
         if isButtonAvailable() {
             // 입력이 비어있지 않다면
-            if !linkedinURL.isEmpty && !privateURL.isEmpty {
+            if !linkedInURL.isEmpty && !profileURL.isEmpty {
                 // 검사를 한다
                 if isLinkedinURLValidated && isPrivateURLValidated {
                     // 검사 통과시 통과
-                    isShowingSuccessAlert = true
-                    hasRegisteredProfile = true
+                    Task {
+                        await createUser()
+//                        isShowingSuccessAlert = true
+//                        hasRegisteredProfile = true
+                    }
                 } else {
                     // 검사 실패시 엘러트
                     isShowingInputFailureAlert = true
                 }
             // 입력이 비어있지 않다면
-            } else if !linkedinURL.isEmpty {
+            } else if !linkedInURL.isEmpty {
                 if isLinkedinURLValidated {
                     // 검사 통과시 통과
-                    isShowingSuccessAlert = true
-                    hasRegisteredProfile = true
+                    Task {
+                        await createUser()
+//                        isShowingSuccessAlert = true
+//                        hasRegisteredProfile = true
+                    }
                 } else {
                     // 검사 실패시 엘러트
                     isShowingInputFailureAlert = true
                 }
             // 입력이 비어있지 않다면
-            } else if !privateURL.isEmpty {
+            } else if !profileURL.isEmpty {
                 // 검사를 한다
                 if isPrivateURLValidated {
                     // 검사 통과시 통과
-                    isShowingSuccessAlert = true
-                    hasRegisteredProfile = true
+                    Task {
+                        await createUser()
+//                        isShowingSuccessAlert = true
+//                        hasRegisteredProfile = true
+                    }
                 } else {
                     // 검사 실패시 엘러트
                     isShowingInputFailureAlert = true
                 }
             } else {
                 // 입력이 비어있다면 통과
-                isShowingSuccessAlert = true
-                hasRegisteredProfile = true
+                Task {
+                    await createUser()
+//                        isShowingSuccessAlert = true
+//                        hasRegisteredProfile = true
+                }
             }
         }
     }
 
     func isButtonAvailable() -> Bool {
-        if !name.isEmpty && !jobTitle.isEmpty {
+        if !name.isEmpty && !role.isEmpty {
             return true
         } else {
             return false
         }
+    }
+}
+
+private extension ProfileRegisterViewObserved {
+    func createUser() async {
+        
     }
 
     func verifyUrl (urlString: String?) -> Bool {
