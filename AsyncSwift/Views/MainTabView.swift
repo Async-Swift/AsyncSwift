@@ -26,7 +26,6 @@ struct MainTabView: View {
 //        }
         .onAppear {
             observed.fixKeyChain()
-            KeyChainManager().deleteItem(key: "AsyncSwiftStamp")
         }
     }
 }
