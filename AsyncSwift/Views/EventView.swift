@@ -9,11 +9,7 @@ import SwiftUI
 
 struct EventView: View {
 
-    @ObservedObject var observed: EventViewObserved
-
-    init() {
-        observed = EventViewObserved()
-    }
+    @StateObject var observed = EventViewObserved()
 
     var body: some View {
         NavigationView {
