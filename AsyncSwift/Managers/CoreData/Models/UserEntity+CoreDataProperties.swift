@@ -16,13 +16,14 @@ extension UserEntity {
         return NSFetchRequest<UserEntity>(entityName: "UserEntity")
     }
 
-    @NSManaged public var uuid: String?
-    @NSManaged public var name: String?
+    @NSManaged public var uuid: String
+    @NSManaged public var name: String
     @NSManaged public var nickname: String?
     @NSManaged public var selfDescription: String?
+    @NSManaged public var role: String
     @NSManaged public var linkedInURL: String?
     @NSManaged public var profileURL: String?
-    @NSManaged public var role: String?
+
 
 }
 

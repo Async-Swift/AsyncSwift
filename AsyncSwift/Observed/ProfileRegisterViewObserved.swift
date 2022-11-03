@@ -6,7 +6,6 @@
 //
 
 import Combine
-import UIKit
 import SwiftUI
 
 final class ProfileRegisterViewObserved: ObservableObject {
@@ -20,7 +19,6 @@ final class ProfileRegisterViewObserved: ObservableObject {
     @Published var jobTitle = ""
     @Published var introduction = "" {
         didSet {
-            print(introduction.count)
             if introduction.count >= 80 {
                 introduction = oldValue
             }
