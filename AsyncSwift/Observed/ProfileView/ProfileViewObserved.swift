@@ -7,6 +7,7 @@
 
 import Combine
 import UIKit
+import CoreImage.CIFilterBuiltins
 
 final class ProfileViewObserved: ObservableObject {
     @Published var hasRegisteredProfile = UserDefaults.standard.bool(forKey: "hasRegisterProfile") {
@@ -27,6 +28,19 @@ final class ProfileViewObserved: ObservableObject {
         if hasRegisteredProfile {
             getUserByID()
         }
+    }
+
+    func getQRCodeImage() -> UIImage {
+        let context = CIContext()
+        let filter = CIFilter.qrCodeGenerator()
+        let data = Data(userID?.utf8 ?? "".utf8)
+        filter.setValue(data, forKey: "inputMessage")
+        if let qrCodeImage = filter.outputImage {
+            if let qrCodeImage = context.createCGImage(qrCodeImage, from: qrCodeImage.extent) {
+                return UIImage(cgImage: qrCodeImage)
+            }
+        }
+        return UIImage(systemName: "xmark") ?? UIImage()
     }
 }
 

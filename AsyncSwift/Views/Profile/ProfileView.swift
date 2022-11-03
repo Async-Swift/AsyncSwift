@@ -46,8 +46,10 @@ private extension ProfileView {
             customDivider
                 .padding(.top, 10)
                 .padding(.bottom, 55)
-            Image("QRplaceholder")
-                .frame(width: 157)
+            Image(uiImage: observed.getQRCodeImage())
+                .interpolation(.none)
+                .resizable()
+                .frame(width: 157, height: 157)
                 .padding(.bottom, 40)
             Text("\(observed.user.name) | \(observed.user.nickname)")
                 .font(.title3)
