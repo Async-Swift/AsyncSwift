@@ -28,16 +28,16 @@ final class ProfileRegisterViewObserved: ObservableObject {
     }
     @Published var linkedInURL = "" {
         didSet {
-            self.isLinkedinURLValidated = self.verifyUrl(urlString: linkedInURL)
+            self.isLinkedinURLValidated = self.verifyURL(urlString: linkedInURL)
         }
     }
     @Published var profileURL = "" {
         didSet {
-            self.isPrivateURLValidated = self.verifyUrl(urlString: profileURL)
+            self.isProfileURLValidated = self.verifyURL(urlString: profileURL)
         }
     }
     var isLinkedinURLValidated = false
-    var isPrivateURLValidated = false
+    var isProfileURLValidated = false
 
     init(hasRegisteredProfile: Binding<Bool>, userID: Binding<String?>) {
         self._hasRegisteredProfile = hasRegisteredProfile
@@ -63,7 +63,7 @@ private extension ProfileRegisterViewObserved {
             // 입력이 비어있지 않다면
             if !linkedInURL.isEmpty && !profileURL.isEmpty {
                 // 검사를 한다
-                if isLinkedinURLValidated && isPrivateURLValidated {
+                if isLinkedinURLValidated && isProfileURLValidated {
                     // 검사 통과시 통과
                     Task {
                         await createUser()
@@ -102,7 +102,7 @@ private extension ProfileRegisterViewObserved {
             // 입력이 비어있지 않다면
             } else if !profileURL.isEmpty {
                 // 검사를 한다
-                if isPrivateURLValidated {
+                if isProfileURLValidated {
                     // 검사 통과시 통과
                     Task {
                         await createUser()
@@ -148,7 +148,7 @@ private extension ProfileRegisterViewObserved {
         FirebaseManager.shared.createUser(user: user)
     }
 
-    func verifyUrl (urlString: String?) -> Bool {
+    func verifyURL (urlString: String?) -> Bool {
         if let urlString = urlString {
             if let url = NSURL(string: urlString) {
                 return UIApplication.shared.canOpenURL(url as URL)
