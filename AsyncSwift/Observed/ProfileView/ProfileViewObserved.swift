@@ -7,6 +7,7 @@
 
 import Combine
 import UIKit
+import CodeScanner
 import CoreImage.CIFilterBuiltins
 
 final class ProfileViewObserved: ObservableObject {
@@ -15,6 +16,8 @@ final class ProfileViewObserved: ObservableObject {
             UserDefaults.standard.set(hasRegisteredProfile, forKey: "hasRegisterProfile")
         }
     }
+
+    @Published var isShowingScanner = false
 
     @Published var user: User = User(id: "", name: "", nickname: "", role: "", description: "", linkedInURL: "", profileURL: "")
 
@@ -41,6 +44,15 @@ final class ProfileViewObserved: ObservableObject {
             }
         }
         return UIImage(systemName: "xmark") ?? UIImage()
+    }
+
+    func handleScan(result: Result<ScanResult, ScanError>) {
+        switch result {
+        case .success(let success):
+            print(success.string)
+        case .failure(let failure):
+            print(failure)
+        }
     }
 }
 

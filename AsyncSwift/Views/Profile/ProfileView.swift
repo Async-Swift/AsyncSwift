@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 
 // TODO
@@ -27,6 +28,10 @@ struct ProfileView: View {
                 observed.onAppear()
             }
             .navigationTitle("Profile")
+            .navigationBarItems(trailing: codeScannerButton)
+            .sheet(isPresented: $observed.isShowingScanner) {
+                CodeScannerView(codeTypes: [.qr], simulatedData: "1AA5CC09-6F7F-4EC4-A2BE-819B93362B7B", completion: observed.handleScan)
+            }
         }
     }
 }
@@ -107,5 +112,13 @@ private extension ProfileView {
             )
         )
             .padding(.bottom, 32)
+    }
+
+    var codeScannerButton: some View {
+        Button {
+            observed.isShowingScanner = true
+        } label: {
+            Image(systemName: "qrcode.viewfinder")
+        }
     }
 }

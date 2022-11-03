@@ -527,6 +527,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "캘린더에 일정 추가를 위해서는 권한이 필요해요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "QR코드 스캔을 위해 카메라를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -564,6 +565,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "캘린더에 일정 추가를 위해서는 권한이 필요해요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "QR코드 스캔을 위해 카메라를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
