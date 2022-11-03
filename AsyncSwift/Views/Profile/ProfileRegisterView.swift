@@ -31,25 +31,10 @@ struct ProfileRegisterView: View {
             }
             Spacer()
         }
-        .navigationBarTitle("Profile", displayMode: .large)
+        .navigationBarTitle("Register", displayMode: .large)
         .toolbar {
             submitButton
         }
-        .alert("프로필 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
-            Button("확인", role: .cancel) { }
-        }, message: {
-            Text("개인 프로필이 추가되었습니다.")
-        })
-        .alert("프로필 등록 오류", isPresented: $observed.isShowingFailureAlert, actions: {
-            Button("다시 시도", role: .cancel) { }
-        }, message: {
-            Text("입력되지 않은 내용이 있습니다.\n필수 입력란을 확인해주세요.")
-        })
-        .alert("프로필 입력 오류", isPresented: $observed.isShowingInputFailureAlert, actions: {
-            Button("다시 시도", role: .cancel) { }
-        }, message: {
-            Text("확인되지 않은 주소입니다.\nURL을 확인해주세요.")
-        })
     }
 }
 
@@ -77,6 +62,21 @@ private extension ProfileRegisterView {
             .padding(.horizontal)
             customDivider
         }
+        .alert("프로필 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
+            Button("확인", role: .cancel) { }
+        }, message: {
+            Text("개인 프로필이 추가되었습니다.")
+        })
+        .alert("프로필 등록 오류", isPresented: $observed.isShowingFailureAlert, actions: {
+            Button("다시 시도", role: .cancel) { }
+        }, message: {
+            Text("입력되지 않은 내용이 있습니다.\n필수 입력란을 확인해주세요.")
+        })
+        .alert("프로필 입력 오류", isPresented: $observed.isShowingInputFailureAlert, actions: {
+            Button("다시 시도", role: .cancel) { }
+        }, message: {
+            Text("확인되지 않은 주소입니다.\nURL을 확인해주세요.")
+        })
     }
 
 

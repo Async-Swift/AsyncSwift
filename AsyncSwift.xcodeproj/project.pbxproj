@@ -30,6 +30,9 @@
 		C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */; };
 		C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* EventView.swift */; };
 		C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */; };
+		C69C139D29127B9400D9B47F /* ProfileViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C139C29127B9400D9B47F /* ProfileViewButton.swift */; };
+		C69C139F2912817D00D9B47F /* ProfileFriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */; };
+		C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */; };
 		C6AA71E428FC48EB0091A868 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E328FC48EB0091A868 /* ProfileView.swift */; };
 		C6AA71E628FC49040091A868 /* ProfileView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E528FC49040091A868 /* ProfileView+Observed.swift */; };
 		C6AA71E828FC65680091A868 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E728FC65680091A868 /* Text+.swift */; };
@@ -69,6 +72,9 @@
 		C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsyncSwift.entitlements; sourceTree = "<group>"; };
 		C68DE94E28C77DC900CA4CC8 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketingView.swift; sourceTree = "<group>"; };
+		C69C139C29127B9400D9B47F /* ProfileViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewButton.swift; sourceTree = "<group>"; };
+		C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendsListView.swift; sourceTree = "<group>"; };
+		C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendDetailView.swift; sourceTree = "<group>"; };
 		C6AA71E328FC48EB0091A868 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C6AA71E528FC49040091A868 /* ProfileView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileView+Observed.swift"; sourceTree = "<group>"; };
 		C6AA71E728FC65680091A868 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
@@ -141,16 +147,35 @@
 		C68DE95228C77F4800CA4CC8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C69C139B29127B8400D9B47F /* Components */,
 				C68DE93728C7685800CA4CC8 /* MainTabView.swift */,
 				C68DE94E28C77DC900CA4CC8 /* EventView.swift */,
 				C6F7799028C9E5DD0036773B /* EventDetailView.swift */,
 				C6F7798E28C9D1BF0036773B /* SessionView.swift */,
 				C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */,
 				C6F7798628C9CB3A0036773B /* StampView.swift */,
-				C6AA71E328FC48EB0091A868 /* ProfileView.swift */,
-				C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */,
+				C69C13A02912818500D9B47F /* Profile */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C69C139B29127B8400D9B47F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C69C139C29127B9400D9B47F /* ProfileViewButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C69C13A02912818500D9B47F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C6AA71E328FC48EB0091A868 /* ProfileView.swift */,
+				C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */,
+				C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */,
+				C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		C6E7449E28CA556800B7B2BD /* Extensions */ = {
@@ -276,12 +301,14 @@
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
+				C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
 				B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
 				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
 				C66E3D99290BB9C100097BEA /* TextEditor+.swift in Sources */,
+				C69C139F2912817D00D9B47F /* ProfileFriendsListView.swift in Sources */,
 				C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */,
 				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
@@ -301,6 +328,7 @@
 				C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */,
 				C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */,
 				B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */,
+				C69C139D29127B9400D9B47F /* ProfileViewButton.swift in Sources */,
 				B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,8 +456,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AsyncSwift/AsyncSwift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"AsyncSwift/Preview Content\"";
 				DEVELOPMENT_TEAM = 76AJ433CP5;
@@ -452,7 +480,7 @@
 				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftProvisioningProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

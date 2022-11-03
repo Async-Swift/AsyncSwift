@@ -17,4 +17,7 @@ extension Color {
     static let skeletonBackground = Color("skeletonBackground")
     static let unavailableButtonBackground = Color("unavailableButtonBackground")
     static let placeholderForeground = Color("placeholderForeground")
+    static let profileGray = Color("profileGray")
+    static let buttonBackground = Color("buttonBackground")
+    static let profileFontGray = Color("6C6C70")
 }
