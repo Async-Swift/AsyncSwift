@@ -19,7 +19,7 @@ struct EventView: View {
                         onLoadingHeader
                         VStack(alignment: .leading, spacing: 0) {
                             ForEach(observed.onLoadingCells, id: \.self) { _ in
-                                makeOnLoadingCell()
+                                onLoadingCell
                             }
                         }
                     }
@@ -110,7 +110,7 @@ private extension EventView {
     }
 
     @ViewBuilder
-    func makeOnLoadingCell() -> some View {
+    var onLoadingCell: some View {
         VStack(alignment: .leading, spacing: 0) {
             customDivider
             VStack(alignment: .leading, spacing: 0) {
