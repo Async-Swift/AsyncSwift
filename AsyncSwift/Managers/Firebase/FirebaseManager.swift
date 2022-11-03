@@ -15,6 +15,25 @@ final class FirebaseManager: ObservableObject {
 }
 
 extension FirebaseManager {
+    func createUser(user: User) {
+        let docRef = db.collection("users").document(user.id)
+        docRef.setData([
+            "id": user.id,
+            "name": user.name,
+            "nickname": user.nickname,
+            "role": user.role,
+            "description": user.description,
+            "linkedInURL": user.linkedInURL,
+            "profileURL": user.profileURL
+        ]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
+
     func getUserBy(id: String, completion: @escaping (User) -> Void) {
         let docRef = db.collection("users").document(id)
         docRef.getDocument { (document, error) in
@@ -38,8 +57,9 @@ extension FirebaseManager {
         }
     }
 
-    func createUser(user: User) {
+    func editUser(user: User) {
         let docRef = db.collection("users").document(user.id)
+
         docRef.setData([
             "id": user.id,
             "name": user.name,
@@ -47,12 +67,13 @@ extension FirebaseManager {
             "role": user.role,
             "description": user.description,
             "linkedInURL": user.linkedInURL,
-            "profileURL": user.profileURL
-        ]) { error in
+            "profileURL": user.profileURL],
+            merge: true
+        ) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
-                print("Document successfully written!")
+                print("Document successfully merged!")
             }
         }
     }

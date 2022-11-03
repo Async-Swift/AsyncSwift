@@ -1,24 +1,19 @@
 //
-//  ProfileRegisterView.swift
+//  ProfileEditView.swift
 //  AsyncSwift
 //
-//  Created by Kim Insub on 2022/10/28.
+//  Created by Kim Insub on 2022/11/04.
 //
 
 import SwiftUI
 
-struct ProfileRegisterView: View {
+struct ProfileEditView: View {
     @Environment(\.dismiss) private var dismiss
-    @ObservedObject var observed: ProfileRegisterViewObserved
+    @ObservedObject var observed: ProfileEditViewObserved
 
-    init(hasRegisteredProfile: Binding<Bool>, userID: Binding<String?>) {
-        UITextView.appearance().backgroundColor = .clear
-        observed = ProfileRegisterViewObserved(
-            hasRegisteredProfile: hasRegisteredProfile,
-            userID: userID
-        )
+    init(user: User) {
+        observed = ProfileEditViewObserved(user: user)
     }
-
     var body: some View {
         VStack(spacing: 0) {
             Header
@@ -34,19 +29,19 @@ struct ProfileRegisterView: View {
             }
             Spacer()
         }
-        .navigationBarTitle("Register", displayMode: .large)
+        .navigationBarTitle("Edit", displayMode: .large)
         .toolbar {
             submitButton
         }
     }
 }
 
-private extension ProfileRegisterView {
+private extension ProfileEditView {
     var Header: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    Text("프로필을 등록해주세요")
+                    Text("프로필을 수정")
                         .font(.title3)
                         .fontWeight(.bold)
                         .frame(minHeight: 24)
@@ -68,7 +63,7 @@ private extension ProfileRegisterView {
         .alert("프로필 등록 완료", isPresented: $observed.isShowingSuccessAlert, actions: {
             Button("확인", role: .cancel) { dismiss() }
         }, message: {
-            Text("개인 프로필이 추가되었습니다.")
+            Text("개인 프로필이 수정되었습니다.")
         })
         .alert("프로필 등록 오류", isPresented: $observed.isShowingFailureAlert, actions: {
             Button("다시 시도", role: .cancel) { }
@@ -241,4 +236,3 @@ private extension ProfileRegisterView {
         }
     }
 }
-

@@ -13,11 +13,7 @@ import SwiftUI
 
 struct ProfileView: View {
 
-    @ObservedObject var observed: ProfileViewObserved
-
-    init() {
-        observed = ProfileViewObserved()
-    }
+    @StateObject var observed = ProfileViewObserved()
 
     var body: some View {
         NavigationView {
@@ -26,6 +22,9 @@ struct ProfileView: View {
                 Spacer()
                 friendLinkButton
                 editProfileLinkButton
+            }
+            .onAppear {
+                observed.onAppear()
             }
             .navigationTitle("Profile")
         }
@@ -46,6 +45,22 @@ private extension ProfileView {
         VStack(spacing: 0) {
             customDivider
                 .padding(.top, 10)
+                .padding(.bottom, 55)
+            Image("QRplaceholder")
+                .frame(width: 157)
+                .padding(.bottom, 40)
+            Text("\(observed.user.name) | \(observed.user.nickname)")
+                .font(.title3)
+                .fontWeight(.semibold)
+                .padding(.bottom, 4)
+            Text("\(observed.user.role)")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundColor(.profileGray)
+                .padding(.bottom, 18)
+            Text("\(observed.user.description)")
+                .font(.footnote)
+                .padding(.horizontal, 43)
         }
     }
 
@@ -65,7 +80,7 @@ private extension ProfileView {
 
     var registerLink: some View {
         NavigationLink {
-            ProfileRegisterView(hasRegisteredProfile: $observed.hasRegisteredProfile)
+            ProfileRegisterView(hasRegisteredProfile: $observed.hasRegisteredProfile, userID: $observed.userID)
         } label: {
             Text("프로필 등록하기")
                 .font(.headline)
@@ -86,10 +101,7 @@ private extension ProfileView {
         ProfileViewButton(
             title: "Edit Profile",
             linkTo: AnyView(
-                ProfileRegisterView(
-                    hasRegisteredProfile:
-                        $observed.hasRegisteredProfile
-                )
+                ProfileEditView(user: observed.user)
             )
         )
             .padding(.bottom, 32)

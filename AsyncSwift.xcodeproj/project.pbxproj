@@ -38,6 +38,8 @@
 		C69C13BA2913B0C800D9B47F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13B92913B0C800D9B47F /* User.swift */; };
 		C69C13BC2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13BB2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift */; };
 		C69C13BF2913EC9400D9B47F /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13BE2913EC9400D9B47F /* FirebaseManager.swift */; };
+		C69C13C1291418A000D9B47F /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13C0291418A000D9B47F /* ProfileEditView.swift */; };
+		C69C13C32914192B00D9B47F /* ProfileEditViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13C22914192B00D9B47F /* ProfileEditViewObserved.swift */; };
 		C6AA71E428FC48EB0091A868 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E328FC48EB0091A868 /* ProfileView.swift */; };
 		C6AA71E628FC49040091A868 /* ProfileViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E528FC49040091A868 /* ProfileViewObserved.swift */; };
 		C6AA71E828FC65680091A868 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E728FC65680091A868 /* Text+.swift */; };
@@ -83,6 +85,8 @@
 		C69C13B92913B0C800D9B47F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C69C13BB2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendsListViewObserved.swift; sourceTree = "<group>"; };
 		C69C13BE2913EC9400D9B47F /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		C69C13C0291418A000D9B47F /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		C69C13C22914192B00D9B47F /* ProfileEditViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewObserved.swift; sourceTree = "<group>"; };
 		C6AA71E328FC48EB0091A868 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C6AA71E528FC49040091A868 /* ProfileViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewObserved.swift; sourceTree = "<group>"; };
 		C6AA71E728FC65680091A868 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 			children = (
 				C6AA71E328FC48EB0091A868 /* ProfileView.swift */,
 				C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */,
+				C69C13C0291418A000D9B47F /* ProfileEditView.swift */,
 				C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */,
 				C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */,
 			);
@@ -218,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				C6AA71E528FC49040091A868 /* ProfileViewObserved.swift */,
+				C69C13C22914192B00D9B47F /* ProfileEditViewObserved.swift */,
 				C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */,
 				C69C13BB2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift */,
 			);
@@ -347,6 +353,7 @@
 				C6AA71E828FC65680091A868 /* Text+.swift in Sources */,
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
+				C69C13C1291418A000D9B47F /* ProfileEditView.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
 				C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
@@ -359,6 +366,7 @@
 				C69C13BF2913EC9400D9B47F /* FirebaseManager.swift in Sources */,
 				C69C13BC2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift in Sources */,
 				C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */,
+				C69C13C32914192B00D9B47F /* ProfileEditViewObserved.swift in Sources */,
 				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
 				C6AA71E628FC49040091A868 /* ProfileViewObserved.swift in Sources */,

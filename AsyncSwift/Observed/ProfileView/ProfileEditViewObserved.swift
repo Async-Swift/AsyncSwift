@@ -1,21 +1,20 @@
 //
-//  ProfileRegisterViewObserved.swift
+//  ProfileEditViewObserved.swift
 //  AsyncSwift
 //
-//  Created by Kim Insub on 2022/10/28.
+//  Created by Kim Insub on 2022/11/04.
 //
 
-import Combine
-import SwiftUI
+import Foundation
+import UIKit
 
-final class ProfileRegisterViewObserved: ObservableObject {
-    @Binding var hasRegisteredProfile: Bool
-    @Binding var userID: String?
+final class ProfileEditViewObserved: ObservableObject {
 
     @Published var isShowingSuccessAlert = false
     @Published var isShowingFailureAlert = false
     @Published var isShowingInputFailureAlert = false
 
+    let userID: String
     @Published var name = ""
     @Published var nickname = ""
     @Published var role = ""
@@ -39,9 +38,14 @@ final class ProfileRegisterViewObserved: ObservableObject {
     var isLinkedinURLValidated = false
     var isPrivateURLValidated = false
 
-    init(hasRegisteredProfile: Binding<Bool>, userID: Binding<String?>) {
-        self._hasRegisteredProfile = hasRegisteredProfile
-        self._userID = userID
+    init(user: User) {
+        self.userID = user.id
+        self.name = user.name
+        self.nickname = user.nickname
+        self.role = user.role
+        self.description = user.description
+        self.linkedInURL = user.linkedInURL
+        self.profileURL = user.profileURL
     }
 
     func didTapRegisterButton() {
@@ -57,7 +61,7 @@ final class ProfileRegisterViewObserved: ObservableObject {
     }
 }
 
-private extension ProfileRegisterViewObserved {
+private extension ProfileEditViewObserved {
     func register() {
         if isButtonAvailable() {
             // 입력이 비어있지 않다면
@@ -66,11 +70,10 @@ private extension ProfileRegisterViewObserved {
                 if isLinkedinURLValidated && isPrivateURLValidated {
                     // 검사 통과시 통과
                     Task {
-                        await createUser()
+                        await editUser()
                         DispatchQueue.main.async { [weak self] in
                             guard let self = self else { return }
                             self.isShowingSuccessAlert = true
-                            self.hasRegisteredProfile = true
                         }
                     }
                 } else {
@@ -85,11 +88,10 @@ private extension ProfileRegisterViewObserved {
                 if isLinkedinURLValidated {
                     // 검사 통과시 통과
                     Task {
-                        await createUser()
+                        await editUser()
                         DispatchQueue.main.async { [weak self] in
                             guard let self = self else { return }
                             self.isShowingSuccessAlert = true
-                            self.hasRegisteredProfile = true
                         }
                     }
                 } else {
@@ -105,11 +107,10 @@ private extension ProfileRegisterViewObserved {
                 if isPrivateURLValidated {
                     // 검사 통과시 통과
                     Task {
-                        await createUser()
+                        await editUser()
                         DispatchQueue.main.async { [weak self] in
                             guard let self = self else { return }
                             self.isShowingSuccessAlert = true
-                            self.hasRegisteredProfile = true
                         }
                     }
                 } else {
@@ -122,21 +123,19 @@ private extension ProfileRegisterViewObserved {
             } else {
                 // 입력이 비어있다면 통과
                 Task {
-                    await createUser()
+                    await editUser()
                     DispatchQueue.main.async { [weak self] in
                         guard let self = self else { return }
                         self.isShowingSuccessAlert = true
-                        self.hasRegisteredProfile = true
                     }
                 }
             }
         }
     }
 
-    func createUser() async {
-        let userId = UUID().uuidString
+    func editUser() async {
         let user = User(
-            id: userId,
+            id: userID,
             name: name,
             nickname: nickname,
             role: role,
@@ -144,8 +143,7 @@ private extension ProfileRegisterViewObserved {
             linkedInURL: linkedInURL,
             profileURL: profileURL
         )
-        self.userID = userId
-        FirebaseManager.shared.createUser(user: user)
+        FirebaseManager.shared.editUser(user: user)
     }
 
     func verifyUrl (urlString: String?) -> Bool {
