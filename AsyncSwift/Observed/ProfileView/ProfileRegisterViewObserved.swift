@@ -114,16 +114,7 @@ private extension ProfileRegisterViewObserved {
     }
 
     func getUserById() async {
-        FirebaseManager.shared.getUserBy(id: "3A146B2B-4119-4CA7-8211-07DA7A2F1BA2") { result in
-            let user = User(
-                id: result["id"] as? String ?? "",
-                name: result["name"] as? String ?? "",
-                nickname: result["nickname"] as? String ?? "",
-                role: result["role"] as? String ?? "",
-                description: result["description"] as? String ?? "",
-                linkedInURL: result["linkedInURL"] as? String ?? "",
-                profileURL: result["profileURL"] as? String ?? ""
-            )
+        FirebaseManager.shared.getUserBy(id: "3A146B2B-4119-4CA7-8211-07DA7A2F1BA2") { user in
             print(user)
         }
     }

@@ -15,7 +15,7 @@ final class FirebaseManager: ObservableObject {
 }
 
 extension FirebaseManager {
-    func getUserBy(id: String, completion: @escaping ([String:Any]) -> Void) {
+    func getUserBy(id: String, completion: @escaping (User) -> Void) {
         let docRef = db.collection("users").document(id)
         docRef.getDocument { (document, error) in
             guard error == nil else { return }
@@ -23,7 +23,16 @@ extension FirebaseManager {
             if let document = document, document.exists {
                 let data = document.data()
                 if let data = data {
-                    completion(data)
+                    let user = User(
+                        id: data["id"] as? String ?? "",
+                        name: data["name"] as? String ?? "",
+                        nickname: data["nickname"] as? String ?? "",
+                        role: data["role"] as? String ?? "",
+                        description: data["description"] as? String ?? "",
+                        linkedInURL: data["linkedInURL"] as? String ?? "",
+                        profileURL: data["profileURL"] as? String ?? ""
+                    )
+                    completion(user)
                 }
             }
         }
