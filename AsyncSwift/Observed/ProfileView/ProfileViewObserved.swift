@@ -10,7 +10,11 @@ import UIKit
 import CodeScanner
 import CoreImage.CIFilterBuiltins
 
+// TODO
+// 1. hasRegisteredProfile -> keyChain 으로 옮기기
+
 final class ProfileViewObserved: ObservableObject {
+
     @Published var hasRegisteredProfile = UserDefaults.standard.bool(forKey: "hasRegisterProfile") {
         didSet {
             UserDefaults.standard.set(hasRegisteredProfile, forKey: "hasRegisterProfile")
@@ -19,7 +23,15 @@ final class ProfileViewObserved: ObservableObject {
 
     @Published var isShowingScanner = false
 
-    @Published var user: User = User(id: "", name: "", nickname: "", role: "", description: "", linkedInURL: "", profileURL: "")
+    @Published var user: User = User(
+        id: "",
+        name: "",
+        nickname: "",
+        role: "",
+        description: "",
+        linkedInURL: "",
+        profileURL: ""
+    )
 
     var userID = UserDefaults.standard.string(forKey: "userID") {
         didSet {

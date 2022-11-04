@@ -20,4 +20,6 @@ extension Color {
     static let profileGray = Color("profileGray")
     static let buttonBackground = Color("buttonBackground")
     static let profileFontGray = Color("6C6C70")
+    static let linkedInBlue = Color("0A66C2")
+    static let inActiveButton = Color("E5E5EA")
 }

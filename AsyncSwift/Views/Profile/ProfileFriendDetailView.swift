@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ProfileFriendDetailView: View {
 
-    let user: Friend
+    @ObservedObject var observed: ProfileFriendDetailViewObserved
+
+    init(user: User) {
+        observed = ProfileFriendDetailViewObserved(user: user)
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -19,7 +23,7 @@ struct ProfileFriendDetailView: View {
             Spacer()
             linkButtons
         }
-        .navigationTitle(user.name)
+        .navigationTitle(observed.user.name)
     }
 }
 
@@ -27,15 +31,15 @@ private extension ProfileFriendDetailView {
 
     var userDetail: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(user.nickname)
+            Text(observed.user.nickname)
                 .fontWeight(.semibold)
                 .font(.system(size: 20))
-            Text(user.role)
+            Text(observed.user.role)
                 .fontWeight(.semibold)
                 .font(.system(size: 20))
                 .foregroundColor(.profileFontGray)
                 .padding(.bottom, 24)
-            Text(user.description)
+            Text(observed.user.description)
         }
         .padding(.horizontal, 24)
         .padding(.top, 28)
@@ -43,19 +47,40 @@ private extension ProfileFriendDetailView {
 
     var linkButtons: some View {
         VStack {
-            urlLinkButton
-            urlLinkButton
+            profileButton
+            linkedInButton
                 .padding(.bottom, 16)
         }
         .padding(.horizontal)
     }
 
-    var urlLinkButton: some View {
-        Text("LinkedIn")
-            .font(.headline)
-            .foregroundColor(.white)
-            .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 68)
-            .background(Color.seminarOrange)
-            .cornerRadius(15)
+    var profileButton: some View {
+        NavigationLink {
+            if observed.hasProfileURL() {
+                WebView(url: observed.user.profileURL)
+            }
+        } label: {
+            Text("Profile URL")
+                .font(.headline)
+                .foregroundColor(.white)
+                .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 68)
+                .background(observed.hasProfileURL() ? Color.seminarOrange : Color.inActiveButton)
+                .cornerRadius(15)
+        }
+    }
+
+    var linkedInButton: some View {
+        NavigationLink {
+            if observed.hasLinkedInURL() {
+                WebView(url: observed.user.linkedInURL)
+            }
+        } label: {
+            Text("LinkedIn")
+                .font(.headline)
+                .foregroundColor(.white)
+                .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 68)
+                .background(observed.hasLinkedInURL() ? Color.linkedInBlue : Color.inActiveButton)
+                .cornerRadius(15)
+        }
     }
 }

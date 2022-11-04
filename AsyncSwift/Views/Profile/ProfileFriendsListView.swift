@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileFriendsListView: View {
 
-    @ObservedObject var observed = ProfileFriendsListViewObserved()
+    @StateObject var observed = ProfileFriendsListViewObserved()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -28,7 +28,7 @@ struct ProfileFriendsListView: View {
 
 private extension ProfileFriendsListView {
     var friendList: some View {
-        ForEach(friends, id: \.self) { friend in
+        ForEach(observed.friends) { friend in
             ProfileViewButton(
                 title: "\(friend.name) | \(friend.nickname)",
                 linkTo: AnyView(ProfileFriendDetailView(user: friend))
@@ -51,7 +51,7 @@ let friends = [
         name: "Siwon Song",
         nickname: "SongCool",
         role: "Tech Mentor",
-        description: "안녕하세요 AsyncSwift Korea Organizer 입니다.\nApple Developver Academy @POSTECH 에서 테크멘토로 일하고 있고 저는 코드리뷰에 진심이며 일본을 사랑합니다. 와따시",
+        description: "안녕하세요 AsyncSwift Korea Organizer /Users/kiminsub/Desktop/Workspace/AsyncSwift/AsyncSwift/Observed/ProfileView/ProfileEditViewObserved.swift입니다.\nApple Developver Academy @POSTECH 에서 테크멘토로 일하고 있고 저는 코드리뷰에 진심이며 일본을 사랑합니다. 와따시",
         profileURL: "www.naver.com",
         linkedInURL: "www.youtube.com"
     ),
