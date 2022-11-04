@@ -30,7 +30,8 @@ final class ProfileViewObserved: ObservableObject {
         role: "",
         description: "",
         linkedInURL: "",
-        profileURL: ""
+        profileURL: "",
+        friends: []
     )
 
     var userID = UserDefaults.standard.string(forKey: "userID") {
@@ -43,6 +44,10 @@ final class ProfileViewObserved: ObservableObject {
         if hasRegisteredProfile {
             getUserByID()
         }
+    }
+
+    func didTapXButton() {
+        self.isShowingScanner = false
     }
 
     func getQRCodeImage() -> UIImage {
@@ -61,7 +66,11 @@ final class ProfileViewObserved: ObservableObject {
     func handleScan(result: Result<ScanResult, ScanError>) {
         switch result {
         case .success(let success):
-            print(success.string)
+            let uuidString = success.string
+            guard (UUID(uuidString: uuidString)) != nil else { return }
+            user.friends.append(uuidString)
+            print(user.friends)
+            FirebaseManager.shared.editUser(user: user)
         case .failure(let failure):
             print(failure)
         }
@@ -71,7 +80,6 @@ final class ProfileViewObserved: ObservableObject {
 private extension ProfileViewObserved {
     func getUserByID() {
         FirebaseManager.shared.getUserBy(id: self.userID ?? "") { user in
-            print(user)
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.user = user

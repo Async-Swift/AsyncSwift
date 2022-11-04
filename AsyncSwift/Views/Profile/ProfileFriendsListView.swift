@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ProfileFriendsListView: View {
 
-    @StateObject var observed = ProfileFriendsListViewObserved()
+    @ObservedObject var observed: ProfileFriendsListViewObserved
+
+    init(friends: [String]) {
+        observed = ProfileFriendsListViewObserved(friends: friends)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -28,7 +32,7 @@ struct ProfileFriendsListView: View {
 
 private extension ProfileFriendsListView {
     var friendList: some View {
-        ForEach(observed.friends) { friend in
+        ForEach(observed.friendsList) { friend in
             ProfileViewButton(
                 title: "\(friend.name) | \(friend.nickname)",
                 linkTo: AnyView(ProfileFriendDetailView(user: friend))
@@ -36,40 +40,4 @@ private extension ProfileFriendsListView {
             .padding(.bottom, 20)
         }
     }
-}
-
-let friends = [
-    Friend(
-        name: "Siwon Song",
-        nickname: "SongCool",
-        role: "Tech Mentor",
-        description: "안녕하세요 AsyncSwift Korea Organizer 입니다.\nApple Developver Academy @POSTECH 에서 테크멘토로 일하고 있고 저는 코드리뷰에 진심이며 일본을 사랑합니다. 와따시",
-        profileURL: "www.naver.com",
-        linkedInURL: "www.youtube.com"
-    ),
-    Friend(
-        name: "Siwon Song",
-        nickname: "SongCool",
-        role: "Tech Mentor",
-        description: "안녕하세요 AsyncSwift Korea Organizer /Users/kiminsub/Desktop/Workspace/AsyncSwift/AsyncSwift/Observed/ProfileView/ProfileEditViewObserved.swift입니다.\nApple Developver Academy @POSTECH 에서 테크멘토로 일하고 있고 저는 코드리뷰에 진심이며 일본을 사랑합니다. 와따시",
-        profileURL: "www.naver.com",
-        linkedInURL: "www.youtube.com"
-    ),
-    Friend(
-        name: "Siwon Song",
-        nickname: "SongCool",
-        role: "Tech Mentor",
-        description: "안녕하세요 AsyncSwift Korea Organizer 입니다.\nApple Developver Academy @POSTECH 에서 테크멘토로 일하고 있고 저는 코드리뷰에 진심이며 일본을 사랑합니다. 와따시",
-        profileURL: "www.naver.com",
-        linkedInURL: "www.youtube.com"
-    )
-]
-
-struct Friend: Hashable {
-    let name: String
-    let nickname: String
-    let role: String
-    let description: String
-    let profileURL: String
-    let linkedInURL: String
 }

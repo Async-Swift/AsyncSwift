@@ -14,7 +14,7 @@ final class ProfileEditViewObserved: ObservableObject {
     @Published var isShowingFailureAlert = false
     @Published var isShowingInputFailureAlert = false
 
-    let userID: String
+    let user: User
     @Published var name = ""
     @Published var nickname = ""
     @Published var role = ""
@@ -39,7 +39,7 @@ final class ProfileEditViewObserved: ObservableObject {
     var isProfileURLValidated = false
 
     init(user: User) {
-        self.userID = user.id
+        self.user = user
         self.name = user.name
         self.nickname = user.nickname
         self.role = user.role
@@ -135,13 +135,14 @@ private extension ProfileEditViewObserved {
 
     func editUser() async {
         let user = User(
-            id: userID,
+            id: user.id,
             name: name,
             nickname: nickname,
             role: role,
             description: description,
             linkedInURL: linkedInURL,
-            profileURL: profileURL
+            profileURL: profileURL,
+            friends: user.friends
         )
         FirebaseManager.shared.editUser(user: user)
     }

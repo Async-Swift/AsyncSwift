@@ -17,19 +17,21 @@ final class FirebaseManager: ObservableObject {
 extension FirebaseManager {
     func createUser(user: User) {
         let docRef = db.collection("users").document(user.id)
-        docRef.setData([
+        let docData: [String: Any] = [
             "id": user.id,
             "name": user.name,
             "nickname": user.nickname,
             "role": user.role,
             "description": user.description,
             "linkedInURL": user.linkedInURL,
-            "profileURL": user.profileURL
-        ]) { error in
+            "profileURL": user.profileURL,
+            "friends": []
+        ]
+        docRef.setData(docData) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
-                print("Document successfully written!")
+                print("Document successfully written")
             }
         }
     }
@@ -49,7 +51,8 @@ extension FirebaseManager {
                         role: data["role"] as? String ?? "",
                         description: data["description"] as? String ?? "",
                         linkedInURL: data["linkedInURL"] as? String ?? "",
-                        profileURL: data["profileURL"] as? String ?? ""
+                        profileURL: data["profileURL"] as? String ?? "",
+                        friends: data["friends"] as? [String] ?? []
                     )
                     completion(user)
                 }
@@ -59,21 +62,22 @@ extension FirebaseManager {
 
     func editUser(user: User) {
         let docRef = db.collection("users").document(user.id)
-
-        docRef.setData([
+        let docData: [String: Any] = [
             "id": user.id,
             "name": user.name,
             "nickname": user.nickname,
             "role": user.role,
             "description": user.description,
             "linkedInURL": user.linkedInURL,
-            "profileURL": user.profileURL],
-            merge: true
-        ) { error in
+            "profileURL": user.profileURL,
+            "friends": user.friends
+        ]
+
+        docRef.setData(docData) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
-                print("Document successfully merged!")
+                print("Document successfully editted")
             }
         }
     }

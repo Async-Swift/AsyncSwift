@@ -142,7 +142,8 @@ private extension ProfileRegisterViewObserved {
             role: role,
             description: description,
             linkedInURL: linkedInURL,
-            profileURL: profileURL
+            profileURL: profileURL,
+            friends: []
         )
         self.userID = userId
         FirebaseManager.shared.createUser(user: user)

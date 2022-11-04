@@ -21,7 +21,9 @@ struct ProfileView: View {
             VStack(spacing: 0) {
                 header
                 Spacer()
-                friendLinkButton
+                if observed.hasRegisteredProfile {
+                    friendLinkButton
+                }
                 editProfileLinkButton
             }
             .onAppear {
@@ -29,9 +31,9 @@ struct ProfileView: View {
             }
             .navigationTitle("Profile")
             .navigationBarItems(trailing: codeScannerButton)
-            .sheet(isPresented: $observed.isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "1AA5CC09-6F7F-4EC4-A2BE-819B93362B7B", completion: observed.handleScan)
-            }
+            .fullScreenCover(isPresented: $observed.isShowingScanner, content: {
+                scannerView
+            })
         }
     }
 }
@@ -98,7 +100,7 @@ private extension ProfileView {
         ProfileViewButton(
             title: "Friends",
             linkTo: AnyView(
-                ProfileFriendsListView()
+                ProfileFriendsListView(friends: observed.user.friends)
             )
         )
             .padding(.bottom, 16)
@@ -114,11 +116,50 @@ private extension ProfileView {
             .padding(.bottom, 32)
     }
 
+    @ViewBuilder
     var codeScannerButton: some View {
-        Button {
-            observed.isShowingScanner = true
-        } label: {
-            Image(systemName: "qrcode.viewfinder")
+        if observed.hasRegisteredProfile {
+            Button {
+                observed.isShowingScanner = true
+            } label: {
+                Image(systemName: "qrcode.viewfinder")
+            }
+        } else {
+            Button {
+
+            } label: {
+                Image(systemName: "qrcode.viewfinder")
+                    .foregroundColor(.gray)
+            }
+        }
+    }
+
+    var scannerView: some View {
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        observed.didTapXButton()
+                    } label: {
+                        Image(systemName: "x.circle")
+                    }
+                    .padding()
+                    .foregroundColor(.black)
+                }
+                HStack {
+                    Text("QR을 스캔해주세요.")
+                }
+                Spacer()
+            }
+            VStack {
+                CodeScannerView(
+                    codeTypes: [.qr],
+                    simulatedData: "1AA5CC09-6F7F-4EC4-A2BE-819B93362B7B",
+                    completion: observed.handleScan
+                )
+                .frame(height: 400)
+            }
         }
     }
 }

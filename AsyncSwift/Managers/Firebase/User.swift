@@ -15,4 +15,5 @@ struct User: Identifiable {
     var description: String
     var linkedInURL: String
     var profileURL: String
+    var friends: [String]
 }
