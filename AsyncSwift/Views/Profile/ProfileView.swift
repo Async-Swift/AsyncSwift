@@ -42,9 +42,40 @@ private extension ProfileView {
     @ViewBuilder
     var header: some View {
         if observed.hasRegisteredProfile {
-            hasRegisteredHeader
+            if observed.isLoading {
+                hasRegisteredHeaderLoadingView
+            } else {
+                hasRegisteredHeader
+            }
         } else {
             registerHeader
+        }
+    }
+
+    var hasRegisteredHeaderLoadingView: some View {
+        VStack(spacing: 0) {
+            customDivider
+                .padding(.top, 10)
+                .padding(.bottom, 55)
+            Rectangle()
+                .frame(width: 150, height:  150)
+                .foregroundColor(Color.profileGray)
+                .cornerRadius(15)
+                .padding(.bottom, 43)
+            Rectangle()
+                .frame(width: 130, height: 20)
+                .foregroundColor(Color.unavailableButtonBackground)
+                .cornerRadius(15)
+                .padding(.bottom, 18)
+            Rectangle()
+                .frame(width: 304, height: 20)
+                .foregroundColor(Color.skeletonBackground)
+                .cornerRadius(15)
+                .padding(.bottom, 4)
+            Rectangle()
+                .frame(width: 304, height: 20)
+                .foregroundColor(Color.skeletonBackground)
+                .cornerRadius(15)
         }
     }
 
@@ -96,14 +127,20 @@ private extension ProfileView {
         }
     }
 
+    @ViewBuilder
     var friendLinkButton: some View {
-        ProfileViewButton(
-            title: "Friends",
-            linkTo: AnyView(
-                ProfileFriendsListView(friends: observed.user.friends)
+        if observed.isLoading {
+            friendsLoadingButton
+                .padding(.bottom, 16)
+        } else {
+            ProfileViewButton(
+                title: "Friends",
+                linkTo: AnyView(
+                    ProfileFriendsListView(friends: observed.user.friends)
+                )
             )
-        )
-            .padding(.bottom, 16)
+                .padding(.bottom, 16)
+        }
     }
 
     var editProfileLinkButton: some View {
@@ -135,31 +172,50 @@ private extension ProfileView {
     }
 
     var scannerView: some View {
-        ZStack {
-            VStack {
+        VStack {
+            ZStack {
+                Text("코드스캔")
                 HStack {
                     Spacer()
                     Button {
                         observed.didTapXButton()
                     } label: {
-                        Image(systemName: "x.circle")
+                        Image(systemName: "xmark")
                     }
                     .padding()
-                    .foregroundColor(.black)
                 }
-                HStack {
-                    Text("QR을 스캔해주세요.")
-                }
+            }
+            .frame(height: 51)
+            CodeScannerView(
+                codeTypes: [.qr],
+                simulatedData: "1AA5CC09-6F7F-4EC4-A2BE-819B93362B7B",
+                completion: observed.handleScan
+            )
+            HStack {
+                Text("QR코드를 스캔해 보세요. 프로필 상세 정보를 확인할 수 있습니다.")
+                    .font(.caption2)
+            }
+            .frame(height: 70)
+        }
+    }
+
+    var friendsLoadingButton: some View {
+        Button {
+
+        } label: {
+            HStack {
+                Text("Friends")
+                    .font(.headline)
                 Spacer()
+                Image(systemName: "chevron.forward")
             }
-            VStack {
-                CodeScannerView(
-                    codeTypes: [.qr],
-                    simulatedData: "1AA5CC09-6F7F-4EC4-A2BE-819B93362B7B",
-                    completion: observed.handleScan
-                )
-                .frame(height: 400)
-            }
+            .foregroundColor(.black)
+            .padding(.horizontal, 19)
+            .padding(.vertical, 23)
+            .frame(maxWidth: .infinity, maxHeight: 68)
+            .background(Color.buttonBackground)
+            .cornerRadius(15)
+            .padding(.horizontal)
         }
     }
 }

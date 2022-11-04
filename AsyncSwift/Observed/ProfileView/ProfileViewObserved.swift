@@ -21,6 +21,8 @@ final class ProfileViewObserved: ObservableObject {
         }
     }
 
+    @Published var isLoading = true
+
     @Published var isShowingScanner = false
 
     @Published var user: User = User(
@@ -42,7 +44,13 @@ final class ProfileViewObserved: ObservableObject {
 
     func onAppear() {
         if hasRegisteredProfile {
-            getUserByID()
+            Task {
+                await getUserByID()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                    guard let self = self else { return }
+                    self.isLoading = false
+                }
+            }
         }
     }
 
@@ -71,6 +79,7 @@ final class ProfileViewObserved: ObservableObject {
             user.friends.append(uuidString)
             print(user.friends)
             FirebaseManager.shared.editUser(user: user)
+            self.isShowingScanner = false
         case .failure(let failure):
             print(failure)
         }
@@ -78,7 +87,7 @@ final class ProfileViewObserved: ObservableObject {
 }
 
 private extension ProfileViewObserved {
-    func getUserByID() {
+    func getUserByID() async {
         FirebaseManager.shared.getUserBy(id: self.userID ?? "") { user in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }

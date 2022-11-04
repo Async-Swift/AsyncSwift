@@ -9,22 +9,25 @@ import Foundation
 
 final class ProfileFriendDetailViewObserved: ObservableObject {
 
+    @Published var isShowingLinkedInSheet = false
+    @Published var isShowingProfileSheet = false
+
     let user: User
 
     init(user: User) {
         self.user = user
     }
 
-    func hasLinkedInURL() -> Bool {
-        if user.linkedInURL.isEmpty {
+    func hasProfileURL() -> Bool {
+        if user.profileURL.isEmpty {
             return false
         } else {
             return true
         }
     }
 
-    func hasProfileURL() -> Bool {
-        if user.profileURL.isEmpty {
+    func hasLinkedInURL() -> Bool {
+        if user.linkedInURL.isEmpty {
             return false
         } else {
             return true

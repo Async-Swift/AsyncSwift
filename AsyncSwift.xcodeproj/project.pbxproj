@@ -11,6 +11,7 @@
 		B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289943228CA69FF002B9F67 /* StampView+Observed.swift */; };
 		B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* AppData.swift */; };
 		B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FC6F6228D309FF00D2ACBF /* Stamp.swift */; };
+		C631EBC3291537E300A54143 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C631EBC2291537E300A54143 /* SafariView.swift */; };
 		C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */; };
 		C63A866328CB3D490064C417 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866228CB3D490064C417 /* View+.swift */; };
 		C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866428CB3F6D0064C417 /* DateFormatter+.swift */; };
@@ -61,6 +62,7 @@
 		B289943228CA69FF002B9F67 /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
 		B2E1083028C9CD6900C3DD59 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		B2FC6F6228D309FF00D2ACBF /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
+		C631EBC2291537E300A54143 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+Observed.swift"; sourceTree = "<group>"; };
 		C63A866228CB3D490064C417 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C63A866428CB3F6D0064C417 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				C6AABAC22901875100779203 /* TextField+.swift */,
 				C66E3D98290BB9C100097BEA /* TextEditor+.swift */,
 				E9E2A4D728CEC5680016AEFF /* WebView.swift */,
+				C631EBC2291537E300A54143 /* SafariView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
 				C69C13C1291418A000D9B47F /* ProfileEditView.swift in Sources */,
+				C631EBC3291537E300A54143 /* SafariView.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
 				C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,

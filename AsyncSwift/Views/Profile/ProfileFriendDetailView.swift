@@ -24,6 +24,14 @@ struct ProfileFriendDetailView: View {
             linkButtons
         }
         .navigationTitle(observed.user.name)
+        .fullScreenCover(isPresented: $observed.isShowingProfileSheet, content: {
+            SafariView(url: observed.user.profileURL)
+                .ignoresSafeArea()
+        })
+        .fullScreenCover(isPresented: $observed.isShowingLinkedInSheet, content: {
+            SafariView(url: observed.user.linkedInURL)
+                .ignoresSafeArea()
+        })
     }
 }
 
@@ -55,9 +63,9 @@ private extension ProfileFriendDetailView {
     }
 
     var profileButton: some View {
-        NavigationLink {
+        Button {
             if observed.hasProfileURL() {
-                WebView(url: observed.user.profileURL)
+                observed.isShowingProfileSheet = true
             }
         } label: {
             Text("Profile URL")
@@ -70,9 +78,9 @@ private extension ProfileFriendDetailView {
     }
 
     var linkedInButton: some View {
-        NavigationLink {
+        Button {
             if observed.hasLinkedInURL() {
-                WebView(url: observed.user.linkedInURL)
+                observed.isShowingLinkedInSheet = true
             }
         } label: {
             Text("LinkedIn")
