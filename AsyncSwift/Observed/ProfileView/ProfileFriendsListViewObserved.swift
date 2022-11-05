@@ -25,7 +25,10 @@ final class ProfileFriendsListViewObserved: ObservableObject {
     }
 
     func onAppear() {
-        getFriendsByID()
+        Task {
+            await getFriendsByID()
+            self.isLoading = false
+        }
     }
 
     func didTapXButton() {
@@ -49,7 +52,7 @@ final class ProfileFriendsListViewObserved: ObservableObject {
 }
 
 private extension ProfileFriendsListViewObserved {
-    func getFriendsByID() {
+    func getFriendsByID() async {
         friendsList = []
         for friendID in user.friends {
             FirebaseManager.shared.getUserBy(id: friendID) { user in
@@ -59,7 +62,6 @@ private extension ProfileFriendsListViewObserved {
                 }
             }
         }
-        self.isLoading = false
     }
 
     func isNewFriend(id: String) -> Bool {

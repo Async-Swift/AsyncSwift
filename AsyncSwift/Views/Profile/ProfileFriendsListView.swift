@@ -73,6 +73,7 @@ private extension ProfileFriendsListView {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 56)
                 .foregroundColor(Color.inActiveButton)
                 .cornerRadius(15)
+                .padding(.bottom, 20)
         }
         .padding(.horizontal)
     }
