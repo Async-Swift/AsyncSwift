@@ -20,11 +20,9 @@ final class ProfileViewObserved: ObservableObject {
             UserDefaults.standard.set(hasRegisteredProfile, forKey: "hasRegisterProfile")
         }
     }
-
     @Published var isLoading = true
-
+    @Published var isShowingFriends = false
     @Published var isShowingScanner = false
-
     @Published var user: User = User(
         id: "",
         name: "",
@@ -44,12 +42,10 @@ final class ProfileViewObserved: ObservableObject {
 
     func onAppear() {
         if hasRegisteredProfile {
-            Task {
-                await getUserByID()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                    guard let self = self else { return }
-                    self.isLoading = false
-                }
+            getUserByID()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
+                guard let self = self else { return }
+//                self.isLoading = false
             }
         }
     }
@@ -76,8 +72,8 @@ final class ProfileViewObserved: ObservableObject {
         case .success(let success):
             let uuidString = success.string
             guard (UUID(uuidString: uuidString)) != nil else { return }
+            guard isNewFriend(id: uuidString) else { return }
             user.friends.append(uuidString)
-            print(user.friends)
             FirebaseManager.shared.editUser(user: user)
             self.isShowingScanner = false
         case .failure(let failure):
@@ -87,13 +83,17 @@ final class ProfileViewObserved: ObservableObject {
 }
 
 private extension ProfileViewObserved {
-    func getUserByID() async {
+    func getUserByID() {
         FirebaseManager.shared.getUserBy(id: self.userID ?? "") { user in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.user = user
             }
         }
+    }
+
+    func isNewFriend(id: String) -> Bool {
+        return !user.friends.contains(id)
     }
 }
 

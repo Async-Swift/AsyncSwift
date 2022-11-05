@@ -8,7 +8,6 @@
 import SwiftUI
 import CodeScanner
 
-
 // TODO
 // 1 : Enter 치면 다음 input focused 되도록 변경
 
@@ -56,26 +55,37 @@ private extension ProfileView {
         VStack(spacing: 0) {
             customDivider
                 .padding(.top, 10)
-                .padding(.bottom, 55)
+                .padding(.bottom, 56)
             Rectangle()
-                .frame(width: 150, height:  150)
-                .foregroundColor(Color.profileGray)
-                .cornerRadius(15)
-                .padding(.bottom, 43)
+                .frame(width: 130, height:  130)
+                .foregroundColor(Color.AFAFAF)
+                .padding(.bottom, 26)
             Rectangle()
-                .frame(width: 130, height: 20)
-                .foregroundColor(Color.unavailableButtonBackground)
-                .cornerRadius(15)
-                .padding(.bottom, 18)
+                .frame(width: 165, height: 23)
+                .foregroundColor(Color.D9D9D9)
+                .cornerRadius(4)
+                .padding(.bottom, 7)
             Rectangle()
-                .frame(width: 304, height: 20)
-                .foregroundColor(Color.skeletonBackground)
-                .cornerRadius(15)
-                .padding(.bottom, 4)
-            Rectangle()
-                .frame(width: 304, height: 20)
-                .foregroundColor(Color.skeletonBackground)
-                .cornerRadius(15)
+                .frame(width: 91, height: 16)
+                .foregroundColor(Color.D9D9D9)
+                .cornerRadius(4)
+                .padding(.bottom, 25)
+            VStack(alignment: .leading, spacing: 0) {
+                Rectangle()
+                    .frame(width: 309, height: 16)
+                    .foregroundColor(Color.EAEAEA)
+                    .cornerRadius(4)
+                    .padding(.bottom, 3)
+                Rectangle()
+                    .frame(width: 309, height: 16)
+                    .foregroundColor(Color.EAEAEA)
+                    .cornerRadius(4)
+                    .padding(.bottom, 3)
+                Rectangle()
+                    .frame(width: 221, height: 16)
+                    .foregroundColor(Color.EAEAEA)
+                    .cornerRadius(4)
+            }
         }
     }
 
@@ -130,15 +140,17 @@ private extension ProfileView {
     @ViewBuilder
     var friendLinkButton: some View {
         if observed.isLoading {
-            friendsLoadingButton
+            linkLabelButton(text: "Friends", action: {
+
+            })
                 .padding(.bottom, 16)
         } else {
-            ProfileViewButton(
-                title: "Friends",
-                linkTo: AnyView(
-                    ProfileFriendsListView(friends: observed.user.friends)
-                )
-            )
+            NavigationLink(destination: ProfileFriendsListView(user: observed.user), isActive: $observed.isShowingFriends, label: {
+                linkLabelButton(text: "Friends") {
+                    observed.isShowingFriends = true
+                }
+            })
+
                 .padding(.bottom, 16)
         }
     }
@@ -199,9 +211,9 @@ private extension ProfileView {
         }
     }
 
-    var friendsLoadingButton: some View {
+    func linkLabelButton(text: String, action: @escaping (() -> Void)) -> some View {
         Button {
-
+            action()
         } label: {
             HStack {
                 Text("Friends")
