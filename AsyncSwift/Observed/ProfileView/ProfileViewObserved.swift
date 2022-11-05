@@ -100,11 +100,7 @@ final class ProfileViewObserved: ObservableObject {
 private extension ProfileViewObserved {
     func handleScanSuccess(id: String) async {
         guard (UUID(uuidString: id)) != nil else { return }
-        guard isNewFriend(id: id) else {
-            print("else")
-            return
-        }
-        print("passed")
+        guard isNewFriend(id: id) else { return }
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.user.friends.append(id)

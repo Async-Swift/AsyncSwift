@@ -43,17 +43,19 @@ struct ProfileFriendsListView: View {
 private extension ProfileFriendsListView {
     @ViewBuilder
     var friendList: some View {
-        ScrollView {
-            Group {
-                if observed.user.friends.isEmpty {
-                    emptyList
-                } else if observed.isLoading {
-                    loadingList
-                } else {
-                    list
+        if observed.user.friends.isEmpty {
+            emptyList
+        } else {
+            ScrollView {
+                Group {
+                    if observed.isLoading {
+                        loadingList
+                    } else {
+                        list
+                    }
                 }
+                .padding(.top, 30)
             }
-            .padding(.top, 30)
         }
     }
 
