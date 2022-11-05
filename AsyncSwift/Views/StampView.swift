@@ -20,13 +20,7 @@ struct StampView: View {
                     ScrollViewReader { value in
                         ZStack {
                             ForEach(0..<observed.cards.count, id: \.self) { index in
-                                observed.cards[observed.events[index]]?.currentImage?
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .offset(y: observed.getCardOffsetY(index: index))
-                                    .onTapGesture {
-                                        observed.didCardTapped(index: index)
-                                    }
+                                cardView(index: index)
                             }
                         }
                         .offset(y: UIScreen.main.bounds.height / 2)
@@ -55,7 +49,15 @@ private extension StampView {
         }
     }
     
-    
+    func cardView(index: Int) -> some View {
+        observed.cards[observed.events[index]]?.currentImage?
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .offset(y: observed.getCardOffsetY(index: index))
+            .onTapGesture {
+                observed.didCardTapped(index: index)
+            }
+    }
 }
 
 struct StampView_Previews: PreviewProvider {
