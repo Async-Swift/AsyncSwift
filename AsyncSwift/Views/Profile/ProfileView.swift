@@ -21,7 +21,7 @@ struct ProfileView: View {
                 header
                 Spacer()
                 if observed.hasRegisteredProfile {
-                    friendLinkButton
+                    friendsListLinkButton
                 }
                 editProfileLinkButton
             }
@@ -146,7 +146,7 @@ private extension ProfileView {
     }
 
     @ViewBuilder
-    var friendLinkButton: some View {
+    var friendsListLinkButton: some View {
         if observed.isLoading {
             Button { } label: {
                 linkLabelButtonLabel(text: "Friends")

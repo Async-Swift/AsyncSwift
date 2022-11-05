@@ -17,7 +17,10 @@ final class ProfileFriendsListViewObserved: ObservableObject {
     @Published var isShowingUserDetail = false {
         didSet {
             if isShowingUserDetail == false {
-                inActive = false
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.inActive = false
+                }
             }
         }
     }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProfileFriendDetailView: View {
-
     @ObservedObject var observed: ProfileFriendDetailViewObserved
+
     init(
         previous: PreviousView,
         inActive: Binding<Bool>,
