@@ -12,8 +12,11 @@ struct ProfileFriendsListView: View {
 
     @ObservedObject var observed: ProfileFriendsListViewObserved
 
-    init(user: User) {
-        observed = ProfileFriendsListViewObserved(user: user)
+    init(inActive: Binding<Bool>, user: User) {
+        observed = ProfileFriendsListViewObserved(
+            inActive: inActive,
+            user: user
+        )
     }
 
     var body: some View {
@@ -63,7 +66,7 @@ private extension ProfileFriendsListView {
                 .foregroundColor(.profileGray)
                 .padding(.bottom, 17)
             Button {
-
+                observed.isShowingScanner = true
             } label: {
                 Text("프로필 스캔하기")
                     .foregroundColor(.seminarOrange)

@@ -145,7 +145,10 @@ private extension ProfileView {
             })
                 .padding(.bottom, 16)
         } else {
-            NavigationLink(destination: ProfileFriendsListView(user: observed.user), isActive: $observed.isShowingFriends, label: {
+            NavigationLink(destination: ProfileFriendsListView(
+                inActive: $observed.isShowingFriends,
+                user: observed.user
+            ), isActive: $observed.isShowingFriends, label: {
                 linkLabelButton(text: "Friends") {
                     observed.isShowingFriends = true
                 }

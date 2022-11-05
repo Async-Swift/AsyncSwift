@@ -6,19 +6,21 @@
 //
 
 import Combine
-import Foundation
 import CodeScanner
+import SwiftUI
 
 // TODO
 // 1. friendsList 스캔후 KeyChain 에 저장
 
 final class ProfileFriendsListViewObserved: ObservableObject {
+    @Binding var inActive: Bool
     @Published var isLoading = true
     @Published var isShowingScanner = false
     @Published var friendsList: [User] = []
     var user: User
 
-    init(user: User) {
+    init(inActive: Binding<Bool>, user: User) {
+        self._inActive = inActive
         self.user = user
     }
 
@@ -39,6 +41,7 @@ final class ProfileFriendsListViewObserved: ObservableObject {
             user.friends.append(uuidString)
             FirebaseManager.shared.editUser(user: user)
             self.isShowingScanner = false
+            self.inActive = false
         case .failure(let failure):
             print(failure)
         }
