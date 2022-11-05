@@ -6,80 +6,68 @@
 //
 
 import SwiftUI
+struct Card {
+    var image: Image
+    var imageExtend: Image
+    var originalPosition: CGFloat
+    var eventTitle: String
+    var isSelected = false
+    var currentImage: Image
+}
+
 
 extension StampView {
     @MainActor final class Observed: ObservableObject {
-        @Published var cardAnimatonModel = CardAnimationModel()
-        @Published var stampImages = [String : [String: UIImage]]()
-        var events: [String]? = nil
+        @Published var cards = [String: Card]()
+        @Published var events: [String]? = nil
         private let keyChainManager = KeyChainManager()
-        
-        private let durationAndDelay: CGFloat = 0.3
-        
+            
         init() {
             fetchStampsImages()
         }
         
-        func didTabCard () {
-            cardAnimatonModel.isTapped.toggle()
-            
-            if cardAnimatonModel.isTapped { // 카드 회전 연속을 위해서 if문 분리
-                withAnimation(.linear(duration: durationAndDelay)) {
-                    cardAnimatonModel.backDegree = 90
-                }
-                withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
-                    cardAnimatonModel.frontDegree = 0
-                }
-            } else {
-                withAnimation(.linear(duration: durationAndDelay)) {
-                    cardAnimatonModel.frontDegree = -90
-                }
-                withAnimation(.linear(duration: durationAndDelay).delay(durationAndDelay)) {
-                    cardAnimatonModel.backDegree = 0
-                }
-            }
+        private func getEvents() -> [String] {
+            let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
+            events = pwRaw?.convertToStringArray()?.reversed()
+            guard let events = events else { return [] }
+            return events
         }
         
         /// Storage에 저장되어 있는 Stamp Image를 가져오는 함수이다.
-        /// - stampImages에 stampImages[이벤트 이름][front/back] 에 UIImage 형태로 저장된다.
+        /// - 
         func fetchStampsImages(){
-            let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
+            let events = getEvents()
             
-            events = pwRaw?.convertToStringArray()
-            
-            guard let events = events else { return }
-            
-            
-            for event in events.reversed() {
-                self.stampImages[event] = .init()
+            events.enumerated().forEach {
+                let event = $0.element
+                let index = $0.offset
+                Task { @MainActor () -> Void in
+                    guard let cardImageURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/ver2Test/Images/Stamp/" + event + "/stamp.png"),
+                          let cardImageExtendURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/ver2Test/Images/Stamp/" + event + "/stampex.png")
+                    else { return }
+                    let cardImageRequest = URLRequest(url: cardImageURL)
+                    let cardImageExtendRequest = URLRequest(url: cardImageExtendURL)
+                    
+                    let (cardImageData, cardImageResponse) = try await URLSession.shared.data(for: cardImageRequest)
+                    guard let httpsResponse = cardImageResponse as? HTTPURLResponse, httpsResponse.statusCode == 200 else { return }
+                    
+                    let (cardImageExtendData, cardImageExtendResponse) = try await URLSession.shared.data(for: cardImageExtendRequest)
+                    guard let httpsResponse = cardImageExtendResponse as? HTTPURLResponse, httpsResponse.statusCode == 200 else { return }
+                    
+                    guard let cardUIImage = UIImage(data: cardImageData), let cardExtendUIImage = UIImage(data: cardImageExtendData) else { return }
+                    
+                    self.cards[event] = Card(image: Image(uiImage: cardUIImage),
+                                             imageExtend: Image(uiImage: cardExtendUIImage),
+                                             originalPosition: CGFloat(56 * (index + 1)),
+                                             eventTitle: event,
+                                             currentImage: Image(uiImage: cardUIImage))
+                    if index == 0 {
+                        self.cards[event]?.isSelected = true
+                    }
+                } // Task
+            } // forEach
+        } // fetchStampsImages
                 
-                Task { @MainActor () -> Void in
-                    guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "Front.png") else { return }
-                    let request = URLRequest(url: url)
-                    let (data, response) = try await URLSession.shared.data(for: request)
-
-                    guard let httpResponse = response as? HTTPURLResponse,
-                          httpResponse.statusCode == 200 else { return }
-                    // Publisher를 수정하기 위한 DispatchQueue
-                    DispatchQueue.main.async { [weak self] in
-                        self?.stampImages[event]?["front"] = UIImage(data: data)
-                    }
-                }
-                Task { @MainActor () -> Void in
-                    guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "Back.png") else { return }
-                    let request = URLRequest(url: url)
-                    let (data, response) = try await URLSession.shared.data(for: request)
-
-                    guard let httpResponse = response as? HTTPURLResponse,
-                          httpResponse.statusCode == 200 else { return }
-
-                    DispatchQueue.main.async { [weak self] in
-                        self?.stampImages[event]?["back"] = UIImage(data: data)
-                    }
-                }
-            }
-        }
-        
         func openByLink(url: URL) async {
             // URL Example = https://asyncswift.info?tab=Stamp&event=seminar002
             // URL Example = https://asyncswift.info?tab=Event
@@ -120,7 +108,7 @@ extension StampView {
         }
         
         private func fetchCurrentStamp() async throws -> Stamp {
-            guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/currentEvent.json")
+            guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/ver2Test/currentEvent.json") // MARK: URL 주소 확인 테스트용으로 되어 있음
             else { return .init(title: "error") }
             
             let request = URLRequest(url: url)
@@ -133,14 +121,5 @@ extension StampView {
             
             return stamp
         }
-    }
-    
-    struct CardAnimationModel: Identifiable {
-        fileprivate init() {}
-        
-        let id = UUID()
-        var backDegree: Double = 0.0
-        var frontDegree: Double = -90.0
-        var isTapped = false
     }
 }

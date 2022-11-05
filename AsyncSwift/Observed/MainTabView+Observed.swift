@@ -21,7 +21,7 @@ extension MainTabView {
         func fixKeyChain() {
             let isKeyDelete = keyChainManager.deleteItem(key: "seminar002")
             if isKeyDelete {
-                keyChainManager.addItem(key: keyChainManager.stampKey, pwd: ["seminar002"].description)
+                keyChainManager.addItem(key: keyChainManager.stampKey, pwd: ["Seminar002"].description)
             }
         }
     }

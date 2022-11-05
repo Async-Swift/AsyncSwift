@@ -2,71 +2,88 @@
 //  StampView.swift
 //  AsyncSwift
 //
-//  Created by Kim Insub on 2022/09/08.
+//  Created by Inho Choi on 2022/10/29.
 //
 
 import SwiftUI
+import UIKit
 
 struct StampView: View {
     @StateObject var observed = Observed()
-
+    @State var currentIndex: Int = 0
+    @State var isExpand = false
+    
     var body: some View {
-        NavigationView {
-            Group {
-                if observed.events?.count ?? 0 > 0 {
-                    ZStack {
-                        stampBack
-                        stampFront
+        ScrollView(showsIndicators: false) {
+            ScrollViewReader { value in
+                ZStack {
+                    ForEach(0..<observed.cards.count, id: \.self) { index in
+                        observed.cards[observed.events![index]]!.currentImage
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .offset(y: calculateY(index: index))
+                            .onTapGesture {
+                                if index == currentIndex {
+                                        if isExpand {
+                                            withAnimation(.spring()) {
+                                                observed.cards[observed.events![index]]!.currentImage = observed.cards[observed.events![index]]!.image
+                                                isExpand = false
+                                            }
+                                        } else {
+                                            withAnimation(.spring()) {
+                                                observed.cards[observed.events![index]]!.currentImage = observed.cards[observed.events![index]]!.imageExtend
+                                                isExpand = true
+                                            }
+                                        }
+                                } else {
+                                    withAnimation(.spring()) {
+                                        observed.cards[observed.events![index]]!.isSelected = true
+                                        observed.cards[observed.events![currentIndex]]!.isSelected = false
+                                        if isExpand {
+                                            observed.cards[observed.events![currentIndex]]!.currentImage = observed.cards[observed.events![currentIndex]]!.image
+                                            isExpand = false
+                                        }
+                                        currentIndex = index
+                                    }
+                                }
+//                                print("====Seminar002====")
+//                                let seminar = observed.cards["Seminar002"]!
+//                                print("Selected", seminar.isSelected)
+//                                print("OriginalPositon", seminar.originalPosition)
+//                                print("====Conference001====")
+//                                let conference = observed.cards["Conference001"]!
+//                                print("Selected", conference.isSelected)
+//                                print("OriginalPositon", conference.originalPosition)
+//                                print("====View====")
+//                                print("currentIndex", currentIndex)
+//                                print("isExtend", isExpand)
+                            }
                     }
-                        .onTapGesture {
-                        observed.didTabCard()
-                    }
-                } else {
-                    notScannedView
                 }
+                .offset(y: UIScreen.main.bounds.height / 2)
             }
-                .padding(36)
-                .navigationTitle("Stamp")
-                .onAppear {
-                    observed.fetchStampsImages()
-                }
-                .onOpenURL { url in
-                    Task {
-                        await observed.openByLink(url: url)
-                    }
-                }
+            Spacer(minLength: isExpand ? UIScreen.main.bounds.height : 0)
+        }
+        .padding()
+        .onOpenURL{ url in
+            Task {
+                await observed.openByLink(url: url)
+            }
         }
     } // body
-} // View
+}
 
-private extension StampView {
-
-    @ViewBuilder
-    var stampBack: some View {
-        Image(uiImage: observed.stampImages["seminar002"]?["back"] ?? UIImage())
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * observed.cardAnimatonModel.frontDegree / 90, y: 4)
-            .rotation3DEffect(Angle(degrees: observed.cardAnimatonModel.frontDegree), axis: (x: 0, y: 1, z: 0))
-    }
-
-    @ViewBuilder
-    var stampFront: some View {
-        Image(uiImage: observed.stampImages["seminar002"]?["front"] ?? UIImage())
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * observed.cardAnimatonModel.backDegree / 90, y: 4)
-            .rotation3DEffect(Angle(degrees: observed.cardAnimatonModel.backDegree), axis: (x: 0, y: 1, z: 0))
-    }
-
-    @ViewBuilder
-    var notScannedView: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 30)
-                .strokeBorder(Color(red: 0.78, green: 0.78, blue: 0.8), style: StrokeStyle(lineWidth: 2, dash: [10]))
-
-            Text("아직 참여한 행사가 없습니다.")
-                .foregroundColor(.gray)
+extension StampView {
+    func calculateY(index : Int?) -> CGFloat {
+        withAnimation(.spring()) {
+            guard let index = index else { return .zero }
+            var result: CGFloat
+            if observed.cards[observed.events![index]]!.isSelected {
+                result = .zero - UIScreen.main.bounds.height / 2
+            } else {
+                result = observed.cards[observed.events![index]]!.originalPosition
+            }
+            return result
         }
     }
 }
@@ -74,5 +91,11 @@ private extension StampView {
 struct StampView_Previews: PreviewProvider {
     static var previews: some View {
         StampView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
+        
+        StampView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone SE (3rd generation)"))
     }
 }
+
+
