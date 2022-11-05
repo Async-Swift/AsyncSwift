@@ -40,23 +40,13 @@ struct ProfileFriendsListView: View {
 private extension ProfileFriendsListView {
     @ViewBuilder
     var friendList: some View {
-        if observed.isLoading {
-            loadingList
-        } else if observed.user.friends.isEmpty {
+        if observed.user.friends.isEmpty {
             emptyList
+        } else if observed.isLoading {
+            loadingList
         } else {
             list
         }
-    }
-
-    var loadingList: some View {
-        ForEach(0..<observed.user.friends.count, id: \.self) { friend in
-            Rectangle()
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 56)
-                .foregroundColor(Color.inActiveButton)
-                .cornerRadius(15)
-        }
-        .padding(.horizontal)
     }
 
     var emptyList: some View {
@@ -76,13 +66,39 @@ private extension ProfileFriendsListView {
         }
     }
 
+    var loadingList: some View {
+        ForEach(0..<observed.user.friends.count, id: \.self) { friend in
+            Rectangle()
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 56)
+                .foregroundColor(Color.inActiveButton)
+                .cornerRadius(15)
+        }
+        .padding(.horizontal)
+    }
+
     var list: some View {
         ForEach(observed.friendsList) { friend in
-            ProfileViewButton(
-                title: "\(friend.name) | \(friend.nickname)",
-                linkTo: AnyView(ProfileFriendDetailView(user: friend))
-            )
-            .padding(.bottom, 20)
+            listCell(friend: friend)
+        }
+    }
+
+    func listCell(friend: User) -> some View {
+        NavigationLink {
+            ProfileFriendDetailView(user: friend)
+        } label: {
+            HStack {
+                Text("\(friend.name) | \(friend.nickname)")
+                    .font(.headline)
+                Spacer()
+                Image(systemName: "chevron.forward")
+            }
+            .foregroundColor(.black)
+            .padding(.horizontal, 19)
+            .padding(.vertical, 23)
+            .frame(maxWidth: .infinity, maxHeight: 56)
+            .background(Color.buttonBackground)
+            .cornerRadius(15)
+            .padding(.horizontal)
         }
     }
 
