@@ -130,7 +130,10 @@ private extension ProfileView {
 
     var registerLink: some View {
         NavigationLink {
-            ProfileRegisterView(hasRegisteredProfile: $observed.hasRegisteredProfile, userID: $observed.userID)
+            ProfileRegisterView(
+                hasRegisteredProfile: $observed.hasRegisteredProfile,
+                userID: $observed.userID
+            )
         } label: {
             Text("프로필 등록하기")
                 .font(.headline)
@@ -159,13 +162,12 @@ private extension ProfileView {
     }
 
     var editProfileLinkButton: some View {
-        ProfileViewButton(
-            title: "Edit Profile",
-            linkTo: AnyView(
-                ProfileEditView(user: observed.user)
-            )
-        )
-            .padding(.bottom, 32)
+        NavigationLink {
+            ProfileEditView(user: observed.user)
+        } label: {
+            linkLabelButton(text: "Edit Profile") { }
+        }
+        .padding(.bottom, 32)
     }
 
     @ViewBuilder
@@ -219,7 +221,7 @@ private extension ProfileView {
             action()
         } label: {
             HStack {
-                Text("Friends")
+                Text(text)
                     .font(.headline)
                 Spacer()
                 Image(systemName: "chevron.forward")

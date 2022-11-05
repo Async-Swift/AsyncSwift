@@ -23,7 +23,7 @@ struct ProfileFriendsListView: View {
         VStack(spacing: 0) {
             customDivider
                 .padding(.top, 10)
-                .padding(.bottom, 28)
+                .padding(.bottom, 30)
             friendList
             Spacer()
         }
@@ -80,6 +80,7 @@ private extension ProfileFriendsListView {
         ForEach(observed.friendsList) { friend in
             listCell(friend: friend)
         }
+        .padding(.horizontal)
     }
 
     func listCell(friend: User) -> some View {
@@ -98,7 +99,6 @@ private extension ProfileFriendsListView {
             .frame(maxWidth: .infinity, maxHeight: 56)
             .background(Color.buttonBackground)
             .cornerRadius(15)
-            .padding(.horizontal)
         }
     }
 
