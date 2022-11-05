@@ -10,8 +10,6 @@ import UIKit
 
 struct StampView: View {
     @StateObject var observed = Observed()
-    @State var currentIndex: Int = 0
-    @State var isExpand = false
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -23,27 +21,27 @@ struct StampView: View {
                             .aspectRatio(contentMode: .fit)
                             .offset(y: calculateY(index: index))
                             .onTapGesture {
-                                if index == currentIndex {
-                                        if isExpand {
+                                if index == observed.currentIndex {
+                                        if observed.isExpand {
                                             withAnimation(.spring()) {
                                                 observed.cards[observed.events![index]]!.currentImage = observed.cards[observed.events![index]]!.image
-                                                isExpand = false
+                                                observed.isExpand = false
                                             }
                                         } else {
                                             withAnimation(.spring()) {
                                                 observed.cards[observed.events![index]]!.currentImage = observed.cards[observed.events![index]]!.imageExtend
-                                                isExpand = true
+                                                observed.isExpand = true
                                             }
                                         }
                                 } else {
                                     withAnimation(.spring()) {
                                         observed.cards[observed.events![index]]!.isSelected = true
-                                        observed.cards[observed.events![currentIndex]]!.isSelected = false
-                                        if isExpand {
-                                            observed.cards[observed.events![currentIndex]]!.currentImage = observed.cards[observed.events![currentIndex]]!.image
-                                            isExpand = false
+                                        observed.cards[observed.events![observed.currentIndex]]!.isSelected = false
+                                        if observed.isExpand {
+                                            observed.cards[observed.events![observed.currentIndex]]!.currentImage = observed.cards[observed.events![observed.currentIndex]]!.image
+                                            observed.isExpand = false
                                         }
-                                        currentIndex = index
+                                        observed.currentIndex = index
                                     }
                                 }
 //                                print("====Seminar002====")
@@ -62,7 +60,7 @@ struct StampView: View {
                 }
                 .offset(y: UIScreen.main.bounds.height / 2)
             }
-            Spacer(minLength: isExpand ? UIScreen.main.bounds.height : 0)
+            Spacer(minLength: observed.isExpand ? UIScreen.main.bounds.height : 0)
         }
         .padding()
         .onOpenURL{ url in

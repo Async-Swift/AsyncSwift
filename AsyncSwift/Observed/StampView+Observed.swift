@@ -20,6 +20,8 @@ extension StampView {
     @MainActor final class Observed: ObservableObject {
         @Published var cards = [String: Card]()
         @Published var events: [String]? = nil
+        @Published var currentIndex = 0
+        @Published var isExpand = false
         private let keyChainManager = KeyChainManager()
             
         init() {
