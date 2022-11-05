@@ -6,15 +6,6 @@
 //
 
 import SwiftUI
-struct Card {
-    var image: Image?
-    var imageExtend: Image?
-    var originalPosition: CGFloat
-    var eventTitle: String
-    var isSelected = false
-    var currentImage: Image?
-}
-
 
 extension StampView {
     @MainActor final class Observed: ObservableObject {
