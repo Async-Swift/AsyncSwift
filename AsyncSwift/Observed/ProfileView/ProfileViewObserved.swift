@@ -14,13 +14,7 @@ import CoreImage.CIFilterBuiltins
 // 1. hasRegisteredProfile -> keyChain 으로 옮기기
 
 final class ProfileViewObserved: ObservableObject {
-
-    @Published var hasRegisteredProfile = UserDefaults.standard.bool(forKey: "hasRegisterProfile") {
-        didSet {
-            UserDefaults.standard.set(hasRegisteredProfile, forKey: "hasRegisterProfile")
-        }
-    }
-
+    @Published var hasRegisteredProfile = false
     @Published var isLoading = true
     @Published var isShowingFriends = false
     @Published var isShowingEdit = false
@@ -36,10 +30,17 @@ final class ProfileViewObserved: ObservableObject {
         friends: []
     )
 
-    var userID = UserDefaults.standard.string(forKey: "userID") {
+    var userID: String? = nil {
         didSet {
-            UserDefaults.standard.set(userID, forKey: "userID")
+            KeyChain.shared.addItem(key: "userID", pwd: userID)
         }
+    }
+
+    init() {
+        let userid = KeyChain.shared.getItem(key: "userID")
+        guard userid != nil else { return }
+        self.hasRegisteredProfile = true
+        self.userID = userid as! String
     }
 
     func onAppear() {

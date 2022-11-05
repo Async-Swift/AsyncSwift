@@ -17,7 +17,6 @@ final class AppData: ObservableObject {
         if currentStamp == nil {
             fetchCurrentStamp()
         }
-        
         return KeyChain.shared.getItem(key: currentStamp?.title) != nil
     }
     
