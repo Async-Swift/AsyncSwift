@@ -12,14 +12,16 @@ final class ProfileFriendDetailViewObserved: ObservableObject {
     @Published var isShowingLinkedInSheet = false
     @Published var isShowingProfileSheet = false
     @Published var isShowingConfirmAlert = false
+    let previous: PreviousView
 
     let friend: User
     var user: User
 
-    init(inActive: Binding<Bool>, user: User, friend: User) {
+    init(inActive: Binding<Bool>, user: User, friend: User, previous: PreviousView) {
         self._inActive = inActive
         self.friend = friend
         self.user = user
+        self.previous = previous
     }
 
     func hasProfileURL() -> Bool {
@@ -35,6 +37,13 @@ final class ProfileFriendDetailViewObserved: ObservableObject {
             return false
         } else {
             return true
+        }
+    }
+
+    func didTapDoneButton() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.inActive = false
         }
     }
 
@@ -62,4 +71,9 @@ private extension ProfileFriendDetailViewObserved {
         user.friends = removedList
         FirebaseManager.shared.editUser(user: user)
     }
+}
+
+enum PreviousView {
+    case ProfileView
+    case ListView
 }

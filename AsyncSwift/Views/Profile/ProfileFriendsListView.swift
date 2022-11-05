@@ -9,14 +9,14 @@ import SwiftUI
 import CodeScanner
 
 struct ProfileFriendsListView: View {
-
-    @ObservedObject var observed: ProfileFriendsListViewObserved
+    @StateObject var observed: ProfileFriendsListViewObserved
 
     init(inActive: Binding<Bool>, user: User) {
-        observed = ProfileFriendsListViewObserved(
+        _observed = StateObject(
+            wrappedValue: ProfileFriendsListViewObserved(
             inActive: inActive,
             user: user
-        )
+        ))
     }
 
     var body: some View {
@@ -28,13 +28,17 @@ struct ProfileFriendsListView: View {
             Spacer()
         }
         .navigationTitle("Friends")
-        .onAppear {
-            observed.onAppear()
-        }
         .fullScreenCover(
             isPresented: $observed.isShowingScanner,
             content: { scannerView }
         )
+        .fullScreenCover(
+            isPresented: $observed.isShowingUserDetail,
+            content: { scannedFriendDetail }
+        )
+        .onAppear {
+            observed.onAppear()
+        }
     }
 }
 
@@ -88,7 +92,12 @@ private extension ProfileFriendsListView {
 
     func listCell(friend: User) -> some View {
         NavigationLink {
-            ProfileFriendDetailView(inActive: $observed.inActive, user: observed.user, friend: friend)
+            ProfileFriendDetailView(
+                previous: .ListView,
+                inActive: $observed.inActive,
+                user: observed.user,
+                friend: friend
+            )
         } label: {
             HStack {
                 Text("\(friend.name) | \(friend.nickname)")
@@ -114,7 +123,7 @@ private extension ProfileFriendsListView {
                     Button {
                         observed.didTapXButton()
                     } label: {
-                        Image(systemName: "xmark")
+                        Text("Done")
                     }
                     .padding()
                 }
@@ -122,7 +131,7 @@ private extension ProfileFriendsListView {
             .frame(height: 51)
             CodeScannerView(
                 codeTypes: [.qr],
-                simulatedData: "1AA5CC09-6F7F-4EC4-A2BE-819B93362B7B",
+                simulatedData: "6A8254C2-1054-4A5B-9F30-602684D329F9",
                 completion: observed.handleScan
             )
             HStack {
@@ -130,6 +139,19 @@ private extension ProfileFriendsListView {
                     .font(.caption2)
             }
             .frame(height: 70)
+        }
+    }
+
+    var scannedFriendDetail: some View {
+        NavigationView {
+            VStack {
+                ProfileFriendDetailView(
+                    previous: .ProfileView,
+                    inActive: $observed.isShowingUserDetail,
+                    user: observed.user,
+                    friend: observed.scannedFriend
+                )
+            }
         }
     }
 }

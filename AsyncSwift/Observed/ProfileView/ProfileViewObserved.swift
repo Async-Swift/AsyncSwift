@@ -5,10 +5,11 @@
 //  Created by Kim Insub on 2022/10/16.
 //
 
-import Combine
-import UIKit
 import CodeScanner
 import CoreImage.CIFilterBuiltins
+import Combine
+import UIKit
+
 
 // TODO
 // 1. hasRegisteredProfile -> keyChain 으로 옮기기
@@ -19,7 +20,19 @@ final class ProfileViewObserved: ObservableObject {
     @Published var isShowingFriends = false
     @Published var isShowingEdit = false
     @Published var isShowingScanner = false
+    @Published var isShowingUserDetail = false
     @Published var user: User = User(
+        id: "",
+        name: "",
+        nickname: "",
+        role: "",
+        description: "",
+        linkedInURL: "",
+        profileURL: "",
+        friends: []
+    )
+
+    @Published var scannedFriend: User = User(
         id: "",
         name: "",
         nickname: "",
@@ -74,11 +87,10 @@ final class ProfileViewObserved: ObservableObject {
         switch result {
         case .success(let success):
             let uuidString = success.string
-            guard (UUID(uuidString: uuidString)) != nil else { return }
-            guard isNewFriend(id: uuidString) else { return }
-            user.friends.append(uuidString)
-            FirebaseManager.shared.editUser(user: user)
-            self.isShowingScanner = false
+            Task {
+                await handleScanSuccess(id: uuidString)
+                await getFriendByID(id: uuidString)
+            }
         case .failure(let failure):
             print(failure)
         }
@@ -86,11 +98,36 @@ final class ProfileViewObserved: ObservableObject {
 }
 
 private extension ProfileViewObserved {
+    func handleScanSuccess(id: String) async {
+        guard (UUID(uuidString: id)) != nil else { return }
+        guard isNewFriend(id: id) else {
+            print("else")
+            return
+        }
+        print("passed")
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.user.friends.append(id)
+            FirebaseManager.shared.editUser(user: self.user)
+            self.isShowingScanner = false
+            self.isShowingUserDetail = true
+        }
+    }
+
     func getUserByID() {
         FirebaseManager.shared.getUserBy(id: self.userID ?? "") { user in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.user = user
+            }
+        }
+    }
+
+    func getFriendByID(id: String) async {
+        FirebaseManager.shared.getUserBy(id: id) { user in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.scannedFriend = user
             }
         }
     }

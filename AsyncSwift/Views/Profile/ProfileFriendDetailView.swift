@@ -10,12 +10,17 @@ import SwiftUI
 struct ProfileFriendDetailView: View {
 
     @ObservedObject var observed: ProfileFriendDetailViewObserved
-
-    init(inActive: Binding<Bool>, user: User, friend: User) {
+    init(
+        previous: PreviousView,
+        inActive: Binding<Bool>,
+        user: User,
+        friend: User
+    ) {
         observed = ProfileFriendDetailViewObserved(
             inActive: inActive,
             user: user,
-            friend: friend
+            friend: friend,
+            previous: previous
         )
     }
     
@@ -28,7 +33,7 @@ struct ProfileFriendDetailView: View {
             linkButtons
         }
         .navigationTitle(observed.friend.name)
-        .navigationBarItems(trailing: deleteButton)
+        .navigationBarItems(trailing: trailingButton)
         .fullScreenCover(isPresented: $observed.isShowingProfileSheet, content: {
             SafariView(url: observed.friend.profileURL)
                 .ignoresSafeArea()
@@ -102,12 +107,29 @@ private extension ProfileFriendDetailView {
         }
     }
 
+    @ViewBuilder
+    var trailingButton: some View {
+        switch observed.previous {
+        case .ProfileView:
+            doneButton
+        case .ListView:
+            deleteButton
+        }
+    }
+
+    var doneButton: some View {
+        Button {
+            observed.didTapDoneButton()
+        } label: {
+            Text("Done")
+        }
+    }
+
     var deleteButton: some View {
         Button {
             observed.didTapDeleteButton()
         } label: {
-            Image(systemName: "trash")
+            Text("Delete")
         }
-                .foregroundColor(.red)
     }
 }

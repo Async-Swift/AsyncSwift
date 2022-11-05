@@ -31,6 +31,10 @@ struct ProfileView: View {
                 isPresented: $observed.isShowingScanner,
                 content: { scannerView }
             )
+            .fullScreenCover(
+                isPresented: $observed.isShowingUserDetail,
+                content: { scannedFriendDetail }
+            )
             .onAppear {
                 observed.onAppear()
             }
@@ -195,7 +199,7 @@ private extension ProfileView {
 
     @ViewBuilder
     var codeScannerButton: some View {
-        if observed.hasRegisteredProfile {
+        if observed.hasRegisteredProfile && !observed.isLoading {
             Button {
                 observed.isShowingScanner = true
             } label: {
@@ -220,7 +224,7 @@ private extension ProfileView {
                     Button {
                         observed.didTapXButton()
                     } label: {
-                        Image(systemName: "xmark")
+                        Text("Done")
                     }
                     .padding()
                 }
@@ -253,5 +257,18 @@ private extension ProfileView {
         .background(Color.buttonBackground)
         .cornerRadius(15)
         .padding(.horizontal)
+    }
+
+    var scannedFriendDetail: some View {
+        NavigationView {
+            VStack {
+                ProfileFriendDetailView(
+                    previous: .ProfileView,
+                    inActive: $observed.isShowingUserDetail,
+                    user: observed.user,
+                    friend: observed.scannedFriend
+                )
+            }
+        }
     }
 }
