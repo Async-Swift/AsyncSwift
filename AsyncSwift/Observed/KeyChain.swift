@@ -34,10 +34,12 @@ final class KeyChain {
     }
 
     func getItem(key: Any) -> Any? {
-        let getQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
-                                         kSecAttrAccount: key,
-                                         kSecReturnAttributes: true,
-                                         kSecReturnData: true]
+        let getQuery: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key,
+            kSecReturnAttributes: true,
+            kSecReturnData: true
+        ]
         var item: CFTypeRef?
         let result = SecItemCopyMatching(getQuery as CFDictionary, &item)
 

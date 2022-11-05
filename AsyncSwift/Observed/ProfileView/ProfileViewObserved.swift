@@ -20,6 +20,7 @@ final class ProfileViewObserved: ObservableObject {
             UserDefaults.standard.set(hasRegisteredProfile, forKey: "hasRegisterProfile")
         }
     }
+
     @Published var isLoading = true
     @Published var isShowingFriends = false
     @Published var isShowingEdit = false
@@ -34,6 +35,7 @@ final class ProfileViewObserved: ObservableObject {
         profileURL: "",
         friends: []
     )
+
     var userID = UserDefaults.standard.string(forKey: "userID") {
         didSet {
             UserDefaults.standard.set(userID, forKey: "userID")
