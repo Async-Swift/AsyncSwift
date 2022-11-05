@@ -150,6 +150,7 @@ private extension ProfileView {
         if observed.isLoading {
             Button { } label: {
                 linkLabelButtonLabel(text: "Friends")
+                    .opacity(0.2)
             }
                 .padding(.bottom, 16)
         } else {
@@ -173,17 +174,25 @@ private extension ProfileView {
     @ViewBuilder
     var editProfileLinkButton: some View {
         if observed.hasRegisteredProfile {
-            NavigationLink(
-                destination: ProfileEditView(user: observed.user),
-                isActive: $observed.isShowingEdit,
-                label: {
-                    Button {
-                        observed.isShowingEdit = true
-                    } label: {
-                        linkLabelButtonLabel(text: "Edit Profile")
-                    }
-            })
-            .padding(.bottom, 32)
+            if observed.isLoading {
+                Button { } label: {
+                    linkLabelButtonLabel(text: "Edit Profile")
+                        .opacity(0.2)
+                }
+                    .padding(.bottom, 32)
+            } else {
+                NavigationLink(
+                    destination: ProfileEditView(user: observed.user),
+                    isActive: $observed.isShowingEdit,
+                    label: {
+                        Button {
+                            observed.isShowingEdit = true
+                        } label: {
+                            linkLabelButtonLabel(text: "Edit Profile")
+                        }
+                })
+                .padding(.bottom, 32)
+            }
         } else {
             NavigationLink {
                 ProfileRegisterView(

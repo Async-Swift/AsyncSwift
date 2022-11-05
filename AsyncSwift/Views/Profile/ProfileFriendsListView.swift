@@ -23,9 +23,7 @@ struct ProfileFriendsListView: View {
         VStack(spacing: 0) {
             customDivider
                 .padding(.top, 10)
-                .padding(.bottom, 30)
             friendList
-            Spacer()
         }
         .navigationTitle("Friends")
         .fullScreenCover(
@@ -45,12 +43,17 @@ struct ProfileFriendsListView: View {
 private extension ProfileFriendsListView {
     @ViewBuilder
     var friendList: some View {
-        if observed.user.friends.isEmpty {
-            emptyList
-        } else if observed.isLoading {
-            loadingList
-        } else {
-            list
+        ScrollView {
+            Group {
+                if observed.user.friends.isEmpty {
+                    emptyList
+                } else if observed.isLoading {
+                    loadingList
+                } else {
+                    list
+                }
+            }
+            .padding(.top, 30)
         }
     }
 
