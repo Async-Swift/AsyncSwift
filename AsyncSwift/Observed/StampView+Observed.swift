@@ -51,9 +51,7 @@ extension StampView {
                     
                     self.cards[event] = Card(unexpandedImage: Image(uiImage: cardUIImage),
                                              expandedImage: Image(uiImage: cardExtendUIImage),
-                                             originalPosition: CGFloat(56 * (index + 1)),
-                                             eventTitle: event,
-                                             currentImage: Image(uiImage: cardUIImage))
+                                             originalPosition: CGFloat(56 * (index + 2)))
                     
                     // 가장 최근의 EventCard가 선택된 상태로 지정하기
                     if index == 0 {
@@ -64,7 +62,7 @@ extension StampView {
         } // fetchStampsImages
                 
         func openByLink(url: URL) async {
-            // URL Example = https://asyncswift.info?tab=Stamp&event=seminar002
+            // URL Example = https://asyncswift.info?tab=Stamp&event=Conference001
             // URL Example = https://asyncswift.info?tab=Event
             
             guard URLComponents(url: url, resolvingAgainstBaseURL: true)?.host != nil else { return }
@@ -81,7 +79,7 @@ extension StampView {
                     guard let queryEvent = queries["event"] else { return }
                     if currentEventTitle == queryEvent {
                         let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
-                        var pw: [String] = pwRaw?.convertToStringArray() ?? .init()
+                        var pw: [String] = pwRaw?.convertToStringArray() ?? []
                         pw.append(queryEvent)
                         
                         if keyChainManager.addItem(key: keyChainManager.stampKey, pwd: pw.description) {

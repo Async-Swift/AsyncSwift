@@ -17,23 +17,25 @@ struct StampView: View {
                     .padding(36)
             } else {
                 ScrollView(showsIndicators: false) {
-                    ScrollViewReader { value in
-                        ZStack {
-                            ForEach(0..<observed.cards.count, id: \.self) { index in
-                                cardView(index: index)
-                            }
+                    ZStack {
+                        ForEach(0..<observed.cards.count, id: \.self) { index in
+                            cardView(index: index)
                         }
-                        .offset(y: UIScreen.main.bounds.height / 2)
                     }
-                    Spacer(minLength: observed.isExpand ? UIScreen.main.bounds.height : 0)
+                    .offset(y: UIScreen.main.bounds.height / 2)
+                    
+                    Spacer(minLength: observed.isExpand ? UIScreen.main.bounds.height : CGFloat(observed.cards.count * 358))
                 }
-                .padding()
+                .padding(16)
             }
         } // Group
         .onOpenURL{ url in
             Task {
                 await observed.openByLink(url: url)
             }
+        }
+        .onAppear {
+            print(UIScreen.main.bounds.height)
         }
     } // body
 }
