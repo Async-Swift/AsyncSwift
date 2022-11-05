@@ -21,37 +21,7 @@ struct StampView: View {
                             .aspectRatio(contentMode: .fit)
                             .offset(y: calculateY(index: index))
                             .onTapGesture {
-                                if index == observed.currentIndex {
-                                    withAnimation(.spring()) {
-                                        if observed.isExpand {
-                                            observed.cards[observed.events[index]]?.currentImage = observed.cards[observed.events[index]]?.image
-                                        } else {
-                                            observed.cards[observed.events[index]]?.currentImage = observed.cards[observed.events[index]]?.imageExtend
-                                        }
-                                        observed.isExpand.toggle()
-                                    }
-                                } else {
-                                    withAnimation(.spring()) {
-                                        observed.cards[observed.events[index]]?.isSelected = true
-                                        observed.cards[observed.events[observed.currentIndex]]?.isSelected = false
-                                        if observed.isExpand {
-                                            observed.cards[observed.events[observed.currentIndex]]?.currentImage = observed.cards[observed.events[observed.currentIndex]]?.image
-                                            observed.isExpand = false
-                                        }
-                                        observed.currentIndex = index
-                                    }
-                                }
-//                                print("====Seminar002====")
-//                                let seminar = observed.cards["Seminar002"]!
-//                                print("Selected", seminar.isSelected)
-//                                print("OriginalPositon", seminar.originalPosition)
-//                                print("====Conference001====")
-//                                let conference = observed.cards["Conference001"]!
-//                                print("Selected", conference.isSelected)
-//                                print("OriginalPositon", conference.originalPosition)
-//                                print("====View====")
-//                                print("currentIndex", currentIndex)
-//                                print("isExtend", isExpand)
+                                observed.didCardTapped(index: index)
                             }
                     }
                 }

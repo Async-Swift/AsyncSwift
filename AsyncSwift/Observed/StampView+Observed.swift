@@ -108,5 +108,28 @@ extension StampView {
             
             return stamp
         }
-    }
-}
+        
+        func didCardTapped(index: Int) {
+            if index == currentIndex {
+                withAnimation(.spring()) {
+                    if isExpand {
+                        cards[events[index]]?.currentImage = cards[events[index]]?.image
+                    } else {
+                        cards[events[index]]?.currentImage = cards[events[index]]?.imageExtend
+                    }
+                    isExpand.toggle()
+                }
+            } else {
+                withAnimation(.spring()) {
+                    cards[events[index]]?.isSelected = true
+                    cards[events[currentIndex]]?.isSelected = false
+                    if isExpand {
+                        cards[events[currentIndex]]?.currentImage = cards[events[currentIndex]]?.image
+                        isExpand = false
+                    }
+                    currentIndex = index
+                }
+            }
+        } // func didCardTapped
+    } // Class
+} // Extention
