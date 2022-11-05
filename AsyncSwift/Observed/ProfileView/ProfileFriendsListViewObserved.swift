@@ -27,7 +27,10 @@ final class ProfileFriendsListViewObserved: ObservableObject {
     func onAppear() {
         Task {
             await getFriendsByID()
-            self.isLoading = false
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.isLoading = false
+            }
         }
     }
 
