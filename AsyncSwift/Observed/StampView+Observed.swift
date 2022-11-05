@@ -131,5 +131,15 @@ extension StampView {
                 }
             }
         } // func didCardTapped
+        
+        func getCardOffsetY(index: Int) -> CGFloat {
+            withAnimation(.spring()) {
+                guard let isSelected = cards[events[index]]?.isSelected,
+                      let card = cards[events[index]]
+                else { return .zero}
+                
+                return isSelected ? .zero - UIScreen.main.bounds.height / 2 : card.originalPosition
+            }
+        }
     } // Class
 } // Extention

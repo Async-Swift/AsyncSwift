@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct StampView: View {
     @StateObject var observed = Observed()
@@ -19,7 +18,7 @@ struct StampView: View {
                         observed.cards[observed.events[index]]?.currentImage?
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .offset(y: calculateY(index: index))
+                            .offset(y: observed.getCardOffsetY(index: index))
                             .onTapGesture {
                                 observed.didCardTapped(index: index)
                             }
@@ -36,21 +35,6 @@ struct StampView: View {
             }
         }
     } // body
-}
-
-extension StampView {
-    func calculateY(index : Int?) -> CGFloat {
-        withAnimation(.spring()) {
-            guard let index = index else { return .zero }
-            var result: CGFloat
-            if observed.cards[observed.events[index]]!.isSelected {
-                result = .zero - UIScreen.main.bounds.height / 2
-            } else {
-                result = observed.cards[observed.events[index]]!.originalPosition
-            }
-            return result
-        }
-    }
 }
 
 struct StampView_Previews: PreviewProvider {
