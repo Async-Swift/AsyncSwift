@@ -12,10 +12,16 @@ struct Stamp: Decodable {
 }
 
 struct Card {
+    init(unexpandedImage: Image?, expandedImage: Image?, originalPosition: CGFloat) {
+        self.unexpandedImage = unexpandedImage
+        self.expandedImage = expandedImage
+        self.originalPosition = originalPosition
+        self.currentImage = unexpandedImage
+    }
+    
     var unexpandedImage: Image?
     var expandedImage: Image?
     var originalPosition: CGFloat
-    var eventTitle: String
     var isSelected = false
     var currentImage: Image?
 }
