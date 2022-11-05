@@ -14,9 +14,11 @@ final class KeyChain {
     private init() { }
 
     func addItem(key: Any, pwd: Any) -> Bool {
-        let addQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
-                                         kSecAttrAccount: key,
-                                         kSecValueData: (pwd as AnyObject).data(using: String.Encoding.utf8.rawValue) as Any]
+        let addQuery: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key,
+            kSecValueData: (pwd as AnyObject).data(using: String.Encoding.utf8.rawValue) as Any
+        ]
 
         let status = SecItemAdd(addQuery as CFDictionary, nil)
 
@@ -50,8 +52,10 @@ final class KeyChain {
     }
 
     func updateItem(value: Any, key: Any) -> Bool {
-        let prevQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
-                                          kSecAttrAccount: key]
+        let prevQuery: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key
+        ]
         let updateQuery: [CFString: Any] = [kSecValueData: (value as AnyObject).data(using: String.Encoding.utf8.rawValue) as Any]
 
         let result: Bool = {
@@ -63,8 +67,10 @@ final class KeyChain {
     }
 
     func deleteItem(key: String) -> Bool {
-        let deleteQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
-                                            kSecAttrAccount: key]
+        let deleteQuery: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: key
+        ]
         let status = SecItemDelete(deleteQuery as CFDictionary)
         if status == errSecSuccess {
             return true

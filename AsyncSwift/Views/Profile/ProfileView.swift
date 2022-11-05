@@ -156,17 +156,17 @@ private extension ProfileView {
                     observed.isShowingFriends = true
                 }
             })
-
                 .padding(.bottom, 16)
         }
     }
 
     var editProfileLinkButton: some View {
-        NavigationLink {
-            ProfileEditView(user: observed.user)
-        } label: {
-            linkLabelButton(text: "Edit Profile") { }
-        }
+        NavigationLink(destination: ProfileEditView(user: observed.user
+        ), isActive: $observed.isShowingEdit, label: {
+            linkLabelButton(text: "Edit Profile") {
+                observed.isShowingEdit = true
+            }
+        })
         .padding(.bottom, 32)
     }
 
