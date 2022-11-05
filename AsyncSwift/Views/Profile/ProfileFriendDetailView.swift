@@ -11,8 +11,12 @@ struct ProfileFriendDetailView: View {
 
     @ObservedObject var observed: ProfileFriendDetailViewObserved
 
-    init(user: User) {
-        observed = ProfileFriendDetailViewObserved(user: user)
+    init(inActive: Binding<Bool>, user: User, friend: User) {
+        observed = ProfileFriendDetailViewObserved(
+            inActive: inActive,
+            user: user,
+            friend: friend
+        )
     }
     
     var body: some View {
@@ -23,31 +27,37 @@ struct ProfileFriendDetailView: View {
             Spacer()
             linkButtons
         }
-        .navigationTitle(observed.user.name)
+        .navigationTitle(observed.friend.name)
+        .navigationBarItems(trailing: deleteButton)
         .fullScreenCover(isPresented: $observed.isShowingProfileSheet, content: {
-            SafariView(url: observed.user.profileURL)
+            SafariView(url: observed.friend.profileURL)
                 .ignoresSafeArea()
         })
         .fullScreenCover(isPresented: $observed.isShowingLinkedInSheet, content: {
-            SafariView(url: observed.user.linkedInURL)
+            SafariView(url: observed.friend.linkedInURL)
                 .ignoresSafeArea()
+        })
+        .alert("삭제", isPresented: $observed.isShowingConfirmAlert, actions: {
+            Button("삭제") { observed.isShowingConfirmAlert = false }
+            Button("확인") { observed.didConfirmDelete() }
+        }, message: {
+            Text("유저를 친구 목록에서 삭제하시겠습니까?")
         })
     }
 }
 
 private extension ProfileFriendDetailView {
-
     var userDetail: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(observed.user.nickname)
+            Text(observed.friend.nickname)
                 .fontWeight(.semibold)
                 .font(.system(size: 20))
-            Text(observed.user.role)
+            Text(observed.friend.role)
                 .fontWeight(.semibold)
                 .font(.system(size: 20))
                 .foregroundColor(.profileFontGray)
                 .padding(.bottom, 24)
-            Text(observed.user.description)
+            Text(observed.friend.description)
         }
         .padding(.horizontal, 24)
         .padding(.top, 28)
@@ -90,5 +100,14 @@ private extension ProfileFriendDetailView {
                 .background(observed.hasLinkedInURL() ? Color.linkedInBlue : Color.inActiveButton)
                 .cornerRadius(15)
         }
+    }
+
+    var deleteButton: some View {
+        Button {
+            observed.didTapDeleteButton()
+        } label: {
+            Image(systemName: "trash")
+        }
+                .foregroundColor(.red)
     }
 }

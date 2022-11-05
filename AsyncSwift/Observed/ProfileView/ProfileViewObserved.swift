@@ -32,7 +32,7 @@ final class ProfileViewObserved: ObservableObject {
 
     var userID: String? = nil {
         didSet {
-            KeyChain.shared.addItem(key: "userID", pwd: userID)
+            let _ = KeyChain.shared.addItem(key: "userID", pwd: userID ?? "")
         }
     }
 
@@ -40,7 +40,7 @@ final class ProfileViewObserved: ObservableObject {
         let userid = KeyChain.shared.getItem(key: "userID")
         guard userid != nil else { return }
         self.hasRegisteredProfile = true
-        self.userID = userid as! String
+        self.userID = userid as? String
     }
 
     func onAppear() {

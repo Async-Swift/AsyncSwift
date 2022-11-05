@@ -31,9 +31,10 @@ struct ProfileFriendsListView: View {
         .onAppear {
             observed.onAppear()
         }
-        .fullScreenCover(isPresented: $observed.isShowingScanner, content: {
-            scannerView
-        })
+        .fullScreenCover(
+            isPresented: $observed.isShowingScanner,
+            content: { scannerView }
+        )
     }
 }
 
@@ -79,13 +80,14 @@ private extension ProfileFriendsListView {
     var list: some View {
         ForEach(observed.friendsList) { friend in
             listCell(friend: friend)
+                .padding(.bottom, 20)
         }
         .padding(.horizontal)
     }
 
     func listCell(friend: User) -> some View {
         NavigationLink {
-            ProfileFriendDetailView(user: friend)
+            ProfileFriendDetailView(inActive: $observed.inActive, user: observed.user, friend: friend)
         } label: {
             HStack {
                 Text("\(friend.name) | \(friend.nickname)")

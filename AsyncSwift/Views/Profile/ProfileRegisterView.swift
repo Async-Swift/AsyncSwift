@@ -12,7 +12,6 @@ struct ProfileRegisterView: View {
     @ObservedObject var observed: ProfileRegisterViewObserved
 
     init(hasRegisteredProfile: Binding<Bool>, userID: Binding<String?>) {
-        UITextView.appearance().backgroundColor = .clear
         observed = ProfileRegisterViewObserved(
             hasRegisteredProfile: hasRegisteredProfile,
             userID: userID

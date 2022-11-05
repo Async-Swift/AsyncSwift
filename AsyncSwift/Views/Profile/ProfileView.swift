@@ -25,14 +25,15 @@ struct ProfileView: View {
                 }
                 editProfileLinkButton
             }
+            .navigationTitle("Profile")
+            .navigationBarItems(trailing: codeScannerButton)
+            .fullScreenCover(
+                isPresented: $observed.isShowingScanner,
+                content: { scannerView }
+            )
             .onAppear {
                 observed.onAppear()
             }
-            .navigationTitle("Profile")
-            .navigationBarItems(trailing: codeScannerButton)
-            .fullScreenCover(isPresented: $observed.isShowingScanner, content: {
-                scannerView
-            })
         }
     }
 }
@@ -143,31 +144,53 @@ private extension ProfileView {
     @ViewBuilder
     var friendLinkButton: some View {
         if observed.isLoading {
-            linkLabelButton(text: "Friends", action: {
-
-            })
+            Button { } label: {
+                linkLabelButtonLabel(text: "Friends")
+            }
                 .padding(.bottom, 16)
         } else {
-            NavigationLink(destination: ProfileFriendsListView(
+            NavigationLink(
+                destination: ProfileFriendsListView(
                 inActive: $observed.isShowingFriends,
-                user: observed.user
-            ), isActive: $observed.isShowingFriends, label: {
-                linkLabelButton(text: "Friends") {
-                    observed.isShowingFriends = true
+                user: observed.user),
+                isActive: $observed.isShowingFriends,
+                label: {
+                    Button {
+                        observed.isShowingFriends = true
+                    } label: {
+                        linkLabelButtonLabel(text: "Friends")
+                    }
                 }
-            })
+            )
                 .padding(.bottom, 16)
         }
     }
 
+    @ViewBuilder
     var editProfileLinkButton: some View {
-        NavigationLink(destination: ProfileEditView(user: observed.user
-        ), isActive: $observed.isShowingEdit, label: {
-            linkLabelButton(text: "Edit Profile") {
-                observed.isShowingEdit = true
+        if observed.hasRegisteredProfile {
+            NavigationLink(
+                destination: ProfileEditView(user: observed.user),
+                isActive: $observed.isShowingEdit,
+                label: {
+                    Button {
+                        observed.isShowingEdit = true
+                    } label: {
+                        linkLabelButtonLabel(text: "Edit Profile")
+                    }
+            })
+            .padding(.bottom, 32)
+        } else {
+            NavigationLink {
+                ProfileRegisterView(
+                    hasRegisteredProfile: $observed.hasRegisteredProfile,
+                    userID: $observed.userID
+                )
+            } label: {
+                linkLabelButtonLabel(text: "Edit Profile")
             }
-        })
-        .padding(.bottom, 32)
+            .padding(.bottom, 32)
+        }
     }
 
     @ViewBuilder
@@ -216,23 +239,19 @@ private extension ProfileView {
         }
     }
 
-    func linkLabelButton(text: String, action: @escaping (() -> Void)) -> some View {
-        Button {
-            action()
-        } label: {
-            HStack {
-                Text(text)
-                    .font(.headline)
-                Spacer()
-                Image(systemName: "chevron.forward")
-            }
-            .foregroundColor(.black)
-            .padding(.horizontal, 19)
-            .padding(.vertical, 23)
-            .frame(maxWidth: .infinity, maxHeight: 68)
-            .background(Color.buttonBackground)
-            .cornerRadius(15)
-            .padding(.horizontal)
+    func linkLabelButtonLabel(text: String) -> some View {
+        HStack {
+            Text(text)
+                .font(.headline)
+            Spacer()
+            Image(systemName: "chevron.forward")
         }
+        .foregroundColor(.black)
+        .padding(.horizontal, 19)
+        .padding(.vertical, 23)
+        .frame(maxWidth: .infinity, maxHeight: 68)
+        .background(Color.buttonBackground)
+        .cornerRadius(15)
+        .padding(.horizontal)
     }
 }
