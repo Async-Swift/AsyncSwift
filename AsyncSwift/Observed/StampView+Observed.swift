@@ -49,8 +49,8 @@ extension StampView {
                     
                     guard let cardUIImage = UIImage(data: cardImageData), let cardExtendUIImage = UIImage(data: cardImageExtendData) else { return }
                     
-                    self.cards[event] = Card(image: Image(uiImage: cardUIImage),
-                                             imageExtend: Image(uiImage: cardExtendUIImage),
+                    self.cards[event] = Card(unexpandedImage: Image(uiImage: cardUIImage),
+                                             expandedImage: Image(uiImage: cardExtendUIImage),
                                              originalPosition: CGFloat(56 * (index + 1)),
                                              eventTitle: event,
                                              currentImage: Image(uiImage: cardUIImage))
@@ -113,9 +113,9 @@ extension StampView {
             if index == currentIndex {
                 withAnimation(.spring()) {
                     if isExpand {
-                        cards[events[index]]?.currentImage = cards[events[index]]?.image
+                        cards[events[index]]?.currentImage = cards[events[index]]?.unexpandedImage
                     } else {
-                        cards[events[index]]?.currentImage = cards[events[index]]?.imageExtend
+                        cards[events[index]]?.currentImage = cards[events[index]]?.expandedImage
                     }
                     isExpand.toggle()
                 }
@@ -124,7 +124,7 @@ extension StampView {
                     cards[events[index]]?.isSelected = true
                     cards[events[currentIndex]]?.isSelected = false
                     if isExpand {
-                        cards[events[currentIndex]]?.currentImage = cards[events[currentIndex]]?.image
+                        cards[events[currentIndex]]?.currentImage = cards[events[currentIndex]]?.unexpandedImage
                         isExpand = false
                     }
                     currentIndex = index
@@ -140,6 +140,6 @@ extension StampView {
                 
                 return isSelected ? .zero - UIScreen.main.bounds.height / 2 : card.originalPosition
             }
-        }
+        } // func getCardOffsetY
     } // Class
 } // Extention

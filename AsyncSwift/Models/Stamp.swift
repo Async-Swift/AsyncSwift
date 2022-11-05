@@ -12,8 +12,8 @@ struct Stamp: Decodable {
 }
 
 struct Card {
-    var image: Image?
-    var imageExtend: Image?
+    var unexpandedImage: Image?
+    var expandedImage: Image?
     var originalPosition: CGFloat
     var eventTitle: String
     var isSelected = false
