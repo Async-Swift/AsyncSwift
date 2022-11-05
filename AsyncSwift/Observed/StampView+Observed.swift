@@ -37,7 +37,7 @@ extension StampView {
         
         /// Storage에 저장되어 있는 Stamp Image를 가져오는 함수이다.
         /// - 
-        func fetchStampsImages(){
+        private func fetchStampsImages(){
             let events = getEvents()
             
             events.enumerated().forEach {
