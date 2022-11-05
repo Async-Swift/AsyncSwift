@@ -7,19 +7,19 @@
 
 import SwiftUI
 struct Card {
-    var image: Image
-    var imageExtend: Image
+    var image: Image?
+    var imageExtend: Image?
     var originalPosition: CGFloat
     var eventTitle: String
     var isSelected = false
-    var currentImage: Image
+    var currentImage: Image?
 }
 
 
 extension StampView {
     @MainActor final class Observed: ObservableObject {
         @Published var cards = [String: Card]()
-        @Published var events: [String]? = nil
+        @Published var events = [String]()
         @Published var currentIndex = 0
         @Published var isExpand = false
         private let keyChainManager = KeyChainManager()
@@ -30,8 +30,8 @@ extension StampView {
         
         private func getEvents() -> [String] {
             let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
-            events = pwRaw?.convertToStringArray()?.reversed()
-            guard let events = events else { return [] }
+            guard let convertedStringArray = pwRaw?.convertToStringArray() else { return [] }
+            self.events = convertedStringArray.reversed()
             return events
         }
         
@@ -63,6 +63,8 @@ extension StampView {
                                              originalPosition: CGFloat(56 * (index + 1)),
                                              eventTitle: event,
                                              currentImage: Image(uiImage: cardUIImage))
+                    
+                    // 가장 최근의 EventCard가 선택된 상태로 지정하기
                     if index == 0 {
                         self.cards[event]?.isSelected = true
                     }
@@ -80,33 +82,25 @@ extension StampView {
                 queries[item.name] = item.value
             }
             
-            let currentEventTitle: String
             do {
                 let stamp = try await fetchCurrentStamp()
-                currentEventTitle = stamp.title
-            } catch {
-                print(error.localizedDescription)
-                return
-            }
-            
-            switch queries["tab"] {
-            case Tab.stamp.rawValue:
-                guard let queryEvent = queries["event"] else { return }
-                if currentEventTitle == queryEvent {
-                    
-                    let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
-                    
-                    
-                    var pw: [String] = pwRaw?.convertToStringArray() ?? .init()
-                    pw.append(queryEvent)
-                    
-                    if keyChainManager.addItem(key: keyChainManager.stampKey, pwd: pw.description) {
-                        fetchStampsImages()
+                let currentEventTitle = stamp.title
+                
+                if queries["tab"] == Tab.stamp.rawValue {
+                    guard let queryEvent = queries["event"] else { return }
+                    if currentEventTitle == queryEvent {
+                        let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
+                        var pw: [String] = pwRaw?.convertToStringArray() ?? .init()
+                        pw.append(queryEvent)
+                        
+                        if keyChainManager.addItem(key: keyChainManager.stampKey, pwd: pw.description) {
+                            fetchStampsImages()
+                        }
                     }
                 }
-            default: break
-            }
-            return
+            } catch {
+                print(error.localizedDescription)
+            } // do-catch
         }
         
         private func fetchCurrentStamp() async throws -> Stamp {

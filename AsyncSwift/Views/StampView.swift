@@ -16,29 +16,26 @@ struct StampView: View {
             ScrollViewReader { value in
                 ZStack {
                     ForEach(0..<observed.cards.count, id: \.self) { index in
-                        observed.cards[observed.events![index]]!.currentImage
+                        observed.cards[observed.events[index]]?.currentImage?
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .offset(y: calculateY(index: index))
                             .onTapGesture {
                                 if index == observed.currentIndex {
+                                    withAnimation(.spring()) {
                                         if observed.isExpand {
-                                            withAnimation(.spring()) {
-                                                observed.cards[observed.events![index]]!.currentImage = observed.cards[observed.events![index]]!.image
-                                                observed.isExpand = false
-                                            }
+                                            observed.cards[observed.events[index]]?.currentImage = observed.cards[observed.events[index]]?.image
                                         } else {
-                                            withAnimation(.spring()) {
-                                                observed.cards[observed.events![index]]!.currentImage = observed.cards[observed.events![index]]!.imageExtend
-                                                observed.isExpand = true
-                                            }
+                                            observed.cards[observed.events[index]]?.currentImage = observed.cards[observed.events[index]]?.imageExtend
                                         }
+                                        observed.isExpand.toggle()
+                                    }
                                 } else {
                                     withAnimation(.spring()) {
-                                        observed.cards[observed.events![index]]!.isSelected = true
-                                        observed.cards[observed.events![observed.currentIndex]]!.isSelected = false
+                                        observed.cards[observed.events[index]]?.isSelected = true
+                                        observed.cards[observed.events[observed.currentIndex]]?.isSelected = false
                                         if observed.isExpand {
-                                            observed.cards[observed.events![observed.currentIndex]]!.currentImage = observed.cards[observed.events![observed.currentIndex]]!.image
+                                            observed.cards[observed.events[observed.currentIndex]]?.currentImage = observed.cards[observed.events[observed.currentIndex]]?.image
                                             observed.isExpand = false
                                         }
                                         observed.currentIndex = index
@@ -76,10 +73,10 @@ extension StampView {
         withAnimation(.spring()) {
             guard let index = index else { return .zero }
             var result: CGFloat
-            if observed.cards[observed.events![index]]!.isSelected {
+            if observed.cards[observed.events[index]]!.isSelected {
                 result = .zero - UIScreen.main.bounds.height / 2
             } else {
-                result = observed.cards[observed.events![index]]!.originalPosition
+                result = observed.cards[observed.events[index]]!.originalPosition
             }
             return result
         }
