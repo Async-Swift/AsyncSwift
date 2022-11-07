@@ -82,7 +82,7 @@ private extension ProfileEditView {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("이름")
-                    .profileInputTitle()
+                    .profileInputTitle
                 TextField("", text: $observed.user.name)
                     .profileTextField
                     .placeholder(
@@ -103,7 +103,7 @@ private extension ProfileEditView {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("닉네임")
-                    .profileInputTitle()
+                    .profileInputTitle
                 TextField("", text: $observed.user.nickname)
                     .profileTextField
                     .placeholder(
@@ -124,7 +124,7 @@ private extension ProfileEditView {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("직군")
-                    .profileInputTitle()
+                    .profileInputTitle
                 TextField("", text: $observed.user.role)
                     .profileTextField
                     .placeholder(
@@ -145,7 +145,7 @@ private extension ProfileEditView {
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
                 Text("소개")
-                    .profileInputTitle()
+                    .profileInputTitle
                 if #available(iOS 16.0, *) {
                     TextEditor(text: $observed.description)
                         .profileTextEditor
@@ -179,7 +179,7 @@ private extension ProfileEditView {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("링크드인 프로필 URL")
-                    .profileInputTitle()
+                    .profileInputTitle
                 Spacer()
             }
             .padding(.top, 20)
@@ -203,7 +203,7 @@ private extension ProfileEditView {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("개인 페이지 URL")
-                    .profileInputTitle()
+                    .profileInputTitle
                 Spacer()
             }
             .padding(.top, 20)

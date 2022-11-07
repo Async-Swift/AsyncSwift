@@ -27,7 +27,7 @@ extension View {
                 .foregroundColor(.placeholderForeground)
                 .frame(height: 20)
                 .opacity(shouldShow ? 1 : 0)
-                .offset(x: isTextField ? 0.0 : 3.0, y: isTextField ? -8.0 : 0.0)
+                .offset(x: isTextField ? 0.0 : 3.0, y: isTextField ? 0.0 : -8.0)
             self
         }
     }
