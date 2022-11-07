@@ -10,10 +10,7 @@ import CoreImage.CIFilterBuiltins
 import Combine
 import UIKit
 
-
-// TODO
-// 1. hasRegisteredProfile -> keyChain 으로 옮기기
-
+@MainActor
 final class ProfileViewObserved: ObservableObject {
     @Published var hasRegisteredProfile = false
     @Published var isLoading = true
@@ -58,16 +55,18 @@ final class ProfileViewObserved: ObservableObject {
 
     func onAppear() {
         if hasRegisteredProfile {
-            getUserByID()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
-                guard let self = self else { return }
-                self.isLoading = false
+            Task {
+                await getUserByID()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                    guard let self = self else { return }
+                    self.isLoading = false
+                }
             }
         }
     }
 
     func didTapXButton() {
-        self.isShowingScanner = false
+        isShowingScanner = false
     }
 
     func getQRCodeImage() -> UIImage {
@@ -101,30 +100,23 @@ private extension ProfileViewObserved {
     func handleScanSuccess(id: String) async {
         guard (UUID(uuidString: id)) != nil else { return }
         guard isNewFriend(id: id) else { return }
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.user.friends.append(id)
-            FirebaseManager.shared.editUser(user: self.user)
-            self.isShowingScanner = false
-            self.isShowingUserDetail = true
-        }
+        user.friends.append(id)
+        FirebaseManager.shared.editUser(user: self.user)
+        isShowingScanner = false
+        isShowingUserDetail = true
     }
 
-    func getUserByID() {
-        FirebaseManager.shared.getUserBy(id: self.userID ?? "") { user in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.user = user
-            }
+    func getUserByID() async {
+        FirebaseManager.shared.getUserBy(id: self.userID ?? "") { [weak self] user in
+            guard let self = self else { return }
+            self.user = user
         }
     }
 
     func getFriendByID(id: String) async {
-        FirebaseManager.shared.getUserBy(id: id) { user in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.scannedFriend = user
-            }
+        FirebaseManager.shared.getUserBy(id: id) { [weak self] user in
+            guard let self = self else { return }
+            self.scannedFriend = user
         }
     }
 
