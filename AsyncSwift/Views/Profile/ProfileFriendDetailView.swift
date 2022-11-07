@@ -33,7 +33,7 @@ struct ProfileFriendDetailView: View {
             linkButtons
         }
         .navigationTitle(observed.friend.name)
-        .navigationBarItems(trailing: trailingButton)
+        .navigationBarItems(trailing: navigationBarTrailingButton)
         .fullScreenCover(isPresented: $observed.isShowingProfileSheet, content: {
             SafariView(url: observed.friend.profileURL)
                 .ignoresSafeArea()
@@ -108,7 +108,7 @@ private extension ProfileFriendDetailView {
     }
 
     @ViewBuilder
-    var trailingButton: some View {
+    var navigationBarTrailingButton: some View {
         switch observed.previous {
         case .ProfileView:
             doneButton
