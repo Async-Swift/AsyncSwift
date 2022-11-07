@@ -19,9 +19,6 @@ extension StampView {
         
         init() {
             fetchStampsImages()
-            print(self.cardSize)
-            print(UIScreen.main.bounds.width)
-            print(self.cardInterval)
         }
         
         private func getEvents() -> [String] {
@@ -72,11 +69,10 @@ extension StampView {
             
             do {
                 let stamp = try await fetchCurrentStamp()
-                let currentEventTitle = stamp.title
                 
                 if queries["tab"] == Tab.stamp.rawValue {
                     guard let queryEvent = queries["event"] else { return }
-                    if currentEventTitle == queryEvent {
+                    if stamp.title == queryEvent {
                         let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
                         var pw: [String] = pwRaw?.convertToStringArray() ?? []
                         pw.append(queryEvent)
