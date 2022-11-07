@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum PreviousView {
+    case ProfileView
+    case ListView
+}
+
 @MainActor
 final class ProfileFriendDetailViewObserved: ObservableObject {
     @Binding var inActive: Bool
@@ -56,9 +61,4 @@ private extension ProfileFriendDetailViewObserved {
         user.friends = removedList
         FirebaseManager.shared.editUser(user: user)
     }
-}
-
-enum PreviousView {
-    case ProfileView
-    case ListView
 }
