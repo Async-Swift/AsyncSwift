@@ -22,7 +22,7 @@ struct ProfileEditView: View {
                     nameTextField
                     nicknameTextField
                     jobTitleTextField
-                    introduceTextField
+                    descriptionTextField
                     linkedInTextField
                     privateURLTextField
                 }
@@ -141,7 +141,7 @@ private extension ProfileEditView {
         .padding(.top, 23)
     }
 
-    var introduceTextField: some View {
+    var descriptionTextField: some View {
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
                 Text("소개")

@@ -11,7 +11,8 @@ import SafariServices
 struct SafariView: UIViewControllerRepresentable {
     let url: String
     func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
-        let URL = URL(string: url) 
+//        guard let URL = URL(string: url) else { SFSafariViewController(url: ) }
+        let URL = URL(string: url)
         return SFSafariViewController(url: URL!)
     }
 

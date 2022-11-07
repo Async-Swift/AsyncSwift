@@ -87,12 +87,14 @@ final class ProfileViewObserved: ObservableObject {
             }
         case .failure(let failure):
             print(failure)
+            isShowingScanner = false
         }
     }
 }
 
 private extension ProfileViewObserved {
     func handleScanSuccess(id: String) async {
+        isShowingScanner = false
         guard (UUID(uuidString: id)) != nil else { return }
         guard isNewFriend(id: id) else { return }
         user.friends.append(id)

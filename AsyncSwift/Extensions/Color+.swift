@@ -21,7 +21,7 @@ extension Color {
     static let profileFontGray = Color("6C6C70")
     static let linkedInBlue = Color("0A66C2")
     static let inActiveButton = Color("E5E5EA")
-    static let AFAFAF = Color("AFAFAF")
-    static let D9D9D9 = Color("D9D9D9")
-    static let EAEAEA = Color("EAEAEA")
+    static let skeletonQR = Color("AFAFAF")
+    static let skeletonName = Color("D9D9D9")
+    static let skeletonDescription = Color("EAEAEA")
 }
