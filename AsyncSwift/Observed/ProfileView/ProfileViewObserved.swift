@@ -52,13 +52,12 @@ final class ProfileViewObserved: ObservableObject {
     }
 
     func onAppear() {
-        if hasRegisteredProfile {
-            Task {
-                await getUserByID()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
-                    guard let self = self else { return }
-                    self.isLoading = false
-                }
+        guard hasRegisteredProfile else { return }
+        Task {
+            await getUserByID()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
+                guard let self = self else { return }
+                self.isLoading = false
             }
         }
     }
