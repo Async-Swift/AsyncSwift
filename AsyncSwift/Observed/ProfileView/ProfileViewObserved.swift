@@ -40,7 +40,7 @@ final class ProfileViewObserved: ObservableObject {
         friends: []
     )
 
-    var userID: String? = nil {
+    var userID: String? {
         didSet {
             let _ = KeyChain.shared.addItem(key: "userID", pwd: userID ?? "")
         }
