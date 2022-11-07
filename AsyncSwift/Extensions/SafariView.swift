@@ -5,7 +5,6 @@
 //  Created by Kim Insub on 2022/11/04.
 //
 
-import Foundation
 import SwiftUI
 import SafariServices
 
