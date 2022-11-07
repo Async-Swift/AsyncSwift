@@ -173,14 +173,16 @@ private extension ProfileView {
 
     @ViewBuilder
     var editProfileLinkButton: some View {
-        if observed.hasRegisteredProfile {
-            if observed.isLoading {
+        switch observed.hasRegisteredProfile {
+        case true:
+            switch observed.isLoading {
+            case true:
                 Button { } label: {
                     linkLabelButtonLabel(text: "Edit Profile")
                         .opacity(0.2)
                 }
                     .padding(.bottom, 32)
-            } else {
+            case false:
                 NavigationLink(
                     destination: ProfileEditView(user: observed.user),
                     isActive: $observed.isShowingEdit,
@@ -193,7 +195,7 @@ private extension ProfileView {
                 })
                 .padding(.bottom, 32)
             }
-        } else {
+        case false:
             NavigationLink {
                 ProfileRegisterView(
                     hasRegisteredProfile: $observed.hasRegisteredProfile,
