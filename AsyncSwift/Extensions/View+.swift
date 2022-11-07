@@ -22,20 +22,12 @@ extension View {
         isTextField: Bool
     ) -> some View {
         ZStack(alignment: .leading) {
-            if isTextField {
-                Text(text)
-                    .font(.subheadline)
-                    .foregroundColor(.placeholderForeground)
-                    .frame(height: 20)
-                    .opacity(shouldShow ? 1 : 0)
-            } else {
-                Text(text)
-                    .font(.subheadline)
-                    .foregroundColor(.placeholderForeground)
-                    .frame(height: 20)
-                    .opacity(shouldShow ? 1 : 0)
-                    .offset(x: 3, y: -8)
-            }
+            Text(text)
+                .font(.subheadline)
+                .foregroundColor(.placeholderForeground)
+                .frame(height: 20)
+                .opacity(shouldShow ? 1 : 0)
+                .offset(x: isTextField ? 0.0 : 3.0, y: isTextField ? -8.0 : 0.0)
             self
         }
     }
