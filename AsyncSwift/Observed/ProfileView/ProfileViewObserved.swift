@@ -57,7 +57,7 @@ final class ProfileViewObserved: ObservableObject {
         if hasRegisteredProfile {
             Task {
                 await getUserByID()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
                     guard let self = self else { return }
                     self.isLoading = false
                 }

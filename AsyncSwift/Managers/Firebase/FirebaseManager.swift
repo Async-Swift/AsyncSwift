@@ -39,24 +39,31 @@ extension FirebaseManager {
     func getUserBy(id: String, completion: @escaping (User) -> Void) {
         let docRef = db.collection("users").document(id)
         docRef.getDocument { (document, error) in
-            guard error == nil else { return }
+            guard error == nil,
+                  let document = document,
+                  document.exists,
+                  let data = document.data(),
+                  let id = data["id"] as? String,
+                  let name = data["name"] as? String,
+                  let nickname = data["nickname"] as? String,
+                  let role = data["role"] as? String,
+                  let description = data["description"] as? String,
+                  let linkedInURL = data["linkedInURL"] as? String,
+                  let profileURL = data["profileURL"] as? String,
+                  let friends = data["friends"] as? [String]
+            else { return }
 
-            if let document = document, document.exists {
-                let data = document.data()
-                if let data = data {
-                    let user = User(
-                        id: data["id"] as? String ?? "",
-                        name: data["name"] as? String ?? "",
-                        nickname: data["nickname"] as? String ?? "",
-                        role: data["role"] as? String ?? "",
-                        description: data["description"] as? String ?? "",
-                        linkedInURL: data["linkedInURL"] as? String ?? "",
-                        profileURL: data["profileURL"] as? String ?? "",
-                        friends: data["friends"] as? [String] ?? []
-                    )
-                    completion(user)
-                }
-            }
+            let user = User(
+                id: id,
+                name: name,
+                nickname: nickname,
+                role: role,
+                description: description,
+                linkedInURL: linkedInURL,
+                profileURL: profileURL,
+                friends: friends
+            )
+            completion(user)
         }
     }
 
