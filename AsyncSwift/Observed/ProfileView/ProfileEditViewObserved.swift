@@ -35,10 +35,6 @@ final class ProfileEditViewObserved: ObservableObject {
     var isProfileURLValidated = true
 
     init(user: User) {
-//        self.user = user
-//        self.name = user.name
-//        self.nickname = user.nickname
-//        self.role = user.role
         self.description = user.description
         self.linkedInURL = user.linkedInURL
         self.profileURL = user.profileURL
@@ -50,11 +46,7 @@ final class ProfileEditViewObserved: ObservableObject {
     }
 
     func isButtonAvailable() -> Bool {
-        if !user.name.isEmpty && !user.role.isEmpty {
-            return true
-        } else {
-            return false
-        }
+        !user.name.isEmpty && !user.role.isEmpty
     }
 }
 
