@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension TextField {
-    func profileTextField() -> some View {
+    var profileTextField: some View {
         self
             .font(.subheadline)
             .frame(minHeight: 20)

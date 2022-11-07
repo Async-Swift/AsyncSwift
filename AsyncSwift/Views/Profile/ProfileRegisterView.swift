@@ -88,7 +88,7 @@ private extension ProfileRegisterView {
                 Text("이름")
                     .profileInputTitle()
                 TextField("", text: $observed.name)
-                    .profileTextField()
+                    .profileTextField
                     .placeholder(
                         when: observed.name.isEmpty,
                         text: "Required",
@@ -109,7 +109,7 @@ private extension ProfileRegisterView {
                 Text("닉네임")
                     .profileInputTitle()
                 TextField("", text: $observed.nickname)
-                    .profileTextField()
+                    .profileTextField
                     .placeholder(
                         when: observed.nickname.isEmpty,
                         text: "Optional",
@@ -130,7 +130,7 @@ private extension ProfileRegisterView {
                 Text("직군")
                     .profileInputTitle()
                 TextField("", text: $observed.role)
-                    .profileTextField()
+                    .profileTextField
                     .placeholder(
                         when: observed.role.isEmpty,
                         text: "Required",
@@ -189,7 +189,7 @@ private extension ProfileRegisterView {
             .padding(.top, 20)
             HStack(spacing: 0) {
                 TextField("", text: $observed.linkedInURL)
-                    .profileTextField()
+                    .profileTextField
                     .placeholder(
                         when: observed.linkedInURL.isEmpty,
                         text: "Optional",
@@ -213,7 +213,7 @@ private extension ProfileRegisterView {
             .padding(.top, 20)
             HStack(spacing: 0) {
                 TextField("", text: $observed.profileURL)
-                    .profileTextField()
+                    .profileTextField
                     .placeholder(
                         when: observed.profileURL.isEmpty,
                         text: "Optional",
