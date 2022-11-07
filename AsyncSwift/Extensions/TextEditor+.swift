@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension TextEditor {
-    func profileTextEditor() -> some View {
+    var profileTextEditor: some View {
         self
             .font(.subheadline)
             .frame(height: 53)

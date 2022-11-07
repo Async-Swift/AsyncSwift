@@ -148,7 +148,7 @@ private extension ProfileEditView {
                     .profileInputTitle()
                 if #available(iOS 16.0, *) {
                     TextEditor(text: $observed.description)
-                        .profileTextEditor()
+                        .profileTextEditor
                         .scrollContentBackground(.hidden)
                         .placeholder(
                             when: observed.description.isEmpty,
@@ -158,7 +158,7 @@ private extension ProfileEditView {
                         .offset(x: -2, y: -8)
                 } else {
                     TextEditor(text: $observed.description)
-                        .profileTextEditor()
+                        .profileTextEditor
                         .placeholder(
                             when: observed.description.isEmpty,
                             text: "Optional, 80자 이내",
