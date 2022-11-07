@@ -136,11 +136,11 @@ private extension ProfileEditViewObserved {
     }
 
     func verifyURL (urlString: String?) -> Bool {
-        if let urlString = urlString {
-            if let url = NSURL(string: urlString) {
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
+        guard let urlString = urlString,
+              let url = NSURL(string: urlString)
+        else {
+            return false
         }
-        return false
+        return UIApplication.shared.canOpenURL(url as URL)
     }
 }
