@@ -7,13 +7,13 @@
 
 import SwiftUI
 
+@MainActor
 final class ProfileFriendDetailViewObserved: ObservableObject {
     @Binding var inActive: Bool
     @Published var isShowingLinkedInSheet = false
     @Published var isShowingProfileSheet = false
     @Published var isShowingConfirmAlert = false
     let previous: PreviousView
-
     let friend: User
     var user: User
     var hasProfileURL: Bool {
@@ -35,26 +35,17 @@ final class ProfileFriendDetailViewObserved: ObservableObject {
     }
 
     func didTapDoneButton() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.inActive = false
-        }
+        inActive = false
     }
 
     func didTapDeleteButton() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.isShowingConfirmAlert = true
-        }
+        isShowingConfirmAlert = true
     }
 
     func didConfirmDelete() {
         Task {
             await removeFriendFromList()
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.inActive = false
-            }
+            inActive = false
         }
     }
 }
