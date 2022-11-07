@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 extension MainTabView {
     final class Observed: ObservableObject {

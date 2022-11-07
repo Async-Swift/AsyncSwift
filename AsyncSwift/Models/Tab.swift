@@ -5,7 +5,6 @@
 //  Created by Inho Choi on 2022/10/08.
 //
 
-import Foundation
 import SwiftUI
 
 enum Tab: String, CaseIterable {

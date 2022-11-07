@@ -23,11 +23,6 @@ struct MainTabView: View {
                 }
             }
         }
-//        .onOpenURL { url in
-//            Task {
-//                await observed.openByLink(url: url)
-//            }
-//        }
         .onAppear {
             observed.fixKeyChain()
         }
