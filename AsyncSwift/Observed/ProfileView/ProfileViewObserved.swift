@@ -18,6 +18,8 @@ final class ProfileViewObserved: ObservableObject {
     @Published var isShowingEdit = false
     @Published var isShowingScanner = false
     @Published var isShowingUserDetail = false
+    @Published var isShowingFailureAlert = false
+    @Published var isShowingScanErrorAlert = false
     @Published var user = User(
         id: "",
         name: "",
@@ -81,26 +83,44 @@ final class ProfileViewObserved: ObservableObject {
         switch result {
         case .success(let success):
             let uuidString = success.string
-            Task {
-                await handleScanSuccess(id: uuidString)
-                await getFriendByID(id: uuidString)
-            }
-        case .failure(let failure):
-            print(failure)
+            handleScanSuccess(id: uuidString)
+        case .failure(_):
             isShowingScanner = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                guard let self = self else { return }
+                self.isShowingScanErrorAlert = true
+            }
         }
     }
 }
 
 private extension ProfileViewObserved {
-    func handleScanSuccess(id: String) async {
-        isShowingScanner = false
-        guard (UUID(uuidString: id)) != nil else { return }
-        guard isNewFriend(id: id) else { return }
-        user.friends.append(id)
-        FirebaseManager.shared.editUser(user: self.user)
-        isShowingScanner = false
-        isShowingUserDetail = true
+    func handleScanSuccess(id: String) {
+        guard (UUID(uuidString: id)) != nil
+        else {
+            isShowingScanner = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                guard let self = self else { return }
+                self.isShowingScanErrorAlert = true
+            }
+            return
+        }
+        guard isNewFriend(id: id)
+        else {
+            isShowingScanner = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                guard let self = self else { return }
+                self.isShowingFailureAlert = true
+            }
+            return
+        }
+        Task {
+            user.friends.append(id)
+            FirebaseManager.shared.editUser(user: self.user)
+            await getFriendByID(id: id)
+            isShowingScanner = false
+            isShowingUserDetail = true
+        }
     }
 
     func getUserByID() async {

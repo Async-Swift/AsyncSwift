@@ -9,6 +9,7 @@ import CodeScanner
 import Combine
 import SwiftUI
 
+@MainActor
 final class ProfileFriendsListViewObserved: ObservableObject {
     @Binding var inActive: Bool
     @Published var isShowingUserDetail = false {
@@ -23,6 +24,7 @@ final class ProfileFriendsListViewObserved: ObservableObject {
     }
     @Published var isLoading = true
     @Published var isShowingScanner = false
+    @Published var isShowingScanErrorAlert = false
     @Published var friendsList: [User] = []
     @Published var scannedFriend: User = User(
         id: "",
@@ -45,63 +47,62 @@ final class ProfileFriendsListViewObserved: ObservableObject {
     func onAppear() {
         Task {
             await getFriendsByID()
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.isLoading = false
-            }
+            isLoading = false
         }
     }
 
     func didTapXButton() {
-        self.isShowingScanner = false
+        isShowingScanner = false
     }
 
     func handleScan(result: Result<ScanResult, ScanError>) {
         switch result {
         case .success(let success):
             let uuidString = success.string
-            Task {
-                await handleScanSuccess(id: uuidString)
-                await getFriendByID(id: uuidString)
+            handleScanSuccess(id: uuidString)
+        case .failure(_):
+            isShowingScanner = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                guard let self = self else { return }
+                self.isShowingScanErrorAlert = true
             }
-        case .failure(let failure):
-            print(failure)
         }
     }
 }
 
 private extension ProfileFriendsListViewObserved {
-    func handleScanSuccess(id: String) async {
-        guard
-            (UUID(uuidString: id)) != nil,
-            isNewFriend(id: id)
-        else { return }
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.user.friends.append(id)
+    func handleScanSuccess(id: String) {
+        guard (UUID(uuidString: id)) != nil
+        else {
+            isShowingScanner = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                guard let self = self else { return }
+                self.isShowingScanErrorAlert = true
+            }
+            return
+        }
+        Task {
+            user.friends.append(id)
             FirebaseManager.shared.editUser(user: self.user)
-            self.isShowingScanner = false
-            self.isShowingUserDetail = true
+            await getFriendByID(id: id)
+            isShowingScanner = false
+            isShowingUserDetail = true
         }
     }
 
     func getFriendByID(id: String) async {
-        FirebaseManager.shared.getUserBy(id: id) { user in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.scannedFriend = user
-            }
+        FirebaseManager.shared.getUserBy(id: id) { [weak self] user in
+            guard let self = self else { return }
+            self.scannedFriend = user
         }
     }
 
     func getFriendsByID() async {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.friendsList = []
-            for friendID in self.user.friends {
-                FirebaseManager.shared.getUserBy(id: friendID) { user in
-                    self.friendsList.append(user)
-                }
+        friendsList = []
+        for friendID in self.user.friends {
+            FirebaseManager.shared.getUserBy(id: friendID) { [weak self] user in
+                guard let self = self else { return }
+                self.friendsList.append(user)
             }
         }
     }

@@ -37,24 +37,29 @@ struct ProfileFriendsListView: View {
         .onAppear {
             observed.onAppear()
         }
+        .alert("QR 등록 오류", isPresented: $observed.isShowingScanErrorAlert, actions: {
+            Button("취소", role: .cancel) { observed.isShowingScanErrorAlert = false }
+        }, message: {
+            Text("등록할 수 없는 QR코드입니다.")
+        })
     }
 }
 
 private extension ProfileFriendsListView {
     @ViewBuilder
     var friendList: some View {
-        if observed.user.friends.isEmpty {
-            emptyList
-        } else {
-            ScrollView {
-                Group {
-                    if observed.isLoading {
-                        loadingList
-                    } else {
-                        list
-                    }
+        switch observed.isLoading {
+        case true:
+            loadingList
+        case false:
+            switch observed.user.friends.isEmpty {
+            case true:
+                emptyList
+            case false:
+                ScrollView {
+                    list
+                    .padding(.top, 30)
                 }
-                .padding(.top, 30)
             }
         }
     }

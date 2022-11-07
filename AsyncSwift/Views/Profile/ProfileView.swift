@@ -39,6 +39,16 @@ struct ProfileView: View {
                 observed.onAppear()
             }
         }
+        .alert("프로필 등록 오류", isPresented: $observed.isShowingFailureAlert, actions: {
+            Button("확인", role: .cancel) { observed.isShowingFailureAlert = false }
+        }, message: {
+            Text("이미 등록된 프로필입니다.")
+        })
+        .alert("QR 등록 오류", isPresented: $observed.isShowingScanErrorAlert, actions: {
+            Button("취소", role: .cancel) { observed.isShowingScanErrorAlert = false }
+        }, message: {
+            Text("등록할 수 없는 QR코드입니다.")
+        })
     }
 }
 
