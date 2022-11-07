@@ -5,8 +5,8 @@
 //  Created by Kim Insub on 2022/11/03.
 //
 
-import Combine
 import CodeScanner
+import Combine
 import SwiftUI
 
 // TODO
