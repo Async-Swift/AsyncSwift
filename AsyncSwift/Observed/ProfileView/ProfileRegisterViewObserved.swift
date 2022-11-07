@@ -150,11 +150,9 @@ private extension ProfileRegisterViewObserved {
     }
 
     func verifyURL (urlString: String?) -> Bool {
-        if let urlString = urlString {
-            if let url = NSURL(string: urlString) {
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
-        }
-        return false
+        guard let urlString = urlString,
+              let url = NSURL(string: urlString)
+        else { return false }
+        return UIApplication.shared.canOpenURL(url as URL)
     }
 }
