@@ -83,10 +83,10 @@ private extension ProfileEditView {
             HStack(spacing: 0) {
                 Text("이름")
                     .profileInputTitle()
-                TextField("", text: $observed.name)
+                TextField("", text: $observed.user.name)
                     .profileTextField
                     .placeholder(
-                        when: observed.name.isEmpty,
+                        when: observed.user.name.isEmpty,
                         text: "Required",
                         isTextField: true
                     )
@@ -104,10 +104,10 @@ private extension ProfileEditView {
             HStack(spacing: 0) {
                 Text("닉네임")
                     .profileInputTitle()
-                TextField("", text: $observed.nickname)
+                TextField("", text: $observed.user.nickname)
                     .profileTextField
                     .placeholder(
-                        when: observed.nickname.isEmpty,
+                        when: observed.user.nickname.isEmpty,
                         text: "Optional",
                         isTextField: true
                     )
@@ -125,10 +125,10 @@ private extension ProfileEditView {
             HStack(spacing: 0) {
                 Text("직군")
                     .profileInputTitle()
-                TextField("", text: $observed.role)
+                TextField("", text: $observed.user.role)
                     .profileTextField
                     .placeholder(
-                        when: observed.role.isEmpty,
+                        when: observed.user.role.isEmpty,
                         text: "Required",
                         isTextField: true
                     )

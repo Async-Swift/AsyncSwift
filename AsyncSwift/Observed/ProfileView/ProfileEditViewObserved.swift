@@ -13,10 +13,7 @@ final class ProfileEditViewObserved: ObservableObject {
     @Published var isShowingFailureAlert = false
     @Published var isShowingInputFailureAlert = false
 
-    let user: User
-    @Published var name = ""
-    @Published var nickname = ""
-    @Published var role = ""
+    @Published var user: User
     @Published var description = "" {
         didSet {
             if description.count >= 80 {
@@ -34,17 +31,18 @@ final class ProfileEditViewObserved: ObservableObject {
             self.isProfileURLValidated = self.verifyURL(urlString: profileURL)
         }
     }
-    var isLinkedinURLValidated = false
-    var isProfileURLValidated = false
+    var isLinkedinURLValidated = true
+    var isProfileURLValidated = true
 
     init(user: User) {
-        self.user = user
-        self.name = user.name
-        self.nickname = user.nickname
-        self.role = user.role
+//        self.user = user
+//        self.name = user.name
+//        self.nickname = user.nickname
+//        self.role = user.role
         self.description = user.description
         self.linkedInURL = user.linkedInURL
         self.profileURL = user.profileURL
+        self.user = user
     }
 
     func didTapRegisterButton() {
@@ -52,7 +50,7 @@ final class ProfileEditViewObserved: ObservableObject {
     }
 
     func isButtonAvailable() -> Bool {
-        if !name.isEmpty && !role.isEmpty {
+        if !user.name.isEmpty && !user.role.isEmpty {
             return true
         } else {
             return false
@@ -134,9 +132,9 @@ private extension ProfileEditViewObserved {
     func editUser() async {
         let user = User(
             id: user.id,
-            name: name,
-            nickname: nickname,
-            role: role,
+            name: user.name,
+            nickname: user.nickname,
+            role: user.role,
             description: description,
             linkedInURL: linkedInURL,
             profileURL: profileURL,
