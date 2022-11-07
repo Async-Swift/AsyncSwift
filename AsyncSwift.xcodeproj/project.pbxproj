@@ -208,7 +208,6 @@
 		C69C13B82913B0BC00D9B47F /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				C69C13B92913B0C800D9B47F /* User.swift */,
 				C69C13BE2913EC9400D9B47F /* FirebaseManager.swift */,
 			);
 			path = Firebase;
@@ -244,6 +243,7 @@
 		C6F7798828C9CB9B0036773B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C69C13B92913B0C800D9B47F /* User.swift */,
 				C66C68D228D1B00A0091F960 /* EventModel.swift */,
 				C66C68D428D1B0130091F960 /* SessionModel.swift */,
 				E94F92C628D2505100D9E759 /* Ticketing.swift */,
