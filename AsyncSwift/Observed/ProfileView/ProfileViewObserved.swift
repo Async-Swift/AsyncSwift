@@ -71,12 +71,10 @@ final class ProfileViewObserved: ObservableObject {
         let filter = CIFilter.qrCodeGenerator()
         let data = Data(userID?.utf8 ?? "".utf8)
         filter.setValue(data, forKey: "inputMessage")
-        if let qrCodeImage = filter.outputImage {
-            if let qrCodeImage = context.createCGImage(qrCodeImage, from: qrCodeImage.extent) {
-                return UIImage(cgImage: qrCodeImage)
-            }
-        }
-        return UIImage(systemName: "xmark") ?? UIImage()
+        guard let qrCodeImage = filter.outputImage,
+              let qrCodeImage = context.createCGImage(qrCodeImage, from: qrCodeImage.extent)
+        else { return UIImage(systemName: "xmark") ?? UIImage() }
+        return UIImage(cgImage: qrCodeImage)
     }
 
     func handleScan(result: Result<ScanResult, ScanError>) {
