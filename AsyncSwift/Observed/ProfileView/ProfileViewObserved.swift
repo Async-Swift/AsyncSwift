@@ -28,7 +28,6 @@ final class ProfileViewObserved: ObservableObject {
         profileURL: "",
         friends: []
     )
-
     @Published var scannedFriend: User = User(
         id: "",
         name: "",
@@ -47,8 +46,7 @@ final class ProfileViewObserved: ObservableObject {
     }
 
     init() {
-        let userid = KeyChain.shared.getItem(key: "userID")
-        guard userid != nil else { return }
+        guard let userid = KeyChain.shared.getItem(key: "userID") else { return }
         self.hasRegisteredProfile = true
         self.userID = userid as? String
     }
