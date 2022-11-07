@@ -21,6 +21,12 @@ final class ProfileFriendDetailViewObserved: ObservableObject {
     let previous: PreviousView
     let friend: User
     var user: User
+    var profileURL: URL? {
+        URL(string: friend.profileURL)
+    }
+    var linkedInURL: URL? {
+        URL(string: friend.linkedInURL)
+    }
     var hasProfileURL: Bool {
         get {
             !user.profileURL.isEmpty

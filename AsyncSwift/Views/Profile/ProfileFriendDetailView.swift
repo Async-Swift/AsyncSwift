@@ -35,12 +35,16 @@ struct ProfileFriendDetailView: View {
         .navigationTitle(observed.friend.name)
         .navigationBarItems(trailing: navigationBarTrailingButton)
         .fullScreenCover(isPresented: $observed.isShowingProfileSheet, content: {
-            SafariView(url: observed.friend.profileURL)
-                .ignoresSafeArea()
+            if let url = observed.profileURL {
+                SafariView(url: url)
+                    .ignoresSafeArea()
+            }
         })
         .fullScreenCover(isPresented: $observed.isShowingLinkedInSheet, content: {
-            SafariView(url: observed.friend.linkedInURL)
-                .ignoresSafeArea()
+            if let url = observed.linkedInURL {
+                SafariView(url: url)
+                    .ignoresSafeArea()
+            }
         })
         .alert("삭제", isPresented: $observed.isShowingConfirmAlert, actions: {
             Button("삭제") { observed.isShowingConfirmAlert = false }
