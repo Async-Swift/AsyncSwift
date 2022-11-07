@@ -80,7 +80,7 @@ private extension ProfileFriendsListView {
         ForEach(0..<observed.user.friends.count, id: \.self) { friend in
             Rectangle()
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 56)
-                .foregroundColor(Color.inActiveButton)
+                .foregroundColor(Color.inActiveButtonBackground)
                 .cornerRadius(15)
                 .padding(.bottom, 20)
         }

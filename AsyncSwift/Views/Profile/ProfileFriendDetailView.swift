@@ -60,7 +60,7 @@ private extension ProfileFriendDetailView {
             Text(observed.friend.role)
                 .fontWeight(.semibold)
                 .font(.system(size: 20))
-                .foregroundColor(.profileFontGray)
+                .foregroundColor(.profileFontGrayForeground)
                 .padding(.bottom, 24)
             Text(observed.friend.description)
         }
@@ -87,7 +87,7 @@ private extension ProfileFriendDetailView {
                 .font(.headline)
                 .foregroundColor(.white)
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 68)
-                .background(observed.hasProfileURL ? Color.seminarOrange : Color.inActiveButton)
+                .background(observed.hasProfileURL ? Color.seminarOrange : Color.inActiveButtonBackground)
                 .cornerRadius(15)
         }
     }
@@ -102,7 +102,7 @@ private extension ProfileFriendDetailView {
                 .font(.headline)
                 .foregroundColor(.white)
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 68)
-                .background(observed.hasLinkedInURL ? Color.linkedInBlue : Color.inActiveButton)
+                .background(observed.hasLinkedInURL ? Color.linkedInBlueBackground : Color.inActiveButtonBackground)
                 .cornerRadius(15)
         }
     }
