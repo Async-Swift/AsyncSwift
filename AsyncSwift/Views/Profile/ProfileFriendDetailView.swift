@@ -79,7 +79,7 @@ private extension ProfileFriendDetailView {
 
     var profileButton: some View {
         Button {
-            if observed.hasProfileURL() {
+            if observed.hasProfileURL {
                 observed.isShowingProfileSheet = true
             }
         } label: {
@@ -87,14 +87,14 @@ private extension ProfileFriendDetailView {
                 .font(.headline)
                 .foregroundColor(.white)
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 68)
-                .background(observed.hasProfileURL() ? Color.seminarOrange : Color.inActiveButton)
+                .background(observed.hasProfileURL ? Color.seminarOrange : Color.inActiveButton)
                 .cornerRadius(15)
         }
     }
 
     var linkedInButton: some View {
         Button {
-            if observed.hasLinkedInURL() {
+            if observed.hasLinkedInURL {
                 observed.isShowingLinkedInSheet = true
             }
         } label: {
@@ -102,7 +102,7 @@ private extension ProfileFriendDetailView {
                 .font(.headline)
                 .foregroundColor(.white)
                 .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 68)
-                .background(observed.hasLinkedInURL() ? Color.linkedInBlue : Color.inActiveButton)
+                .background(observed.hasLinkedInURL ? Color.linkedInBlue : Color.inActiveButton)
                 .cornerRadius(15)
         }
     }

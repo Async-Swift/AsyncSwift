@@ -16,28 +16,22 @@ final class ProfileFriendDetailViewObserved: ObservableObject {
 
     let friend: User
     var user: User
+    var hasProfileURL: Bool {
+        get {
+            !user.profileURL.isEmpty
+        }
+    }
+    var hasLinkedInURL: Bool {
+        get {
+            !user.linkedInURL.isEmpty
+        }
+    }
 
     init(inActive: Binding<Bool>, user: User, friend: User, previous: PreviousView) {
         self._inActive = inActive
         self.friend = friend
         self.user = user
         self.previous = previous
-    }
-
-    func hasProfileURL() -> Bool {
-        if friend.profileURL.isEmpty {
-            return false
-        } else {
-            return true
-        }
-    }
-
-    func hasLinkedInURL() -> Bool {
-        if friend.linkedInURL.isEmpty {
-            return false
-        } else {
-            return true
-        }
     }
 
     func didTapDoneButton() {
