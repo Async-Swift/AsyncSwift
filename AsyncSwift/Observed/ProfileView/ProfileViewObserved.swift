@@ -18,7 +18,7 @@ final class ProfileViewObserved: ObservableObject {
     @Published var isShowingEdit = false
     @Published var isShowingScanner = false
     @Published var isShowingUserDetail = false
-    @Published var user: User = User(
+    @Published var user = User(
         id: "",
         name: "",
         nickname: "",
@@ -28,7 +28,7 @@ final class ProfileViewObserved: ObservableObject {
         profileURL: "",
         friends: []
     )
-    @Published var scannedFriend: User = User(
+    @Published var scannedFriend = User(
         id: "",
         name: "",
         nickname: "",

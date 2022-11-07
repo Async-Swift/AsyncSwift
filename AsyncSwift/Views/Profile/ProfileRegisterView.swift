@@ -23,12 +23,12 @@ struct ProfileRegisterView: View {
             Header
             ScrollView {
                 VStack(spacing: 0) {
-                    nameInput
-                    nicknameInput
-                    jobTitleInput
-                    introductionInput
-                    linkedinInput
-                    privateURL
+                    nameTextField
+                    nicknameTextField
+                    jobTitleTextField
+                    introduceTextField
+                    linkedInTextField
+                    privateURLTextField
                 }
             }
             Spacer()
@@ -82,7 +82,7 @@ private extension ProfileRegisterView {
     }
 
 
-    var nameInput: some View {
+    var nameTextField: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("이름")
@@ -103,7 +103,7 @@ private extension ProfileRegisterView {
         .padding(.top, 23)
     }
 
-    var nicknameInput: some View {
+    var nicknameTextField: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("닉네임")
@@ -124,7 +124,7 @@ private extension ProfileRegisterView {
         .padding(.top, 23)
     }
 
-    var jobTitleInput: some View {
+    var jobTitleTextField: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("직군")
@@ -145,7 +145,7 @@ private extension ProfileRegisterView {
         .padding(.top, 23)
     }
 
-    var introductionInput: some View {
+    var introduceTextField: some View {
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
                 Text("소개")
@@ -179,7 +179,7 @@ private extension ProfileRegisterView {
         .frame(height: 91)
     }
 
-    var linkedinInput: some View {
+    var linkedInTextField: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("링크드인 프로필 URL")
@@ -203,7 +203,7 @@ private extension ProfileRegisterView {
         .padding(.leading)
     }
 
-    var privateURL: some View {
+    var privateURLTextField: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("개인 페이지 URL")
