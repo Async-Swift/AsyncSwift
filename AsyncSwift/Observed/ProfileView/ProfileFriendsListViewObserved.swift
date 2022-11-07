@@ -9,9 +9,6 @@ import CodeScanner
 import Combine
 import SwiftUI
 
-// TODO
-// 1. friendsList 스캔후 KeyChain 에 저장
-
 final class ProfileFriendsListViewObserved: ObservableObject {
     @Binding var inActive: Bool
     @Published var isShowingUserDetail = false {
