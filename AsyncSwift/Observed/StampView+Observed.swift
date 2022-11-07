@@ -14,14 +14,20 @@ extension StampView {
         @Published var currentIndex = 0
         @Published var isExpand = false
         private let keyChainManager = KeyChainManager()
-            
+        private let cardInterval: CGFloat = (UIScreen.main.bounds.width - 32) * 56 / 358
+        private let cardSize: CGFloat = UIScreen.main.bounds.width - 32
+        
         init() {
             fetchStampsImages()
+            print(self.cardSize)
+            print(UIScreen.main.bounds.width)
+            print(self.cardInterval)
         }
         
         private func getEvents() -> [String] {
             let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
-            guard let convertedStringArray = pwRaw?.convertToStringArray() else { return [] }
+            guard var convertedStringArray = pwRaw?.convertToStringArray() else { return [] }
+            convertedStringArray.insert("Test", at: 0) // MARK: Test 실제에서는 Next storage 둘다 설정해야함
             self.events = convertedStringArray.reversed()
             return events
         }
@@ -35,24 +41,17 @@ extension StampView {
                 let event = $0.element
                 let index = $0.offset
                 Task { @MainActor () -> Void in
-                    guard let cardImageURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/ver2Test/Images/Stamp/" + event + "/stamp.png"),
-                          let cardImageExtendURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/ver2Test/Images/Stamp/" + event + "/stampex.png")
+                    guard let cardImageURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/ver2Test/Images/Stamp/" + event + "/stamp.png")
                     else { return }
-                    let cardImageRequest = URLRequest(url: cardImageURL)
-                    let cardImageExtendRequest = URLRequest(url: cardImageExtendURL)
                     
+                    let cardImageRequest = URLRequest(url: cardImageURL)
                     let (cardImageData, cardImageResponse) = try await URLSession.shared.data(for: cardImageRequest)
                     guard let httpsResponse = cardImageResponse as? HTTPURLResponse, httpsResponse.statusCode == 200 else { return }
                     
-                    let (cardImageExtendData, cardImageExtendResponse) = try await URLSession.shared.data(for: cardImageExtendRequest)
-                    guard let httpsResponse = cardImageExtendResponse as? HTTPURLResponse, httpsResponse.statusCode == 200 else { return }
+                    guard let cardUIImage = UIImage(data: cardImageData) else { return }
                     
-                    guard let cardUIImage = UIImage(data: cardImageData), let cardExtendUIImage = UIImage(data: cardImageExtendData) else { return }
-                    
-                    self.cards[event] = Card(unexpandedImage: Image(uiImage: cardUIImage),
-                                             expandedImage: Image(uiImage: cardExtendUIImage),
-                                             originalPosition: CGFloat(56 * (index + 2)))
-                    
+                    self.cards[event] = Card(originalPosition: cardInterval * CGFloat(index),
+                                             image: Image(uiImage: cardUIImage))
                     // 가장 최근의 EventCard가 선택된 상태로 지정하기
                     if index == 0 {
                         self.cards[event]?.isSelected = true
@@ -107,37 +106,40 @@ extension StampView {
             return stamp
         }
         
-        func didCardTapped(index: Int) {
-            if index == currentIndex {
+        /// 가장 맨 위에 올라온 카드라면 아무것도 작동안하도록, 아니라면 가장 맨위로 올도록 하는 함수입니다.
+        func didCardTapped(index: Int, scrollReader: ScrollViewProxy) {
+            if index != currentIndex {
                 withAnimation(.spring()) {
-                    if isExpand {
-                        cards[events[index]]?.currentImage = cards[events[index]]?.unexpandedImage
-                    } else {
-                        cards[events[index]]?.currentImage = cards[events[index]]?.expandedImage
-                    }
-                    isExpand.toggle()
-                }
-            } else {
-                withAnimation(.spring()) {
+                    scrollReader.scrollTo(0, anchor: .top)
                     cards[events[index]]?.isSelected = true
                     cards[events[currentIndex]]?.isSelected = false
-                    if isExpand {
-                        cards[events[currentIndex]]?.currentImage = cards[events[currentIndex]]?.unexpandedImage
-                        isExpand = false
-                    }
                     currentIndex = index
                 }
             }
         } // func didCardTapped
         
-        func getCardOffsetY(index: Int) -> CGFloat {
+        /// 카드의 개수에 따라서 카드의 위치를 지정해주는 함수입니다.
+        func getCardOffsetY(index: Int, size: CGSize) -> CGFloat {
             withAnimation(.spring()) {
-                guard let isSelected = cards[events[index]]?.isSelected,
-                      let card = cards[events[index]]
-                else { return .zero}
-                
-                return isSelected ? .zero - UIScreen.main.bounds.height / 2 : card.originalPosition
+                guard let card = cards[events[index]] else { return .zero}
+                if card.isSelected {
+                    return .zero
+                } else if size.height < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
+                    return cardSize + CGFloat(16) + card.originalPosition
+                } else {
+                    return size.height - cardInterval * CGFloat(cards.count - index) - CGFloat(8)
+                }
             }
-        } // func getCardOffsetY
+        }
+        
+        /// 스크롤을 원할하게 하기 위해서 Offset 으로 원래 크기 보다 밀려난 만큼 Spacer로 확보해줍니다.
+        func getSpacerMinLength(size: CGSize) -> CGFloat {
+            if size.height < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
+                print("1")
+                return cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) + cardSize
+            } else {
+                return size.height - cardInterval
+            }
+        }
     } // Class
-} // Extention
+} // Extention 

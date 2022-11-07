@@ -10,6 +10,10 @@ import SwiftUI
 struct MainTabView: View {
     @StateObject var observed = Observed()
     
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.white
+    }
+    
     var body: some View {
         TabView(selection: $observed.currentTab) {
             ForEach(Tab.allCases, id: \.self) { tab in

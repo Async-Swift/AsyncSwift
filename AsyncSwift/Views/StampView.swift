@@ -11,31 +11,31 @@ struct StampView: View {
     @StateObject var observed = Observed()
     
     var body: some View {
-        Group {
-            if observed.cards.isEmpty {
-                emptyCardView
-                    .padding(36)
-            } else {
-                ScrollView(showsIndicators: false) {
-                    ZStack {
-                        ForEach(0..<observed.cards.count, id: \.self) { index in
-                            cardView(index: index)
+        NavigationView {
+            GeometryReader { geometry in
+                if observed.cards.isEmpty {
+                    emptyCardView
+                        .padding(36)
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        ScrollViewReader { reader in
+                            ZStack {
+                                ForEach(0..<observed.cards.count, id: \.self) { index in
+                                    cardView(index: index, size: geometry.size, scrollReader: reader)
+                                }
+                            }
                         }
+                        Spacer(minLength: observed.getSpacerMinLength(size: geometry.size))
                     }
-                    .offset(y: UIScreen.main.bounds.height / 2)
-                    
-                    Spacer(minLength: observed.isExpand ? UIScreen.main.bounds.height : CGFloat(observed.cards.count * 358))
+                    .padding(.horizontal, 16)
                 }
-                .padding(16)
+            } // GeometryReader
+            .navigationTitle("Stamp")
+            .onOpenURL{ url in
+                Task {
+                    await observed.openByLink(url: url)
+                }
             }
-        } // Group
-        .onOpenURL{ url in
-            Task {
-                await observed.openByLink(url: url)
-            }
-        }
-        .onAppear {
-            print(UIScreen.main.bounds.height)
         }
     } // body
 }
@@ -51,13 +51,13 @@ private extension StampView {
         }
     }
     
-    func cardView(index: Int) -> some View {
-        observed.cards[observed.events[index]]?.currentImage?
+    func cardView(index: Int, size: CGSize, scrollReader: ScrollViewProxy) -> some View {
+        observed.cards[observed.events[index]]?.image
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .offset(y: observed.getCardOffsetY(index: index))
+            .offset(y: observed.getCardOffsetY(index: index, size: size))
             .onTapGesture {
-                observed.didCardTapped(index: index)
+                observed.didCardTapped(index: index, scrollReader: scrollReader)
             }
     }
 }
