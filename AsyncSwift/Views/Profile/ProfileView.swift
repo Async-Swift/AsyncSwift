@@ -231,7 +231,7 @@ private extension ProfileView {
                 HStack {
                     Spacer()
                     Button {
-                        observed.didTapXButton()
+                        observed.didTapCloseButton()
                     } label: {
                         Text("Done")
                     }

@@ -62,7 +62,7 @@ final class ProfileViewObserved: ObservableObject {
         }
     }
 
-    func didTapXButton() {
+    func didTapCloseButton() {
         isShowingScanner = false
     }
 
