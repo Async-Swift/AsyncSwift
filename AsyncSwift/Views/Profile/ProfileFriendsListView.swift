@@ -5,8 +5,8 @@
 //  Created by Kim Insub on 2022/11/02.
 //
 
-import SwiftUI
 import CodeScanner
+import SwiftUI
 
 struct ProfileFriendsListView: View {
     @StateObject var observed: ProfileFriendsListViewObserved
