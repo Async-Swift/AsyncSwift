@@ -23,11 +23,13 @@ final class ProfileEditViewObserved: ObservableObject {
     }
     @Published var linkedInURL = "" {
         didSet {
+            print(self.verifyURL(urlString: profileURL))
             self.isLinkedinURLValidated = self.verifyURL(urlString: linkedInURL)
         }
     }
     @Published var profileURL = "" {
         didSet {
+            print(self.verifyURL(urlString: profileURL))
             self.isProfileURLValidated = self.verifyURL(urlString: profileURL)
         }
     }
@@ -53,71 +55,47 @@ final class ProfileEditViewObserved: ObservableObject {
 private extension ProfileEditViewObserved {
     func register() {
         guard isButtonAvailable() else { return }
-        // 입력이 비어있지 않다면
         if !linkedInURL.isEmpty && !profileURL.isEmpty {
-            // 검사를 한다
             if isLinkedinURLValidated && isProfileURLValidated {
-                // 검사 통과시 통과
-                Task {
-                    await editUser()
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.isShowingSuccessAlert = true
-                    }
-                }
+                handleSuccess()
             } else {
-                // 검사 실패시 엘러트
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.isShowingInputFailureAlert = true
-                }
+                showFailureAlert()
             }
-        // 입력이 비어있지 않다면
         } else if !linkedInURL.isEmpty {
             if isLinkedinURLValidated {
-                // 검사 통과시 통과
-                Task {
-                    await editUser()
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.isShowingSuccessAlert = true
-                    }
-                }
+                handleSuccess()
             } else {
-                // 검사 실패시 엘러트
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.isShowingInputFailureAlert = true
-                }
+                showFailureAlert()
             }
-        // 입력이 비어있지 않다면
         } else if !profileURL.isEmpty {
-            // 검사를 한다
             if isProfileURLValidated {
-                // 검사 통과시 통과
-                Task {
-                    await editUser()
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.isShowingSuccessAlert = true
-                    }
-                }
+                handleSuccess()
             } else {
-                // 검사 실패시 엘러트
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.isShowingInputFailureAlert = true
-                }
+                showFailureAlert()
             }
         } else {
-            // 입력이 비어있다면 통과
-            Task {
-                await editUser()
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.isShowingSuccessAlert = true
-                }
-            }
+            handleSuccess()
+        }
+    }
+
+    func handleSuccess() {
+        Task {
+            await editUser()
+            showSuccessAlert()
+        }
+    }
+
+    func showSuccessAlert() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.isShowingSuccessAlert = true
+        }
+    }
+
+    func showFailureAlert() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.isShowingInputFailureAlert = true
         }
     }
 
