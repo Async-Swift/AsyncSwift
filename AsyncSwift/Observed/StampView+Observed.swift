@@ -12,7 +12,7 @@ extension StampView {
         @Published var cards = [String: Card]()
         @Published var events = [String]()
         @Published var currentIndex = 0
-        @Published var isExpand = false
+        @Published var navigationBarTitleMode = false
         private let keyChainManager = KeyChainManager()
         private let cardInterval: CGFloat = (UIScreen.main.bounds.width - 32) * 56 / 358
         private let cardSize: CGFloat = UIScreen.main.bounds.width - 32
@@ -34,7 +34,8 @@ extension StampView {
         private func fetchStampsImages(){
             let events = getEvents()
             
-            events.enumerated().forEach {
+            events.enumerated().forEach { [weak self] in
+                guard let self = self else { return }
                 let event = $0.element
                 let index = $0.offset
                 Task { @MainActor () -> Void in
@@ -106,7 +107,8 @@ extension StampView {
         func didCardTapped(index: Int, scrollReader: ScrollViewProxy) {
             if index != currentIndex {
                 withAnimation(.spring()) {
-                    scrollReader.scrollTo(0, anchor: .top)
+                    scrollReader.scrollTo(0, anchor: .topLeading)
+                    navigationBarTitleMode = true
                     cards[events[index]]?.isSelected = true
                     cards[events[currentIndex]]?.isSelected = false
                     currentIndex = index
@@ -131,7 +133,6 @@ extension StampView {
         /// 스크롤을 원할하게 하기 위해서 Offset 으로 원래 크기 보다 밀려난 만큼 Spacer로 확보해줍니다.
         func getSpacerMinLength(size: CGSize) -> CGFloat {
             if size.height < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
-                print("1")
                 return cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) + cardSize
             } else {
                 return size.height - cardInterval
