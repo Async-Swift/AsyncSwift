@@ -11,7 +11,14 @@ struct StampView: View {
     @StateObject var observed = Observed()
     
     var body: some View {
-        NavigationView {
+        VStack(alignment: .leading) {
+                Text("Stamp")
+                .font(.system(size: 34))
+                    .fontWeight(.bold)
+                    .padding(.leading, 16)
+                    .padding(.top, 48)
+            
+            
             GeometryReader { geometry in
                 if observed.cards.isEmpty {
                     emptyCardView
@@ -30,7 +37,7 @@ struct StampView: View {
                     .padding(.horizontal, 16)
                 }
             } // GeometryReader
-            .navigationTitle("Stamp")
+//            .navigationTitle("Stamp")
             .onOpenURL{ url in
                 Task {
                     await observed.openByLink(url: url)
