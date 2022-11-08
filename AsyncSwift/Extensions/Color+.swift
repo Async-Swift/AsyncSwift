@@ -15,5 +15,4 @@ extension Color {
     static let emptyTicketViewForeground = Color("emptyTicketViewForeground")
     static let speakerBackground = Color("speakerBackground")
     static let skeletonBackground = Color("skeletonBackground")
-    static let asyncBlue = Color("asyncBlue")
 }
