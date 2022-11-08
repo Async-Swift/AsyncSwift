@@ -29,6 +29,7 @@ extension FirebaseManager {
         ]
         docRef.setData(docData) { error in
             if let error = error {
+                // TODO: error 일 경우 Alert Message 보내기
                 print("Error writing document: \(error)")
             } else {
                 print("Document successfully written")
@@ -82,6 +83,7 @@ extension FirebaseManager {
 
         docRef.setData(docData) { error in
             if let error = error {
+                // TODO: error 일 경우 Alert Message 보내기
                 print("Error writing document: \(error)")
             } else {
                 print("Document successfully editted")
