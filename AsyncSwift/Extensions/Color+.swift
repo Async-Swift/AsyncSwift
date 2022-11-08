@@ -24,4 +24,5 @@ extension Color {
     static let skeletonQR = Color("AFAFAF")
     static let skeletonName = Color("D9D9D9")
     static let skeletonDescription = Color("EAEAEA")
+    static let asyncBlue = Color("1920FF")
 }
