@@ -44,7 +44,7 @@ extension FirebaseManager {
                   let document = document,
                   document.exists,
                   let data = document.data(),
-                  let id = data["id"] as? String,
+                  let id = data["id"] as? String, // TODO : Optional 에서 변경하기
                   let name = data["name"] as? String,
                   let nickname = data["nickname"] as? String,
                   let role = data["role"] as? String,
