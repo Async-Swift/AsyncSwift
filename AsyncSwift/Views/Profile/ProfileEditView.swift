@@ -14,6 +14,7 @@ struct ProfileEditView: View {
     init(user: User) {
         observed = ProfileEditViewObserved(user: user)
     }
+    
     var body: some View {
         VStack(spacing: 0) {
             Header

@@ -26,16 +26,7 @@ final class ProfileFriendsListViewObserved: ObservableObject {
     @Published var isShowingScanner = false
     @Published var isShowingScanErrorAlert = false
     @Published var friendsList: [User] = []
-    @Published var scannedFriend: User = User(
-        id: "",
-        name: "",
-        nickname: "",
-        role: "",
-        description: "",
-        linkedInURL: "",
-        profileURL: "",
-        friends: []
-    )
+    @Published var scannedFriend: User = .init()
 
     var user: User
 

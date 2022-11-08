@@ -20,26 +20,8 @@ final class ProfileViewObserved: ObservableObject {
     @Published var isShowingUserDetail = false
     @Published var isShowingFailureAlert = false
     @Published var isShowingScanErrorAlert = false
-    @Published var user = User(
-        id: "",
-        name: "",
-        nickname: "",
-        role: "",
-        description: "",
-        linkedInURL: "",
-        profileURL: "",
-        friends: []
-    )
-    @Published var scannedFriend = User(
-        id: "",
-        name: "",
-        nickname: "",
-        role: "",
-        description: "",
-        linkedInURL: "",
-        profileURL: "",
-        friends: []
-    )
+    @Published var user: User = .init()
+    @Published var scannedFriend: User = .init()
 
     var userID: String? {
         didSet {
