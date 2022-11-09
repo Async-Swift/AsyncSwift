@@ -12,7 +12,6 @@ extension StampView {
         @Published var cards = [String: Card]()
         @Published var events = [String]()
         @Published var currentIndex = 0
-        @Published var navigationBarTitleMode = false
         private let keyChainManager = KeyChainManager()
         private let cardInterval: CGFloat = (UIScreen.main.bounds.width - 32) * 56 / 358
         private let cardSize: CGFloat = UIScreen.main.bounds.width - 32
@@ -108,7 +107,6 @@ extension StampView {
             if index != currentIndex {
                 scrollReader.scrollTo(0, anchor: .init(x: 0, y: 94))
                 withAnimation(.spring()) {
-                    navigationBarTitleMode = true
                     cards[events[index]]?.isSelected = true
                     cards[events[currentIndex]]?.isSelected = false
                     currentIndex = index
