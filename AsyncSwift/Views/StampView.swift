@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StampView: View {
     @StateObject var observed = Observed()
+    @EnvironmentObject var envObserved: MainTabViewObserved
     
     var body: some View {
         GeometryReader { geometry in
@@ -42,7 +43,9 @@ struct StampView: View {
         }
         .onOpenURL{ url in
             Task {
-                await observed.openByLink(url: url)
+                if await observed.isAvailableURL(url: url) {
+                    envObserved.currentTab = .stamp
+                }
             }
         }
     }

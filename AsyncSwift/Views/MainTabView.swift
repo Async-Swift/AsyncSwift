@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @StateObject var observed = Observed()
+    @StateObject var observed = MainTabViewObserved()
     
     init() {
         UITabBar.appearance().backgroundColor = UIColor.white
@@ -21,6 +21,7 @@ struct MainTabView: View {
                     Image(systemName: tab.systemImageName)
                     Text(tab.title)
                 }
+                .environmentObject(observed)
             }
         }
     }
