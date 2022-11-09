@@ -8,6 +8,7 @@
 import Combine
 import SwiftUI
 
+@MainActor
 final class ProfileRegisterViewObserved: ObservableObject {
     @Binding var hasRegisteredProfile: Bool
     @Binding var userID: String?
@@ -87,6 +88,7 @@ private extension ProfileRegisterViewObserved {
     func handleSuccess() {
         Task {
             await createUser()
+            hasRegisteredProfile = true
             showSuccessAlert()
         }
     }
