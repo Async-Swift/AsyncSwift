@@ -46,12 +46,18 @@ struct ProfileFriendDetailView: View {
                     .ignoresSafeArea()
             }
         })
-        .alert("삭제", isPresented: $observed.isShowingConfirmAlert, actions: {
-            Button("삭제") { observed.isShowingConfirmAlert = false }
-            Button("확인") { observed.didConfirmDelete() }
-        }, message: {
-            Text("유저를 친구 목록에서 삭제하시겠습니까?")
-        })
+        .alert(isPresented: $observed.isShowingConfirmAlert) {
+            Alert(
+                title: Text("삭제"),
+                message: Text("유저 친구 목록에서 삭제하시겠습니까?"),
+                primaryButton: .destructive(Text("삭제")) {
+                    observed.didConfirmDelete()
+                },
+                secondaryButton: .cancel(Text("취소")) {
+                    observed.isShowingConfirmAlert = false
+                }
+            )
+        }
     }
 }
 
