@@ -106,8 +106,8 @@ extension StampView {
         /// 가장 맨 위에 올라온 카드라면 아무것도 작동안하도록, 아니라면 가장 맨위로 올도록 하는 함수입니다.
         func didCardTapped(index: Int, scrollReader: ScrollViewProxy) {
             if index != currentIndex {
+                scrollReader.scrollTo(0, anchor: .init(x: 0, y: 94))
                 withAnimation(.spring()) {
-                    scrollReader.scrollTo(0, anchor: .topLeading)
                     navigationBarTitleMode = true
                     cards[events[index]]?.isSelected = true
                     cards[events[currentIndex]]?.isSelected = false
@@ -122,20 +122,20 @@ extension StampView {
                 guard let card = cards[events[index]] else { return .zero}
                 if card.isSelected {
                     return .zero
-                } else if size.height < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
+                } else if size.height - CGFloat(94) < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
                     return cardSize + CGFloat(16) + card.originalPosition
                 } else {
-                    return size.height - cardInterval * CGFloat(cards.count - index) - CGFloat(8)
+                    return size.height - CGFloat(94) - cardInterval * CGFloat(cards.count - index) - CGFloat(16)
                 }
             }
         }
         
         /// 스크롤을 원할하게 하기 위해서 Offset 으로 원래 크기 보다 밀려난 만큼 Spacer로 확보해줍니다.
         func getSpacerMinLength(size: CGSize) -> CGFloat {
-            if size.height < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
+            if size.height - CGFloat(94) < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
                 return cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) + cardSize
             } else {
-                return size.height - cardInterval
+                return size.height - CGFloat(94) - cardInterval
             }
         }
     } // Class
