@@ -52,6 +52,8 @@ extension StampView {
                     // 가장 최근의 EventCard가 선택된 상태로 지정하기
                     if index == 0 {
                         self.cards[event]?.isSelected = true
+                    } else {
+                        self.cards[event]?.isSelected = false
                     }
                 }
             }
