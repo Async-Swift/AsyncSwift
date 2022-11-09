@@ -11,40 +11,41 @@ struct StampView: View {
     @StateObject var observed = Observed()
     
     var body: some View {
-        VStack(alignment: .leading) {
-                Text("Stamp")
-                .font(.system(size: 34))
-                    .fontWeight(.bold)
-                    .padding(.leading, 16)
-                    .padding(.top, 48)
-            
-            
-            GeometryReader { geometry in
-                if observed.cards.isEmpty {
-                    emptyCardView
-                        .padding(36)
-                } else {
-                    ScrollView(showsIndicators: false) {
-                        ScrollViewReader { reader in
-                            ZStack {
-                                ForEach(0..<observed.cards.count, id: \.self) { index in
-                                    cardView(index: index, size: geometry.size, scrollReader: reader)
-                                }
-                            }
+        GeometryReader { geometry in
+            if observed.cards.isEmpty {
+                emptyCardView
+                    .padding(36)
+            } else {
+                ScrollView(showsIndicators: false) {
+                    ScrollViewReader { reader in
+                        HStack(alignment: .bottom) {
+                            Text("Stamp")
+                                .font(.system(size: 34))
+                                .fontWeight(.bold)
+                                .padding(.leading, 16)
+                                .padding(.bottom, 7)
+                                .padding(.top, 48)
+                            Spacer()
                         }
-                        Spacer(minLength: observed.getSpacerMinLength(size: geometry.size))
+                        .frame(height: 94)
+                        ZStack {
+                            ForEach(0..<observed.cards.count, id: \.self) { index in
+                                cardView(index: index, size: geometry.size, scrollReader: reader)
+                            }
+                            .padding(.horizontal, 16)
+                        }
                     }
-                    .padding(.horizontal, 16)
+                    Spacer(minLength: observed.getSpacerMinLength(size: geometry.size))
                 }
-            } // GeometryReader
-//            .navigationTitle("Stamp")
-            .onOpenURL{ url in
-                Task {
-                    await observed.openByLink(url: url)
-                }
+                
             }
         }
-    } // body
+        .onOpenURL{ url in
+            Task {
+                await observed.openByLink(url: url)
+            }
+        }
+    }
 }
 
 private extension StampView {
@@ -68,15 +69,3 @@ private extension StampView {
             }
     }
 }
-
-struct StampView_Previews: PreviewProvider {
-    static var previews: some View {
-        StampView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
-        
-        StampView()
-            .previewDevice(PreviewDevice(rawValue: "iPhone SE (3rd generation)"))
-    }
-}
-
-
