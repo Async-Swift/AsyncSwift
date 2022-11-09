@@ -61,7 +61,7 @@ extension StampView {
             // URL Example = https://asyncswift.info?tab=Stamp&event=Conference001
             // URL Example = https://asyncswift.info?tab=Event
             
-            guard URLComponents(url: url, resolvingAgainstBaseURL: true)?.host != nil else { return }
+            if URLComponents(url: url, resolvingAgainstBaseURL: true)?.host == nil { return }
             var queries = [String: String]()
             for item in URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems ?? [] {
                 queries[item.name] = item.value
