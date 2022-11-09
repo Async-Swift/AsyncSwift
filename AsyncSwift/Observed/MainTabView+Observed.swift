@@ -13,6 +13,10 @@ extension MainTabView {
         @Published var currentTab: Tab = .event
         private let keyChainManager = KeyChainManager()
         
+        init() {
+            fixKeyChain()
+        }
+        
         
         // MARK: 버전 1의 실수를 바로 잡습니다. @Toby
         /// "seminar002"가 key로 들어가 있던 기존 코드를 삭제하는 함수입니다.

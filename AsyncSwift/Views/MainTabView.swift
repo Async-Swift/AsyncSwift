@@ -23,8 +23,5 @@ struct MainTabView: View {
                 }
             }
         }
-        .onAppear {
-            observed.fixKeyChain()
-        }
     }
 }
