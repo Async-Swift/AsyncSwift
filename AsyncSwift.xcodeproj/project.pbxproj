@@ -442,7 +442,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftForInho;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AsyncSwift_Development;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AsyncSwiftApp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -481,7 +481,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftForInho;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AsyncSwift_Development;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AsyncSwiftApp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
