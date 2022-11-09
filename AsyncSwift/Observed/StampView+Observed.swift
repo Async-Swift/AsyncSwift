@@ -23,7 +23,7 @@ extension StampView {
         private func getEvents() -> [String] {
             let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
             guard var convertedStringArray = pwRaw?.convertToStringArray() else { return [] }
-            convertedStringArray.insert("Test", at: 0) // MARK: Test 실제에서는 Next storage 둘다 설정해야함
+            convertedStringArray.insert("Next", at: 0) // MARK: Test 실제에서는 Next storage 둘다 설정해야함
             self.events = convertedStringArray.reversed()
             return events
         }
@@ -38,7 +38,7 @@ extension StampView {
                 let event = $0.element
                 let index = $0.offset
                 Task { @MainActor () -> Void in
-                    guard let cardImageURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/ver2Test/Images/Stamp/" + event + "/stamp.png")
+                    guard let cardImageURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "/stamp.png")
                     else { return }
                     
                     let cardImageRequest = URLRequest(url: cardImageURL)
@@ -90,7 +90,7 @@ extension StampView {
         }
         
         private func fetchCurrentStamp() async throws -> Stamp {
-            guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/ver2Test/currentEvent.json") // MARK: URL 주소 확인 테스트용으로 되어 있음
+            guard let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/currentEvent.json") // MARK: URL 주소 확인 테스트용으로 되어 있음
             else { return .init(title: "error") }
             
             let request = URLRequest(url: url)
