@@ -5,15 +5,12 @@
 //  Created by Inho Choi on 2022/09/15.
 //
 
-import Foundation
 import UIKit
 
-final class KeyChain {
-    static let shared = KeyChain()
-
-    private init() { }
-
-    func addItem(key: Any, pwd: Any) -> Bool {
+final class KeyChainManager {
+    let stampKey = "AsyncSwiftStamp"
+    
+    @discardableResult func addItem(key: Any, pwd: Any) -> Bool {
         let addQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
                                          kSecAttrAccount: key,
                                          kSecValueData: (pwd as AnyObject).data(using: String.Encoding.utf8.rawValue) as Any]
