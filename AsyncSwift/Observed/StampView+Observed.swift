@@ -59,11 +59,11 @@ extension StampView {
             }
         }
                 
-        func openByLink(url: URL) async {
+        func isAvailableURL(url: URL) async -> Bool {
             // URL Example = https://asyncswift.info?tab=Stamp&event=Conference001
             // URL Example = https://asyncswift.info?tab=Event
             
-            if URLComponents(url: url, resolvingAgainstBaseURL: true)?.host == nil { return }
+            if URLComponents(url: url, resolvingAgainstBaseURL: true)?.host == nil { return false }
             var queries = [String: String]()
             for item in URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems ?? [] {
                 queries[item.name] = item.value
@@ -73,7 +73,7 @@ extension StampView {
                 let stamp = try await fetchCurrentStamp()
                 
                 if queries["tab"] == Tab.stamp.rawValue {
-                    guard let queryEvent = queries["event"] else { return }
+                    guard let queryEvent = queries["event"] else { return false }
                     if stamp.title == queryEvent {
                         let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
                         var pw: [String] = pwRaw?.convertToStringArray() ?? []
@@ -86,7 +86,9 @@ extension StampView {
                 }
             } catch {
                 print(error.localizedDescription)
+                return false
             }
+            return true
         }
         
         private func fetchCurrentStamp() async throws -> Stamp {
