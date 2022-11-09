@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B21473BC28F058600034C62D /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21473BB28F058600034C62D /* String+.swift */; };
-		B25E600C28D2400500E96C78 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E600B28D2400500E96C78 /* KeyChainManager.swift */; };
+		B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25E600B28D2400500E96C78 /* KeyChain.swift */; };
 		B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289943228CA69FF002B9F67 /* StampView+Observed.swift */; };
-		B2C066B628F1650200179150 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C066B528F1650200179150 /* Tab.swift */; };
-		B2E1083128C9CD6900C3DD59 /* MainTabView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */; };
+		B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1083028C9CD6900C3DD59 /* AppData.swift */; };
 		B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FC6F6228D309FF00D2ACBF /* Stamp.swift */; };
+		C631EBC3291537E300A54143 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C631EBC2291537E300A54143 /* SafariView.swift */; };
 		C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */; };
 		C63A866328CB3D490064C417 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866228CB3D490064C417 /* View+.swift */; };
 		C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63A866428CB3F6D0064C417 /* DateFormatter+.swift */; };
 		C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D228D1B00A0091F960 /* EventModel.swift */; };
 		C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D428D1B0130091F960 /* SessionModel.swift */; };
 		C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */; };
+		C66E3D95290BA48500097BEA /* ProfileRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */; };
+		C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */; };
+		C66E3D99290BB9C100097BEA /* TextEditor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D98290BB9C100097BEA /* TextEditor+.swift */; };
 		C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */; };
 		C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE93728C7685800CA4CC8 /* MainTabView.swift */; };
 		C68DE93A28C7685900CA4CC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C68DE93928C7685900CA4CC8 /* Assets.xcassets */; };
@@ -29,6 +31,21 @@
 		C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */; };
 		C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE94E28C77DC900CA4CC8 /* EventView.swift */; };
 		C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */; };
+		C69C139F2912817D00D9B47F /* ProfileFriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */; };
+		C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */; };
+		C69C13B32913B08F00D9B47F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C69C13B22913B08F00D9B47F /* FirebaseDatabase */; };
+		C69C13B52913B09500D9B47F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C69C13B42913B09500D9B47F /* FirebaseFirestore */; };
+		C69C13BA2913B0C800D9B47F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13B92913B0C800D9B47F /* User.swift */; };
+		C69C13BC2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13BB2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift */; };
+		C69C13BF2913EC9400D9B47F /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13BE2913EC9400D9B47F /* FirebaseManager.swift */; };
+		C69C13C1291418A000D9B47F /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13C0291418A000D9B47F /* ProfileEditView.swift */; };
+		C69C13C32914192B00D9B47F /* ProfileEditViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13C22914192B00D9B47F /* ProfileEditViewObserved.swift */; };
+		C69C13C6291425F200D9B47F /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = C69C13C5291425F200D9B47F /* CodeScanner */; };
+		C69C13C82914A6C300D9B47F /* ProfileFriendDetailViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C13C72914A6C300D9B47F /* ProfileFriendDetailViewObserved.swift */; };
+		C6AA71E428FC48EB0091A868 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E328FC48EB0091A868 /* ProfileView.swift */; };
+		C6AA71E628FC49040091A868 /* ProfileViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E528FC49040091A868 /* ProfileViewObserved.swift */; };
+		C6AA71E828FC65680091A868 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA71E728FC65680091A868 /* Text+.swift */; };
+		C6AABAC32901875100779203 /* TextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AABAC22901875100779203 /* TextField+.swift */; };
 		C6E744A028CA557100B7B2BD /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E7449F28CA557100B7B2BD /* Color+.swift */; };
 		C6F7798728C9CB3A0036773B /* StampView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798628C9CB3A0036773B /* StampView.swift */; };
 		C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F7798A28C9CBC60036773B /* EventView+Observed.swift */; };
@@ -40,18 +57,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B21473BB28F058600034C62D /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		B25E600B28D2400500E96C78 /* KeyChainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		B25E600B28D2400500E96C78 /* KeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		B289943228CA69FF002B9F67 /* StampView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StampView+Observed.swift"; sourceTree = "<group>"; };
-		B2C066B528F1650200179150 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
-		B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabView+Observed.swift"; sourceTree = "<group>"; };
+		B2E1083028C9CD6900C3DD59 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		B2FC6F6228D309FF00D2ACBF /* Stamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stamp.swift; sourceTree = "<group>"; };
+		C631EBC2291537E300A54143 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+Observed.swift"; sourceTree = "<group>"; };
 		C63A866228CB3D490064C417 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		C63A866428CB3F6D0064C417 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 		C66C68D228D1B00A0091F960 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		C66C68D428D1B0130091F960 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionView+Observed.swift"; sourceTree = "<group>"; };
+		C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterView.swift; sourceTree = "<group>"; };
+		C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterViewObserved.swift; sourceTree = "<group>"; };
+		C66E3D98290BB9C100097BEA /* TextEditor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextEditor+.swift"; sourceTree = "<group>"; };
 		C68DE93228C7685800CA4CC8 /* AsyncSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSwiftApp.swift; sourceTree = "<group>"; };
 		C68DE93728C7685800CA4CC8 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -63,6 +82,18 @@
 		C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsyncSwift.entitlements; sourceTree = "<group>"; };
 		C68DE94E28C77DC900CA4CC8 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketingView.swift; sourceTree = "<group>"; };
+		C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendsListView.swift; sourceTree = "<group>"; };
+		C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendDetailView.swift; sourceTree = "<group>"; };
+		C69C13B92913B0C800D9B47F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C69C13BB2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendsListViewObserved.swift; sourceTree = "<group>"; };
+		C69C13BE2913EC9400D9B47F /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		C69C13C0291418A000D9B47F /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		C69C13C22914192B00D9B47F /* ProfileEditViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewObserved.swift; sourceTree = "<group>"; };
+		C69C13C72914A6C300D9B47F /* ProfileFriendDetailViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFriendDetailViewObserved.swift; sourceTree = "<group>"; };
+		C6AA71E328FC48EB0091A868 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C6AA71E528FC49040091A868 /* ProfileViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewObserved.swift; sourceTree = "<group>"; };
+		C6AA71E728FC65680091A868 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
+		C6AABAC22901875100779203 /* TextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+.swift"; sourceTree = "<group>"; };
 		C6E7449F28CA557100B7B2BD /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		C6F7798628C9CB3A0036773B /* StampView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampView.swift; sourceTree = "<group>"; };
 		C6F7798A28C9CBC60036773B /* EventView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventView+Observed.swift"; sourceTree = "<group>"; };
@@ -78,27 +109,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C69C13B32913B08F00D9B47F /* FirebaseDatabase in Frameworks */,
+				C69C13B52913B09500D9B47F /* FirebaseFirestore in Frameworks */,
 				C68DE94728C76BC500CA4CC8 /* FirebaseMessaging in Frameworks */,
 				C68DE94528C76BC500CA4CC8 /* FirebaseAnalytics in Frameworks */,
+				C69C13C6291425F200D9B47F /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B2C066B228F15C5B00179150 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				B25E600B28D2400500E96C78 /* KeyChainManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
 		C68DE92928C7685800CA4CC8 = {
 			isa = PBXGroup;
 			children = (
 				C68DE93428C7685800CA4CC8 /* AsyncSwift */,
 				C68DE93328C7685800CA4CC8 /* Products */,
+				C69C13B12913B08F00D9B47F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,8 +143,8 @@
 				C68DE94D28C77CC400CA4CC8 /* AsyncSwift.entitlements */,
 				C68DE94A28C76CE000CA4CC8 /* Info.plist */,
 				C68DE93528C7685800CA4CC8 /* AsyncSwiftApp.swift */,
-				B2C066B228F15C5B00179150 /* Managers */,
 				C68DE94B28C76F3200CA4CC8 /* AppDelegate.swift */,
+				C69C13A32913804E00D9B47F /* Managers */,
 				C6E7449E28CA556800B7B2BD /* Extensions */,
 				C6F7798828C9CB9B0036773B /* Models */,
 				C68DE95228C77F4800CA4CC8 /* Views */,
@@ -146,18 +173,69 @@
 				C6F7798E28C9D1BF0036773B /* SessionView.swift */,
 				C68DE95028C77DDA00CA4CC8 /* TicketingView.swift */,
 				C6F7798628C9CB3A0036773B /* StampView.swift */,
+				C69C13A02912818500D9B47F /* Profile */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C69C13A02912818500D9B47F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C6AA71E328FC48EB0091A868 /* ProfileView.swift */,
+				C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */,
+				C69C13C0291418A000D9B47F /* ProfileEditView.swift */,
+				C69C139E2912817D00D9B47F /* ProfileFriendsListView.swift */,
+				C69C13A12912868F00D9B47F /* ProfileFriendDetailView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C69C13A32913804E00D9B47F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C69C13B82913B0BC00D9B47F /* Firebase */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		C69C13B12913B08F00D9B47F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C69C13B82913B0BC00D9B47F /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				C69C13BE2913EC9400D9B47F /* FirebaseManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		C69C13BD2913EC3200D9B47F /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				C6AA71E528FC49040091A868 /* ProfileViewObserved.swift */,
+				C69C13C22914192B00D9B47F /* ProfileEditViewObserved.swift */,
+				C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */,
+				C69C13BB2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift */,
+				C69C13C72914A6C300D9B47F /* ProfileFriendDetailViewObserved.swift */,
+			);
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
 		C6E7449E28CA556800B7B2BD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				C6E7449F28CA557100B7B2BD /* Color+.swift */,
+				C6AA71E728FC65680091A868 /* Text+.swift */,
 				C63A866228CB3D490064C417 /* View+.swift */,
 				C63A866428CB3F6D0064C417 /* DateFormatter+.swift */,
+				C6AABAC22901875100779203 /* TextField+.swift */,
+				C66E3D98290BB9C100097BEA /* TextEditor+.swift */,
 				E9E2A4D728CEC5680016AEFF /* WebView.swift */,
-				B21473BB28F058600034C62D /* String+.swift */,
+				C631EBC2291537E300A54143 /* SafariView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -165,11 +243,11 @@
 		C6F7798828C9CB9B0036773B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C69C13B92913B0C800D9B47F /* User.swift */,
 				C66C68D228D1B00A0091F960 /* EventModel.swift */,
 				C66C68D428D1B0130091F960 /* SessionModel.swift */,
 				E94F92C628D2505100D9E759 /* Ticketing.swift */,
 				B2FC6F6228D309FF00D2ACBF /* Stamp.swift */,
-				B2C066B528F1650200179150 /* Tab.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,9 +258,11 @@
 				C6F7798A28C9CBC60036773B /* EventView+Observed.swift */,
 				C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */,
 				C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */,
-				B2E1083028C9CD6900C3DD59 /* MainTabView+Observed.swift */,
+				B25E600B28D2400500E96C78 /* KeyChain.swift */,
+				B2E1083028C9CD6900C3DD59 /* AppData.swift */,
 				B289943228CA69FF002B9F67 /* StampView+Observed.swift */,
 				E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */,
+				C69C13BD2913EC3200D9B47F /* ProfileView */,
 			);
 			path = Observed;
 			sourceTree = "<group>";
@@ -206,6 +286,9 @@
 			packageProductDependencies = (
 				C68DE94428C76BC500CA4CC8 /* FirebaseAnalytics */,
 				C68DE94628C76BC500CA4CC8 /* FirebaseMessaging */,
+				C69C13B22913B08F00D9B47F /* FirebaseDatabase */,
+				C69C13B42913B09500D9B47F /* FirebaseFirestore */,
+				C69C13C5291425F200D9B47F /* CodeScanner */,
 			);
 			productName = AsyncSwift;
 			productReference = C68DE93228C7685800CA4CC8 /* AsyncSwift.app */;
@@ -237,6 +320,7 @@
 			mainGroup = C68DE92928C7685800CA4CC8;
 			packageReferences = (
 				C68DE94328C76BC500CA4CC8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C69C13C4291425F200D9B47F /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = C68DE93328C7685800CA4CC8 /* Products */;
 			projectDirPath = "";
@@ -265,31 +349,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6AA71E828FC65680091A868 /* Text+.swift in Sources */,
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
+				C69C13C1291418A000D9B47F /* ProfileEditView.swift in Sources */,
+				C631EBC3291537E300A54143 /* SafariView.swift in Sources */,
 				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
+				C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
-				B25E600C28D2400500E96C78 /* KeyChainManager.swift in Sources */,
-				B2C066B628F1650200179150 /* Tab.swift in Sources */,
+				B25E600C28D2400500E96C78 /* KeyChain.swift in Sources */,
 				C6F7798B28C9CBC60036773B /* EventView+Observed.swift in Sources */,
 				C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */,
-				B21473BC28F058600034C62D /* String+.swift in Sources */,
+				C66E3D99290BB9C100097BEA /* TextEditor+.swift in Sources */,
+				C69C139F2912817D00D9B47F /* ProfileFriendsListView.swift in Sources */,
+				C69C13BF2913EC9400D9B47F /* FirebaseManager.swift in Sources */,
+				C69C13BC2913EC2000D9B47F /* ProfileFriendsListViewObserved.swift in Sources */,
+				C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */,
+				C69C13C32914192B00D9B47F /* ProfileEditViewObserved.swift in Sources */,
 				E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */,
 				C6F7798728C9CB3A0036773B /* StampView.swift in Sources */,
+				C6AA71E628FC49040091A868 /* ProfileViewObserved.swift in Sources */,
+				C69C13BA2913B0C800D9B47F /* User.swift in Sources */,
 				B289943328CA69FF002B9F67 /* StampView+Observed.swift in Sources */,
 				C63A865F28CA70ED0064C417 /* EventDetailView+Observed.swift in Sources */,
 				C68DE94F28C77DC900CA4CC8 /* EventView.swift in Sources */,
 				C68DE93828C7685800CA4CC8 /* MainTabView.swift in Sources */,
 				C6F7799128C9E5DD0036773B /* EventDetailView.swift in Sources */,
 				C68DE93628C7685800CA4CC8 /* AsyncSwiftApp.swift in Sources */,
+				C6AA71E428FC48EB0091A868 /* ProfileView.swift in Sources */,
+				C69C13C82914A6C300D9B47F /* ProfileFriendDetailViewObserved.swift in Sources */,
+				C6AABAC32901875100779203 /* TextField+.swift in Sources */,
 				E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */,
+				C66E3D95290BA48500097BEA /* ProfileRegisterView.swift in Sources */,
 				C63A866328CB3D490064C417 /* View+.swift in Sources */,
 				C63A866528CB3F6D0064C417 /* DateFormatter+.swift in Sources */,
 				C6F7798F28C9D1BF0036773B /* SessionView.swift in Sources */,
 				C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */,
 				B2FC6F6328D309FF00D2ACBF /* Stamp.swift in Sources */,
-				B2E1083128C9CD6900C3DD59 /* MainTabView+Observed.swift in Sources */,
+				B2E1083128C9CD6900C3DD59 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,16 +514,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AsyncSwift/AsyncSwift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"AsyncSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = 76AJ433CP5;
+				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 76AJ433CP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "캘린더에 일정 추가를 위해서는 권한이 필요해요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "QR코드 스캔을 위해 카메라를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -441,8 +541,8 @@
 				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftProvisioningProfile;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AsyncSwift_Development;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AsyncSwiftApp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -455,16 +555,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AsyncSwift/AsyncSwift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"AsyncSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = 76AJ433CP5;
+				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 76AJ433CP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AsyncSwift/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "캘린더에 일정 추가를 위해서는 권한이 필요해요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "QR코드 스캔을 위해 카메라를 사용합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -480,8 +582,8 @@
 				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kim.AsyncSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AsyncSwiftProvisioningProfile;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AsyncSwift_Development;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AsyncSwiftApp;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -520,6 +622,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		C69C13C4291425F200D9B47F /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -532,6 +642,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C68DE94328C76BC500CA4CC8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		C69C13B22913B08F00D9B47F /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C68DE94328C76BC500CA4CC8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		C69C13B42913B09500D9B47F /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C68DE94328C76BC500CA4CC8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		C69C13C5291425F200D9B47F /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C69C13C4291425F200D9B47F /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
