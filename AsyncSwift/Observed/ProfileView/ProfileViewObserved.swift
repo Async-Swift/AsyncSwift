@@ -22,15 +22,16 @@ final class ProfileViewObserved: ObservableObject {
     @Published var isShowingScanErrorAlert = false
     @Published var user: User = .init()
     @Published var scannedFriend: User = .init()
+    private let keyChainManager = KeyChainManager()
 
     var userID: String? {
         didSet {
-            let _ = KeyChain.shared.addItem(key: "userID", pwd: userID ?? "")
+            let _ = keyChainManager.addItem(key: "userID", pwd: userID ?? "")
         }
     }
 
     init() {
-        guard let userid = KeyChain.shared.getItem(key: "userID") else { return }
+        guard let userid = keyChainManager.getItem(key: "userID") else { return }
         self.hasRegisteredProfile = true
         self.userID = userid as? String
     }
