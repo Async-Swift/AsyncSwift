@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 final class ProfileEditViewObserved: ObservableObject {
 
     @Published var isShowingSuccessAlert = false
