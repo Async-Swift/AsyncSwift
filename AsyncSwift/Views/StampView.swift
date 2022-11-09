@@ -63,6 +63,7 @@ private extension StampView {
         observed.cards[observed.events[index]]?.image
             .resizable()
             .aspectRatio(contentMode: .fit)
+            .shadow(color: Color.black.opacity(0.1), radius: 10, y: 4)
             .offset(y: observed.getCardOffsetY(index: index, size: size))
             .onTapGesture {
                 observed.didCardTapped(index: index, scrollReader: scrollReader)
