@@ -56,10 +56,7 @@ private extension ProfileFriendsListView {
             case true:
                 emptyList
             case false:
-                ScrollView {
-                    list
-                    .padding(.top, 30)
-                }
+                list
             }
         }
     }
@@ -82,22 +79,28 @@ private extension ProfileFriendsListView {
     }
 
     var loadingList: some View {
-        ForEach(0..<observed.user.friends.count, id: \.self) { friend in
-            Rectangle()
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 56)
-                .foregroundColor(Color.inActiveButtonBackground)
-                .cornerRadius(15)
-                .padding(.bottom, 20)
+        ScrollView {
+            ForEach(0..<observed.user.friends.count, id: \.self) { friend in
+                Rectangle()
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56, maxHeight: 56)
+                    .foregroundColor(Color.inActiveButtonBackground)
+                    .cornerRadius(15)
+                    .padding(.bottom, 20)
+            }
+            .padding(.horizontal)
+            .padding(.top, 30)
         }
-        .padding(.horizontal)
     }
 
     var list: some View {
-        ForEach(observed.friendsList) { friend in
-            listCell(friend: friend)
-                .padding(.bottom, 20)
+        ScrollView {
+            ForEach(observed.friendsList) { friend in
+                listCell(friend: friend)
+                    .padding(.bottom, 20)
+            }
+            .padding(.horizontal)
+            .padding(.top, 30)
         }
-        .padding(.horizontal)
     }
 
     func listCell(friend: User) -> some View {
