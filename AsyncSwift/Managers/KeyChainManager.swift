@@ -7,18 +7,13 @@
 
 import UIKit
 
-final class KeyChain {
-    static let shared = KeyChain()
-
-    private init() { }
-
-    func addItem(key: Any, pwd: Any) -> Bool {
-        let addQuery: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrAccount: key,
-            kSecValueData: (pwd as AnyObject).data(using: String.Encoding.utf8.rawValue) as Any
-        ]
-
+final class KeyChainManager {
+    let stampKey = "AsyncSwiftStamp"
+    
+    @discardableResult func addItem(key: Any, pwd: Any) -> Bool {
+        let addQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
+                                         kSecAttrAccount: key,
+                                         kSecValueData: (pwd as AnyObject).data(using: String.Encoding.utf8.rawValue) as Any]
         let status = SecItemAdd(addQuery as CFDictionary, nil)
 
         switch status {
