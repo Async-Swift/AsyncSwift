@@ -53,9 +53,9 @@ extension StampView {
                     if index == 0 {
                         self.cards[event]?.isSelected = true
                     }
-                } // Task
-            } // forEach
-        } // fetchStampsImages
+                }
+            }
+        }
                 
         func openByLink(url: URL) async {
             // URL Example = https://asyncswift.info?tab=Stamp&event=Conference001
@@ -84,7 +84,7 @@ extension StampView {
                 }
             } catch {
                 print(error.localizedDescription)
-            } // do-catch
+            }
         }
         
         private func fetchCurrentStamp() async throws -> Stamp {
@@ -112,7 +112,7 @@ extension StampView {
                     currentIndex = index
                 }
             }
-        } // func didCardTapped
+        }
         
         /// 카드의 개수에 따라서 카드의 위치를 지정해주는 함수입니다.
         func getCardOffsetY(index: Int, size: CGSize) -> CGFloat {
@@ -136,5 +136,5 @@ extension StampView {
                 return size.height - CGFloat(94) - cardInterval
             }
         }
-    } // Class
-} // Extention 
+    }
+}
