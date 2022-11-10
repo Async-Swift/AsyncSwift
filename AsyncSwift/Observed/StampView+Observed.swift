@@ -127,7 +127,7 @@ extension StampView {
                 } else if size.height - CGFloat(94) < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
                     return cardSize + CGFloat(16) + card.originalPosition
                 } else {
-                    return size.height - CGFloat(94) - cardInterval * CGFloat(cards.count - index) - CGFloat(16)
+                    return size.height - CGFloat(94) - cardInterval * CGFloat(cards.count - index) - CGFloat(8)
                 }
             }
         }
