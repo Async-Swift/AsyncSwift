@@ -29,12 +29,12 @@ final class ProfileFriendDetailViewObserved: ObservableObject {
     }
     var hasProfileURL: Bool {
         get {
-            !user.profileURL.isEmpty
+            !friend.profileURL.isEmpty
         }
     }
     var hasLinkedInURL: Bool {
         get {
-            !user.linkedInURL.isEmpty
+            !friend.linkedInURL.isEmpty
         }
     }
 
