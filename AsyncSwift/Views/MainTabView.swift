@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct MainTabView: View {
-	@EnvironmentObject var appData: AppData
+    @StateObject var observed = MainTabViewObserved()
+    
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.white
+    }
+    
     var body: some View {
-        TabView(selection: $appData.currentTab) {
+        TabView(selection: $observed.currentTab) {
             ForEach(Tab.allCases, id: \.self) { tab in
                 tab.view.tabItem {
                     Image(systemName: tab.systemImageName)
                     Text(tab.title)
                 }
+                .environmentObject(observed)
             }
         }
     }

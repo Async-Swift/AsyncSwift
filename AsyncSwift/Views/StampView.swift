@@ -2,71 +2,74 @@
 //  StampView.swift
 //  AsyncSwift
 //
-//  Created by Kim Insub on 2022/09/08.
+//  Created by Inho Choi on 2022/10/29.
 //
 
 import SwiftUI
 
 struct StampView: View {
-    @EnvironmentObject var appData: AppData
-    @ObservedObject var observed = Observed()
-
+    @StateObject var observed = Observed()
+    @EnvironmentObject var envObserved: MainTabViewObserved
+    
     var body: some View {
-        NavigationView {
-            Group {
-                if appData.isStampExist {
-                    ZStack {
-                        stampBack
-                        stampFront
+        GeometryReader { geometry in
+            if observed.cards.isEmpty {
+                emptyCardView
+                    .padding(36)
+            } else {
+                ScrollView(showsIndicators: false) {
+                    ScrollViewReader { reader in
+                        HStack(alignment: .bottom) {
+                            Text("Stamp")
+                                .font(.system(size: 34))
+                                .fontWeight(.bold)
+                                .padding(.leading, 16)
+                                .padding(.bottom, 7)
+                                .padding(.top, 48)
+                            Spacer()
+                        }
+                        .frame(height: 94)
+                        ZStack {
+                            ForEach(0..<observed.cards.count, id: \.self) { index in
+                                cardView(index: index, size: geometry.size, scrollReader: reader)
+                            }
+                            .padding(.horizontal, 16)
+                        }
                     }
-                        .onTapGesture {
-                        observed.didTabCard()
-                    }
-                } else {
-                    notScannedView
+                    Spacer(minLength: observed.getSpacerMinLength(size: geometry.size))
+                }
+                
+            }
+        }
+        .onOpenURL{ url in
+            Task {
+                if await observed.isAvailableURL(url: url) {
+                    envObserved.currentTab = .stamp
                 }
             }
-                .padding(36)
-                .navigationTitle("Stamp")
-        }
-    } // body
-} // View
-
-private extension StampView {
-
-    @ViewBuilder
-    var stampBack: some View {
-        Image("Seminar002StampBack")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * observed.cardAnimatonModel.frontDegree / 90, y: 4)
-            .rotation3DEffect(Angle(degrees: observed.cardAnimatonModel.frontDegree), axis: (x: 0, y: 1, z: 0))
-    }
-
-    @ViewBuilder
-    var stampFront: some View {
-        Image("Seminar002StampFront")
-
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .shadow(color: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 0.2), radius: 20, x: 40 * observed.cardAnimatonModel.backDegree / 90, y: 4)
-            .rotation3DEffect(Angle(degrees: observed.cardAnimatonModel.backDegree), axis: (x: 0, y: 1, z: 0))
-    }
-
-    @ViewBuilder
-    var notScannedView: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 30)
-                .strokeBorder(Color(red: 0.78, green: 0.78, blue: 0.8), style: StrokeStyle(lineWidth: 2, dash: [10]))
-
-            Text("아직 참여한 행사가 없습니다.")
-                .foregroundColor(.gray)
         }
     }
 }
 
-struct StampView_Previews: PreviewProvider {
-    static var previews: some View {
-        StampView()
+private extension StampView {
+    var emptyCardView: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 30)
+                .strokeBorder(Color(red: 0.78, green: 0.78, blue: 0.8), style: StrokeStyle(lineWidth: 2, dash: [10]))
+            
+            Text("아직 참여한 행사가 없습니다.")
+                .foregroundColor(.gray)
+        }
+    }
+    
+    func cardView(index: Int, size: CGSize, scrollReader: ScrollViewProxy) -> some View {
+        observed.cards[observed.events[index]]?.image
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .shadow(color: Color.black.opacity(0.1), radius: 10, y: 4)
+            .offset(y: observed.getCardOffsetY(index: index, size: size))
+            .onTapGesture {
+                observed.didCardTapped(index: index, scrollReader: scrollReader)
+            }
     }
 }

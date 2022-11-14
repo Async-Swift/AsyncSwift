@@ -32,7 +32,8 @@ struct TicketingView: View {
                             .ticketingViewStyle()
                     }
                 }
-                .padding(30)
+                .padding(.horizontal)
+                .padding(.vertical, 30)
 
             }
             .navigationTitle("Ticketing")
