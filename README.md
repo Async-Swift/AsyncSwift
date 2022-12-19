@@ -22,7 +22,8 @@ AsnycSwift가 주최한 행사 티켓 구매를 위한 안내 페이지입니다
 ### 3. 디지털 Stamp 
 <p align="left">
 <img src="https://user-images.githubusercontent.com/55151796/208449937-a5b313e9-f783-42fe-a0d3-4ea8bd60ffd4.PNG" height=400>
-</p>
+<img src="https://user-images.githubusercontent.com/55151796/208467879-174a0159-1cb2-4278-b376-d1157232be94.gif" height=400 width=185>
+
 AsyncSwift에서 주최한 행사를 참석하시면 얻을 수 있는 Digital Card를 보여주기 위한 기능입니다.
 
 ### 4. Profile공유
