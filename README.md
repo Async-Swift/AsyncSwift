@@ -1,8 +1,6 @@
 # AsyncSwift
 ## AsyncSwift란?
-<p align="center">
-<img src="https://user-images.githubusercontent.com/55151796/208430281-a8ceeaa2-495a-4629-b881-c243a8b9eb39.jpg" height=200>
-</p>
+![Group 21](https://user-images.githubusercontent.com/55151796/208451012-9b8b1fbe-62ea-4173-9ce1-852ac9367e04.jpg)
 ### 우리는 Apple 생태계 속에서 헤엄치는 사람들의 커뮤니티입니다. 
 ### 우리는 Swift라는 공용어를 매개로 기획자, 디자이너. 
 ### 개발자들이 어울러져 지식과 경험, 기회를 공유함으로 함께 성장하기를 꿈꿉니다.
@@ -32,4 +30,4 @@ AsyncSwift에서 주최한 행사를 참석하시면 얻을 수 있는 Digital C
 <p align="left">
 <img src="https://user-images.githubusercontent.com/55151796/208449952-9f69dcc4-9757-4be6-a8c7-3746805da469.PNG" height=400>
 </p>
-AsyncSwift에서 
+AsyncSwift에서 주최한 행사의 After Party에서 즐기실 수 있는 프로필 교환 및 작성입니다.
