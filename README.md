@@ -30,3 +30,9 @@ AsyncSwift에서 주최한 행사를 참석하시면 얻을 수 있는 Digital C
 <img src="https://user-images.githubusercontent.com/55151796/208449952-9f69dcc4-9757-4be6-a8c7-3746805da469.PNG" height=400>
 </p>
 AsyncSwift에서 주최한 행사의 After Party에서 즐기실 수 있는 프로필 교환 및 작성을 위한 기능입니다.
+
+## 사용 기술
+```Swift
+Firebase
+KeyChain
+```
