@@ -23,11 +23,10 @@ AsnycSwift가 주최한 행사 티켓 구매를 위한 안내 페이지입니다
 <p align="left">
 <img src="https://user-images.githubusercontent.com/55151796/208449937-a5b313e9-f783-42fe-a0d3-4ea8bd60ffd4.PNG" height=400>
 </p>
-AsyncSwift에서 주최한 행사를 참석하시면 얻을 수 있는 Digital Card 입니다.
-
+AsyncSwift에서 주최한 행사를 참석하시면 얻을 수 있는 Digital Card를 보여주기 위한 기능입니다.
 
 ### 4. Profile공유
 <p align="left">
 <img src="https://user-images.githubusercontent.com/55151796/208449952-9f69dcc4-9757-4be6-a8c7-3746805da469.PNG" height=400>
 </p>
-AsyncSwift에서 주최한 행사의 After Party에서 즐기실 수 있는 프로필 교환 및 작성입니다.
+AsyncSwift에서 주최한 행사의 After Party에서 즐기실 수 있는 프로필 교환 및 작성을 위한 기능입니다.
