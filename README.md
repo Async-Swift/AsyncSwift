@@ -1,8 +1,6 @@
 # AsyncSwift
 ## AsyncSwift란?
-![Group 21](https://user-images.githubusercontent.com/55151796/208451012-9b8b1fbe-62ea-4173-9ce1-852ac9367e04.jpg)
-#### 우리는 Apple 생태계 속에서 헤엄치는 사람들의 커뮤니티입니다.
-#### 우리는 Swift라는 공용어를 매개로 기획자, 디자이너 그리고 개발자들이 어우러져 지식과 경험, 기회를 공유함으로 함께 성장하기를 꿈꿉니다.
+![스크린샷 2022-12-19 오후 9 43 34](https://user-images.githubusercontent.com/55151796/209364676-179c792e-b8f0-4213-aaf0-e9961b5d29ac.png)
 
 ---
 ## AsyncSwift 앱 소개
