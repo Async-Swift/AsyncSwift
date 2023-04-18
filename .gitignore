@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift,firebase,xcode
 
 ### Custom ###
-*/.DS_Store
+**/.DS_Store
 
 
 ### Firebase ###
