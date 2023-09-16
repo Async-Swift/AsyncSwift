@@ -12,7 +12,8 @@ struct Stamp: Decodable {
 }
 
 struct Card {
+
     var originalPosition: CGFloat
-    var isSelected = false
     var image: Image
+    var event: String
 }

@@ -9,9 +9,10 @@ import SwiftUI
 
 extension StampView {
     @MainActor final class Observed: ObservableObject {
-        @Published var cards = [String: Card]()
+        @Published var cards: [Card] = []
         @Published var events = [String]()
         @Published var currentIndex = 0
+        @Published var isLoading = true
         private let keyChainManager = KeyChainManager()
         private let cardInterval: CGFloat = (UIScreen.main.bounds.width - 32) * 56 / 358
         private let cardSize: CGFloat = UIScreen.main.bounds.width - 32
@@ -22,8 +23,7 @@ extension StampView {
         
         private func getEvents() -> [String] {
             let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
-            guard var convertedStringArray = pwRaw?.convertToStringArray() else { return [] }
-            convertedStringArray.insert("Next", at: 0) // MARK: Test 실제에서는 Next storage 둘다 설정해야함
+            guard let convertedStringArray = pwRaw?.convertToStringArray() else { return [] }
             self.events = convertedStringArray.reversed()
             return events
         }
@@ -33,27 +33,33 @@ extension StampView {
         private func fetchStampsImages(){
             let events = getEvents()
             
+            guard !events.isEmpty else {
+                isLoading = false
+                return
+            }
+
             events.enumerated().forEach { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 let event = $0.element
                 let index = $0.offset
                 Task { @MainActor () -> Void in
                     guard let cardImageURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "/stamp.png")
                     else { return }
-                    
+
                     let cardImageRequest = URLRequest(url: cardImageURL)
                     let (cardImageData, cardImageResponse) = try await URLSession.shared.data(for: cardImageRequest)
                     guard let httpsResponse = cardImageResponse as? HTTPURLResponse, httpsResponse.statusCode == 200 else { return }
-                    
+
                     guard let cardUIImage = UIImage(data: cardImageData) else { return }
-                    
-                    self.cards[event] = Card(originalPosition: cardInterval * CGFloat(index),
-                                             image: Image(uiImage: cardUIImage))
-                    // 가장 최근의 EventCard가 선택된 상태로 지정하기
-                    if index == 0 {
-                        self.cards[event]?.isSelected = true
-                    } else {
-                        self.cards[event]?.isSelected = false
+
+                    let card = Card(
+                        originalPosition: self.cardInterval * CGFloat(index),
+                        image: Image(uiImage: cardUIImage),
+                        event: event
+                    )
+                    self.cards.append(card)
+                    if index == events.count - 1 {
+                        self.isLoading = false
                     }
                 }
             }

@@ -16,47 +16,30 @@ struct StampView: View {
     ]
     
     var body: some View {
-        GeometryReader { geometry in
-            if observed.cards.isEmpty {
-                emptyCardView
-                    .padding(36)
-            } else {
+        
+        GeometryReader { proxy in
+            NavigationView {
                 ScrollView(showsIndicators: false) {
                     ScrollViewReader { reader in
-                        HStack(alignment: .bottom) {
-                            Text("Stamp")
-                                .font(.system(size: 34))
-                                .fontWeight(.bold)
-                                .padding(.leading, 16)
-                                .padding(.bottom, 30)
-                                .padding(.top, 48)
-                            Spacer()
-                        }
-                        .frame(height: 94)
-                        ZStack {
-                            HStack{
-                                Spacer()
-                                LazyVGrid(
-                                    columns: columns,
-                                    spacing: 10
-                                ) {
-                                    ForEach(0..<observed.cards.count, id: \.self) { index in
-                                        cardView(index: index, size: geometry.size, scrollReader: reader)
-                                    }
-                                }
-                                .padding(.horizontal, 14)
-                                Spacer()
+                        LazyVGrid(
+                            columns: columns,
+                            spacing: 10
+                        ) {
+                            ForEach(observed.cards, id: \.event) { card in
+                                cardView(card: card, size: proxy.size)
                             }
                         }
+                        .padding(.horizontal, 14)
                     }
                 }
-                
-            }
-        }
-        .onOpenURL{ url in
-            Task {
-                if await observed.isAvailableURL(url: url) {
-                    envObserved.currentTab = .stamp
+                .navigationTitle(Tab.stamp.title)
+                .overlay {
+                    if observed.isLoading {
+                        loadingIndicator
+                    } else if !observed.isLoading, observed.cards.isEmpty  {
+                        emptyCardView
+                            .padding(36)
+                    }
                 }
             }
         }
@@ -64,18 +47,26 @@ struct StampView: View {
 }
 
 private extension StampView {
-    var emptyCardView: some View {
+    
+    @ViewBuilder var loadingIndicator: some View {
+        ProgressView()
+            .scaleEffect(1.5)
+            .padding(30)
+            .background(.ultraThinMaterial)
+            .cornerRadius(10)
+    }
+    
+    @ViewBuilder var emptyCardView: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
                 .strokeBorder(Color(red: 0.78, green: 0.78, blue: 0.8), style: StrokeStyle(lineWidth: 2, dash: [10]))
-            
             Text("아직 참여한 행사가 없습니다.")
                 .foregroundColor(.gray)
         }
     }
     
-    func cardView(index: Int, size: CGSize, scrollReader: ScrollViewProxy) -> some View {
-        observed.cards[observed.events[index]]?.image
+    @ViewBuilder func cardView(card: Card, size: CGSize) -> some View {
+        card.image
             .resizable()
             .aspectRatio(contentMode: .fill)
             .shadow(color: Color.black.opacity(0.1), radius: 10, y: 4)
