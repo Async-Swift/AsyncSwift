@@ -49,7 +49,6 @@ struct StampView: View {
                             }
                         }
                     }
-                    Spacer(minLength: observed.getSpacerMinLength(size: geometry.size))
                 }
                 
             }
