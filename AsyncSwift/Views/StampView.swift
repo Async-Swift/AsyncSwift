@@ -10,6 +10,10 @@ import SwiftUI
 struct StampView: View {
     @StateObject var observed = Observed()
     @EnvironmentObject var envObserved: MainTabViewObserved
+    let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
         GeometryReader { geometry in
@@ -24,16 +28,25 @@ struct StampView: View {
                                 .font(.system(size: 34))
                                 .fontWeight(.bold)
                                 .padding(.leading, 16)
-                                .padding(.bottom, 7)
+                                .padding(.bottom, 30)
                                 .padding(.top, 48)
                             Spacer()
                         }
                         .frame(height: 94)
                         ZStack {
-                            ForEach(0..<observed.cards.count, id: \.self) { index in
-                                cardView(index: index, size: geometry.size, scrollReader: reader)
+                            HStack{
+                                Spacer()
+                                LazyVGrid(
+                                    columns: columns,
+                                    spacing: 10
+                                ) {
+                                    ForEach(0..<observed.cards.count, id: \.self) { index in
+                                        cardView(index: index, size: geometry.size, scrollReader: reader)
+                                    }
+                                }
+                                .padding(.horizontal, 14)
+                                Spacer()
                             }
-                            .padding(.horizontal, 16)
                         }
                     }
                     Spacer(minLength: observed.getSpacerMinLength(size: geometry.size))
@@ -65,11 +78,7 @@ private extension StampView {
     func cardView(index: Int, size: CGSize, scrollReader: ScrollViewProxy) -> some View {
         observed.cards[observed.events[index]]?.image
             .resizable()
-            .aspectRatio(contentMode: .fit)
+            .aspectRatio(contentMode: .fill)
             .shadow(color: Color.black.opacity(0.1), radius: 10, y: 4)
-            .offset(y: observed.getCardOffsetY(index: index, size: size))
-            .onTapGesture {
-                observed.didCardTapped(index: index, scrollReader: scrollReader)
-            }
     }
 }
