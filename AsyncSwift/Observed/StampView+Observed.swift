@@ -9,9 +9,10 @@ import SwiftUI
 
 extension StampView {
     @MainActor final class Observed: ObservableObject {
-        @Published var cards = [String: Card]()
+        @Published var cards: [Card] = []
         @Published var events = [String]()
         @Published var currentIndex = 0
+        @Published var isLoading = true
         private let keyChainManager = KeyChainManager()
         private let cardInterval: CGFloat = (UIScreen.main.bounds.width - 32) * 56 / 358
         private let cardSize: CGFloat = UIScreen.main.bounds.width - 32
@@ -22,8 +23,7 @@ extension StampView {
         
         private func getEvents() -> [String] {
             let pwRaw = keyChainManager.getItem(key: keyChainManager.stampKey) as? String
-            guard var convertedStringArray = pwRaw?.convertToStringArray() else { return [] }
-            convertedStringArray.insert("Next", at: 0) // MARK: Test 실제에서는 Next storage 둘다 설정해야함
+            guard let convertedStringArray = pwRaw?.convertToStringArray() else { return [] }
             self.events = convertedStringArray.reversed()
             return events
         }
@@ -33,27 +33,33 @@ extension StampView {
         private func fetchStampsImages(){
             let events = getEvents()
             
+            guard !events.isEmpty else {
+                isLoading = false
+                return
+            }
+
             events.enumerated().forEach { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 let event = $0.element
                 let index = $0.offset
                 Task { @MainActor () -> Void in
                     guard let cardImageURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "/stamp.png")
                     else { return }
-                    
+
                     let cardImageRequest = URLRequest(url: cardImageURL)
                     let (cardImageData, cardImageResponse) = try await URLSession.shared.data(for: cardImageRequest)
                     guard let httpsResponse = cardImageResponse as? HTTPURLResponse, httpsResponse.statusCode == 200 else { return }
-                    
+
                     guard let cardUIImage = UIImage(data: cardImageData) else { return }
-                    
-                    self.cards[event] = Card(originalPosition: cardInterval * CGFloat(index),
-                                             image: Image(uiImage: cardUIImage))
-                    // 가장 최근의 EventCard가 선택된 상태로 지정하기
-                    if index == 0 {
-                        self.cards[event]?.isSelected = true
-                    } else {
-                        self.cards[event]?.isSelected = false
+
+                    let card = Card(
+                        originalPosition: self.cardInterval * CGFloat(index),
+                        image: Image(uiImage: cardUIImage),
+                        event: event
+                    )
+                    self.cards.append(card)
+                    if index == events.count - 1 {
+                        self.isLoading = false
                     }
                 }
             }
@@ -104,41 +110,6 @@ extension StampView {
             let stamp = try JSONDecoder().decode(Stamp.self, from: data)
             
             return stamp
-        }
-        
-        /// 가장 맨 위에 올라온 카드라면 아무것도 작동안하도록, 아니라면 가장 맨위로 올도록 하는 함수입니다.
-        func didCardTapped(index: Int, scrollReader: ScrollViewProxy) {
-            if index != currentIndex {
-                scrollReader.scrollTo(0, anchor: .init(x: 0, y: 94))
-                withAnimation(.spring()) {
-                    cards[events[index]]?.isSelected = true
-                    cards[events[currentIndex]]?.isSelected = false
-                    currentIndex = index
-                }
-            }
-        }
-        
-        /// 카드의 개수에 따라서 카드의 위치를 지정해주는 함수입니다.
-        func getCardOffsetY(index: Int, size: CGSize) -> CGFloat {
-            withAnimation(.spring()) {
-                guard let card = cards[events[index]] else { return .zero}
-                if card.isSelected {
-                    return .zero
-                } else if size.height - CGFloat(94) < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
-                    return cardSize + CGFloat(16) + card.originalPosition
-                } else {
-                    return size.height - CGFloat(94) - cardInterval * CGFloat(cards.count - index) - CGFloat(8)
-                }
-            }
-        }
-        
-        /// 스크롤을 원할하게 하기 위해서 Offset 으로 원래 크기 보다 밀려난 만큼 Spacer로 확보해줍니다.
-        func getSpacerMinLength(size: CGSize) -> CGFloat {
-            if size.height - CGFloat(94) < cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) {
-                return cardSize + CGFloat(16) + cardInterval * CGFloat(cards.count - 1) + cardSize
-            } else {
-                return size.height - CGFloat(94) - cardInterval
-            }
         }
     }
 }
