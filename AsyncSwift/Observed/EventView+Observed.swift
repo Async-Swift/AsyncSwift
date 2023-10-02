@@ -20,12 +20,7 @@ final class EventViewObserved: ObservableObject {
         let urlString = "https://async-swift.github.io/jsonstorage/asyncswift.json"
         let url = URL(string: urlString)!
         URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap() { element -> Data in
-                guard let httpResponse = element.response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200
-                else { throw URLError(.badServerResponse) }
-                return element.data
-            }
+            .map(\.data)
             .decode(type: Event.self, decoder: JSONDecoder())
             .receive(on: RunLoop.main)
             .sink { _ in
