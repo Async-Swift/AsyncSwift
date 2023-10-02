@@ -15,7 +15,7 @@ extension EventDetailView {
             self.event = event
         }
 
-        @Published var event: Event
+        let event: Event
         @Published var isShowingSheet = false
         @Published var isShowingAddEventConfirmationAlert = false
         @Published var isShowingAddEventSuccessAlert = false

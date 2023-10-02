@@ -19,7 +19,6 @@
 		C63D4450291BDD2B005D5AE6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63D444F291BDD2B005D5AE6 /* String+.swift */; };
 		C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D228D1B00A0091F960 /* EventModel.swift */; };
 		C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D428D1B0130091F960 /* SessionModel.swift */; };
-		C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */; };
 		C66E3D95290BA48500097BEA /* ProfileRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */; };
 		C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */; };
 		C66E3D99290BB9C100097BEA /* TextEditor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D98290BB9C100097BEA /* TextEditor+.swift */; };
@@ -71,7 +70,6 @@
 		C63D444F291BDD2B005D5AE6 /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C66C68D228D1B00A0091F960 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		C66C68D428D1B0130091F960 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
-		C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionView+Observed.swift"; sourceTree = "<group>"; };
 		C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterView.swift; sourceTree = "<group>"; };
 		C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterViewObserved.swift; sourceTree = "<group>"; };
 		C66E3D98290BB9C100097BEA /* TextEditor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextEditor+.swift"; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 				C63D444D291BDD09005D5AE6 /* MainTabView+Observed.swift */,
 				C6F7798A28C9CBC60036773B /* EventView+Observed.swift */,
 				C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */,
-				C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */,
 				B289943228CA69FF002B9F67 /* StampView+Observed.swift */,
 				E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */,
 				C69C13BD2913EC3200D9B47F /* ProfileView */,
@@ -354,7 +351,6 @@
 				C63D4450291BDD2B005D5AE6 /* String+.swift in Sources */,
 				C63D444C291BDCDC005D5AE6 /* KeyChainManager.swift in Sources */,
 				C631EBC3291537E300A54143 /* SafariView.swift in Sources */,
-				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
 				C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,

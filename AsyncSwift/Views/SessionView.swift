@@ -9,12 +9,9 @@ import SwiftUI
 
 struct SessionView: View {
 
-    @ObservedObject var observed: Observed
-
-    init(session: Session) {
-        observed = Observed(session: session)
-    }
-
+    let session: Session
+    let speakerImageSize: CGFloat = 80
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -37,12 +34,12 @@ private extension SessionView {
     var sessionDetail: some View {
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
-                Text(observed.session.title)
+                Text(session.title)
                     .font(.title3)
                     .fontWeight(.semibold)
                     .padding(.vertical, 24)
                 VStack(alignment: .leading, spacing: 8) {
-                    ForEach(observed.session.description, id: \.self) { paragraph in
+                    ForEach(session.description, id: \.self) { paragraph in
                         Text(paragraph.content)
                     }
                 }
@@ -57,7 +54,7 @@ private extension SessionView {
 
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 4) {
-                AsyncImage(url: URL(string: observed.session.speaker.imageURL), transaction: Transaction(animation: .default)) { phase in
+                AsyncImage(url: URL(string: session.speaker.imageURL), transaction: Transaction(animation: .default)) { phase in
                     if let image = phase.image {
                         image
                             .resizable()
@@ -72,16 +69,16 @@ private extension SessionView {
                     }
                 }
                 .aspectRatio(contentMode: .fit)
-                .frame(width: observed.speakerImageSize, height: observed.speakerImageSize)
+                .frame(width: speakerImageSize, height: speakerImageSize)
                 .clipShape(Circle())
                 .padding(.vertical, 24)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(observed.session.speaker.name) 님")
+                    Text("\(session.speaker.name) 님")
                         .font(.headline)
-                    Text(observed.session.speaker.role)
+                    Text(session.speaker.role)
                         .font(.caption2)
                 }
-                Text(observed.session.speaker.description)
+                Text(session.speaker.description)
                     .font(.footnote)
             }
             .padding(.horizontal, 32)
