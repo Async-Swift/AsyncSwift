@@ -32,16 +32,16 @@ extension StampView {
         
         /// Storage에 저장되어 있는 Stamp Image를 가져오는 함수이다.
         /// - 
-        private func fetchStampsImages(){
+        private func fetchStampsImages() {
+          
             let events = getEvents()
-            
             guard !events.isEmpty else { return isLoading = false }
-
+          
             events.enumerated().forEach { [weak self] in
                 guard let self else { return }
                 let event = $0.element
                 let index = $0.offset
-                
+
                 let urlString = "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "/stamp.png"
                 let url = URL(string: urlString)!
                 
