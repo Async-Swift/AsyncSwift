@@ -19,7 +19,6 @@
 		C63D4450291BDD2B005D5AE6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63D444F291BDD2B005D5AE6 /* String+.swift */; };
 		C66C68D328D1B00A0091F960 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D228D1B00A0091F960 /* EventModel.swift */; };
 		C66C68D528D1B0130091F960 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C68D428D1B0130091F960 /* SessionModel.swift */; };
-		C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */; };
 		C66E3D95290BA48500097BEA /* ProfileRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */; };
 		C66E3D97290BA4FC00097BEA /* ProfileRegisterViewObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */; };
 		C66E3D99290BB9C100097BEA /* TextEditor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E3D98290BB9C100097BEA /* TextEditor+.swift */; };
@@ -56,6 +55,7 @@
 		E9171F0028D15426002FAF52 /* TicketingView+Observed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */; };
 		E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F92C628D2505100D9E759 /* Ticketing.swift */; };
 		E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E2A4D728CEC5680016AEFF /* WebView.swift */; };
+		FBCCC4F32ACAB5BD00FFF26B /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FBCCC4F22ACAB5BD00FFF26B /* SDWebImageSwiftUI */; };
 		FBF437072AC9562B00B22B05 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF437062AC9562B00B22B05 /* WidgetKit.framework */; };
 		FBF437092AC9562B00B22B05 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF437082AC9562B00B22B05 /* SwiftUI.framework */; };
 		FBF4370C2AC9562B00B22B05 /* AsyncSwiftWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF4370B2AC9562B00B22B05 /* AsyncSwiftWidgetBundle.swift */; };
@@ -104,7 +104,6 @@
 		C63D444F291BDD2B005D5AE6 /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C66C68D228D1B00A0091F960 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		C66C68D428D1B0130091F960 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
-		C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionView+Observed.swift"; sourceTree = "<group>"; };
 		C66E3D94290BA48500097BEA /* ProfileRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterView.swift; sourceTree = "<group>"; };
 		C66E3D96290BA4FC00097BEA /* ProfileRegisterViewObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterViewObserved.swift; sourceTree = "<group>"; };
 		C66E3D98290BB9C100097BEA /* TextEditor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextEditor+.swift"; sourceTree = "<group>"; };
@@ -155,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBCCC4F32ACAB5BD00FFF26B /* SDWebImageSwiftUI in Frameworks */,
 				FBF4371F2AC95C3200B22B05 /* SVGKit in Frameworks */,
 				C69C13B32913B08F00D9B47F /* FirebaseDatabase in Frameworks */,
 				C69C13B52913B09500D9B47F /* FirebaseFirestore in Frameworks */,
@@ -315,7 +315,6 @@
 				C63D444D291BDD09005D5AE6 /* MainTabView+Observed.swift */,
 				C6F7798A28C9CBC60036773B /* EventView+Observed.swift */,
 				C63A865E28CA70ED0064C417 /* EventDetailView+Observed.swift */,
-				C66DAD4F28CF478700195DEB /* SessionView+Observed.swift */,
 				B289943228CA69FF002B9F67 /* StampView+Observed.swift */,
 				E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */,
 				C69C13BD2913EC3200D9B47F /* ProfileView */,
@@ -360,6 +359,7 @@
 				C69C13B42913B09500D9B47F /* FirebaseFirestore */,
 				C69C13C5291425F200D9B47F /* CodeScanner */,
 				FBF4371E2AC95C3200B22B05 /* SVGKit */,
+				FBCCC4F22ACAB5BD00FFF26B /* SDWebImageSwiftUI */,
 			);
 			productName = AsyncSwift;
 			productReference = C68DE93228C7685800CA4CC8 /* AsyncSwift.app */;
@@ -416,6 +416,7 @@
 				C68DE94328C76BC500CA4CC8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C69C13C4291425F200D9B47F /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				FBF4371D2AC95C3200B22B05 /* XCRemoteSwiftPackageReference "SVGKit" */,
+				FBCCC4F12ACAB5BD00FFF26B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = C68DE93328C7685800CA4CC8 /* Products */;
 			projectDirPath = "";
@@ -460,7 +461,6 @@
 				C63D4450291BDD2B005D5AE6 /* String+.swift in Sources */,
 				C63D444C291BDCDC005D5AE6 /* KeyChainManager.swift in Sources */,
 				C631EBC3291537E300A54143 /* SafariView.swift in Sources */,
-				C66DAD5028CF478700195DEB /* SessionView+Observed.swift in Sources */,
 				C69C13A22912868F00D9B47F /* ProfileFriendDetailView.swift in Sources */,
 				C6E744A028CA557100B7B2BD /* Color+.swift in Sources */,
 				C68DE95128C77DDA00CA4CC8 /* TicketingView.swift in Sources */,
@@ -829,6 +829,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		FBCCC4F12ACAB5BD00FFF26B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		FBF4371D2AC95C3200B22B05 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SVGKit/SVGKit.git";
@@ -864,6 +872,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C69C13C4291425F200D9B47F /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		FBCCC4F22ACAB5BD00FFF26B /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBCCC4F12ACAB5BD00FFF26B /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 		FBF4371E2AC95C3200B22B05 /* SVGKit */ = {
 			isa = XCSwiftPackageProductDependency;

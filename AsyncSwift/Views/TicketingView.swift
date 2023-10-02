@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct TicketingView: View {
     @StateObject private var observed = Observed()
@@ -37,9 +38,8 @@ struct TicketingView: View {
 
             }
             .navigationTitle("Ticketing")
-        }.onAppear {
-            observed.onAppear()
         }
+        .onAppear { observed.getTicketingData() }
     }
 }
 
@@ -80,19 +80,14 @@ private extension TicketingView {
                 WebView(url: upcomingEventURL)
             }
         } label: {
-            AsyncImage(
-                url: URL(string: observed.ticketing?.currentTicket?.ticketingImageURL ?? ""),
-                content: { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .transition(AnyTransition.opacity.animation(.easeInOut))
-                },
-                placeholder: {
+            WebImage(url: URL(string: observed.ticketing?.currentTicket?.ticketingImageURL ?? ""))
+                .resizable()
+                .placeholder {
                     skeletonView
                         .aspectRatio(0.85, contentMode: .fill)
                 }
-            )
+                .scaledToFill()
+                .transition(.opacity.animation(.easeOut))
         }.disabled(observed.isTicketingLinkDisabled)
     }
 

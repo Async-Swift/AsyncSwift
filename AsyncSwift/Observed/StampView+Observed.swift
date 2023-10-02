@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Combine
 
 extension StampView {
-    @MainActor final class Observed: ObservableObject {
+    final class Observed: ObservableObject {
         @Published var cards: [Card] = []
         @Published var events = [String]()
         @Published var currentIndex = 0
@@ -16,6 +17,7 @@ extension StampView {
         private let keyChainManager = KeyChainManager()
         private let cardInterval: CGFloat = (UIScreen.main.bounds.width - 32) * 56 / 358
         private let cardSize: CGFloat = UIScreen.main.bounds.width - 32
+        private var cancenllable = Set<AnyCancellable>()
         
         init() {
             fetchStampsImages()
@@ -33,35 +35,38 @@ extension StampView {
         private func fetchStampsImages(){
             let events = getEvents()
             
-            guard !events.isEmpty else {
-                isLoading = false
-                return
-            }
+            guard !events.isEmpty else { return isLoading = false }
 
             events.enumerated().forEach { [weak self] in
                 guard let self else { return }
                 let event = $0.element
                 let index = $0.offset
-                Task { @MainActor () -> Void in
-                    guard let cardImageURL = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "/stamp.png")
-                    else { return }
-
-                    let cardImageRequest = URLRequest(url: cardImageURL)
-                    let (cardImageData, cardImageResponse) = try await URLSession.shared.data(for: cardImageRequest)
-                    guard let httpsResponse = cardImageResponse as? HTTPURLResponse, httpsResponse.statusCode == 200 else { return }
-
-                    guard let cardUIImage = UIImage(data: cardImageData) else { return }
-
-                    let card = Card(
-                        originalPosition: self.cardInterval * CGFloat(index),
-                        image: Image(uiImage: cardUIImage),
-                        event: event
-                    )
-                    self.cards.append(card)
-                    if index == events.count - 1 {
-                        self.isLoading = false
+                
+                let urlString = "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "/stamp.png"
+                let url = URL(string: urlString)!
+                
+                URLSession.shared.dataTaskPublisher(for: url)
+                    .map(\.data)
+                    .tryMap {
+                        guard let image = UIImage(data: $0) else {
+                            throw URLError(.badURL)
+                        }
+                        return Card(
+                            originalPosition: self.cardInterval * CGFloat(index),
+                            image: Image(uiImage: image),
+                            event: event
+                        )
                     }
-                }
+                    .receive(on: RunLoop.main)
+                    .sink(receiveCompletion: { _ in
+
+                    }, receiveValue: { [weak self] card in
+                        self?.cards.append(card)
+                        if index == events.count - 1 {
+                            self?.isLoading = false
+                        }
+                    })
+                    .store(in: &cancenllable)
             }
         }
                 
