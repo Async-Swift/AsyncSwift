@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct SessionView: View {
 
@@ -54,24 +55,21 @@ private extension SessionView {
 
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 4) {
-                AsyncImage(url: URL(string: session.speaker.imageURL), transaction: Transaction(animation: .default)) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                    } else if phase.error != nil {
+                
+                WebImage(url: URL(string: session.speaker.imageURL))
+                    .resizable()
+                    .placeholder {
                         Image(systemName: "person.crop.circle.fill")
                             .resizable()
-                            .opacity(0.04)
-                    } else {
-                        Image(systemName: "person.crop.circle.fill")
-                            .resizable()
+                            .frame(width: speakerImageSize, height: speakerImageSize)
                             .opacity(0.04)
                     }
-                }
-                .aspectRatio(contentMode: .fit)
-                .frame(width: speakerImageSize, height: speakerImageSize)
-                .clipShape(Circle())
-                .padding(.vertical, 24)
+                    .transition(.fade)
+                    .scaledToFit()
+                    .frame(width: speakerImageSize, height: speakerImageSize)
+                    .clipShape(Circle())
+                    .padding(.vertical, 24)
+                
                 VStack(alignment: .leading, spacing: 2) {
                     Text("\(session.speaker.name) 님")
                         .font(.headline)
