@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 final class EventViewObserved: ObservableObject {
 
@@ -13,35 +14,28 @@ final class EventViewObserved: ObservableObject {
     @Published var eventStatus: EventStatus = .upcoming
     @Published var isLoading = true
     let onLoadingCells = Array(repeating: [0], count: 6)
-
-    init() {
-        self.fetchJson {
-            self.calculateEventStatus()
-            self.isLoading = false
-        }
-    }
-
-    func fetchJson(completion: @escaping () -> Void) {
-        guard let url = URL(string: "https://async-swift.github.io/jsonstorage/asyncswift.json") else { return }
-        let request = URLRequest(url: url)
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
-           guard
-               let response = response as? HTTPURLResponse,
-               response.statusCode == 200,
-               let data = data
-           else { return }
-           DispatchQueue.main.async { [weak self] in
-               guard let self = self else { return }
-               do {
-                   let decodedData = try JSONDecoder().decode(Event.self, from: data)
-                   self.event = decodedData
-                   completion()
-               } catch let error {
-                   print("❌ \(error.localizedDescription)")
-               }
-           }
-        }
-        dataTask.resume()
+    var cancellable = Set<AnyCancellable>()
+    
+    func getEventData() {
+        let urlString = "https://async-swift.github.io/jsonstorage/asyncswift.json"
+        let url = URL(string: urlString)!
+        URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap() { element -> Data in
+                guard let httpResponse = element.response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200
+                else { throw URLError(.badServerResponse) }
+                return element.data
+            }
+            .decode(type: Event.self, decoder: JSONDecoder())
+            .receive(on: RunLoop.main)
+            .sink { _ in
+                
+            } receiveValue: { [weak self] event in
+                self?.event = event
+                self?.calculateEventStatus()
+                self?.isLoading = false
+            }
+            .store(in: &cancellable)
     }
 
     func calculateEventStatus() {

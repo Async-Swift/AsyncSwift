@@ -9,28 +9,27 @@ import EventKit
 import SwiftUI
 
 extension EventDetailView {
+    
     final class Observed: ObservableObject {
 
         init(event: Event) {
             self.event = event
         }
 
-        @Published var event: Event
+        let event: Event
         @Published var isShowingSheet = false
         @Published var isShowingAddEventConfirmationAlert = false
         @Published var isShowingAddEventSuccessAlert = false
         @Published var isShowingAddEventFailureAlert = false
 
         func additionConfirmed() {
-            addEventOnCalendar { isSuccess in
-                DispatchQueue.main.async { [weak self] in
-                    if let self = self {
-                        switch isSuccess {
-                        case true:
-                            self.isShowingAddEventSuccessAlert = true
-                        case false:
-                            self.isShowingAddEventFailureAlert = true
-                        }
+            addEventOnCalendar { [weak self] isSuccess in
+                DispatchQueue.main.async {
+                    switch isSuccess {
+                    case true:
+                        self?.isShowingAddEventSuccessAlert = true
+                    case false:
+                        self?.isShowingAddEventFailureAlert = true
                     }
                 }
             }
@@ -39,11 +38,8 @@ extension EventDetailView {
         func addEventOnCalendar(completion: @escaping ((Bool) -> Void) ) {
             let eventStore = EKEventStore()
 
-            eventStore.requestAccess(to: .event) { (granted, error) in
-                if let error = error {
-                    print("failed to save event with error : \(error) or access not granted")
-                    return
-                }
+            eventStore.requestAccess(to: .event) { [weak self] (granted, error) in
+                guard let self, error == nil else { return }
                 let event = EKEvent(eventStore: eventStore)
                 let formatter = DateFormatter.calendarFormatter
                 event.title = self.event.title

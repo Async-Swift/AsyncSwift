@@ -11,8 +11,8 @@ import Foundation
 extension TicketingView {
     final class Observed: ObservableObject {
         @Published var ticketing: Ticketing?
-
         @Published var isActivatedWebViewNavigationLink = false
+        var cancellable = Set<AnyCancellable>()
 
         var hasAvailableTicket: Bool {
             let currentDate = Date()
@@ -22,32 +22,25 @@ extension TicketingView {
         var isTicketingLinkDisabled: Bool {
             ticketing?.currentTicket?.ticketingURL == nil && !hasAvailableTicket
         }
-
-        func onAppear() {
-            guard
-                let url = URL(string: "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/ticketing.json")
-            else { return }
-
-
-            let request = URLRequest(url: url)
-            let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
-               guard
-                   let response = response as? HTTPURLResponse,
-                   response.statusCode == 200,
-                   let data = data
-               else { return }
-
-               DispatchQueue.main.async { [weak self] in
-                   do {
-                       let ticketing = try JSONDecoder().decode(Ticketing.self, from: data)
-                       self?.ticketing = ticketing
-                   } catch {
-                       self?.ticketing = nil
-                   }
-               }
-            }
-
-            dataTask.resume()
+        
+        func getTicketingData() {
+            let urlString = "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/ticketing.json"
+            let url = URL(string: urlString)!
+            URLSession.shared.dataTaskPublisher(for: url)
+                .tryMap() { element -> Data in
+                    guard let httpResponse = element.response as? HTTPURLResponse,
+                          httpResponse.statusCode == 200
+                    else { throw URLError(.badServerResponse) }
+                    return element.data
+                }
+                .decode(type: Ticketing.self, decoder: JSONDecoder())
+                .receive(on: RunLoop.main)
+                .sink { _ in
+                    
+                } receiveValue: { [weak self] event in
+                    self?.ticketing = event
+                }
+                .store(in: &cancellable)
         }
 
         func didTappedTicketingButton() {
