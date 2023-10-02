@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct TicketingView: View {
     @StateObject private var observed = Observed()
 
 	var body: some View {
+        
 		NavigationView {
 			ScrollView {
 				VStack(spacing: 30) {
@@ -37,9 +39,8 @@ struct TicketingView: View {
 
             }
             .navigationTitle("Ticketing")
-        }.onAppear {
-            observed.onAppear()
         }
+        .onAppear { observed.getTicketingData() }
     }
 }
 
@@ -72,28 +73,21 @@ private extension TicketingView {
         .animation(.linear(duration: 3.0), value: 1.0)
     }
 
-    var ticketingView: some View {
-        NavigationLink(
-            isActive: $observed.isActivatedWebViewNavigationLink
-        ) {
-            if let upcomingEventURL = observed.ticketing?.currentTicket?.ticketingURL {
-                WebView(url: upcomingEventURL)
+    @ViewBuilder var ticketingView: some View {
+        
+        if let url = URL(string: observed.ticketing?.currentTicket?.ticketingURL ?? "") {
+            Link(destination: url) {
+                WebImage(url: URL(string: observed.ticketing?.currentTicket?.ticketingImageURL ?? ""))
+                    .resizable()
+                    .placeholder {
+                        skeletonView
+                            .aspectRatio(0.85, contentMode: .fill)
+                    }
+                    .scaledToFill()
+                    .transition(.opacity.animation(.easeOut))
             }
-        } label: {
-            AsyncImage(
-                url: URL(string: observed.ticketing?.currentTicket?.ticketingImageURL ?? ""),
-                content: { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .transition(AnyTransition.opacity.animation(.easeInOut))
-                },
-                placeholder: {
-                    skeletonView
-                        .aspectRatio(0.85, contentMode: .fill)
-                }
-            )
-        }.disabled(observed.isTicketingLinkDisabled)
+            .disabled(observed.isTicketingLinkDisabled)
+        }
     }
 
     var emptyTicketingView: some View {

@@ -33,6 +33,7 @@ struct EventView: View {
                 }
             }
             .navigationTitle(Tab.event.title)
+            .onAppear { observed.getEventData() }
         }
     }
 }
