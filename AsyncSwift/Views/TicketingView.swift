@@ -37,9 +37,8 @@ struct TicketingView: View {
 
             }
             .navigationTitle("Ticketing")
-        }.onAppear {
-            observed.onAppear()
         }
+        .onAppear { observed.getTicketingData() }
     }
 }
 
