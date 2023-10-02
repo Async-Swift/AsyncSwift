@@ -35,10 +35,7 @@ extension StampView {
         private func fetchStampsImages(){
             let events = getEvents()
             
-            guard !events.isEmpty else {
-                isLoading = false
-                return
-            }
+            guard !events.isEmpty else { return isLoading = false }
 
             events.enumerated().forEach { [weak self] in
                 guard let self else { return }
@@ -62,11 +59,11 @@ extension StampView {
                     }
                     .receive(on: RunLoop.main)
                     .sink(receiveCompletion: { _ in
-                        
-                    }, receiveValue: { card in
-                        self.cards.append(card)
+
+                    }, receiveValue: { [weak self] card in
+                        self?.cards.append(card)
                         if index == events.count - 1 {
-                            self.isLoading = false
+                            self?.isLoading = false
                         }
                     })
                     .store(in: &cancenllable)
