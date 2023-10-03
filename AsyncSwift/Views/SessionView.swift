@@ -39,7 +39,6 @@ private extension SessionView {
                     .padding(.vertical, 24)
                 Spacer(minLength: 0)
             }
-            .background(Color.white)
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(session.description, id: \.self) { paragraph in
                     Text(paragraph.content)
