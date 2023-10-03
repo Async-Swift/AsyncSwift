@@ -64,8 +64,8 @@ private extension SessionView {
                             .opacity(0.04)
                     }
                     .transition(.fade)
-                    .scaledToFit()
                     .frame(width: speakerImageSize, height: speakerImageSize)
+                    .scaledToFit()
                     .clipShape(Circle())
                     .padding(.vertical, 24)
                 
@@ -98,7 +98,7 @@ struct SessionView_Previews: PreviewProvider {
                 ],
                 speaker: .init(
                     name: "박성은",
-                    imageURL: "",
+                    imageURL: "https://github.com/Async-Swift/jsonstorage/blob/main/Images/Speaker/syncswift2023/hyeonjung.png?raw=true",
                     role: "북적 스튜디오 | iOS Developer",
                     description: "iOS 개발자 입니다."
                 )
