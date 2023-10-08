@@ -56,6 +56,8 @@
 		E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F92C628D2505100D9E759 /* Ticketing.swift */; };
 		E9E2A4D828CEC5680016AEFF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E2A4D728CEC5680016AEFF /* WebView.swift */; };
 		FBCCC4F32ACAB5BD00FFF26B /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FBCCC4F22ACAB5BD00FFF26B /* SDWebImageSwiftUI */; };
+		FBDEF9A32AD2A66600FF7028 /* GitHubStorageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDEF9A22AD2A66600FF7028 /* GitHubStorageURL.swift */; };
+		FBDEF9A42AD2A66600FF7028 /* GitHubStorageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDEF9A22AD2A66600FF7028 /* GitHubStorageURL.swift */; };
 		FBF437072AC9562B00B22B05 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF437062AC9562B00B22B05 /* WidgetKit.framework */; };
 		FBF437092AC9562B00B22B05 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF437082AC9562B00B22B05 /* SwiftUI.framework */; };
 		FBF4370C2AC9562B00B22B05 /* AsyncSwiftWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF4370B2AC9562B00B22B05 /* AsyncSwiftWidgetBundle.swift */; };
@@ -138,6 +140,7 @@
 		E9171EFF28D15426002FAF52 /* TicketingView+Observed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TicketingView+Observed.swift"; sourceTree = "<group>"; };
 		E94F92C628D2505100D9E759 /* Ticketing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ticketing.swift; sourceTree = "<group>"; };
 		E9E2A4D728CEC5680016AEFF /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		FBDEF9A22AD2A66600FF7028 /* GitHubStorageURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubStorageURL.swift; sourceTree = "<group>"; };
 		FBF437052AC9562B00B22B05 /* AsyncSwiftWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AsyncSwiftWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBF437062AC9562B00B22B05 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		FBF437082AC9562B00B22B05 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -255,6 +258,7 @@
 			children = (
 				C63D444B291BDCDC005D5AE6 /* KeyChainManager.swift */,
 				C69C13BE2913EC9400D9B47F /* FirebaseManager.swift */,
+				FBDEF9A22AD2A66600FF7028 /* GitHubStorageURL.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -457,6 +461,7 @@
 				C6AA71E828FC65680091A868 /* Text+.swift in Sources */,
 				C68DE94C28C76F3200CA4CC8 /* AppDelegate.swift in Sources */,
 				E94F92C728D2505100D9E759 /* Ticketing.swift in Sources */,
+				FBDEF9A32AD2A66600FF7028 /* GitHubStorageURL.swift in Sources */,
 				C69C13C1291418A000D9B47F /* ProfileEditView.swift in Sources */,
 				C63D4450291BDD2B005D5AE6 /* String+.swift in Sources */,
 				C63D444C291BDCDC005D5AE6 /* KeyChainManager.swift in Sources */,
@@ -504,6 +509,7 @@
 				FBF4370E2AC9562B00B22B05 /* AsyncSwiftWidget.swift in Sources */,
 				FBF4370C2AC9562B00B22B05 /* AsyncSwiftWidgetBundle.swift in Sources */,
 				FBF4371B2AC9588800B22B05 /* AsyncSwiftWidgetEntryView.swift in Sources */,
+				FBDEF9A42AD2A66600FF7028 /* GitHubStorageURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

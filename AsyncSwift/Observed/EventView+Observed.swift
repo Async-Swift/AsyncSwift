@@ -17,8 +17,7 @@ final class EventViewObserved: ObservableObject {
     var cancellable = Set<AnyCancellable>()
     
     func getEventData() {
-        let urlString = "https://async-swift.github.io/jsonstorage/asyncswift.json"
-        let url = URL(string: urlString)!
+        let url = URL(string: GitHubStorageURL.eventData)!
         URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: Event.self, decoder: JSONDecoder())

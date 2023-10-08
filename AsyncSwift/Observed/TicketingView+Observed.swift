@@ -24,8 +24,7 @@ extension TicketingView {
         }
         
         func getTicketingData() {
-            let urlString = "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/ticketing.json"
-            let url = URL(string: urlString)!
+            let url = URL(string: GitHubStorageURL.ticketingData)!
             URLSession.shared.dataTaskPublisher(for: url)
                 .map(\.data)
                 .decode(type: Ticketing.self, decoder: JSONDecoder())
