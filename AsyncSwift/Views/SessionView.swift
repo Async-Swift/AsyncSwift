@@ -64,7 +64,7 @@ private extension SessionView {
                     }
                     .transition(.fade)
                     .frame(width: speakerImageSize, height: speakerImageSize)
-                    .scaledToFit() master
+                    .scaledToFit() 
                     .clipShape(Circle())
                     .padding(.vertical, 24)
                 
