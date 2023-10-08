@@ -27,8 +27,7 @@ struct Provider: TimelineProvider {
     }
     
     func getRemoteImage() -> Data? {
-        let urlString = "https://raw.githubusercontent.com/Async-Swift/jsonstorage/a94eb982e9b9db90543de1d574a6dc5f0c637f5b/Images/widget-large.svg"
-        return try? Data(contentsOf: URL(string: urlString)!)
+        try? Data(contentsOf: URL(string: GitHubStorageURL.widgetLargeImage)!)
     }
 }
 
@@ -54,7 +53,12 @@ struct AsyncSwiftWidget: Widget {
 
 struct AsyncSwiftWidget_Previews: PreviewProvider {
     static var previews: some View {
-        AsyncSwiftWidgetEntryView(entry: SimpleEntry(date: Date(), imageData: nil))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        AsyncSwiftWidgetEntryView(
+            entry: SimpleEntry(
+                date: Date(),
+                imageData: try? Data(contentsOf: URL(string: GitHubStorageURL.widgetLargeImage)!)
+            )
+        )
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

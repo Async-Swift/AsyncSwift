@@ -41,9 +41,7 @@ extension StampView {
                 guard let self else { return }
                 let event = $0.element
                 let index = $0.offset
-
-                let urlString = "https://raw.githubusercontent.com/Async-Swift/jsonstorage/main/Images/Stamp/" + event + "/stamp.png"
-                let url = URL(string: urlString)!
+                let url = URL(string: GitHubStorageURL.stampImage(event))!
                 
                 URLSession.shared.dataTaskPublisher(for: url)
                     .map(\.data)
